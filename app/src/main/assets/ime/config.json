@@ -267,59 +267,12 @@
       }
     },
     {
-      "id": 103,
-      "languageTag": "en-CA",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "qwerty"
-      }
-    },
-    {
-      "id": 104,
-      "languageTag": "en-AU",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "qwerty"
-      }
-    },
-    {
       "id": 201,
       "languageTag": "de-DE",
       "composer": "appender",
       "currencySet": "euro",
       "preferred": {
         "characters": "qwertz"
-      }
-    },
-    {
-      "id": 202,
-      "languageTag": "de-AT",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "qwertz"
-      }
-    },
-    {
-      "id": 203,
-      "languageTag": "de-CH",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "swiss_german"
-      }
-    },
-    {
-      "id": 204,
-      "languageTag": "de-DE-neobone",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "neo2",
-        "symbols": "neo2",
-        "numericRow": "neo2"
       }
     },
     {
@@ -332,24 +285,6 @@
       }
     },
     {
-      "id": 302,
-      "languageTag": "fr-CA",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "canadian_french"
-      }
-    },
-    {
-      "id": 303,
-      "languageTag": "fr-CH",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "swiss_french"
-      }
-    },
-    {
       "id": 401,
       "languageTag": "it-IT",
       "composer": "appender",
@@ -359,37 +294,10 @@
       }
     },
     {
-      "id": 402,
-      "languageTag": "it-CH",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "swiss_italian"
-      }
-    },
-    {
       "id": 501,
       "languageTag": "es-ES",
       "composer": "appender",
       "currencySet": "euro",
-      "preferred": {
-        "characters": "spanish"
-      }
-    },
-    {
-      "id": 502,
-      "languageTag": "es-US",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "spanish"
-      }
-    },
-    {
-      "id": 503,
-      "languageTag": "es-419",
-      "composer": "appender",
-      "currencySet": "dollar",
       "preferred": {
         "characters": "spanish"
       }
@@ -404,305 +312,12 @@
       }
     },
     {
-      "id": 602,
-      "languageTag": "pt-BR",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "qwerty"
-      }
-    },
-    {
-      "id": 701,
-      "languageTag": "nb-NO",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "norwegian"
-      }
-    },
-    {
-      "id": 702,
-      "languageTag": "nn-NO",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "norwegian"
-      }
-    },
-    {
-      "id": 711,
-      "languageTag": "sv-SE",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "swedish_finnish"
-      }
-    },
-    {
-      "id": 721,
-      "languageTag": "fi-FI",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "swedish_finnish"
-      }
-    },
-    {
-      "id": 731,
-      "languageTag": "da-DK",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "danish"
-      }
-    },
-    {
-      "id": 741,
-      "languageTag": "is-IS",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "icelandic"
-      }
-    },
-    {
-      "id": 751,
-      "languageTag": "fo",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "faroese"
-      }
-    },
-    {
-      "id": 801,
-      "languageTag": "fa-FA",
-      "composer": "appender",
-      "currencySet": "iranian_rial",
-      "preferred": {
-        "characters": "persian",
-        "symbols": "persian",
-        "symbols2": "persian",
-        "numericRow": "persian"
-      }
-    },
-    {
-      "id": 901,
-      "languageTag": "ar",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "arabic",
-        "symbols": "eastern",
-        "symbols2": "eastern",
-        "numericRow": "eastern_arabic"
-      }
-    },
-    {
-      "id": 1001,
-      "languageTag": "hu",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "hungarian"
-      }
-    },
-    {
-      "id": 1101,
-      "languageTag": "eo",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "esperanto"
-      }
-    },
-    {
-      "id": 1201,
-      "languageTag": "hr",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "qwertz"
-      }
-    },
-    {
       "id": 1301,
       "languageTag": "ru",
       "composer": "appender",
       "currencySet": "russian_ruble",
       "preferred": {
         "characters": "jcuken_russian"
-      }
-    },
-    {
-      "id": 1351,
-      "languageTag": "uk",
-      "composer": "appender",
-      "currencySet": "ukrainian_hryvnia",
-      "preferred": {
-        "characters": "jcuken_ukrainian"
-      }
-    },
-    {
-      "id": 1401,
-      "languageTag": "el",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "greek"
-      }
-    },
-    {
-      "id": 1501,
-      "languageTag": "ro",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "qwerty"
-      }
-    },
-    {
-      "id": 1601,
-      "languageTag": "pl",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "qwerty"
-      }
-    },
-    {
-      "id": 1701,
-      "languageTag": "bg-bg",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "bulgarian_phonetic"
-      }
-    },
-    {
-      "id": 1801,
-      "languageTag": "tr",
-      "composer": "appender",
-      "currencySet": "turkish_lira",
-      "preferred": {
-        "characters": "qwerty"
-      }
-    },
-    {
-      "id": 1901,
-      "languageTag": "iw-IL",
-      "composer": "appender",
-      "currencySet": "israeli_new_shekel",
-      "preferred": {
-        "characters": "hebrew"
-      }
-    },
-    {
-      "id": 2001,
-      "languageTag": "ckb",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "kurdish",
-        "symbols": "eastern",
-        "symbols2": "eastern",
-        "numericRow": "eastern_arabic"
-      }
-    },
-    {
-      "id": 2101,
-      "languageTag": "sr-RS",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "serbian_cyrillic"
-      }
-    },
-    {
-      "id": 2201,
-      "languageTag": "lv-LV",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "qwerty"
-      }
-    },
-    {
-      "id": 2301,
-      "languageTag": "ku",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "kurdish_kurmanci"
-      }
-    },
-    {
-      "id": 2501,
-      "languageTag": "ca",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "catalan"
-      }
-    },
-    {
-      "id": 2601,
-      "languageTag": "IPA-IPA",
-      "composer": "appender",
-      "currencySet": "dollar",
-      "preferred": {
-        "characters": "ipa",
-        "symbols": "ipa",
-        "symbols2": "ipa"
-      }
-    },
-    {
-      "id": 2701,
-      "languageTag": "sk",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "qwertz"
-      }
-    },
-    {
-      "id": 2801,
-      "languageTag": "cs",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "qwertz"
-      }
-    },
-    {
-      "id": 2900,
-      "languageTag": "ko",
-      "composer": "hangul-unicode",
-      "currencySet": "south_korean_won",
-      "preferred": {
-        "characters": "korean"
-      }
-    },
-    {
-      "id": 3000,
-      "languageTag": "lt-LT",
-      "composer": "appender",
-      "currencySet": "euro",
-      "preferred": {
-        "characters": "qwerty"
-      }
-    },
-    {
-      "id": 3100,
-      "languageTag": "ja-JP-jis",
-      "composer": "kana-unicode",
-      "currencySet": "yen",
-      "preferred": {
-        "characters": "jis",
-        "symbols": "cjk",
-        "symbols2": "cjk",
-        "numericRow": "cjk"
       }
     }
   ]
