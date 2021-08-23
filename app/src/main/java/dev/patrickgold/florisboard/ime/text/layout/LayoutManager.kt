@@ -21,10 +21,12 @@ import dev.patrickgold.florisboard.debug.flogDebug
 import dev.patrickgold.florisboard.debug.flogWarning
 import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.core.Subtype
+import dev.patrickgold.florisboard.ime.keyboard.AbstractKeyData
 import dev.patrickgold.florisboard.ime.keyboard.DefaultComputingEvaluator
 import dev.patrickgold.florisboard.res.AssetManager
 import dev.patrickgold.florisboard.ime.popup.PopupExtension
 import dev.patrickgold.florisboard.ime.popup.PopupManager
+import dev.patrickgold.florisboard.ime.popup.PopupSet
 import dev.patrickgold.florisboard.ime.text.key.*
 import dev.patrickgold.florisboard.ime.text.keyboard.*
 import dev.patrickgold.florisboard.res.FlorisRef
@@ -67,6 +69,7 @@ class LayoutManager {
      * @return the [Layout] or null.
      */
     private fun loadLayoutAsync(ltn: LTN?): Deferred<Result<Layout>> = ioScope.async {
+        println("xyz $ltn")
         if (ltn == null) {
             return@async Result.failure(NullPointerException("Invalid argument value for 'ltn': null"))
         }
@@ -102,15 +105,32 @@ class LayoutManager {
         if (cached != null) {
             flogDebug(LogTopic.LAYOUT_MANAGER) { "Using cache for '$ref'" }
             extendedPopupsCacheGuard.unlock()
-            return@async cached.await()
+            return@async filterExtendedPopupsOnlyForSpecialKeys(cached.await())
         } else {
             flogDebug(LogTopic.LAYOUT_MANAGER) { "Loading '$ref'" }
             val extendedPopups = async { assetManager.loadJsonAsset<PopupExtension>(ref) }
             extendedPopupsCache[ref.relativePath] = extendedPopups
             extendedPopupsCacheGuard.unlock()
-            return@async extendedPopups.await()
+            return@async filterExtendedPopupsOnlyForSpecialKeys(extendedPopups.await())
         }
     }
+
+    private fun filterExtendedPopupsOnlyForSpecialKeys(popups: Result<PopupExtension>): Result<PopupExtension> =
+        if (popups.isFailure)
+            Result.failure(popups.exceptionOrNull()!!)
+        else {
+            val popupsValue = popups.getOrNull()!!
+            val filteredMapping = mutableMapOf<KeyVariation, Map<String, PopupSet<AbstractKeyData>>>()
+            popupsValue.mapping.entries.forEach { entry ->
+                filteredMapping[entry.key] = entry.value.filterKeys { it.startsWith('~') }
+            }
+            Result.success(PopupExtension(
+                popupsValue.name,
+                popupsValue.label,
+                popupsValue.authors,
+                filteredMapping.toMap()
+            ))
+        }
 
     /**
      * Merges the specified layouts (LTNs) and returns the computed layout.
