@@ -69,7 +69,6 @@ class LayoutManager {
      * @return the [Layout] or null.
      */
     private fun loadLayoutAsync(ltn: LTN?): Deferred<Result<Layout>> = ioScope.async {
-        println("xyz $ltn")
         if (ltn == null) {
             return@async Result.failure(NullPointerException("Invalid argument value for 'ltn': null"))
         }
@@ -117,7 +116,7 @@ class LayoutManager {
 
     private fun filterExtendedPopupsOnlyForSpecialKeys(popups: Result<PopupExtension>): Result<PopupExtension> =
         if (popups.isFailure)
-            Result.failure(popups.exceptionOrNull()!!)
+            popups
         else {
             val popupsValue = popups.getOrNull()!!
             val filteredMapping = mutableMapOf<KeyVariation, Map<String, PopupSet<AbstractKeyData>>>()

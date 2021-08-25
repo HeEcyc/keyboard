@@ -7,6 +7,10 @@ import dev.patrickgold.florisboard.ime.core.Subtype
 import dev.patrickgold.florisboard.ime.keyboard.KeyData
 import dev.patrickgold.florisboard.ime.text.key.KeyCode
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKey
+import dev.patrickgold.florisboard.res.AssetManager
+import dev.patrickgold.florisboard.res.FlorisRef
+import dev.patrickgold.florisboard.util.Language
+import org.json.JSONObject
 import java.text.Normalizer
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -95,6 +99,17 @@ class StatisticalGlideTypingClassifier : GlideTypingClassifier {
         // stop duplicate calls
         if (layoutSubtype == subtype && keys == keyViews) {
             return
+        }
+
+        if (layoutSubtype?.locale?.language != subtype.locale.language) {
+            val path = Language.from(subtype.locale.language).dictionaryJSONAsset
+            val data =
+                AssetManager.default().loadTextAsset(FlorisRef.assets(path))
+                    .getOrThrow()
+            val json = JSONObject(data)
+            val words = HashMap<String, Int>().apply { putAll(json.keys().asSequence().map { Pair(it, json.getInt(it)) }) }
+            this.words = words.keys
+            this.wordFrequencies = words
         }
 
         // if only layout changed but not subtype

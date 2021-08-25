@@ -7,6 +7,7 @@ import dev.patrickgold.florisboard.ime.text.TextInputManager
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKey
 import dev.patrickgold.florisboard.res.AssetManager
 import dev.patrickgold.florisboard.res.FlorisRef
+import dev.patrickgold.florisboard.util.Language
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -73,8 +74,9 @@ class GlideTypingManager : GlideTypingGesture.Listener, CoroutineScope by MainSc
         launch(Dispatchers.Default) {
             if (wordDataCache.isEmpty()) {
                 // FIXME: get this info from dictionary.
+                val path = Language.from(subtype.locale.language).dictionaryJSONAsset
                 val data =
-                    AssetManager.default().loadTextAsset(FlorisRef.assets("ime/dict/data.json"))
+                    AssetManager.default().loadTextAsset(FlorisRef.assets(path))
                         .getOrThrow()
                 val json = JSONObject(data)
                 wordDataCache.putAll(json.keys().asSequence().map { Pair(it, json.getInt(it)) })
