@@ -8,17 +8,16 @@
             type="dev.patrickgold.florisboard.ui.TestViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:columnCount="2"
-            android:rowCount="2"
-            app:layout_constraintTop_toTopOf="parent">
+            android:rowCount="2">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fluid"
@@ -49,5 +48,34 @@
                 android:text="Lines" />
 
         </GridLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:columnCount="3">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/chuck_fine"
+                android:gravity="center"
+                android:text="Chuck fine" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/great_viber"
+                android:gravity="center"
+                android:text="Great viber" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/lobster"
+                android:gravity="center"
+                android:text="lobster" />
+
+        </GridLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
