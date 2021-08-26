@@ -4,12 +4,13 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup.LayoutParams
-import android.widget.LinearLayout
+import com.doctoror.particlesdrawable.ParticlesView
+import dev.patrickgold.florisboard.background.view.keyboard.views.FluidView
 
 object BackgroundViewRepository {
 
     private var targetViewType: Class<out View>?
-        get() = LinearLayout::class.java
+        get() = ParticlesView::class.java
         set(value) {}
     private var targetViewAttrs: AttributeSet?
         get() = null
