@@ -30,7 +30,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.SetupActivityBinding
 import dev.patrickgold.florisboard.ime.core.Preferences
-import dev.patrickgold.florisboard.settings.SettingsMainActivity
+import dev.patrickgold.florisboard.ui.TestActivity
 
 class SetupActivity : AppCompatActivity() {
     companion object {
@@ -121,9 +121,9 @@ class SetupActivity : AppCompatActivity() {
     }
 
     private fun launchSettingsAndSetFinishFlag() {
-        Intent(this, SettingsMainActivity::class.java).apply {
+        Intent(this, TestActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED or
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP
+                Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(this)
         }
         shouldFinish = true
@@ -133,12 +133,28 @@ class SetupActivity : AppCompatActivity() {
         binding.prevButton.isEnabled = pageIndex > 0 && !isSingleStepOnly
         binding.cancelButton.isEnabled = isSingleStepOnly
         binding.progressBar.progress = pageIndex
-        binding.progressBar.visibility = if (isSingleStepOnly) { View.INVISIBLE } else { View.VISIBLE }
+        binding.progressBar.visibility = if (isSingleStepOnly) {
+            View.INVISIBLE
+        } else {
+            View.VISIBLE
+        }
         val isLast = pageIndex + 1 == adapter.itemCount
         binding.negativeButtonViewFlipper.displayedChild =
-            if (isSingleStepOnly) { 1 } else { 0 }
+            if (isSingleStepOnly) {
+                1
+            } else {
+                0
+            }
         binding.positiveButtonViewFlipper.displayedChild =
-            if (isSingleStepOnly) { 2 } else { if (isLast) { 1 } else { 0 } }
+            if (isSingleStepOnly) {
+                2
+            } else {
+                if (isLast) {
+                    1
+                } else {
+                    0
+                }
+            }
         changePositiveButtonState(false)
         supportActionBar?.title = adapter.getPageTitle(pageIndex)
         binding.viewPager.currentItem = pageIndex
@@ -151,10 +167,10 @@ class SetupActivity : AppCompatActivity() {
     }
 
     object Step {
-        const val WELCOME =         0
-        const val ENABLE_IME =      1
-        const val MAKE_DEFAULT =    2
-        const val FINISH =          3
+        const val WELCOME = 0
+        const val ENABLE_IME = 1
+        const val MAKE_DEFAULT = 2
+        const val FINISH = 3
     }
 
     interface EventListener {
