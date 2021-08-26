@@ -16,6 +16,7 @@
 
 package dev.patrickgold.florisboard.ime.text
 
+import android.util.Log
 import android.view.KeyEvent
 import android.widget.Toast
 import androidx.core.text.isDigitsOnly
@@ -133,7 +134,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
         val data =
             AssetManager.default().loadTextAsset(FlorisRef.assets("ime/text/symbols-with-space.json")).getOrThrow()
         val json = JSONArray(data)
-        this.symbolsWithSpaceAfter = List(json.length()){ json.getString(it) }
+        this.symbolsWithSpaceAfter = List(json.length()) { json.getString(it) }
     }
 
     val evaluator = object : ComputingEvaluator {
@@ -340,7 +341,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
             KeyboardMode.PHONE,
             KeyboardMode.PHONE2 -> false
             else -> activeState.keyVariation != KeyVariation.PASSWORD &&
-                    prefs.suggestion.enabled// &&
+                prefs.suggestion.enabled// &&
             //!instance.inputAttributes.flagTextAutoComplete &&
             //!instance.inputAttributes.flagTextNoSuggestions
         }
@@ -352,7 +353,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
         setActiveKeyboardMode(keyboardMode, updateState = false)
         instance.composingEnabledChanged()
         activeState.isPrivateMode = prefs.advanced.forcePrivateMode ||
-                activeState.imeOptions.flagNoPersonalizedLearning
+            activeState.imeOptions.flagNoPersonalizedLearning
         if (!prefs.correction.rememberCapsLockState) {
             activeState.capsLock = false
         }
@@ -390,20 +391,21 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
         setActiveKeyboard(mode, florisboard.activeSubtype, updateState)
     }
 
-    private fun setActiveKeyboard(mode: KeyboardMode, subtype: Subtype, updateState: Boolean = true) = launch(Dispatchers.IO) {
-        val activeKeyboard = keyboards.getOrElseAsync(mode, subtype) {
-            layoutManager.computeKeyboardAsync(
-                keyboardMode = mode,
-                subtype = subtype
-            ).await()
-        }.await()
-        withContext(Dispatchers.Main) {
-            textInputKeyboardView?.setComputedKeyboard(activeKeyboard)
-            if (updateState) {
-                florisboard.dispatchCurrentStateToInputUi()
+    private fun setActiveKeyboard(mode: KeyboardMode, subtype: Subtype, updateState: Boolean = true) =
+        launch(Dispatchers.IO) {
+            val activeKeyboard = keyboards.getOrElseAsync(mode, subtype) {
+                layoutManager.computeKeyboardAsync(
+                    keyboardMode = mode,
+                    subtype = subtype
+                ).await()
+            }.await()
+            withContext(Dispatchers.Main) {
+                textInputKeyboardView?.setComputedKeyboard(activeKeyboard)
+                if (updateState) {
+                    florisboard.dispatchCurrentStateToInputUi()
+                }
             }
         }
-    }
 
     override fun onSubtypeChanged(newSubtype: Subtype, doRefreshLayouts: Boolean) {
         launch {
@@ -475,7 +477,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
     private fun updateCapsState() {
         if (!activeState.capsLock) {
             activeState.caps = prefs.correction.autoCapitalization &&
-                    activeEditorInstance.cursorCapsMode != InputAttributes.CapsMode.NONE
+                activeEditorInstance.cursorCapsMode != InputAttributes.CapsMode.NONE
         }
     }
 
@@ -576,7 +578,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
      * Handles a [KeyCode.DELETE] event.
      */
     private fun handleDelete() {
-        if (isGlidePostEffect){
+        if (isGlidePostEffect) {
             handleDeleteWord()
             isGlidePostEffect = false
             smartbarView?.setCandidateSuggestionWords(System.nanoTime(), null)
@@ -906,7 +908,10 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
             KeyCode.SPACE -> handleSpace(ev)
             KeyCode.SWITCH_TO_MEDIA_CONTEXT -> florisboard.setActiveInput(R.id.media_input)
             KeyCode.SWITCH_TO_CLIPBOARD_CONTEXT -> florisboard.setActiveInput(R.id.clip_input)
-            KeyCode.SWITCH_TO_TEXT_CONTEXT -> florisboard.setActiveInput(R.id.text_input, forceSwitchToCharacters = true)
+            KeyCode.SWITCH_TO_TEXT_CONTEXT -> florisboard.setActiveInput(
+                R.id.text_input,
+                forceSwitchToCharacters = true
+            )
             KeyCode.TOGGLE_ONE_HANDED_MODE_LEFT -> florisboard.toggleOneHandedMode(isRight = false)
             KeyCode.TOGGLE_ONE_HANDED_MODE_RIGHT -> florisboard.toggleOneHandedMode(isRight = true)
             KeyCode.VIEW_CHARACTERS -> setActiveKeyboardMode(KeyboardMode.CHARACTERS)
@@ -926,7 +931,11 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                         KeyType.CHARACTER,
                         KeyType.NUMERIC -> {
                             val text = data.asString(isForDisplay = false)
-                            if (isGlidePostEffect && (TextProcessor.isWord(text, florisboard.activeSubtype.locale) || text.isDigitsOnly())) {
+                            if (isGlidePostEffect && (TextProcessor.isWord(
+                                    text,
+                                    florisboard.activeSubtype.locale
+                                ) || text.isDigitsOnly())
+                            ) {
                                 activeEditorInstance.commitText(" ")
                             }
                             activeEditorInstance.commitText(text)
@@ -935,7 +944,11 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                             KeyCode.PHONE_PAUSE,
                             KeyCode.PHONE_WAIT -> {
                                 val text = data.asString(isForDisplay = false)
-                                if (isGlidePostEffect && (TextProcessor.isWord(text, florisboard.activeSubtype.locale) || text.isDigitsOnly())) {
+                                if (isGlidePostEffect && (TextProcessor.isWord(
+                                        text,
+                                        florisboard.activeSubtype.locale
+                                    ) || text.isDigitsOnly())
+                                ) {
                                     activeEditorInstance.commitText(" ")
                                 }
                                 activeEditorInstance.commitText(text)
@@ -943,9 +956,13 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                         }
                     }
                     else -> when (data.type) {
-                        KeyType.CHARACTER, KeyType.NUMERIC ->{
+                        KeyType.CHARACTER, KeyType.NUMERIC -> {
                             val text = data.asString(isForDisplay = false)
-                            if (isGlidePostEffect && (TextProcessor.isWord(text, florisboard.activeSubtype.locale) || text.isDigitsOnly())) {
+                            if (isGlidePostEffect && (TextProcessor.isWord(
+                                    text,
+                                    florisboard.activeSubtype.locale
+                                ) || text.isDigitsOnly())
+                            ) {
                                 activeEditorInstance.commitText(" ")
                             }
                             activeEditorInstance.commitText(text)

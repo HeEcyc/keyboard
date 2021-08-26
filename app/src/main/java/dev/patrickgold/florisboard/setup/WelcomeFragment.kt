@@ -30,7 +30,7 @@ class WelcomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = SetupFragmentWelcomeBinding.inflate(inflater, container, false)
 
         return binding.root
