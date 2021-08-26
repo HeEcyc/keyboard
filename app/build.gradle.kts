@@ -17,7 +17,11 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        freeCompilerArgs = listOf("-Xallow-result-return-type", "-Xopt-in=kotlin.RequiresOptIn", "-Xopt-in=kotlin.contracts.ExperimentalContracts")
+        freeCompilerArgs = listOf(
+            "-Xallow-result-return-type",
+            "-Xopt-in=kotlin.RequiresOptIn",
+            "-Xopt-in=kotlin.contracts.ExperimentalContracts"
+        )
     }
 
     defaultConfig {
@@ -42,14 +46,22 @@ android {
         externalNativeBuild {
             cmake {
                 cFlags("-fvisibility=hidden", "-DU_STATIC_IMPLEMENTATION=1")
-                cppFlags("-fvisibility=hidden", "-std=c++17", "-fexceptions", "-ffunction-sections", "-fdata-sections", "-DU_DISABLE_RENAMING=1", "-DU_STATIC_IMPLEMENTATION=1")
+                cppFlags(
+                    "-fvisibility=hidden",
+                    "-std=c++17",
+                    "-fexceptions",
+                    "-ffunction-sections",
+                    "-fdata-sections",
+                    "-DU_DISABLE_RENAMING=1",
+                    "-DU_STATIC_IMPLEMENTATION=1"
+                )
                 arguments("-DANDROID_STL=c++_static")
             }
         }
 
         ndk {
             //abiFilters += listOf("x86", "x86_64", "armeabi-v7a", "arm64-v8a")
-            abiFilters += listOf("armeabi-v7a", "arm64-v8a")
+            //abiFilters += listOf("armeabi-v7a", "arm64-v8a")
         }
 
         sourceSets {
@@ -66,6 +78,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 
     externalNativeBuild {
@@ -135,8 +148,9 @@ dependencies {
     implementation("com.jakewharton.timber", "timber", "4.7.1")
     implementation("com.nambimobile.widgets", "expandable-fab", "1.0.2")
     implementation("androidx.room", "room-runtime", "2.2.6")
-    kapt("androidx.room", "room-compiler","2.2.6")
-
+    implementation("com.google.code.gson", "gson", "2.8.8")
+    kapt("androidx.room", "room-compiler", "2.2.6")
+    implementation(project(":particles"))
     testImplementation(kotlin("test"))
     testImplementation("androidx.test", "core", "1.3.0")
     testImplementation("org.mockito", "mockito-inline", "3.7.7")

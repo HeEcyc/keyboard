@@ -43,7 +43,11 @@ import kotlin.Exception
 
 @Suppress("unused")
 class FlorisApplication : Application() {
+
+
     companion object {
+        lateinit var instance: FlorisApplication
+
         private const val ICU_DATA_ASSET_PATH = "icu/icudt69l.dat"
 
         private external fun nativeInitICUData(path: NativeStr): Int
@@ -58,6 +62,7 @@ class FlorisApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        instance = this
         try {
             if (BuildConfig.DEBUG) {
                 Timber.plant(Timber.DebugTree())
@@ -84,7 +89,7 @@ class FlorisApplication : Application() {
         }
 
         /*Register a receiver so user config can be applied once device protracted storage is available*/
-        if(!UserManagerCompat.isUserUnlocked(this) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (!UserManagerCompat.isUserUnlocked(this) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             registerReceiver(BootComplete(), IntentFilter(Intent.ACTION_USER_UNLOCKED))
         }
     }
@@ -128,11 +133,11 @@ class FlorisApplication : Application() {
     private class BootComplete : BroadcastReceiver() {
 
         override fun onReceive(context: Context?, intent: Intent?) {
-            if(Intent.ACTION_USER_UNLOCKED == intent?.action){
+            if (Intent.ACTION_USER_UNLOCKED == intent?.action) {
                 try {
                     (context as FlorisApplication).unregisterReceiver(this)
                     context.init()
-                } catch (e : Exception) {
+                } catch (e: Exception) {
                     e.fillInStackTrace()
                 }
             }
