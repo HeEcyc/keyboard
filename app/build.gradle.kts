@@ -150,7 +150,7 @@ dependencies {
     implementation("androidx.room", "room-runtime", "2.2.6")
     implementation("com.google.code.gson", "gson", "2.8.8")
     kapt("androidx.room", "room-compiler", "2.2.6")
-
+    implementation(project(":particles"))
     testImplementation(kotlin("test"))
     testImplementation("androidx.test", "core", "1.3.0")
     testImplementation("org.mockito", "mockito-inline", "3.7.7")
