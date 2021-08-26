@@ -96,3 +96,5 @@ tailrec fun Context?.getActivity(): AppCompatActivity? = when (this) {
     is AppCompatActivity -> this
     else -> (this as? ContextWrapper)?.baseContext?.getActivity()
 }
+
+fun View.addInto(viewGroup: ViewGroup) = viewGroup.addView(this)

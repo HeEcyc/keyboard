@@ -122,11 +122,11 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     val activeState: KeyboardState = KeyboardState.new()
 
     var uiBinding: FlorisboardBinding? = null
-        private set
+        protected set
     private var extractEditLayout: WeakReference<ViewGroup?> = WeakReference(null)
     var popupLayerView: PopupLayerView? = null
-        private set
-    private var eventListeners: CopyOnWriteArrayList<EventListener> = CopyOnWriteArrayList()
+        protected set
+    protected var eventListeners: CopyOnWriteArrayList<EventListener> = CopyOnWriteArrayList()
 
     var imeManager: InputMethodManager? = null
     lateinit var inputFeedbackManager: InputFeedbackManager
@@ -150,7 +150,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     val composer: Composer get() = subtypeManager.imeConfig.composerFromName.getValue(activeSubtype.composerName)
     lateinit var activeSubtype: Subtype
     private var currentThemeIsNight: Boolean = false
-    private var currentThemeResId: Int = 0
+    protected var currentThemeResId: Int = 0
     private var isWindowShown: Boolean = false
 
     private var responseState = ResponseState.RESET
@@ -199,7 +199,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         return serviceLifecycleDispatcher.lifecycle
     }
 
-    private fun updateThemeContext(@StyleRes themeId: Int) {
+    protected fun updateThemeContext(@StyleRes themeId: Int) {
         _themeContext = ContextThemeWrapper(this, themeId)
     }
 

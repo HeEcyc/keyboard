@@ -31,7 +31,7 @@
 
         <!-- IME service -->
         <service
-            android:name="dev.patrickgold.florisboard.FlorisImeService"
+            android:name="dev.patrickgold.florisboard.background.view.keyboard.BackgroundViewKeyboardService"
             android:label="@string/floris_app_name"
             android:permission="android.permission.BIND_INPUT_METHOD"
             android:directBootAware="true"
