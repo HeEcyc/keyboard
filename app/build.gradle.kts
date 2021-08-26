@@ -49,7 +49,7 @@ android {
 
         ndk {
             //abiFilters += listOf("x86", "x86_64", "armeabi-v7a", "arm64-v8a")
-            abiFilters += listOf("armeabi-v7a", "arm64-v8a")
+            //abiFilters += listOf("armeabi-v7a", "arm64-v8a")
         }
 
         sourceSets {
@@ -135,6 +135,7 @@ dependencies {
     implementation("com.jakewharton.timber", "timber", "4.7.1")
     implementation("com.nambimobile.widgets", "expandable-fab", "1.0.2")
     implementation("androidx.room", "room-runtime", "2.2.6")
+    implementation("com.google.code.gson", "gson", "2.8.8")
     kapt("androidx.room", "room-compiler","2.2.6")
 
     testImplementation(kotlin("test"))

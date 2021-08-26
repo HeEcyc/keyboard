@@ -17,17 +17,19 @@
 package dev.patrickgold.florisboard.ime.dictionary
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Room
 import dev.patrickgold.florisboard.common.FlorisLocale
-import dev.patrickgold.florisboard.debug.flogError
 import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.core.Subtype
 import dev.patrickgold.florisboard.ime.nlp.SuggestionList
 import dev.patrickgold.florisboard.ime.nlp.Word
 import dev.patrickgold.florisboard.res.FlorisRef
+import dev.patrickgold.florisboard.util.Language
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import java.lang.ref.WeakReference
+import java.util.*
 
 /**
  * TODO: document
@@ -39,14 +41,12 @@ class DictionaryManager private constructor(
     private val applicationContext: WeakReference<Context> = WeakReference(context.applicationContext ?: context)
     private val prefs get() = Preferences.default()
 
-    private val dictionaryCache: MutableMap<String, Dictionary> = mutableMapOf()
+    private var dictionaryCache: TypedDictionary? = null
 
     private var florisUserDictionaryDatabase: FlorisUserDictionaryDatabase? = null
     private var systemUserDictionaryDatabase: SystemUserDictionaryDatabase? = null
 
     companion object {
-        val FLORIS_EN_REF = FlorisRef.assets("ime/dict/en.flict")
-
         private var defaultInstance: DictionaryManager? = null
 
         fun init(applicationContext: Context): DictionaryManager {
@@ -77,36 +77,17 @@ class DictionaryManager private constructor(
     ) {
         val suggestions = SuggestionList.new(maxSuggestionCount)
         queryUserDictionary(currentWord, subtype.locale, suggestions)
-        loadDictionary(FLORIS_EN_REF).onSuccess {
-            it.getTokenPredictions(preceidingWords, currentWord, maxSuggestionCount, allowPossiblyOffensive, suggestions)
-        }
+        search(currentWord, suggestions)
         block(suggestions)
         suggestions.dispose()
     }
 
-    fun loadDictionary(ref: FlorisRef): Result<Dictionary> {
-        dictionaryCache[ref.toString()]?.let {
-            return Result.success(it)
-        }
-        if (ref.relativePath.endsWith(".flict")) {
-            // Assume this is a Flictionary
-            applicationContext.get()?.let {
-                Flictionary.load(it, ref).onSuccess { flict ->
-                    dictionaryCache[ref.toString()] = flict
-                    return Result.success(flict)
-                }.onFailure { err ->
-                    flogError { err.toString() }
-                    return Result.failure(err)
-                }
-            }
-        } else {
-            return Result.failure(Exception("Unable to determine supported type for given AssetRef!"))
-        }
-        return Result.failure(Exception("If this message is ever thrown, something is completely broken..."))
+    fun search(currentWord: Word, suggestions: SuggestionList) {
+        dictionaryCache?.search(currentWord, suggestions)
     }
 
     fun prepareDictionaries(subtype: Subtype) {
-        loadDictionary(FLORIS_EN_REF)
+        dictionaryCache = TypedDictionary(Language.from(subtype.locale.language).dictionaryJSONAsset)
     }
 
     fun queryUserDictionary(word: Word, locale: FlorisLocale, destSuggestionList: SuggestionList) {
@@ -221,4 +202,6 @@ class DictionaryManager private constructor(
             systemUserDictionaryDatabase = null
         }
     }
+
+
 }
