@@ -1,6 +1,7 @@
 package dev.patrickgold.florisboard.background.view.keyboard.repository
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.net.Uri
 import android.util.AttributeSet
 import android.view.View
@@ -67,10 +68,10 @@ object BackgroundViewRepository {
             override fun getViewFactory() = ViewFactory.from(getViewFrom)
         }
 
-        class ImageView(private val image: String) : BackgroundView {
+        class ImageView(private val image: Bitmap) : BackgroundView {
             override fun getViewFactory() = ViewFactory.from {
                 val view = dispatchBackgroundView(AppCompatImageView::class.java, it) as AppCompatImageView
-                view.setImageURI(Uri.parse(image))
+                view.setImageBitmap(image)
                 view.scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
                 view
             }
