@@ -14,61 +14,56 @@ object BackgroundViewRepository {
     private var targetViewType: Class<out View>?
         get() = ParticlesSurfaceView::class.java
         set(value) {}
-    private var targetViewAttrs: AttributeSet?
-        get() = null
-        set(value) {}
-    private var targetViewDefStyleAttr: Int?
-        get() = null
-        set(value) {}
-    private var targetViewDefStyleRes: Int?
-        get() = null
-        set(value) {}
 
     val newBackgroundViews = MutableLiveData<ViewFactory?>()
 
-    fun dispatchBackgroundView(context: Context): View? {
-        val attrs = targetViewAttrs
-        val defStyleAttr = targetViewDefStyleAttr
-        val defStyleRes = targetViewDefStyleRes
-        val targetViewConstructorParameterTypes = mutableListOf<Class<*>>(Context::class.java)
-        val targetViewConstructorArguments = mutableListOf<Any?>(context)
-        if (true) {
-            targetViewConstructorParameterTypes.add(AttributeSet::class.java)
-            targetViewConstructorArguments.add(attrs)
-            if (defStyleAttr !== null) {
-                targetViewConstructorParameterTypes.add(Int::class.java)
-                targetViewConstructorArguments.add(defStyleAttr)
-                if (defStyleRes !== null) {
-                    targetViewConstructorParameterTypes.add(Int::class.java)
-                    targetViewConstructorArguments.add(defStyleRes)
-                }
+    fun setNewBackgroundView(view: BackgroundView) = newBackgroundViews.postValue(view.getViewFactory())
+
+    fun dispatchBackgroundView(context: Context): View? = targetViewType?.let {
+        dispatchBackgroundView(it, context)
+    }
+
+    fun dispatchBackgroundView(viewType: Class<out View>, context: Context): View = viewType
+        .getConstructor(Context::class.java, AttributeSet::class.java)
+        .newInstance(context, null)
+        .apply {
+            layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        }
+
+    interface ViewFactory {
+        fun createView(context: Context): View
+    }
+
+    sealed interface BackgroundView {
+        fun getViewFactory(): ViewFactory
+
+        object FluidView : BackgroundView {
+            override fun getViewFactory() = object : ViewFactory {
+                override fun createView(context: Context) =
+                    dispatchBackgroundView(dev.patrickgold.florisboard.background.view.keyboard.views.FluidView::class.java, context)
             }
         }
-        return targetViewType
-            ?.getConstructor(*targetViewConstructorParameterTypes.toTypedArray())
-            ?.newInstance(*targetViewConstructorArguments.toTypedArray())
-            ?.apply {
-                layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+
+        object ParticleView : BackgroundView {
+            override fun getViewFactory() = object : ViewFactory {
+                override fun createView(context: Context) =
+                    dispatchBackgroundView(ParticlesView::class.java, context)
             }
-    }
+        }
 
-    fun setTargetViewParams(attrs: AttributeSet?) =
-        setTargetViewParams(attrs, null, null)
+        object ParticleFlowView : BackgroundView {
+            override fun getViewFactory() = object : ViewFactory {
+                override fun createView(context: Context) =
+                    dispatchBackgroundView(ParticlesSurfaceView::class.java, context)
+            }
+        }
 
-    fun setTargetViewParams(attrs: AttributeSet?, defStyleAttr: Int) =
-        setTargetViewParams(attrs, defStyleAttr, null)
+        class CustomView(private val getViewFrom: (Context) -> View) : BackgroundView {
+            override fun getViewFactory() = object : ViewFactory {
+                override fun createView(context: Context) = getViewFrom(context)
+            }
+        }
 
-    fun setTargetViewParams(attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) =
-        setTargetViewParams(attrs, defStyleAttr as Int?, defStyleRes as Int?)
-
-    private fun setTargetViewParams(attrs: AttributeSet?, defStyleAttr: Int?, defStyleRes: Int?) {
-        targetViewAttrs = attrs
-        targetViewDefStyleAttr = defStyleAttr
-        targetViewDefStyleRes = defStyleRes
-    }
-
-    abstract class ViewFactory {
-        abstract fun createView(context: Context): View
     }
 
 }
