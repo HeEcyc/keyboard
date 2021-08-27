@@ -4,13 +4,15 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup.LayoutParams
+import androidx.lifecycle.MutableLiveData
 import com.doctoror.particlesdrawable.ParticlesView
+import com.nfaralli.particleflow.ParticlesSurfaceView
 import dev.patrickgold.florisboard.background.view.keyboard.views.FluidView
 
 object BackgroundViewRepository {
 
     private var targetViewType: Class<out View>?
-        get() = ParticlesView::class.java
+        get() = ParticlesSurfaceView::class.java
         set(value) {}
     private var targetViewAttrs: AttributeSet?
         get() = null
@@ -22,13 +24,15 @@ object BackgroundViewRepository {
         get() = null
         set(value) {}
 
+    val newBackgroundViews = MutableLiveData<ViewFactory?>()
+
     fun dispatchBackgroundView(context: Context): View? {
         val attrs = targetViewAttrs
         val defStyleAttr = targetViewDefStyleAttr
         val defStyleRes = targetViewDefStyleRes
         val targetViewConstructorParameterTypes = mutableListOf<Class<*>>(Context::class.java)
-        val targetViewConstructorArguments = mutableListOf<Any>(context)
-        if (attrs !== null) {
+        val targetViewConstructorArguments = mutableListOf<Any?>(context)
+        if (true) {
             targetViewConstructorParameterTypes.add(AttributeSet::class.java)
             targetViewConstructorArguments.add(attrs)
             if (defStyleAttr !== null) {
@@ -61,6 +65,10 @@ object BackgroundViewRepository {
         targetViewAttrs = attrs
         targetViewDefStyleAttr = defStyleAttr
         targetViewDefStyleRes = defStyleRes
+    }
+
+    abstract class ViewFactory {
+        abstract fun createView(context: Context): View
     }
 
 }
