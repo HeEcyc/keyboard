@@ -60,7 +60,8 @@ class BackgroundViewKeyboardService : FlorisBoard() {
 
     private fun onNewBackgroundView(view: View?) {
         backgroundView = view
-        view?.addInto(backgroundContainer) ?: backgroundContainer.removeAllViews()
+        backgroundContainer.removeAllViews()
+        view?.addInto(backgroundContainer)
     }
 
 }
