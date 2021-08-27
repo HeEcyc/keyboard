@@ -7,9 +7,15 @@ object KeysRepository {
     private val prefsRepository = PrefsReporitory
 
     val fontFamilyRes = MutableLiveData(prefsRepository.fontFamilyRes)
+    val keyColor = MutableLiveData(prefsRepository.keyColor)
 
     fun setFont(@FontRes fontRes: Int) {
         prefsRepository.fontFamilyRes = fontRes
         fontFamilyRes.postValue(fontRes)
+    }
+
+    fun setKeyColor(@FontRes fontRes: Int) {
+        prefsRepository.keyColor = fontRes
+        keyColor.postValue(fontRes)
     }
 }

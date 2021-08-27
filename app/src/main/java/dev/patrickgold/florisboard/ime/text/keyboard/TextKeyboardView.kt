@@ -63,6 +63,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     private var computedKeyboard: TextKeyboard? = null
     private var iconSet: TextKeyboardIconSet? = null
     private var fontFamily: Typeface = Typeface.MONOSPACE
+    private var keyColor = Color.BLACK
     private var cachedTheme: Theme? = null
     private var cachedState: KeyboardState = KeyboardState.new(maskOfInterest = KeyboardState.INTEREST_TEXT)
 
@@ -1071,6 +1072,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         if (label != null) {
             renderView.labelPaint.let {
                 it.typeface = fontFamily
+                it.color = keyColor
                 val centerX = key.visibleLabelBounds.exactCenterX()
                 val centerY = key.visibleLabelBounds.exactCenterY() + (it.textSize - it.descent()) / 2
                 if (label.contains("\n")) {
@@ -1089,6 +1091,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         if (hintedLabel != null) {
             renderView.hintedLabelPaint.let {
                 it.typeface = fontFamily
+                it.color = keyColor
                 val centerX = key.visibleBounds.left + key.visibleBounds.width() * 5.0f / 6.0f
                 val centerY =
                     key.visibleBounds.top + key.visibleBounds.height() * 1.0f / 6.0f + (it.textSize - it.descent()) / 2
@@ -1348,6 +1351,15 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun onNewFont(typeface: Typeface) {
         fontFamily = typeface
+        if (isMeasured) {
+            computeDesiredDimensions()
+            computeKeyboard()
+            invalidate()
+        }
+    }
+
+    fun onNewColor(color: Int) {
+        keyColor = color
         if (isMeasured) {
             computeDesiredDimensions()
             computeKeyboard()

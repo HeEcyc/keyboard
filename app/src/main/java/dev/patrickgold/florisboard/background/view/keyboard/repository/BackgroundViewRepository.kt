@@ -2,7 +2,7 @@ package dev.patrickgold.florisboard.background.view.keyboard.repository
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.net.Uri
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup.LayoutParams
@@ -55,7 +55,9 @@ object BackgroundViewRepository {
 
         object ParticleView : BackgroundView {
             override fun getViewFactory() = ViewFactory.from {
-                dispatchBackgroundView(ParticlesView::class.java, it)
+                val view = dispatchBackgroundView(ParticlesView::class.java, it) as ParticlesView
+                view.setBackgroundColor(Color.BLACK)
+                view
             }
         }
 

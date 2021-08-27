@@ -56,9 +56,14 @@ class BackgroundViewKeyboardService : FlorisBoard() {
             onNewBackgroundView(view?.createView(themeContext)?.also { println("12345  sdflsdkf" + it::class.java) })
         }
         KeysRepository.fontFamilyRes.observeForever { onNewFont(it) }
+        KeysRepository.keyColor.observeForever { onNewColor(it) }
         eventListeners.toList().forEach { it?.onInitializeInputUi(uiBinding!!) }
 
         return uiBinding!!.inputWindowView
+    }
+
+    private fun onNewColor(it: Int) {
+        textInputManager.textInputKeyboardView?.onNewColor(it)
     }
 
     private fun onNewFont(it: Int) {

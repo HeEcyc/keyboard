@@ -14,4 +14,8 @@ class TestViewModel : BaseViewModel() {
     fun setFont(@FontRes font: Int) {
         KeysRepository.setFont(font)
     }
+
+    fun setColor(color: Int) {
+        KeysRepository.setKeyColor(color)
+    }
 }
