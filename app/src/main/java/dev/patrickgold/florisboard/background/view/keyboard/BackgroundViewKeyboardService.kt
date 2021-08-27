@@ -1,6 +1,7 @@
 package dev.patrickgold.florisboard.background.view.keyboard
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,8 +50,8 @@ class BackgroundViewKeyboardService : FlorisBoard() {
             true
         }
 
-        BackgroundViewRepository.newBackgroundViews.observe(this) {
-            onNewBackgroundView(it?.createView(themeContext))
+        BackgroundViewRepository.newBackgroundViews.observeForever { view ->
+            onNewBackgroundView(view?.createView(themeContext)?.also { println("12345  sdflsdkf" + it::class.java) })
         }
 
         eventListeners.toList().forEach { it?.onInitializeInputUi(uiBinding!!) }

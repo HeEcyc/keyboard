@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup.LayoutParams
 import androidx.lifecycle.MutableLiveData
+import com.doctoror.particlesdrawable.ParticlesView
 import com.nfaralli.particleflow.ParticlesSurfaceView
 
 object BackgroundViewRepository {
