@@ -62,7 +62,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     private var computedKeyboard: TextKeyboard? = null
     private var iconSet: TextKeyboardIconSet? = null
-
+    private var fontFamily: Typeface? = null
     private var cachedTheme: Theme? = null
     private var cachedState: KeyboardState = KeyboardState.new(maskOfInterest = KeyboardState.INTEREST_TEXT)
 
@@ -860,6 +860,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
         keyboard.layout(this)
         val theme = cachedTheme ?: themeManager?.activeTheme ?: Theme.BASE_THEME
+
+       // fontFamily = theme.getAttr(Theme.Attr.FONT)
         val isBorderless = !theme.getAttr(Theme.Attr.KEY_SHOW_BORDER).toOnOff().state
         keyboard.keys().withIndex().forEach { (n, key) ->
             getChildAt(n)?.let { rv ->

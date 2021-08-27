@@ -346,6 +346,7 @@ open class Theme(
     @Suppress("unused")
     abstract class Attr {
         companion object {
+
             val WINDOW_COLOR_PRIMARY = ThemeValue.Reference("window", "colorPrimary")
             val WINDOW_COLOR_PRIMARY_DARK = ThemeValue.Reference("window", "colorPrimaryDark")
             val WINDOW_COLOR_ACCENT = ThemeValue.Reference("window", "colorAccent")
