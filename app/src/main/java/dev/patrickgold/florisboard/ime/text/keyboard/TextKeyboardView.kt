@@ -1068,6 +1068,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val label = key.label
         if (label != null) {
             renderView.labelPaint.let {
+                //TODO main text drawing
                 val centerX = key.visibleLabelBounds.exactCenterX()
                 val centerY = key.visibleLabelBounds.exactCenterY() + (it.textSize - it.descent()) / 2
                 if (label.contains("\n")) {
@@ -1085,6 +1086,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val hintedLabel = key.hintedLabel
         if (hintedLabel != null) {
             renderView.hintedLabelPaint.let {
+                //TODO additional text drawing
                 val centerX = key.visibleBounds.left + key.visibleBounds.width() * 5.0f / 6.0f
                 val centerY =
                     key.visibleBounds.top + key.visibleBounds.height() * 1.0f / 6.0f + (it.textSize - it.descent()) / 2

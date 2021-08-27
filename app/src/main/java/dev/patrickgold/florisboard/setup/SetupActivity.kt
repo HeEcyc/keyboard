@@ -195,7 +195,7 @@ class SetupActivity : AppCompatActivity() {
             return fragments[position]
         }
 
-        fun getPageTitle(position: Int): CharSequence? {
+        fun getPageTitle(position: Int): CharSequence {
             return titles[position]
         }
     }
