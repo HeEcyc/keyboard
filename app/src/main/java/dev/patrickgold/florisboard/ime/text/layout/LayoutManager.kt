@@ -16,6 +16,7 @@
 
 package dev.patrickgold.florisboard.ime.text.layout
 
+import dev.patrickgold.florisboard.background.view.keyboard.repository.BottomRightCharacterRepository
 import dev.patrickgold.florisboard.debug.LogTopic
 import dev.patrickgold.florisboard.debug.flogDebug
 import dev.patrickgold.florisboard.debug.flogWarning
@@ -121,7 +122,13 @@ class LayoutManager {
             val popupsValue = popups.getOrNull()!!
             val filteredMapping = mutableMapOf<KeyVariation, Map<String, PopupSet<AbstractKeyData>>>()
             popupsValue.mapping.entries.forEach { entry ->
-                filteredMapping[entry.key] = entry.value.filterKeys { it.startsWith('~') }
+                filteredMapping[entry.key] = entry.value.filterKeys { it.startsWith('~') }.mapValues {
+                    val needToChangePopupSet = !BottomRightCharacterRepository.isDefaultBottomRightCharacter && it.key == "~right"
+                    if (needToChangePopupSet)
+                        BottomRightCharacterRepository.getCorrectPopupSet()
+                    else
+                        it.value
+                }
             }
             Result.success(PopupExtension(
                 popupsValue.name,
@@ -174,7 +181,31 @@ class LayoutManager {
         } else {
             modifier
         }
-        val modifierLayout = loadLayoutAsync(modifierToLoad).await().getOrNull()
+        val modifierLayout = loadLayoutAsync(modifierToLoad).await().getOrNull()?.let { layout ->
+            val needToChangeCharacters = !BottomRightCharacterRepository.isDefaultBottomRightCharacter && layout.type == LayoutType.CHARACTERS_MOD
+            layout.takeIf { !needToChangeCharacters } ?: Layout(
+                layout.type,
+                layout.name,
+                layout.label,
+                layout.authors,
+                layout.direction,
+                layout.modifier,
+                listOf(
+                    layout.arrangement[0],
+                    layout.arrangement[1].map { abstractKeyData ->
+                        if (abstractKeyData is TextKeyData && abstractKeyData.code == 46) {
+                            TextKeyData(
+                                abstractKeyData.type,
+                                BottomRightCharacterRepository.selectedBottomRightCharacterCode,
+                                BottomRightCharacterRepository.selectedBottomRightCharacterLabel,
+                                abstractKeyData.groupId,
+                                abstractKeyData.popup
+                            )
+                        } else abstractKeyData
+                    }
+                )
+            )
+        }
         val extensionLayout = loadLayoutAsync(extension).await().getOrNull()
 
         val computedArrangement: ArrayList<Array<TextKey>> = arrayListOf()
