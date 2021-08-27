@@ -1,12 +1,14 @@
 package dev.patrickgold.florisboard.background.view.keyboard
 
 import android.annotation.SuppressLint
-import android.util.Log
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.core.content.res.ResourcesCompat
 import dev.patrickgold.florisboard.background.view.keyboard.repository.BackgroundViewRepository
+import dev.patrickgold.florisboard.background.view.keyboard.repository.KeysRepository
 import dev.patrickgold.florisboard.crashutility.CrashUtility
 import dev.patrickgold.florisboard.databinding.FlorisboardBinding
 import dev.patrickgold.florisboard.debug.LogTopic
@@ -53,16 +55,28 @@ class BackgroundViewKeyboardService : FlorisBoard() {
         BackgroundViewRepository.newBackgroundViews.observeForever { view ->
             onNewBackgroundView(view?.createView(themeContext)?.also { println("12345  sdflsdkf" + it::class.java) })
         }
-
+        KeysRepository.fontFamilyRes.observeForever { onNewFont(it) }
         eventListeners.toList().forEach { it?.onInitializeInputUi(uiBinding!!) }
 
         return uiBinding!!.inputWindowView
+    }
+
+    private fun onNewFont(it: Int) {
+        val typeface = if (it == -1) Typeface.MONOSPACE
+        else ResourcesCompat.getFont(themeContext, it)!!
+        textInputManager.textInputKeyboardView?.onNewFont(typeface)
     }
 
     private fun onNewBackgroundView(view: View?) {
         backgroundView = view
         backgroundContainer.removeAllViews()
         view?.addInto(backgroundContainer)
+    }
+
+
+    override fun onWindowShown() {
+        super.onWindowShown()
+        onNewFont(KeysRepository.fontFamilyRes.value ?: -1)
     }
 
 }

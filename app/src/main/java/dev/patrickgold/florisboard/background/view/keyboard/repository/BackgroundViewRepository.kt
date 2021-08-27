@@ -29,9 +29,7 @@ object BackgroundViewRepository {
     fun dispatchBackgroundView(viewType: Class<out View>, context: Context): View = viewType
         .getConstructor(Context::class.java, AttributeSet::class.java)
         .newInstance(context, null)
-        .apply {
-            layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-        }
+        .apply { layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT) }
 
     interface ViewFactory {
         fun createView(context: Context): View
@@ -48,7 +46,10 @@ object BackgroundViewRepository {
 
         object FluidView : BackgroundView {
             override fun getViewFactory() = ViewFactory.from {
-                dispatchBackgroundView(dev.patrickgold.florisboard.background.view.keyboard.views.FluidView::class.java, it)
+                dispatchBackgroundView(
+                    dev.patrickgold.florisboard.background.view.keyboard.views.FluidView::class.java,
+                    it
+                )
             }
         }
 

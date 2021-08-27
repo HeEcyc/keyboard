@@ -1,6 +1,7 @@
 package dev.patrickgold.florisboard.ui
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.InputMethodInfo
@@ -19,6 +20,9 @@ class TestActivity : BaseActivity<TestViewModel, TestActivityBinding>(R.layout.t
         binding.lines.setOnClickListener(this)
         binding.image.setOnClickListener(this)
         binding.particlse.setOnClickListener(this)
+        binding.chuck.setOnClickListener(this)
+        binding.lobter.setOnClickListener(this)
+        binding.great.setOnClickListener(this)
     }
 
     override fun provideViewModel() = viewModel
@@ -44,12 +48,24 @@ class TestActivity : BaseActivity<TestViewModel, TestActivityBinding>(R.layout.t
             Settings.Secure.getString(contentResolver, "default_input_method")
 
     override fun onClick(v: View) {
-        if (v.id in listOf(R.id.lines, R.id.image, R.id.fluid, R.id.particlse)) {
-            if (checkSettings()) when (v.id) {
-                R.id.lines -> BackgroundViewRepository.BackgroundView.ParticleView
-                R.id.fluid -> BackgroundViewRepository.BackgroundView.FluidView
-                else -> BackgroundViewRepository.BackgroundView.ParticleFlowView
-            }.let(viewModel::attachThemeType)
-        }
+        if (checkSettings())
+            if (v.id in listOf(R.id.lines, R.id.image, R.id.fluid, R.id.particlse)) {
+                when (v.id) {
+                    R.id.lines -> BackgroundViewRepository.BackgroundView.ParticleView
+                    R.id.fluid -> BackgroundViewRepository.BackgroundView.FluidView
+                    R.id.image -> BackgroundViewRepository.BackgroundView.ImageView(getImage())
+                    else -> BackgroundViewRepository.BackgroundView.ParticleFlowView
+                }.let(viewModel::attachThemeType)
+            } else
+                if (v.id in listOf(R.id.chuck, R.id.great, R.id.lobter)) {
+                    if (checkSettings()) when (v.id) {
+                        R.id.chuck -> R.font.chuck_fine
+                        R.id.great -> R.font.great_viber
+                        else -> R.font.lobster
+                    }.let(viewModel::setFont)
+                }
     }
+
+    private fun getImage() = assets.open("images/butterfly.png")
+        .use { BitmapFactory.decodeStream(it) }
 }

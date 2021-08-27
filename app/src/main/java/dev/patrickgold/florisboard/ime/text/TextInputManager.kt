@@ -91,7 +91,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
     lateinit var layoutManager: LayoutManager
         private set
     val keyboards = TextKeyboardCache()
-    private var textInputKeyboardView: TextKeyboardView? = null
+    var textInputKeyboardView: TextKeyboardView? = null
     lateinit var textKeyboardIconSet: TextKeyboardIconSet
         private set
     private val dictionaryManager: DictionaryManager get() = DictionaryManager.default()

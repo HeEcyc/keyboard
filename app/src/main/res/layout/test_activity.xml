@@ -60,6 +60,7 @@
             android:columnCount="3">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/chuck"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:fontFamily="@font/chuck_fine"
@@ -67,6 +68,7 @@
                 android:text="Chuck fine" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/great"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:fontFamily="@font/great_viber"
@@ -74,6 +76,7 @@
                 android:text="Great viber" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lobter"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:fontFamily="@font/lobster"

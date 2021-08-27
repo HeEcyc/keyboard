@@ -62,7 +62,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     private var computedKeyboard: TextKeyboard? = null
     private var iconSet: TextKeyboardIconSet? = null
-    private var fontFamily: Typeface? = null
+    private var fontFamily: Typeface = Typeface.MONOSPACE
     private var cachedTheme: Theme? = null
     private var cachedState: KeyboardState = KeyboardState.new(maskOfInterest = KeyboardState.INTEREST_TEXT)
 
@@ -861,7 +861,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         keyboard.layout(this)
         val theme = cachedTheme ?: themeManager?.activeTheme ?: Theme.BASE_THEME
 
-       // fontFamily = theme.getAttr(Theme.Attr.FONT)
+        // fontFamily = theme.getAttr(Theme.Attr.FONT)
         val isBorderless = !theme.getAttr(Theme.Attr.KEY_SHOW_BORDER).toOnOff().state
         keyboard.keys().withIndex().forEach { (n, key) ->
             getChildAt(n)?.let { rv ->
@@ -1070,7 +1070,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val label = key.label
         if (label != null) {
             renderView.labelPaint.let {
-                //TODO main text drawing
+                it.typeface = fontFamily
                 val centerX = key.visibleLabelBounds.exactCenterX()
                 val centerY = key.visibleLabelBounds.exactCenterY() + (it.textSize - it.descent()) / 2
                 if (label.contains("\n")) {
@@ -1088,7 +1088,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val hintedLabel = key.hintedLabel
         if (hintedLabel != null) {
             renderView.hintedLabelPaint.let {
-                //TODO additional text drawing
+                it.typeface = fontFamily
                 val centerX = key.visibleBounds.left + key.visibleBounds.width() * 5.0f / 6.0f
                 val centerY =
                     key.visibleBounds.top + key.visibleBounds.height() * 1.0f / 6.0f + (it.textSize - it.descent()) / 2
@@ -1343,6 +1343,15 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             invalidate()
             glideRefreshJob?.cancel()
             glideRefreshJob = null
+        }
+    }
+
+    fun onNewFont(typeface: Typeface) {
+        fontFamily = typeface
+        if (isMeasured) {
+            computeDesiredDimensions()
+            computeKeyboard()
+            invalidate()
         }
     }
 

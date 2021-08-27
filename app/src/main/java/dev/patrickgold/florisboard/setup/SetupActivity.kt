@@ -30,10 +30,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.SetupActivityBinding
 import dev.patrickgold.florisboard.ime.core.Preferences
-import dev.patrickgold.florisboard.settings.SettingsMainActivity
 import dev.patrickgold.florisboard.ui.TestActivity
 
 class SetupActivity : AppCompatActivity() {
+
     companion object {
         const val EXTRA_SHOW_SINGLE_STEP = "EXTRA_SHOW_SINGLE_STEP"
     }
