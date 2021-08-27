@@ -1,9 +1,12 @@
 package dev.patrickgold.florisboard.background.view.keyboard.repository
 
 import android.content.Context
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup.LayoutParams
+import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.MutableLiveData
 import com.doctoror.particlesdrawable.ParticlesView
 import com.nfaralli.particleflow.ParticlesSurfaceView
@@ -31,35 +34,45 @@ object BackgroundViewRepository {
 
     interface ViewFactory {
         fun createView(context: Context): View
+
+        companion object {
+            fun from(lambda: (Context) -> View) = object : ViewFactory {
+                override fun createView(context: Context) = lambda(context)
+            }
+        }
     }
 
     sealed interface BackgroundView {
         fun getViewFactory(): ViewFactory
 
         object FluidView : BackgroundView {
-            override fun getViewFactory() = object : ViewFactory {
-                override fun createView(context: Context) =
-                    dispatchBackgroundView(dev.patrickgold.florisboard.background.view.keyboard.views.FluidView::class.java, context)
+            override fun getViewFactory() = ViewFactory.from {
+                dispatchBackgroundView(dev.patrickgold.florisboard.background.view.keyboard.views.FluidView::class.java, it)
             }
         }
 
         object ParticleView : BackgroundView {
-            override fun getViewFactory() = object : ViewFactory {
-                override fun createView(context: Context) =
-                    dispatchBackgroundView(ParticlesView::class.java, context)
+            override fun getViewFactory() = ViewFactory.from {
+                dispatchBackgroundView(ParticlesView::class.java, it)
             }
         }
 
         object ParticleFlowView : BackgroundView {
-            override fun getViewFactory() = object : ViewFactory {
-                override fun createView(context: Context) =
-                    dispatchBackgroundView(ParticlesSurfaceView::class.java, context)
+            override fun getViewFactory() = ViewFactory.from {
+                dispatchBackgroundView(ParticlesSurfaceView::class.java, it)
             }
         }
 
         class CustomView(private val getViewFrom: (Context) -> View) : BackgroundView {
-            override fun getViewFactory() = object : ViewFactory {
-                override fun createView(context: Context) = getViewFrom(context)
+            override fun getViewFactory() = ViewFactory.from(getViewFrom)
+        }
+
+        class ImageView(private val image: String) : BackgroundView {
+            override fun getViewFactory() = ViewFactory.from {
+                val view = dispatchBackgroundView(AppCompatImageView::class.java, it) as AppCompatImageView
+                view.setImageURI(Uri.parse(image))
+                view.scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
+                view
             }
         }
 
