@@ -23,6 +23,10 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="70sp"
+            android:background="@android:color/white"
+            bind:itemRippleColor="@{null}"
+            bind:labelVisibilityMode="labeled"
+            bind:menu="@menu/main_menu" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

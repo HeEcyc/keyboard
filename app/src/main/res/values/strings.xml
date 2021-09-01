@@ -9,9 +9,9 @@
 
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">Private mode</string>
-<!--
-    <string name="private_mode_dialog__text" comment="Text of the private mode dialog">The icon you just clicked at indicates that FlorisBoard works in the private mode. This means that all features which require to process and temporarily save your input stop working. This applies at minimum to the following features (if they\'ve been turned on previously):\n\n - Next word algorithm adjustments\n\n - Clipboard paste suggestions\n\n - Clipboard history\n\nFlorisBoard enters this mode either if an app requests it or if it was specifically enabled in the advanced settings.</string>
--->
+    <!--
+        <string name="private_mode_dialog__text" comment="Text of the private mode dialog">The icon you just clicked at indicates that FlorisBoard works in the private mode. This means that all features which require to process and temporarily save your input stop working. This applies at minimum to the following features (if they\'ve been turned on previously):\n\n - Next word algorithm adjustments\n\n - Clipboard paste suggestions\n\n - Clipboard history\n\nFlorisBoard enters this mode either if an app requests it or if it was specifically enabled in the advanced settings.</string>
+    -->
 
     <!-- Media strings -->
     <string name="media__tab__emojis" comment="Tab description for emojis in the media UI">Emojis</string>
@@ -43,8 +43,8 @@
     <!-- Settings UI strings -->
     <string name="settings__title" comment="Title of Settings">Settings</string>
     <string name="settings__menu" comment="Hint of top-right three-dot icon in Settings">More options</string>
-    <string name="settings__menu_about" translatable="false" comment="Three-dot menu entry for About activity">@string/about__title</string>
-    <string name="settings__menu_advanced" translatable="false" comment="Three-dot menu entry for Advanced activity">@string/settings__advanced__title</string>
+    <string name="settings__menu_about" comment="Three-dot menu entry for About activity" translatable="false">@string/about__title</string>
+    <string name="settings__menu_advanced" comment="Three-dot menu entry for Advanced activity" translatable="false">@string/settings__advanced__title</string>
     <string name="settings__menu_help" comment="Three-dot menu entry for Help and Feedback web link">Help &amp; feedback</string>
     <string name="settings__help" comment="General label for help buttons in Settings">Help</string>
     <string name="settings__navigation__home" comment="Long-press hint of bottom nav item Home in Settings">Home</string>
@@ -133,36 +133,36 @@
     <string name="settings__theme_editor__error_attr_name_empty" comment="Error text for an empty attribute name">Please enter an attribute name.</string>
     <string name="settings__theme_editor__error_attr_name_already_exists" comment="Error text for a duplicate attribute name">This attribute name already exists within this group. Please specify another one.</string>
 
-    <string name="settings__theme__group_window"                comment="Theme group label">Window &amp; System</string>
-    <string name="settings__theme__group_keyboard"              comment="Theme group label">Keyboard</string>
-    <string name="settings__theme__group_key"                   comment="Theme group label">Key</string>
-    <string name="settings__theme__group_key_specific"          comment="Theme group label (%s is specific modifier)">Key (%s)</string>
-    <string name="settings__theme__group_media"                 comment="Theme group label">Media context</string>
-    <string name="settings__theme__group_oneHanded"             comment="Theme group label">One-handed</string>
-    <string name="settings__theme__group_popup"                 comment="Theme group label">Popup</string>
-    <string name="settings__theme__group_privateMode"           comment="Theme group label">Private mode</string>
-    <string name="settings__theme__group_smartbar"              comment="Theme group label">Smartbar</string>
-    <string name="settings__theme__group_smartbarButton"        comment="Theme group label">Smartbar button</string>
-    <string name="settings__theme__group_extractEditLayout"     comment="Theme group label">Landscape fullscreen layout</string>
-    <string name="settings__theme__group_extractActionButton"   comment="Theme group label">Landscape fullscreen action button</string>
-    <string name="settings__theme__group_glideTrail"            comment="Theme group label">Glide trail</string>
-    <string name="settings__theme__group_custom"                comment="Theme group label (%s is custom group name)">Custom group (%s)</string>
+    <string name="settings__theme__group_window" comment="Theme group label">Window &amp; System</string>
+    <string name="settings__theme__group_keyboard" comment="Theme group label">Keyboard</string>
+    <string name="settings__theme__group_key" comment="Theme group label">Key</string>
+    <string name="settings__theme__group_key_specific" comment="Theme group label (%s is specific modifier)">Key (%s)</string>
+    <string name="settings__theme__group_media" comment="Theme group label">Media context</string>
+    <string name="settings__theme__group_oneHanded" comment="Theme group label">One-handed</string>
+    <string name="settings__theme__group_popup" comment="Theme group label">Popup</string>
+    <string name="settings__theme__group_privateMode" comment="Theme group label">Private mode</string>
+    <string name="settings__theme__group_smartbar" comment="Theme group label">Smartbar</string>
+    <string name="settings__theme__group_smartbarButton" comment="Theme group label">Smartbar button</string>
+    <string name="settings__theme__group_extractEditLayout" comment="Theme group label">Landscape fullscreen layout</string>
+    <string name="settings__theme__group_extractActionButton" comment="Theme group label">Landscape fullscreen action button</string>
+    <string name="settings__theme__group_glideTrail" comment="Theme group label">Glide trail</string>
+    <string name="settings__theme__group_custom" comment="Theme group label (%s is custom group name)">Custom group (%s)</string>
 
-    <string name="settings__theme__attr_background"             comment="Theme attribute label">Background color</string>
-    <string name="settings__theme__attr_backgroundActive"       comment="Theme attribute label">Background color (active)</string>
-    <string name="settings__theme__attr_backgroundPressed"      comment="Theme attribute label">Background color (pressed)</string>
-    <string name="settings__theme__attr_foreground"             comment="Theme attribute label">Foreground color</string>
-    <string name="settings__theme__attr_foregroundAlt"          comment="Theme attribute label">Foreground color (alternative)</string>
-    <string name="settings__theme__attr_foregroundPressed"      comment="Theme attribute label">Foreground color (pressed)</string>
-    <string name="settings__theme__attr_showBorder"             comment="Theme attribute label">Show border</string>
-    <string name="settings__theme__attr_colorPrimary"           comment="Theme attribute label">Primary color</string>
-    <string name="settings__theme__attr_colorPrimaryDark"       comment="Theme attribute label">Primary color (dark)</string>
-    <string name="settings__theme__attr_colorAccent"            comment="Theme attribute label">Accent color</string>
-    <string name="settings__theme__attr_navBarColor"            comment="Theme attribute label">Navigation bar color</string>
-    <string name="settings__theme__attr_navBarLight"            comment="Theme attribute label">Navigation bar dark foreground</string>
-    <string name="settings__theme__attr_semiTransparentColor"   comment="Theme attribute label">Semi transparent color</string>
-    <string name="settings__theme__attr_textColor"              comment="Theme attribute label">Text color</string>
-    <string name="settings__theme__attr_custom"                 comment="Theme attribute label (%s is custom attribute name)">Custom attribute (%s)</string>
+    <string name="settings__theme__attr_background" comment="Theme attribute label">Background color</string>
+    <string name="settings__theme__attr_backgroundActive" comment="Theme attribute label">Background color (active)</string>
+    <string name="settings__theme__attr_backgroundPressed" comment="Theme attribute label">Background color (pressed)</string>
+    <string name="settings__theme__attr_foreground" comment="Theme attribute label">Foreground color</string>
+    <string name="settings__theme__attr_foregroundAlt" comment="Theme attribute label">Foreground color (alternative)</string>
+    <string name="settings__theme__attr_foregroundPressed" comment="Theme attribute label">Foreground color (pressed)</string>
+    <string name="settings__theme__attr_showBorder" comment="Theme attribute label">Show border</string>
+    <string name="settings__theme__attr_colorPrimary" comment="Theme attribute label">Primary color</string>
+    <string name="settings__theme__attr_colorPrimaryDark" comment="Theme attribute label">Primary color (dark)</string>
+    <string name="settings__theme__attr_colorAccent" comment="Theme attribute label">Accent color</string>
+    <string name="settings__theme__attr_navBarColor" comment="Theme attribute label">Navigation bar color</string>
+    <string name="settings__theme__attr_navBarLight" comment="Theme attribute label">Navigation bar dark foreground</string>
+    <string name="settings__theme__attr_semiTransparentColor" comment="Theme attribute label">Semi transparent color</string>
+    <string name="settings__theme__attr_textColor" comment="Theme attribute label">Text color</string>
+    <string name="settings__theme__attr_custom" comment="Theme attribute label (%s is custom attribute name)">Custom attribute (%s)</string>
 
     <string name="settings__input_feedback__title" comment="Title of Input Feedback preferences fragment">Sounds &amp; Vibration</string>
     <string name="pref__input_feedback__group_audio__label" comment="Preference group title">Audio feedback / Sounds</string>
@@ -254,21 +254,21 @@
     <string name="pref__smartbar__enabled__label" comment="Preference title">Enable Smartbar</string>
     <string name="pref__smartbar__enabled__summary" comment="Preference summary">Will show on top of the keyboard</string>
     <string name="pref__suggestion__title" comment="Preference group title">Suggestions</string>
-    <string translatable="false" name="pref__suggestion__api30_inline_suggestions_enabled__label" comment="Preference title">Inline suggestions</string>
-    <string translatable="false" name="pref__suggestion__api30_inline_suggestions_enabled__summary" comment="Preference summary">Show inline suggestions provided by autofill services (password managers, ...)</string>
-    <string translatable="false" name="pref__suggestion__enabled__label" comment="Preference title">[EXPERIMENTAL] Display suggestions while you type</string>
-    <string translatable="false" name="pref__suggestion__enabled__summary" comment="Preference summary">Will show in the Smartbar, currently regardless of the selected subtype the dictionary language is English (US)</string>
-    <string translatable="false" name="pref__suggestion__use_pref_words__label" comment="Preference title">[NOT YET INCLUDED] Next-word suggestions</string>
-    <string translatable="false" name="pref__suggestion__use_pref_words__summary" comment="Preference summary">Use previous words for generating suggestions</string>
-    <string translatable="false" name="pref__suggestion__block_possibly_offensive__label" comment="Preference title">[EXPERIMENTAL] Block possibly offensive words</string>
-    <string translatable="false" name="pref__suggestion__block_possibly_offensive__summary" comment="Preference summary">Prevents possibly offensive words from being suggested while you type</string>
-    <string translatable="false" name="pref__suggestion__clipboard_content_enabled__label" comment="Preference title">[EXPERIMENTAL] Clipboard content suggestions</string>
-    <string translatable="false" name="pref__suggestion__clipboard_content_enabled__summary" comment="Preference summary">Suggest clipboard content to paste if previously copied</string>
-    <string translatable="false" name="pref__suggestion__clipboard_content_timeout__label" comment="Preference title">[EXPERIMENTAL] Clipboard suggestion timeout</string>
-    <string translatable="false" name="pref__suggestion__display_mode__label" comment="Preference title">[EXPERIMENTAL] Suggestions display mode</string>
-    <string translatable="false" name="pref__suggestion__display_mode__classic" comment="Preference value">Classic (3 columns)</string>
-    <string translatable="false" name="pref__suggestion__display_mode__dynamic" comment="Preference value">Dynamic width</string>
-    <string translatable="false" name="pref__suggestion__display_mode__dynamic_scrollable" comment="Preference value">Dynamic width &amp; scrollable</string>
+    <string name="pref__suggestion__api30_inline_suggestions_enabled__label" comment="Preference title" translatable="false">Inline suggestions</string>
+    <string name="pref__suggestion__api30_inline_suggestions_enabled__summary" comment="Preference summary" translatable="false">Show inline suggestions provided by autofill services (password managers, ...)</string>
+    <string name="pref__suggestion__enabled__label" comment="Preference title" translatable="false">[EXPERIMENTAL] Display suggestions while you type</string>
+    <string name="pref__suggestion__enabled__summary" comment="Preference summary" translatable="false">Will show in the Smartbar, currently regardless of the selected subtype the dictionary language is English (US)</string>
+    <string name="pref__suggestion__use_pref_words__label" comment="Preference title" translatable="false">[NOT YET INCLUDED] Next-word suggestions</string>
+    <string name="pref__suggestion__use_pref_words__summary" comment="Preference summary" translatable="false">Use previous words for generating suggestions</string>
+    <string name="pref__suggestion__block_possibly_offensive__label" comment="Preference title" translatable="false">[EXPERIMENTAL] Block possibly offensive words</string>
+    <string name="pref__suggestion__block_possibly_offensive__summary" comment="Preference summary" translatable="false">Prevents possibly offensive words from being suggested while you type</string>
+    <string name="pref__suggestion__clipboard_content_enabled__label" comment="Preference title" translatable="false">[EXPERIMENTAL] Clipboard content suggestions</string>
+    <string name="pref__suggestion__clipboard_content_enabled__summary" comment="Preference summary" translatable="false">Suggest clipboard content to paste if previously copied</string>
+    <string name="pref__suggestion__clipboard_content_timeout__label" comment="Preference title" translatable="false">[EXPERIMENTAL] Clipboard suggestion timeout</string>
+    <string name="pref__suggestion__display_mode__label" comment="Preference title" translatable="false">[EXPERIMENTAL] Suggestions display mode</string>
+    <string name="pref__suggestion__display_mode__classic" comment="Preference value" translatable="false">Classic (3 columns)</string>
+    <string name="pref__suggestion__display_mode__dynamic" comment="Preference value" translatable="false">Dynamic width</string>
+    <string name="pref__suggestion__display_mode__dynamic_scrollable" comment="Preference value" translatable="false">Dynamic width &amp; scrollable</string>
     <string name="pref__dictionary__title" comment="Preference group title">Dictionary</string>
     <string name="pref__dictionary__enable_system_user_dictionary__label" comment="Preference title">Enable system user dictionary</string>
     <string name="pref__dictionary__enable_system_user_dictionary__summary" comment="Preference summary">Suggest words stored in the system user dictionary</string>
@@ -498,5 +498,7 @@
     <string name="pref__glide__show_preview">Show preview while glide typing</string>
     <string name="settings">Settings</string>
     <string name="language">Language</string>
+    <string name="custom">Custom</string>
+    <string name="presets">Presets</string>
 
 </resources>

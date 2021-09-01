@@ -1,10 +1,8 @@
 package dev.patrickgold.florisboard.ui.main.activity.settings
 
-import android.content.Intent
 import androidx.fragment.app.activityViewModels
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.MainFragmentSettingsBinding
-import dev.patrickgold.florisboard.ui.base.BaseActivity
 import dev.patrickgold.florisboard.ui.base.BaseFragment
 import dev.patrickgold.florisboard.ui.main.activity.MainActivityViewModel
 
