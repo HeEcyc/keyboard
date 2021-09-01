@@ -14,6 +14,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="dev.patrickgold.florisboard">
 
     <!-- Permission needed to vibrate if the user has key press vibration enabled -->
@@ -26,7 +27,8 @@
         android:label="@string/floris_app_name"
         android:roundIcon="@mipmap/floris_app_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/SettingsTheme">
+        android:theme="@style/SettingsTheme"
+        tools:ignore="LockedOrientationActivity">
 
         <!-- IME service -->
         <service
@@ -67,19 +69,29 @@
             android:theme="@style/SettingsTheme" />
 
         <!-- Using an activity alias to disable/enable the app icon in the launcher -->
-        <activity-alias
-            android:name="dev.patrickgold.florisboard.SettingsLauncherAlias"
+
+
+        <activity
+            android:name=".ui.splash.activity.SplashActivity"
+            android:configChanges="orientation"
             android:exported="true"
-            android:icon="@mipmap/floris_app_icon"
-            android:label="@string/floris_app_name"
-            android:launchMode="singleTask"
-            android:roundIcon="@mipmap/floris_app_icon_round"
-            android:targetActivity="dev.patrickgold.florisboard.setup.SetupActivity">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity-alias>
+        </activity>
+
+        <activity
+            android:name=".ui.main.activity.MainActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!-- User Dictionary Manager Activity -->
         <activity
@@ -152,7 +164,7 @@
             android:name="dev.patrickgold.florisboard.ime.clip.provider.FlorisContentProvider"
             android:authorities="${applicationId}.provider.clip"
             android:exported="false"
-            android:grantUriPermissions="true"></provider>
+            android:grantUriPermissions="true" />
 
     </application>
 

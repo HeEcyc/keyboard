@@ -47,12 +47,23 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ServiceLifecycleDispatcher
+import androidx.lifecycle.coroutineScope
 import dev.patrickgold.florisboard.R
+import dev.patrickgold.florisboard.common.ViewUtils
 import dev.patrickgold.florisboard.crashutility.CrashUtility
-import dev.patrickgold.florisboard.debug.*
+import dev.patrickgold.florisboard.databinding.FlorisboardBinding
+import dev.patrickgold.florisboard.debug.LogTopic
+import dev.patrickgold.florisboard.debug.flogError
+import dev.patrickgold.florisboard.debug.flogInfo
 import dev.patrickgold.florisboard.ime.clip.ClipboardInputManager
 import dev.patrickgold.florisboard.ime.clip.FlorisClipboardManager
+import dev.patrickgold.florisboard.ime.keyboard.InputFeedbackManager
+import dev.patrickgold.florisboard.ime.keyboard.KeyboardState
+import dev.patrickgold.florisboard.ime.keyboard.updateKeyboardState
 import dev.patrickgold.florisboard.ime.landscapeinput.LandscapeInputUiMode
 import dev.patrickgold.florisboard.ime.media.MediaInputManager
 import dev.patrickgold.florisboard.ime.onehanded.OneHandedMode
@@ -65,13 +76,8 @@ import dev.patrickgold.florisboard.ime.text.key.CurrencySet
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyData
 import dev.patrickgold.florisboard.ime.theme.Theme
 import dev.patrickgold.florisboard.ime.theme.ThemeManager
-import dev.patrickgold.florisboard.setup.SetupActivity
+import dev.patrickgold.florisboard.ui.splash.activity.SplashActivity
 import dev.patrickgold.florisboard.util.AppVersionUtils
-import dev.patrickgold.florisboard.common.ViewUtils
-import dev.patrickgold.florisboard.databinding.FlorisboardBinding
-import dev.patrickgold.florisboard.ime.keyboard.InputFeedbackManager
-import dev.patrickgold.florisboard.ime.keyboard.KeyboardState
-import dev.patrickgold.florisboard.ime.keyboard.updateKeyboardState
 import dev.patrickgold.florisboard.util.debugSummarize
 import dev.patrickgold.florisboard.util.findViewWithType
 import dev.patrickgold.florisboard.util.refreshLayoutOf
@@ -625,7 +631,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         // Rebuild the UI if the theme has changed from day to night or vice versa to prevent
         //  theme glitches with scrollbars and hints of buttons in the media UI. If the UI must be
         //  rebuild, quit this method, as it will be called again by the newly created UI.
-        val newThemeIsNightMode =  theme.isNightTheme
+        val newThemeIsNightMode = theme.isNightTheme
         if (currentThemeIsNight != newThemeIsNightMode) {
             currentThemeResId = getDayNightBaseThemeId(newThemeIsNightMode)
             currentThemeIsNight = newThemeIsNightMode
@@ -682,7 +688,10 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
             }
             eel.findViewWithType(Button::class)?.let { btn ->
                 btn.background = ContextCompat.getDrawable(this, R.drawable.shape_rect_rounded)?.also { d ->
-                    DrawableCompat.setTint(d, theme.getAttr(Theme.Attr.EXTRACT_ACTION_BUTTON_BACKGROUND).toSolidColor().color)
+                    DrawableCompat.setTint(
+                        d,
+                        theme.getAttr(Theme.Attr.EXTRACT_ACTION_BUTTON_BACKGROUND).toSolidColor().color
+                    )
                 }
                 btn.setTextColor(theme.getAttr(Theme.Attr.EXTRACT_ACTION_BUTTON_FOREGROUND).toSolidColor().color)
             }
@@ -747,15 +756,12 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         }
     }
 
-    /**
-     * Hides the IME and launches [SetupActivity].
-     */
     fun launchSettings() {
         requestHideSelf(0)
-        val i = Intent(this, SetupActivity::class.java)
+        val i = Intent(this, SplashActivity::class.java)
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or
-                  Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED or
-                  Intent.FLAG_ACTIVITY_CLEAR_TOP
+            Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED or
+            Intent.FLAG_ACTIVITY_CLEAR_TOP
         applicationContext.startActivity(i)
     }
 
@@ -766,7 +772,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         return subtypeManager.subtypes.size > 1
     }
 
-    fun switchToPrevKeyboard(){
+    fun switchToPrevKeyboard() {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 switchToPreviousInputMethod()
@@ -782,7 +788,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         }
     }
 
-    fun switchToNextKeyboard(){
+    fun switchToNextKeyboard() {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 switchToNextInputMethod(false)
@@ -837,7 +843,11 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
 
     fun toggleOneHandedMode(isRight: Boolean) {
         prefs.keyboard.oneHandedMode = when (prefs.keyboard.oneHandedMode) {
-            OneHandedMode.OFF -> if (isRight) { OneHandedMode.END } else { OneHandedMode.START }
+            OneHandedMode.OFF -> if (isRight) {
+                OneHandedMode.END
+            } else {
+                OneHandedMode.START
+            }
             else -> OneHandedMode.OFF
         }
         updateOneHandedPanelVisibility()
@@ -943,13 +953,20 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         @SerialName("defaultSubtypes")
         val defaultSubtypes: List<DefaultSubtype> = listOf()
     ) {
-        @Transient var currencySetNames: List<String> = listOf()
-        @Transient var currencySetLabels: List<String> = listOf()
-        @Transient var composerNames: List<String> = listOf()
-        @Transient var composerLabels: List<String> = listOf()
-        @Transient val composerFromName: Map<String, Composer> = composers.map { it.name to it }.toMap()
-        @Transient var defaultSubtypesLanguageCodes: List<String> = listOf()
-        @Transient var defaultSubtypesLanguageNames: List<String> = listOf()
+        @Transient
+        var currencySetNames: List<String> = listOf()
+        @Transient
+        var currencySetLabels: List<String> = listOf()
+        @Transient
+        var composerNames: List<String> = listOf()
+        @Transient
+        var composerLabels: List<String> = listOf()
+        @Transient
+        val composerFromName: Map<String, Composer> = composers.map { it.name to it }.toMap()
+        @Transient
+        var defaultSubtypesLanguageCodes: List<String> = listOf()
+        @Transient
+        var defaultSubtypesLanguageNames: List<String> = listOf()
 
         init {
             val tmpComposerList = composers.map { Pair(it.name, it.label) }.toMutableList()

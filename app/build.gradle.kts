@@ -3,6 +3,7 @@ plugins {
     kotlin("android") version "1.5.20"
     kotlin("kapt") version "1.5.20"
     kotlin("plugin.serialization") version "1.5.20"
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -149,6 +150,7 @@ dependencies {
     implementation("com.nambimobile.widgets", "expandable-fab", "1.0.2")
     implementation("androidx.room", "room-runtime", "2.2.6")
     implementation("com.google.code.gson", "gson", "2.8.8")
+    implementation("com.google.firebase:firebase-storage-ktx:20.0.0")
     kapt("androidx.room", "room-compiler", "2.2.6")
     implementation(project(":particles"))
     testImplementation(kotlin("test"))

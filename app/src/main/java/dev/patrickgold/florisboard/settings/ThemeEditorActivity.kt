@@ -337,10 +337,10 @@ class ThemeEditorActivity : AppCompatActivity() {
     private fun buildUi() {
         themeLabel = editedTheme.label
         for ((groupName, groupAttrs) in editedTheme.attributes) {
-//            val groupView = addGroup(groupName).root
-//            for ((attrName, attrValue) in groupAttrs) {
-//                groupView.addAttr(attrName, attrValue)
-//            }
+            val groupView = addGroup(groupName).root
+            for ((attrName, attrValue) in groupAttrs) {
+                groupView.addAttr(attrName, attrValue)
+            }
         }
         mainScope.launch {
             binding.keyboardPreview.setComputedKeyboard(layoutManager.computeKeyboardAsync(

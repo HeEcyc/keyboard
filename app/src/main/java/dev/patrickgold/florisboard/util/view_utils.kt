@@ -40,25 +40,6 @@ fun setBackgroundTintColor(view: View, colorId: Int) {
 fun setBackgroundTintColor2(view: View, colorInt: Int) {
     view.backgroundTintList = ColorStateList.valueOf(colorInt)
 }
-fun setDrawableTintColor(view: Button, colorId: Int) {
-    view.compoundDrawableTintList = ColorStateList.valueOf(
-        getColorFromAttr(view.context, colorId)
-    )
-}
-fun setDrawableTintColor2(view: Button, colorInt: Int) {
-    view.compoundDrawableTintList = ColorStateList.valueOf(colorInt)
-}
-fun setImageTintColor2(view: ImageView, colorInt: Int) {
-    view.imageTintList = ColorStateList.valueOf(colorInt)
-}
-fun setTextTintColor(view: View, colorId: Int) {
-    view.foregroundTintList = ColorStateList.valueOf(
-        getColorFromAttr(view.context, colorId)
-    )
-}
-fun setTextTintColor2(view: View, colorInt: Int) {
-    view.foregroundTintList = ColorStateList.valueOf(colorInt)
-}
 
 fun refreshLayoutOf(view: View?) {
     if (view is ViewGroup) {
