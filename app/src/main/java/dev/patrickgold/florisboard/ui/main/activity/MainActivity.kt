@@ -24,14 +24,25 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     override fun provideViewModel() = viewModel
 
     override fun setupUI() {
-        viewModel.onThemeClick.observe(this, {
-            Intent(this, ThemePreviewActivity::class.java)
-                .let(::startActivity)
-        })
+        with(viewModel) {
+            onThemeClick.observe(this@MainActivity) { onThemeClick(it) }
+            viewModel.nextActivity.observe(this@MainActivity, { showNexActivity(it) })
+        }
 
-        DialogChooser(R.string.ok, arrayOf("hello", "by", "die"), "by") {
-            Log.d("12345", it)
-        }.show(this)
+//        DialogChooser(R.string.ok, arrayOf("hello", "by", "die"), "by") {
+//            Log.d("12345", it)
+//        }.show(this)
+
+
+    }
+
+    private fun onThemeClick(it: String?) {
+        Intent(this@MainActivity, ThemePreviewActivity::class.java)
+            .let(::startActivity)
+    }
+
+    private fun showNexActivity(activityClass: Class<out BaseActivity<*, *>>?) {
+        startActivity(Intent(this, activityClass))
     }
 
 }

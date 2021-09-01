@@ -83,6 +83,20 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.glide.preferences.activity.GlideTypingPreferenceActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.language.selector.activity.LanguageSelectorActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.splash.activity.SplashActivity"
             android:configChanges="orientation"
             android:exported="true"

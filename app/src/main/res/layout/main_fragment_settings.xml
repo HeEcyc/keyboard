@@ -31,7 +31,8 @@
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24sp"
+                android:layout_marginTop="@dimen/main_magin_top"
+                android:onClick="@{() -> viewModel.showLanguageSettingsActivity()}"
                 android:text="@string/language"
                 android:textColor="@color/textColorMain"
                 android:textSize="16sp" />
@@ -40,7 +41,8 @@
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24sp"
+                android:layout_marginTop="@dimen/main_magin_top"
+                android:onClick="@{() -> viewModel.showGlideSettingsActivity()}"
                 android:text="Glide typing"
                 android:textColor="@color/textColorSecondaty"
                 android:textSize="16sp" />
@@ -48,8 +50,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
-                android:layout_marginTop="24sp"
-                android:layout_marginBottom="24sp"
+                android:layout_marginVertical="@dimen/main_magin_top"
                 android:background="@color/dividerColor" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
@@ -64,7 +65,7 @@
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24sp"
+                android:layout_marginTop="@dimen/main_magin_top"
                 android:text="Tips"
                 android:textColor="@color/textColorMain"
                 android:textSize="16sp" />
@@ -73,7 +74,7 @@
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24sp"
+                android:layout_marginTop="@dimen/main_magin_top"
                 android:text="Keyboard swipe"
                 android:textColor="@color/textColorMain"
                 android:textSize="16sp" />
@@ -82,7 +83,7 @@
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24sp"
+                android:layout_marginTop="@dimen/main_magin_top"
                 android:text="Show Number row"
                 android:textColor="@color/textColorMain"
                 android:textSize="16sp" />
@@ -90,8 +91,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
-                android:layout_marginTop="24sp"
-                android:layout_marginBottom="24sp"
+                android:layout_marginVertical="@dimen/main_magin_top"
                 android:background="@color/dividerColor" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -114,7 +114,7 @@
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24sp"
+                android:layout_marginTop="@dimen/main_magin_top"
                 android:text="Language change button"
                 android:textColor="@color/textColorMain"
                 android:textSize="16sp" />
@@ -123,7 +123,7 @@
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24sp"
+                android:layout_marginTop="@dimen/main_magin_top"
                 android:text="Special symbols editor"
                 android:textColor="@color/textColorMain"
                 android:textSize="16sp" />

@@ -51,4 +51,5 @@ abstract class BaseActivity<TViewModel : BaseViewModel, TBinding : ViewDataBindi
 
     private fun hasPermission(permissions: Array<String>) = permissions
         .firstOrNull { ActivityCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_DENIED } != null
+
 }
