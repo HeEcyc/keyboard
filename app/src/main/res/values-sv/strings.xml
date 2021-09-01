@@ -5,7 +5,6 @@
     <!-- One-handed strings -->
     <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">Stäng enhandsläge.</string>
     <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">Flytta tangentbord till vänster.</string>
-    <string name="one_handed__move_end_btn_content_description" comment="Content description for the one-handed move to right button">Flytta tangentbord till höger.</string>
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">Privatläge</string>
     <!--
@@ -60,7 +59,6 @@
     <string name="settings__localization__subtype_locale" comment="Label for locale dropdown in subtype dialog">Språk</string>
     <string name="settings__localization__subtype_error_already_exists" comment="Error message shown in subtype dialog when a subtype to add already exists">Denna undertyp finns redan!</string>
     <string name="settings__theme__title" comment="Title of the Theme fragment">Tangentbordstema</string>
-    <string name="settings__theme__undefined" comment="General string for an undefined preference value">Odefinierad</string>
     <string name="pref__theme__mode__label" comment="Label of the theme mode preference">Temaläge</string>
     <string name="pref__theme__mode__always_day" comment="Preference value for theme mode">Alltid dag</string>
     <string name="pref__theme__mode__always_night" comment="Preference value for theme mode">Alltid natt</string>
@@ -93,8 +91,6 @@
     <string name="settings__theme_editor__value_type_reference_group" comment="Theme value type sub-field">Grupp</string>
     <string name="settings__theme_editor__value_type_reference_attr" comment="Theme value type sub-field">Egenskap</string>
     <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type">Enfärgad</string>
-    <string name="settings__theme_editor__value_type_lin_grad" comment="Theme value type">Linjär gradient</string>
-    <string name="settings__theme_editor__value_type_rad_grad" comment="Theme value type">Radiell gradient</string>
     <string name="settings__theme_editor__value_type_on_off" comment="Theme value type">Byt</string>
     <string name="settings__theme_editor__value_type_on_off_state" comment="Theme value type sub-field">Tillstånd</string>
     <string name="settings__theme_editor__value_type_other" comment="Theme value type">Annat</string>
@@ -199,16 +195,6 @@
     <string name="assets__action__yes">Ja</string>
     <string name="assets__error__invalid">Ogiltig</string>
     <!-- Setup UI strings -->
-    <string name="setup__title" comment="Title of Setup">Konfiguration</string>
-    <string name="setup__prev_button" comment="Label of Previous button in Setup (try to find a short translation due to limited space in UI)">Föregående</string>
-    <string name="setup__cancel_button" comment="Label of Cancel button in Setup">Avbryt</string>
-    <string name="setup__next_button" comment="Label of Next button in Setup (try to find a short translation due to limited space in UI)">Nästa</string>
-    <string name="setup__finish_button" comment="Label of Finish button in Setup">Slutför</string>
-    <string name="setup__ok_button" comment="Label of OK button in Setup">OK</string>
-    <string name="setup__welcome__title" comment="Title of Welcome fragment in Setup">Välkommen!</string>
-    <string name="setup__enable_ime__title" comment="Title of Enable IME fragment in Setup">Aktivera FlorisBoard</string>
-    <string name="setup__make_default__text_switch_button" comment="Label of switch button in Make IME default fragment">Byt tangentbord</string>
-    <string name="setup__finish__title" comment="Title of Setup finished fragment in Setup">Konfiguration färdig!</string>
     <!-- Crash Dialog strings -->
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Stäng</string>
     <!-- clipboard strings -->

@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FlorisBoard</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Пауза</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Изчакване</string>
-    <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">Икона с многоточие. Ако е видима, означава, че при задържане на клавиш могат да бъдат използвани повече букви.</string>
     <!-- One-handed strings -->
     <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">Излиза от режима за работа с една ръка.</string>
     <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">Премества клавиатурата отляво.</string>
-    <string name="one_handed__move_end_btn_content_description" comment="Content description for the one-handed move to right button">Премества клавиатурата отдясно.</string>
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">Поверителен режим</string>
     <!--
@@ -75,7 +72,6 @@
     <string name="settings__localization__subtype_error_already_exists" comment="Error message shown in subtype dialog when a subtype to add already exists">Този подвид вече съществува!</string>
     <string name="settings__localization__subtype_error_layout_not_installed" comment="Error message shown in subtype list when a layout is not installed, where %s will be replaced by the layout ID">%s (не е инсталирано)</string>
     <string name="settings__theme__title" comment="Title of the Theme fragment">Тема на клавиатурата</string>
-    <string name="settings__theme__undefined" comment="General string for an undefined preference value">Недефинирано</string>
     <string name="pref__theme__mode__label" comment="Label of the theme mode preference">Режим на тема</string>
     <string name="pref__theme__mode__always_day" comment="Preference value for theme mode">Винаги ден</string>
     <string name="pref__theme__mode__always_night" comment="Preference value for theme mode">Винаги нощ</string>
@@ -111,8 +107,6 @@
     <string name="settings__theme_editor__value_type_reference_group" comment="Theme value type sub-field">Група</string>
     <string name="settings__theme_editor__value_type_reference_attr" comment="Theme value type sub-field">Атрибут</string>
     <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type">Плътен цвят</string>
-    <string name="settings__theme_editor__value_type_lin_grad" comment="Theme value type">Линеен градиент</string>
-    <string name="settings__theme_editor__value_type_rad_grad" comment="Theme value type">Радиален градиент</string>
     <string name="settings__theme_editor__value_type_on_off" comment="Theme value type">Превключвател</string>
     <string name="settings__theme_editor__value_type_on_off_state" comment="Theme value type sub-field">Състояние</string>
     <string name="settings__theme_editor__value_type_other" comment="Theme value type">Друго</string>
@@ -248,7 +242,6 @@
     <string name="settings__udm__word_summary_freq_shortcut" comment="Summary label for a word entry. The first placeholder inserts the frequency for the word it summarizes, the second placeholder the shortcut defined.">Честота: %d | ключова дума: %s</string>
     <string name="settings__udm__all_languages" comment="Label of the For all languages entry in the language list">За всички езици</string>
     <string name="settings__udm__open_system_manager_ui" comment="Label of the Open system manager UI menu option">Отваряне на системни настройки</string>
-    <string name="settings__udm__dictionary_import_success" comment="Message for dictionary import success">Потребителският речник е изнесен!</string>
     <string name="settings__udm__dictionary_export_success" comment="Message for dictionary export success">Потребителският речник е внесен!</string>
     <string name="settings__udm__dialog__title_add" comment="Label for the title (when in adding mode) in the user dictionary add/edit dialog">Добавяне на дума</string>
     <string name="settings__udm__dialog__title_edit" comment="Label for the title (when in editing mode) in the user dictionary add/edit dialog">Променяне на дума</string>
@@ -338,7 +331,6 @@
     <string name="settings__spelling__fab_extension_archive" comment="FAB option Extension archive.">Разширение или архив</string>
     <string name="settings__spelling__fab_affix_dictionary" comment="FAB option Affix dictionary.">Файлове на речник и афикси</string>
     <string name="pref__spelling__active_spellchecker__label" comment="Label of Active spellchecker pref">Текуща услуга за проверка на правописа</string>
-    <string name="pref__spelling__active_spellchecker__summary_none" comment="Summary of Active spellchecker pref">Няма избран</string>
     <string name="pref__spelling__active_spellchecker__summary_check_in_system" comment="Summary of Active spellchecker pref">Преглеждат се системните настройки</string>
     <string name="pref__spelling__manage_dictionaries__label" comment="Label of Manage dictionaries pref">Управление на речници за проверка на правопис</string>
     <plurals name="pref__spelling__manage_dictionaries__summary" comment="Summary of Manage dictionaries pref (%d will be replaced by the number of dictionaries).">
@@ -393,37 +385,13 @@
     <string name="assets__action__import">Внасяне</string>
     <string name="assets__action__no">Не</string>
     <string name="assets__action__save">Запазване</string>
-    <string name="assets__action__select">Изберете</string>
-    <string name="assets__action__select_dir">Избиране на папка</string>
     <string name="assets__action__select_file">Избиране на файл</string>
     <string name="assets__action__yes">Да</string>
     <string name="assets__error__details">Подробности</string>
     <string name="assets__error__invalid">Невалидно</string>
     <string name="assets__error__snackbar_message">Нещо се обърка</string>
     <!-- Setup UI strings -->
-    <string name="setup__title" comment="Title of Setup">Настройка</string>
-    <string name="setup__prev_button" comment="Label of Previous button in Setup (try to find a short translation due to limited space in UI)">Назад</string>
-    <string name="setup__cancel_button" comment="Label of Cancel button in Setup">Отказ</string>
-    <string name="setup__next_button" comment="Label of Next button in Setup (try to find a short translation due to limited space in UI)">Напред</string>
-    <string name="setup__finish_button" comment="Label of Finish button in Setup">Край</string>
-    <string name="setup__ok_button" comment="Label of OK button in Setup">Добре</string>
-    <string name="setup__welcome__title" comment="Title of Welcome fragment in Setup">Добре дошли!</string>
-    <string name="setup__welcome__intro" comment="Paragraph in Welcome fragment in Setup">Благодарим ви, че изпробвате FlorisBoard! Преди да можете да използвате приложението, трябва да направите обичайните неща, за да го активирате в системните настройки, да настроите предпочитания език/подредба и т.н… Но без притеснения - съветникът за настройка ще ви преведе!</string>
-    <string name="setup__welcome__privacy" comment="Paragraph in Welcome fragment in Setup">FlorisBoard зачита изцяло вашата поверителност и не събира никакви потребителски данни. За повече информация вижте:</string>
-    <string name="setup__welcome__trust" comment="Paragraph in Welcome fragment in Setup">Изходният код на FlorisBoard е публично достъпен за всеки, така че можете лесно да прегледате какво FlorisBoard прави зад кулисите. Вижте препратката към хранилището по-долу.</string>
-    <string name="setup__welcome__contribute" comment="Paragraph in Welcome fragment in Setup">Последно, преди да започнете настройката - ако се натъкнете на дефекти/сривове/проблеми с FlorisBoard или имате заявка за функция - преминете към хранилището на GitHub, препратката е по-долу, и подайте сигнал за проблем. Така ще допринесете за подобряване на FlorisBoard за всички потребители!</string>
-    <string name="setup__welcome__outro" comment="Paragraph in Welcome fragment in Setup">За да стартирате настройката, докоснете <i>НАПРЕД</i>.</string>
-    <string name="setup__enable_ime__title" comment="Title of Enable IME fragment in Setup">Включете FlorisBoard</string>
-    <string name="setup__enable_ime__text_before_enabled" comment="Description of state in Enable IME fragment before user enabled">Android изисква всяка потребителска клавиатура да бъде ръчно включена, преди да можете да я използвате. Докоснете бутона по-долу, за да посетите настройки на <i>Език и въвеждане</i>, след това не забравяйте да поставите отметка на \'<i>FlorisBoard</i> \'.</string>
-    <string name="setup__enable_ime__text_after_enabled" comment="Description of state in Enable IME fragment after user enabled">Клавиатурата FlorisBoard е включена. За да продължите, докоснете <i>НАПРЕД</i>!</string>
-    <string name="setup__enable_ime__text_button_language_and_input" comment="Label of language and input button in Enable IME fragment">Отваряне на настройките Език и въвеждане</string>
-    <string name="setup__make_default__title" comment="Title of Make IME default fragment in Setup">Задайте FlorisBoard като клавиатура по подразбиране</string>
-    <string name="setup__make_default__text_before_switch" comment="Description of state in Make IME default fragment before user switched">Клавиатурата FlorisBoard вече е включена от системата. За да я използвате активно, превключете на FlorisBoard, като я изберете в диалоговия прозорец с методи за въвеждане!</string>
-    <string name="setup__make_default__text_after_switch" comment="Description of state in Make IME default fragment after user switched">Успешно сменихте клавиатурата си по подразбиране на FlorisBoard!</string>
-    <string name="setup__make_default__text_switch_button" comment="Label of switch button in Make IME default fragment">Смяна на клавиатура</string>
-    <string name="setup__finish__title" comment="Title of Setup finished fragment in Setup">Настройката завърши!</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Отчет за грешка на FlorisBoard</string>
     <string name="crash_dialog__description" comment="Description of crash dialog">Извинявайте за неудобството, но поради непредвидена грешка FlorisBoard се срина.</string>
     <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">При желание от ваша страна да съобщите за възникналата грешка първо проверете системата за дефекти в GitHub дали подобна вече не е докладвана.\nАко не е, копирайте генерирания журнал на грешката и направете нов долкад за нея, използвайки шаблона \"%s\". Попълнете описанието, стъпките за възпроизвеждане и накрая поставете копирания журнал.\nПо този начин помагате да направим приложението FlorisBoard по-стабилно за всички. Благодарим ви!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Копиране в системната междинна памет</string>

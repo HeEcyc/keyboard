@@ -1,14 +1,11 @@
 <resources>
-    <string name="app_name">FlorisBoard</string>
 
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Pause</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Wait</string>
-    <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">Three-dot icon. If visible, indicates that more letters can be used if longer pressed.</string>
 
     <!-- One-handed strings -->
     <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">Close one-handed mode.</string>
     <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">Move keyboard to the left.</string>
-    <string name="one_handed__move_end_btn_content_description" comment="Content description for the one-handed move to right button">Move keyboard to the right.</string>
 
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">Private mode</string>
@@ -86,7 +83,6 @@
     <string name="settings__localization__subtype_error_layout_not_installed" comment="Error message shown in subtype list when a layout is not installed, where %s will be replaced by the layout ID">%s (not installed)</string>
 
     <string name="settings__theme__title" comment="Title of the Theme fragment">Keyboard theme</string>
-    <string name="settings__theme__undefined" comment="General string for an undefined preference value">Undefined</string>
     <string name="pref__theme__mode__label" comment="Label of the theme mode preference">Theme mode</string>
     <string name="pref__theme__mode__always_day" comment="Preference value for theme mode">Always day</string>
     <string name="pref__theme__mode__always_night" comment="Preference value for theme mode">Always night</string>
@@ -124,8 +120,6 @@
     <string name="settings__theme_editor__value_type_reference_group" comment="Theme value type sub-field">Group</string>
     <string name="settings__theme_editor__value_type_reference_attr" comment="Theme value type sub-field">Attribute</string>
     <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type">Solid color</string>
-    <string name="settings__theme_editor__value_type_lin_grad" comment="Theme value type">Linear gradient</string>
-    <string name="settings__theme_editor__value_type_rad_grad" comment="Theme value type">Radial gradient</string>
     <string name="settings__theme_editor__value_type_on_off" comment="Theme value type">Switch</string>
     <string name="settings__theme_editor__value_type_on_off_state" comment="Theme value type sub-field">State</string>
     <string name="settings__theme_editor__value_type_other" comment="Theme value type">Other</string>
@@ -300,7 +294,6 @@
     <string name="settings__udm__word_summary_freq_shortcut" comment="Summary label for a word entry. The first placeholder inserts the frequency for the word it summarizes, the second placeholder the shortcut defined.">Frequency: %d | Shortcut: %s</string>
     <string name="settings__udm__all_languages" comment="Label of the For all languages entry in the language list">For all languages</string>
     <string name="settings__udm__open_system_manager_ui" comment="Label of the Open system manager UI menu option">Open system manager UI</string>
-    <string name="settings__udm__dictionary_import_success" comment="Message for dictionary import success">User dictionary imported successfully!</string>
     <string name="settings__udm__dictionary_export_success" comment="Message for dictionary export success">User dictionary exported successfully!</string>
     <string name="settings__udm__dialog__title_add" comment="Label for the title (when in adding mode) in the user dictionary add/edit dialog">Add word entry</string>
     <string name="settings__udm__dialog__title_edit" comment="Label for the title (when in editing mode) in the user dictionary add/edit dialog">Edit word entry</string>
@@ -393,7 +386,6 @@
     <string name="settings__spelling__fab_extension_archive" comment="FAB option Extension archive.">Extension / Archive</string>
     <string name="settings__spelling__fab_affix_dictionary" comment="FAB option Affix dictionary.">Affix + Dictionary file</string>
     <string name="pref__spelling__active_spellchecker__label" comment="Label of Active spellchecker pref">Active spell checker</string>
-    <string name="pref__spelling__active_spellchecker__summary_none" comment="Summary of Active spellchecker pref">None set</string>
     <string name="pref__spelling__active_spellchecker__summary_check_in_system" comment="Summary of Active spellchecker pref">Check in system settings</string>
     <string name="pref__spelling__manage_dictionaries__label" comment="Label of Manage dictionaries pref">Manage spell checker dictionaries</string>
     <plurals name="pref__spelling__manage_dictionaries__summary" comment="Summary of Manage dictionaries pref (%d will be replaced by the number of dictionaries).">
@@ -452,8 +444,6 @@
     <string name="assets__action__import">Import</string>
     <string name="assets__action__no">No</string>
     <string name="assets__action__save">Save</string>
-    <string name="assets__action__select">Select</string>
-    <string name="assets__action__select_dir">Select directory</string>
     <string name="assets__action__select_file">Select file</string>
     <string name="assets__action__yes">Yes</string>
     <string name="assets__error__details">Details</string>
@@ -461,34 +451,8 @@
     <string name="assets__error__snackbar_message">Something went wrong</string>
 
     <!-- Setup UI strings -->
-    <string name="setup__title" comment="Title of Setup">Setup</string>
-    <string name="setup__prev_button" comment="Label of Previous button in Setup (try to find a short translation due to limited space in UI)">Prev</string>
-    <string name="setup__cancel_button" comment="Label of Cancel button in Setup">Cancel</string>
-    <string name="setup__next_button" comment="Label of Next button in Setup (try to find a short translation due to limited space in UI)">Next</string>
-    <string name="setup__finish_button" comment="Label of Finish button in Setup">Finish</string>
-    <string name="setup__ok_button" comment="Label of OK button in Setup">OK</string>
-
-    <string name="setup__welcome__title" comment="Title of Welcome fragment in Setup">Welcome!</string>
-    <string name="setup__welcome__intro" comment="Paragraph in Welcome fragment in Setup">Thanks for trying out FlorisBoard! Before you can start using it, we have to do the usual stuff and enable it in the system settings, set up your preferred language/layout, etc… But no worries - the setup wizard will guide you through this!</string>
-    <string name="setup__welcome__privacy" comment="Paragraph in Welcome fragment in Setup">FlorisBoard does fully respect your privacy and does not collect any user data. For more info see here:</string>
-    <string name="setup__welcome__trust" comment="Paragraph in Welcome fragment in Setup">The source code for FlorisBoard is publicly accessible for anyone, so you can easily review what FlorisBoard does in the background. Check out the repository link below.</string>
-    <string name="setup__welcome__contribute" comment="Paragraph in Welcome fragment in Setup">One last thing before you start the setup - if you encounter any bugs/crashes/issues with FlorisBoard or you have a feature request - head over to the GitHub repository linked below and file an issue. This helps in improving the experience for all users!</string>
-    <string name="setup__welcome__outro" comment="Paragraph in Welcome fragment in Setup">To start the setup, click on <i>NEXT</i>.</string>
-
-    <string name="setup__enable_ime__title" comment="Title of Enable IME fragment in Setup">Enable FlorisBoard</string>
-    <string name="setup__enable_ime__text_before_enabled" comment="Description of state in Enable IME fragment before user enabled">Android requires that every custom keyboard has to be manually enabled before you can use it. Click the button below to go to the <i>Language &amp; Input</i> settings, then make sure to check \'<i>FlorisBoard</i>\'.</string>
-    <string name="setup__enable_ime__text_after_enabled" comment="Description of state in Enable IME fragment after user enabled">FlorisBoard has been successfully enabled. To continue click <i>NEXT</i>!</string>
-    <string name="setup__enable_ime__text_button_language_and_input" comment="Label of language and input button in Enable IME fragment">Open Language &amp; Input settings</string>
-
-    <string name="setup__make_default__title" comment="Title of Make IME default fragment in Setup">Make FlorisBoard default</string>
-    <string name="setup__make_default__text_before_switch" comment="Description of state in Make IME default fragment before user switched">FlorisBoard is now enabled in your system. To actively use it, switch to FlorisBoard by selecting it in the input selector dialog!</string>
-    <string name="setup__make_default__text_after_switch" comment="Description of state in Make IME default fragment after user switched">Successfully switched the default keyboard to FlorisBoard!</string>
-    <string name="setup__make_default__text_switch_button" comment="Label of switch button in Make IME default fragment">Switch keyboard</string>
-
-    <string name="setup__finish__title" comment="Title of Setup finished fragment in Setup">Setup finished!</string>
 
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">FlorisBoard error report</string>
     <string name="crash_dialog__description" comment="Description of crash dialog">Sorry for the inconvenience, but FlorisBoard has crashed due to an unexpected error.</string>
     <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">If you wish to report this error, first check out the issue tracker on GitHub if your crash has not already been reported.\nIf it hasn\'t, copy the generated crash log and open a new issue. Use the \"%s\" template and fill out the description, the steps to reproduce, and paste the generated crash log at the end. This helps in making FlorisBoard better and more stable for everyone. Thank you!</string>
     <string name="crash_dialog__bug_report_template" comment="Name of the template to use in the GitHub issue tracker (is always in English)" translatable="false">Crash report</string>

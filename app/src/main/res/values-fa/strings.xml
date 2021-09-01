@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">فلوریس بورد</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">مکث</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">صبر‌کنید</string>
-    <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">نماد سه نقطه. در صورت مشاهده ، نشان می دهد که در صورت فشار بیشتر می توان از حروف بیشتری استفاده کرد.</string>
     <!-- One-handed strings -->
     <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">بستن حالت یک دستی.</string>
     <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">جابه‌جایی صفحه کلید به سمت چپ.</string>
-    <string name="one_handed__move_end_btn_content_description" comment="Content description for the one-handed move to right button">جابه‌جایی صفحه کلید به سمت راست.</string>
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">حالت خصوصی</string>
     <!--
@@ -75,7 +72,6 @@
     <string name="settings__localization__subtype_error_already_exists" comment="Error message shown in subtype dialog when a subtype to add already exists">این زیرنوع درحال حاضر وجود دارد!</string>
     <string name="settings__localization__subtype_error_layout_not_installed" comment="Error message shown in subtype list when a layout is not installed, where %s will be replaced by the layout ID">%s (نصب نشده)</string>
     <string name="settings__theme__title" comment="Title of the Theme fragment">طرح زمینه صفحه کلید</string>
-    <string name="settings__theme__undefined" comment="General string for an undefined preference value">تعریف نشده</string>
     <string name="pref__theme__mode__label" comment="Label of the theme mode preference">حالت طرح‌زمینه</string>
     <string name="pref__theme__mode__always_day" comment="Preference value for theme mode">همیشه روز</string>
     <string name="pref__theme__mode__always_night" comment="Preference value for theme mode">همیشه شب</string>
@@ -111,8 +107,6 @@
     <string name="settings__theme_editor__value_type_reference_group" comment="Theme value type sub-field">گروه</string>
     <string name="settings__theme_editor__value_type_reference_attr" comment="Theme value type sub-field">ویژگی</string>
     <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type">رنگ ثابت</string>
-    <string name="settings__theme_editor__value_type_lin_grad" comment="Theme value type">گراد خطی</string>
-    <string name="settings__theme_editor__value_type_rad_grad" comment="Theme value type">گراد شعاعی</string>
     <string name="settings__theme_editor__value_type_on_off" comment="Theme value type">تعویض</string>
     <string name="settings__theme_editor__value_type_on_off_state" comment="Theme value type sub-field">حالت</string>
     <string name="settings__theme_editor__value_type_other" comment="Theme value type">ديگر</string>
@@ -242,7 +236,6 @@
     <string name="settings__udm__word_summary_freq_shortcut" comment="Summary label for a word entry. The first placeholder inserts the frequency for the word it summarizes, the second placeholder the shortcut defined.">شدت تکرار: %d | اختصار: %s</string>
     <string name="settings__udm__all_languages" comment="Label of the For all languages entry in the language list">برای همه زبان ها</string>
     <string name="settings__udm__open_system_manager_ui" comment="Label of the Open system manager UI menu option">بازکردن مدیریت سیستم رابط کاربری</string>
-    <string name="settings__udm__dictionary_import_success" comment="Message for dictionary import success">لغتنامه کاربر با موفقیت وارد شد!</string>
     <string name="settings__udm__dictionary_export_success" comment="Message for dictionary export success">لغتنامه کاربر با موفقیت استخراج شد!</string>
     <string name="settings__udm__dialog__title_add" comment="Label for the title (when in adding mode) in the user dictionary add/edit dialog">افزودن لغت</string>
     <string name="settings__udm__dialog__title_edit" comment="Label for the title (when in editing mode) in the user dictionary add/edit dialog">ویرایش لغت</string>
@@ -326,7 +319,6 @@
     <string name="settings__spelling__title_overview" comment="Title of the Spelling activity (overview)">تنظیمات چک کننده نگارش</string>
     <string name="settings__spelling__title_manage_dictionaries" comment="Title of the Spelling activity (dictionary management)">مدیریت لغتنامه ها</string>
     <string name="settings__spelling__use_floris_subtypes" comment="String for the subtype in the system settings">استفاده از زیرنوع ها</string>
-    <string name="pref__spelling__active_spellchecker__summary_none" comment="Summary of Active spellchecker pref">بدون تنظیم</string>
     <plurals name="pref__spelling__manage_dictionaries__summary" comment="Summary of Manage dictionaries pref (%d will be replaced by the number of dictionaries).">
         <item quantity="one">%d نصب شده</item>
         <item quantity="other">%d نصب شده</item>
@@ -360,37 +352,13 @@
     <string name="assets__action__import">واردکردن</string>
     <string name="assets__action__no">خیر</string>
     <string name="assets__action__save">ذخیره</string>
-    <string name="assets__action__select">انتخاب</string>
-    <string name="assets__action__select_dir">انتخاب مسیر</string>
     <string name="assets__action__select_file">انتخاب فایل</string>
     <string name="assets__action__yes">بله</string>
     <string name="assets__error__details">جزئیات</string>
     <string name="assets__error__invalid">نامعتبر</string>
     <string name="assets__error__snackbar_message">یک چیزی اشتباه پیش رفت</string>
     <!-- Setup UI strings -->
-    <string name="setup__title" comment="Title of Setup">راه‌اندازی</string>
-    <string name="setup__prev_button" comment="Label of Previous button in Setup (try to find a short translation due to limited space in UI)">قبلی</string>
-    <string name="setup__cancel_button" comment="Label of Cancel button in Setup">لغو</string>
-    <string name="setup__next_button" comment="Label of Next button in Setup (try to find a short translation due to limited space in UI)">بعدی</string>
-    <string name="setup__finish_button" comment="Label of Finish button in Setup">پایان</string>
-    <string name="setup__ok_button" comment="Label of OK button in Setup">تأیید</string>
-    <string name="setup__welcome__title" comment="Title of Welcome fragment in Setup">خوش آمدید!</string>
-    <string name="setup__welcome__intro" comment="Paragraph in Welcome fragment in Setup">ممنون از اینکه فلوریس بورد را امتحان کردین! قبل از اینکه شروع به استفاده کنید، ما باید یک سری کار های همیشگی را انجام داده و برنامه را در تنظیمات دستگاه فعال کنیم، تنظیم زبان/چیدمان و… ولی نگران نباشید - تنظیم جادویی شما را در این کار راهنمایی خواد کرد!</string>
-    <string name="setup__welcome__privacy" comment="Paragraph in Welcome fragment in Setup">فلوریس بورد به طور کامل به حریم خصوصی شما احترام می گذارد و هیچ اطلاعاتی از کاربر دریافت نمی کند. برای اطلاعات بیشتر به اینجا مراجعه کنید:</string>
-    <string name="setup__welcome__trust" comment="Paragraph in Welcome fragment in Setup">کد منبع فلوریس بورد به طور عمومی در دسترس همگان قرار دارد، پس شما می توانید به راحتی اینکه پشت صحنه فلوریس چه اتفاقی می‌افتد را مرور کنید. لینک مخزن را از زیر مشاهده کنید.</string>
-    <string name="setup__welcome__contribute" comment="Paragraph in Welcome fragment in Setup">یک تنظیم پایانی قبل از شروع - اگر شما به خطا/خراب شدنی/مشکلی با فلوریس بورد برخورد کردید یا درخواست ویژگی خاصی را دارید - به مخزن GitHub که لینکش در زیر واقع شده بروید و مشکل را استناد کنید. این به تجربه همه کاربران کمک می کند!</string>
-    <string name="setup__welcome__outro" comment="Paragraph in Welcome fragment in Setup">برای شروع راه انداز تنظیمات روی <i>بعدی</i> کلیک کنید.</string>
-    <string name="setup__enable_ime__title" comment="Title of Enable IME fragment in Setup">فعال سازی فبوریس بورد</string>
-    <string name="setup__enable_ime__text_before_enabled" comment="Description of state in Enable IME fragment before user enabled">در اندروید برنامه های کیبورد سفارشی باید به طور دستی قبل از استفاده فعال شوند. روی دکمه زیر کلیک کنید تا به تنظیمات <i>زبان &amp; ورودی</i> بروید، بعد مطمئن شوید که <i>فلوریس بورد</i> را چک و فعال کرده‌اید.</string>
-    <string name="setup__enable_ime__text_after_enabled" comment="Description of state in Enable IME fragment after user enabled">فلوریس بورد با موفقیت فعال شد. برای ادامه روی <i>بعدی</i> بزنید!</string>
-    <string name="setup__enable_ime__text_button_language_and_input" comment="Label of language and input button in Enable IME fragment">باز کردن زبان &amp; تنظیمات ورودی</string>
-    <string name="setup__make_default__title" comment="Title of Make IME default fragment in Setup">تنظیم فلوریس بورد به پیش فرض</string>
-    <string name="setup__make_default__text_before_switch" comment="Description of state in Make IME default fragment before user switched">هم اکنون فلوریس بورد در سیستم شما فعال شده است. برای استفاده از آن، فلوریس بورد را در بخش انتخاب روش ورودی، انتخاب کنید!</string>
-    <string name="setup__make_default__text_after_switch" comment="Description of state in Make IME default fragment after user switched">با موفقیت کیبورد پیش فرض را به فلوریس بورد تغییر داده شد!</string>
-    <string name="setup__make_default__text_switch_button" comment="Label of switch button in Make IME default fragment">تغییر صفحه‌کلید</string>
-    <string name="setup__finish__title" comment="Title of Setup finished fragment in Setup">نصب تمام شد!</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">گزارش خطای فلوریس بورد</string>
     <string name="crash_dialog__description" comment="Description of crash dialog">با عرض پوزش برای این مشکل به وجود آمده، اما فلوریس بورد به یک دلیل پیش‌بینی نشده، متوقف شد.</string>
     <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">اگر شما دوست دارید که این خطا را گزارش کنید، لطفا اول به صفحه ایرادات ردیابی شده را در گیت هاب ما سری بزنید و از اینکه این گزارش از قبل ارائه نشده مطمعن شوید.\nاگر که گزارشی نبود، لاگ تولید شده پس از متوقف شدن را کپی کنید و یک گزارش ایراد جدید را بسازید. از نمونه \"%s\" استفاده کنید و توضیحات، مراحل بازتولید، و لاگ تولید شده پس از متوقف شدن را در نهایت درج کنید. این به فلوریس بورد کمک شایانی در بهتر شدن و پایدار تر شدن آن برای همه می کند. بسیار از شما متشکریم!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">کپی به کلیپبورد سیستم</string>

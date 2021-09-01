@@ -70,10 +70,17 @@
 
         <activity
             android:name=".ui.preview.theme.activity.ThemePreviewActivity"
-            android:launchMode="singleTask" />
+            android:configChanges="orientation"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
-        <!-- Using an activity alias to disable/enable the app icon in the launcher -->
-
+        <activity
+            android:name=".ui.theme.editor.activity.ThemeEditorActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.splash.activity.SplashActivity"
@@ -90,12 +97,7 @@
             android:name=".ui.main.activity.MainActivity"
             android:configChanges="orientation"
             android:exported="true"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait" />
 
         <!-- User Dictionary Manager Activity -->
         <activity
@@ -117,6 +119,7 @@
             android:icon="@mipmap/floris_app_icon"
             android:label="@string/settings__theme_editor__title"
             android:theme="@style/SettingsTheme" />
+
 
         <!-- Spelling Activity -->
         <activity

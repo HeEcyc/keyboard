@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FlorisBoard</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">일시 정지</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">기다리기</string>
-    <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">3점 아이콘. 보이는 경우 길게 눌러서 더 많은 문자를 사용 할 수 있음을 나타냅니다.</string>
     <!-- One-handed strings -->
     <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">한 손 조작 모드 닫기.</string>
     <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">키보드를 왼쪽으로 이동</string>
-    <string name="one_handed__move_end_btn_content_description" comment="Content description for the one-handed move to right button">키보드를 오른쪽으로 이동</string>
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">사생활 보호 모드</string>
     <!--
@@ -53,10 +50,6 @@
     <string name="assets__error__details">세부사항</string>
     <string name="assets__error__invalid">유효하지 않음</string>
     <!-- Setup UI strings -->
-    <string name="setup__title" comment="Title of Setup">설정</string>
-    <string name="setup__prev_button" comment="Label of Previous button in Setup (try to find a short translation due to limited space in UI)">이전</string>
-    <string name="setup__cancel_button" comment="Label of Cancel button in Setup">취소</string>
-    <string name="setup__next_button" comment="Label of Next button in Setup (try to find a short translation due to limited space in UI)">다음</string>
     <!-- Crash Dialog strings -->
     <!-- clipboard strings -->
     <!-- glide strings -->

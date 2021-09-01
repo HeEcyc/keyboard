@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FlorisBoard</string>
     <!-- One-handed strings -->
     <!-- Private mode info dialog strings -->
     <!--
@@ -16,7 +15,6 @@
     <string name="settings__spelling__title_manage_dictionaries" comment="Title of the Spelling activity (dictionary management)">Wörterbücher verwalten</string>
     <string name="settings__spelling__no_dictionaries_installed" comment="String for the No dictionaries installed card.">Keine Rechtschreibkorrektur-Wörterbücher installiert. Füge erst eins mit dem \'+\'-Button unten hinzu!</string>
     <string name="pref__spelling__active_spellchecker__label" comment="Label of Active spellchecker pref">Aktive Rechtschreibkorrektur</string>
-    <string name="pref__spelling__active_spellchecker__summary_none" comment="Summary of Active spellchecker pref">Keine gesetzt</string>
     <string name="pref__spelling__active_spellchecker__summary_check_in_system" comment="Summary of Active spellchecker pref">Prüfe in den Systemeinstellungen</string>
     <string name="pref__spelling__manage_dictionaries__label" comment="Label of Manage dictionaries pref">Verwalte Rechtschreibkorrektur-Wörterbücher</string>
     <plurals name="pref__spelling__manage_dictionaries__summary" comment="Summary of Manage dictionaries pref (%d will be replaced by the number of dictionaries).">
@@ -31,8 +29,6 @@
     <!-- About UI strings -->
     <!-- Assets strings -->
     <string name="assets__action__no">Ne</string>
-    <string name="assets__action__select">Auswählen</string>
-    <string name="assets__action__select_dir">Verzeichnis wählen</string>
     <string name="assets__action__select_file">Datei auswählen</string>
     <string name="assets__action__yes">Jau</string>
     <!-- Setup UI strings -->

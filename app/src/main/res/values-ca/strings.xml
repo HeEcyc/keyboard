@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FlorisBoard</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Pausa</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Esperar</string>
-    <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">Icona de tres punts. Si és visible, indica que es poden utilitzar més lletres si es prem més temps.</string>
     <!-- One-handed strings -->
     <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">Tanca el mode d\'una mà.</string>
     <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">Mou el teclat a l\'esquerra.</string>
-    <string name="one_handed__move_end_btn_content_description" comment="Content description for the one-handed move to right button">Mou el teclat a la dreta.</string>
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">Mode privat</string>
     <!--
@@ -74,7 +71,6 @@
     <string name="settings__localization__subtype_phone2_layout" comment="Label for layout dropdown in subtype dialog">Disposició secundària del telèfon</string>
     <string name="settings__localization__subtype_error_already_exists" comment="Error message shown in subtype dialog when a subtype to add already exists">Aquest subtipus ja existeix!</string>
     <string name="settings__theme__title" comment="Title of the Theme fragment">Tema del teclat</string>
-    <string name="settings__theme__undefined" comment="General string for an undefined preference value">Indefinit</string>
     <string name="pref__theme__mode__label" comment="Label of the theme mode preference">Mode del tema</string>
     <string name="pref__theme__mode__always_day" comment="Preference value for theme mode">Sempre de dia</string>
     <string name="pref__theme__mode__always_night" comment="Preference value for theme mode">Sempre de nit</string>
@@ -110,8 +106,6 @@
     <string name="settings__theme_editor__value_type_reference_group" comment="Theme value type sub-field">Grup</string>
     <string name="settings__theme_editor__value_type_reference_attr" comment="Theme value type sub-field">Atribut</string>
     <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type">Color sòlid</string>
-    <string name="settings__theme_editor__value_type_lin_grad" comment="Theme value type">Degradat lineal</string>
-    <string name="settings__theme_editor__value_type_rad_grad" comment="Theme value type">Degradat radial</string>
     <string name="settings__theme_editor__value_type_on_off" comment="Theme value type">Canvia</string>
     <string name="settings__theme_editor__value_type_on_off_state" comment="Theme value type sub-field">Estat</string>
     <string name="settings__theme_editor__value_type_other" comment="Theme value type">Altres</string>

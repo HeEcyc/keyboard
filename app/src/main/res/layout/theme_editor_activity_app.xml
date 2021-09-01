@@ -1,16 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
-            type="dev.patrickgold.florisboard.ui.preview.theme.activity.ThemePreviewViewModel" />
+            type="dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,15 +28,6 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/editButton"
-                android:layout_width="0sp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_edit"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/saveButton"
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
@@ -43,5 +35,21 @@
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            itemDecoration="@{viewModel.itemDecoration}"
+            android:layout_width="match_parent"
+            android:layout_height="100sp"
+            android:background="@android:color/black"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            bind:adapter="@{viewModel.backgroundAdapter}" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 </layout>

@@ -151,6 +151,10 @@ dependencies {
     implementation("androidx.room", "room-runtime", "2.2.6")
     implementation("com.google.code.gson", "gson", "2.8.8")
     implementation("com.google.firebase:firebase-storage-ktx:20.0.0")
+
+    implementation("com.makeramen:roundedimageview:2.3.0")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+
     kapt("androidx.room", "room-compiler", "2.2.6")
     implementation(project(":particles"))
     testImplementation(kotlin("test"))

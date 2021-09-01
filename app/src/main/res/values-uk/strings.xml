@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FlorisBoard</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Пауза</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Зачекайте</string>
-    <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">Значок трикрапки. Якщо видно, означає, що при довшому натисканні можна використати більше літер.</string>
     <!-- One-handed strings -->
     <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">Приховати режим для однієї руки.</string>
     <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">Перемістити клавіатуру вліво.</string>
-    <string name="one_handed__move_end_btn_content_description" comment="Content description for the one-handed move to right button">Перемістити клавіатуру вправо.</string>
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">Приватний режим</string>
     <!--
@@ -73,7 +70,6 @@
     <string name="settings__localization__subtype_phone2_layout" comment="Label for layout dropdown in subtype dialog">Додаткова телефонна розкладка</string>
     <string name="settings__localization__subtype_error_already_exists" comment="Error message shown in subtype dialog when a subtype to add already exists">Цей підтип вже існує!</string>
     <string name="settings__theme__title" comment="Title of the Theme fragment">Тема клавіатури</string>
-    <string name="settings__theme__undefined" comment="General string for an undefined preference value">Не визначено</string>
     <string name="pref__theme__mode__label" comment="Label of the theme mode preference">Режим теми</string>
     <string name="pref__theme__mode__always_day" comment="Preference value for theme mode">Завжди день</string>
     <string name="pref__theme__mode__always_night" comment="Preference value for theme mode">Завжди ніч</string>
@@ -109,8 +105,6 @@
     <string name="settings__theme_editor__value_type_reference_group" comment="Theme value type sub-field">Група</string>
     <string name="settings__theme_editor__value_type_reference_attr" comment="Theme value type sub-field">Атрибут</string>
     <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type">Суцільний колір</string>
-    <string name="settings__theme_editor__value_type_lin_grad" comment="Theme value type">Лінійний градієнт</string>
-    <string name="settings__theme_editor__value_type_rad_grad" comment="Theme value type">Радіальний градієнт</string>
     <string name="settings__theme_editor__value_type_on_off" comment="Theme value type">Перемикач</string>
     <string name="settings__theme_editor__value_type_on_off_state" comment="Theme value type sub-field">Стан</string>
     <string name="settings__theme_editor__value_type_other" comment="Theme value type">Інше</string>
@@ -307,29 +301,7 @@
     <string name="assets__error__invalid">Помилка</string>
     <string name="assets__error__snackbar_message">Щось пішло не так</string>
     <!-- Setup UI strings -->
-    <string name="setup__title" comment="Title of Setup">Налаштування</string>
-    <string name="setup__prev_button" comment="Label of Previous button in Setup (try to find a short translation due to limited space in UI)">Назад</string>
-    <string name="setup__cancel_button" comment="Label of Cancel button in Setup">Скасувати</string>
-    <string name="setup__next_button" comment="Label of Next button in Setup (try to find a short translation due to limited space in UI)">Далі</string>
-    <string name="setup__finish_button" comment="Label of Finish button in Setup">Готово</string>
-    <string name="setup__ok_button" comment="Label of OK button in Setup">ОК</string>
-    <string name="setup__welcome__title" comment="Title of Welcome fragment in Setup">Ласкаво просимо!</string>
-    <string name="setup__welcome__intro" comment="Paragraph in Welcome fragment in Setup">Дякуємо, що пробуєте FlorisBoard! Перед тим, як ви почнете його використовувати, ми повинні зробити стандартні речі та увімкнути їх в налаштуваннях системі, встановити бажану мову/розкладку, тощо… Але не хвилюйтесь - майстер установки допоможе вам в цьому!</string>
-    <string name="setup__welcome__privacy" comment="Paragraph in Welcome fragment in Setup">FlorisBoard повністю поважає вашу конфіденційність та не збирає ніякі користувацькі дані. Детальніше тут:</string>
-    <string name="setup__welcome__trust" comment="Paragraph in Welcome fragment in Setup">Вихідний код FlorisBoard загальнодоступний для кожного, тому ви можете з легкістю перевірити, що робить FlorisBoard в фоновому режимі. Перевірте репозиторій за посиланням нижче.</string>
-    <string name="setup__welcome__contribute" comment="Paragraph in Welcome fragment in Setup">Остання річ перед початком налаштування - якщо у вас виникнуть будь-які помилки/збої/проблеми з FlorisBoard або у вас є пропозиції - перейдіть в репозиторій GitHub за посиланням нижче та повідомте про вашу проблему. Це допомагає покращити досвід для усіх користувачів!</string>
-    <string name="setup__welcome__outro" comment="Paragraph in Welcome fragment in Setup">Для початку установки, натисніть <i>ДАЛІ</i>.</string>
-    <string name="setup__enable_ime__title" comment="Title of Enable IME fragment in Setup">Увімкнути FlorisBoard</string>
-    <string name="setup__enable_ime__text_before_enabled" comment="Description of state in Enable IME fragment before user enabled">Android потребує, щоб кожна користувацька клавіатура була увімкнена вручну перед тим, як ви зможете використовувати її. Натисніть на кнопку нижче, щоб увійти в <i>Налаштування Мови та Введення</i>, після цього обов\'язково відзначте \'<i>FlorisBoard</i>\'.</string>
-    <string name="setup__enable_ime__text_after_enabled" comment="Description of state in Enable IME fragment after user enabled">FlorisBoard успішно увімкнено. Для продовження натисніть <i>ДАЛІ</i>!</string>
-    <string name="setup__enable_ime__text_button_language_and_input" comment="Label of language and input button in Enable IME fragment">Відкрити налаштування Мови та Вводу</string>
-    <string name="setup__make_default__title" comment="Title of Make IME default fragment in Setup">Зробити FlorisBoard стандартним</string>
-    <string name="setup__make_default__text_before_switch" comment="Description of state in Make IME default fragment before user switched">FlorisBoard тепер увімкнено у вашій системі. Щоб активно використовувати його, перемкніться на FlorisBoard, вибравши його в діалоговому вікні вибору методу вводу!</string>
-    <string name="setup__make_default__text_after_switch" comment="Description of state in Make IME default fragment after user switched">Клавіатура за замовчуванням успішно перемкнута на FlorisBoard!</string>
-    <string name="setup__make_default__text_switch_button" comment="Label of switch button in Make IME default fragment">Перемкнути клавіатуру</string>
-    <string name="setup__finish__title" comment="Title of Setup finished fragment in Setup">Встановлення завершено!</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Звіт про помилку FlorisBoard</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Зкопіювати в системний буфер обміну</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Зкопійовано в системний буфер обміну</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Закрити</string>

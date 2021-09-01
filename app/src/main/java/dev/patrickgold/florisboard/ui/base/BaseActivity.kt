@@ -13,6 +13,7 @@ import dev.patrickgold.florisboard.BR
 
 abstract class BaseActivity<TViewModel : BaseViewModel, TBinding : ViewDataBinding>(@LayoutRes val layout: Int) :
     AppCompatActivity() {
+
     private var onPermission: ((Boolean) -> Unit)? = null
     lateinit var binding: TBinding
 

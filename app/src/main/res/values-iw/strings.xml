@@ -2,11 +2,9 @@
 <resources>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">השהה</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">המתן</string>
-    <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">סמל שלוש הנקודות. אם מוצג, מציין שניתן להשתמש באותיות נוספות בעזרת לחיצה ארוכה.</string>
     <!-- One-handed strings -->
     <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">סגור מצב שימוש ביד אחת.</string>
     <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">הזז את המקלדת שמאלה.</string>
-    <string name="one_handed__move_end_btn_content_description" comment="Content description for the one-handed move to right button">הזז את המקלדת ימינה.</string>
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">מצב פרטיות</string>
     <!--
@@ -70,7 +68,6 @@
     <string name="settings__localization__subtype_numeric_row_layout" comment="Label for layout dropdown in subtype dialog">פריסת שורת מספרים</string>
     <string name="settings__localization__subtype_error_already_exists" comment="Error message shown in subtype dialog when a subtype to add already exists">תת הסוג הזה כבר קיים!</string>
     <string name="settings__theme__title" comment="Title of the Theme fragment">ערכת נושא של המקלדת</string>
-    <string name="settings__theme__undefined" comment="General string for an undefined preference value">לא מוגדר</string>
     <string name="pref__theme__mode__label" comment="Label of the theme mode preference">מצב ערכת נושא</string>
     <string name="pref__theme__mode__always_day" comment="Preference value for theme mode">תמיד בהיר</string>
     <string name="pref__theme__mode__always_night" comment="Preference value for theme mode">תמיד כהה</string>
@@ -103,8 +100,6 @@
     <string name="settings__theme_editor__value_type_reference_group" comment="Theme value type sub-field">קבוצה</string>
     <string name="settings__theme_editor__value_type_reference_attr" comment="Theme value type sub-field">מאפיין</string>
     <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type">צבע אחיד</string>
-    <string name="settings__theme_editor__value_type_lin_grad" comment="Theme value type">מדרג ליניארי</string>
-    <string name="settings__theme_editor__value_type_rad_grad" comment="Theme value type">מדרג רדיאלי</string>
     <string name="settings__theme_editor__value_type_on_off" comment="Theme value type">החלף</string>
     <string name="settings__theme_editor__value_type_on_off_state" comment="Theme value type sub-field">מצב</string>
     <string name="settings__theme_editor__value_type_other" comment="Theme value type">אחר</string>
@@ -212,7 +207,6 @@
     <string name="pref__correction__double_space_period__summary" comment="Preference summary">לחיצה על מקש הרווח פעמים תכניס נקודה ואחריה רווח</string>
     <string name="settings__udm__title_floris" comment="Title of the User Dictionary Manager activity for internal">מילון משתמשים פנימי</string>
     <string name="settings__udm__title_system" comment="Title of the User Dictionary Manager activity for system">מילון משתמשי מערכת</string>
-    <string name="settings__udm__dictionary_import_success" comment="Message for dictionary import success">מילון המשתמש יובא בהצלחה!</string>
     <string name="settings__udm__dictionary_export_success" comment="Message for dictionary export success">מילון משתמשים מיוצא בהצלחה!</string>
     <string name="settings__udm__dialog__title_add" comment="Label for the title (when in adding mode) in the user dictionary add/edit dialog">הוסף ערך מילים</string>
     <string name="settings__udm__dialog__title_edit" comment="Label for the title (when in editing mode) in the user dictionary add/edit dialog">ערוך הזנת מילים</string>
@@ -308,29 +302,7 @@
     <string name="assets__error__invalid">לא תקין</string>
     <string name="assets__error__snackbar_message">משהו השתבש</string>
     <!-- Setup UI strings -->
-    <string name="setup__title" comment="Title of Setup">הגדרות</string>
-    <string name="setup__prev_button" comment="Label of Previous button in Setup (try to find a short translation due to limited space in UI)">הקודם</string>
-    <string name="setup__cancel_button" comment="Label of Cancel button in Setup">ביטול</string>
-    <string name="setup__next_button" comment="Label of Next button in Setup (try to find a short translation due to limited space in UI)">הבא</string>
-    <string name="setup__finish_button" comment="Label of Finish button in Setup">סיים</string>
-    <string name="setup__ok_button" comment="Label of OK button in Setup">אישור</string>
-    <string name="setup__welcome__title" comment="Title of Welcome fragment in Setup">ברוכים הבאים!</string>
-    <string name="setup__welcome__intro" comment="Paragraph in Welcome fragment in Setup">תודה שניסיתם את FlorisBoard! לפני שנתחיל להשתמש בו, יש לנו כמה דברים להגדיר במערכת, לבחור שפה מועדפת, תצורת מקשים וכו… אבל אל חשש - אנחנו נדריך אתכם לאורך כל ההתקנה!</string>
-    <string name="setup__welcome__privacy" comment="Paragraph in Welcome fragment in Setup">FlorisBoard מכבד את פרטיותך ואינו אוסף מידע כלל על המשתמשים. למידע נוסף ראו כאן:</string>
-    <string name="setup__welcome__trust" comment="Paragraph in Welcome fragment in Setup">קוד המקור של FlorisBoard נגיש עבור כולם, כך שאתם יכולים לבחון בקלות מה FlorisBoard עושה מאוחרי הקלעים. בדקו את הקישור ל-repo המצורף מטה.</string>
-    <string name="setup__welcome__contribute" comment="Paragraph in Welcome fragment in Setup">דבר אחד אחרון לפני שמתחילים - אם אתם נתקלים בבאגים/קריסות/תקלות עם FlorisBoard או שיש להם בקשות לתכולות - פנו אל ה-repo ב-GitHub דרך הקישור שמצורף מטה והגישו דיווח. זה עוזר לשפר את החוויה עבור כל המשתמשים שלנו!</string>
-    <string name="setup__welcome__outro" comment="Paragraph in Welcome fragment in Setup">כדי להתחיל את ההתקנה, לחץ על <i>הבא</i>.</string>
-    <string name="setup__enable_ime__title" comment="Title of Enable IME fragment in Setup">אפשר את FlorisBoard</string>
-    <string name="setup__enable_ime__text_before_enabled" comment="Description of state in Enable IME fragment before user enabled">אנדרואיד דורש הפעלה ידנית של כל מקלדת המותאמת אישית על מנת שיהיה ניתן להשתמש בה. לחצו על הכפתור למטה כדי ללכת להגדות <i>שפה &amp; וקלט </i>, לאחר מכן בחרו את \'<i>FlorisBoard</i>\'.</string>
-    <string name="setup__enable_ime__text_after_enabled" comment="Description of state in Enable IME fragment after user enabled">FlorisBoard הופעל בהצלחה. להמשך לחץ על <i>הבא</i>!</string>
-    <string name="setup__enable_ime__text_button_language_and_input" comment="Label of language and input button in Enable IME fragment">פתח שפה &amp; והגדרות קלט</string>
-    <string name="setup__make_default__title" comment="Title of Make IME default fragment in Setup">הפוך את FlorisBoard לברירת המחדל</string>
-    <string name="setup__make_default__text_before_switch" comment="Description of state in Make IME default fragment before user switched">FlorisBoard פעיל כעת במערכת. על מנת להשתמש בו בצורה אקטיבית, עברו לFlorisBoard על ידי בחירתו בדיאלוג בחירת הקלט!</string>
-    <string name="setup__make_default__text_after_switch" comment="Description of state in Make IME default fragment after user switched">מקלדת ברירת המחדל הוחלפה בהצחלה למקלדת של FlorisBoard!</string>
-    <string name="setup__make_default__text_switch_button" comment="Label of switch button in Make IME default fragment">החלף מקלדת</string>
-    <string name="setup__finish__title" comment="Title of Setup finished fragment in Setup">ההתקנה הושלמה!</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">FlorisBoard דוח שגיאה</string>
     <string name="crash_dialog__description" comment="Description of crash dialog">מצטער על אי הנוחות, אך FlorisBoard קרס בגלל שגיאה לא צפויה.</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">העתק ללוח המערכת</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">סגור</string>

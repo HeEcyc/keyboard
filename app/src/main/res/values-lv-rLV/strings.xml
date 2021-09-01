@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FlorisBoard</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Apturēt</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Uzgaidīt</string>
-    <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">Trīspunkte. Ja redzama, norāda, ka vairāk rakstzīmju var tikt izmantotas, ja nospiež ilgāk.</string>
     <!-- One-handed strings -->
     <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">Aizvērt vienrocīgo ievadi.</string>
     <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">Pārvietot tastatūru uz kreiso pusi.</string>
-    <string name="one_handed__move_end_btn_content_description" comment="Content description for the one-handed move to right button">Pārvietot tastatūru uz labo pusi.</string>
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">Slepenais stāvoklis</string>
     <!--
@@ -75,7 +72,6 @@
     <string name="settings__localization__subtype_error_already_exists" comment="Error message shown in subtype dialog when a subtype to add already exists">Šis apakšveids jau pastāv!</string>
     <string name="settings__localization__subtype_error_layout_not_installed" comment="Error message shown in subtype list when a layout is not installed, where %s will be replaced by the layout ID">%s (nav uzstādīts)</string>
     <string name="settings__theme__title" comment="Title of the Theme fragment">Tastatūras izskats</string>
-    <string name="settings__theme__undefined" comment="General string for an undefined preference value">Nenoteikts</string>
     <string name="pref__theme__mode__label" comment="Label of the theme mode preference">Izskata veids</string>
     <string name="pref__theme__mode__always_day" comment="Preference value for theme mode">Vienmēr diena</string>
     <string name="pref__theme__mode__always_night" comment="Preference value for theme mode">Vienmēr nakts</string>
@@ -111,8 +107,6 @@
     <string name="settings__theme_editor__value_type_reference_group" comment="Theme value type sub-field">Kopa</string>
     <string name="settings__theme_editor__value_type_reference_attr" comment="Theme value type sub-field">Pazīme</string>
     <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type">Tīrtoņa krāsa</string>
-    <string name="settings__theme_editor__value_type_lin_grad" comment="Theme value type">Vienvirziena krāsu pāreja</string>
-    <string name="settings__theme_editor__value_type_rad_grad" comment="Theme value type">Apļveida krāsu pāreja</string>
     <string name="settings__theme_editor__value_type_on_off" comment="Theme value type">Slēdzis</string>
     <string name="settings__theme_editor__value_type_on_off_state" comment="Theme value type sub-field">Stāvoklis</string>
     <string name="settings__theme_editor__value_type_other" comment="Theme value type">Cits</string>
@@ -266,7 +260,6 @@
     <string name="settings__udm__word_summary_freq_shortcut" comment="Summary label for a word entry. The first placeholder inserts the frequency for the word it summarizes, the second placeholder the shortcut defined.">Biežums: %d | Saīsne: %s</string>
     <string name="settings__udm__all_languages" comment="Label of the For all languages entry in the language list">Visām valodām</string>
     <string name="settings__udm__open_system_manager_ui" comment="Label of the Open system manager UI menu option">Atvērt sistēmas pārvaldnieka lietotāja saskarni</string>
-    <string name="settings__udm__dictionary_import_success" comment="Message for dictionary import success">Lietotāja vārdnīca tika veiksmīgi ievietota.</string>
     <string name="settings__udm__dictionary_export_success" comment="Message for dictionary export success">Lietotāja vārdnīca tika veiksmīgi izdota.</string>
     <string name="settings__udm__dialog__title_add" comment="Label for the title (when in adding mode) in the user dictionary add/edit dialog">Pievienot vārdu</string>
     <string name="settings__udm__dialog__title_edit" comment="Label for the title (when in editing mode) in the user dictionary add/edit dialog">Labot vārdu</string>
@@ -356,7 +349,6 @@
     <string name="settings__spelling__fab_extension_archive" comment="FAB option Extension archive.">Paplašinājums / Arhīvs</string>
     <string name="settings__spelling__fab_affix_dictionary" comment="FAB option Affix dictionary.">Pielikuma + vārdnīcas datne</string>
     <string name="pref__spelling__active_spellchecker__label" comment="Label of Active spellchecker pref">Darbojošies pareizrakstības pārbaudītāji</string>
-    <string name="pref__spelling__active_spellchecker__summary_none" comment="Summary of Active spellchecker pref">Neviens nav norādīts</string>
     <string name="pref__spelling__active_spellchecker__summary_check_in_system" comment="Summary of Active spellchecker pref">Pārbaudīt sistēmas iestatījumos</string>
     <string name="pref__spelling__manage_dictionaries__label" comment="Label of Manage dictionaries pref">Pārvaldīt pareizrakstības pārvaldītāju vārdnīcas</string>
     <plurals name="pref__spelling__manage_dictionaries__summary" comment="Summary of Manage dictionaries pref (%d will be replaced by the number of dictionaries).">
@@ -413,37 +405,13 @@
     <string name="assets__action__import">Iekļaut</string>
     <string name="assets__action__no">Nē</string>
     <string name="assets__action__save">Saglabāt</string>
-    <string name="assets__action__select">Atlasīt</string>
-    <string name="assets__action__select_dir">Atlasīt mapi</string>
     <string name="assets__action__select_file">Atlasīt datni</string>
     <string name="assets__action__yes">Jā</string>
     <string name="assets__error__details">Izklāsts</string>
     <string name="assets__error__invalid">Nederīgs</string>
     <string name="assets__error__snackbar_message">Kaut kas ir noticis nepareizi</string>
     <!-- Setup UI strings -->
-    <string name="setup__title" comment="Title of Setup">Iestatīšana</string>
-    <string name="setup__prev_button" comment="Label of Previous button in Setup (try to find a short translation due to limited space in UI)">Iepriekšējais</string>
-    <string name="setup__cancel_button" comment="Label of Cancel button in Setup">Atcelt</string>
-    <string name="setup__next_button" comment="Label of Next button in Setup (try to find a short translation due to limited space in UI)">Nākamais</string>
-    <string name="setup__finish_button" comment="Label of Finish button in Setup">Pabeigt</string>
-    <string name="setup__ok_button" comment="Label of OK button in Setup">Labi</string>
-    <string name="setup__welcome__title" comment="Title of Welcome fragment in Setup">Sveicināti!</string>
-    <string name="setup__welcome__intro" comment="Paragraph in Welcome fragment in Setup">Paldies par FlorisBoard izmēģnāšanu! Pirms to sākt izmantot, ir jāpaveic ierastais - jāiespējo sistēmas iestatījumos, jāuzstāda vēlamā valoda/izkārtojums utt… Satraukumam nav pamata - uzstādīšanas vednis vadīs cauri tam visam.</string>
-    <string name="setup__welcome__privacy" comment="Paragraph in Welcome fragment in Setup">FlorisBoard pilnībā ciena Tavu privātumu un nevāc nekādus lietotāja datus. Vairāk skatīt šeit:</string>
-    <string name="setup__welcome__trust" comment="Paragraph in Welcome fragment in Setup">FlorisBoard avota kods ir pieejams ikvienam, tāpēc katram ir iespēja pārskatīt, ko FlorisBoard dara fonā. Apskatīt zemāk esošo glabātuves saiti.</string>
-    <string name="setup__welcome__contribute" comment="Paragraph in Welcome fragment in Setup">Pēdējā lieta pirms uzstādīšanas sākšanas - ja tiek piedzīvotas kādas nepilnības/avārijas/sarežģījumi FlorisBoard vai ir kāds iespēju pieprasījums - jādodas uz GitHub glabātavu, kuras saite ir zemāk, un jāiesniedz pieteikums. Tas palīdz uzlabot visu lietotāju pieredzi.</string>
-    <string name="setup__welcome__outro" comment="Paragraph in Welcome fragment in Setup">Lai uzsāktu iestatīšanu, spied <i>NEXT</i>.</string>
-    <string name="setup__enable_ime__title" comment="Title of Enable IME fragment in Setup">Iespējot FlorisBoard</string>
-    <string name="setup__enable_ime__text_before_enabled" comment="Description of state in Enable IME fragment before user enabled">Android ir nepieciešams katru pielāgoto tastatūru pirms izmantošanas pašrocīgi iespējot. Spied pogu zemāk, lai dotos uz <i>Valodas un ievade</i> iestatījumiem, un tad jāpārliecinās, ka \'<i>FlorisBoard</i>\' ir atzīmēts.</string>
-    <string name="setup__enable_ime__text_after_enabled" comment="Description of state in Enable IME fragment after user enabled">FlorisBoard ir veiksmīgi iespējota. Klikšķināt <i>NEXT</i>, lai turpinātu!</string>
-    <string name="setup__enable_ime__text_button_language_and_input" comment="Label of language and input button in Enable IME fragment">Atvērt valodas un ievades iestatījumus</string>
-    <string name="setup__make_default__title" comment="Title of Make IME default fragment in Setup">Padarīt FlorisBoard par noklusējuma</string>
-    <string name="setup__make_default__text_before_switch" comment="Description of state in Make IME default fragment before user switched">FlorisBoard tagad ir iespējots sistēmā. Lai to izmantotu, jāpārslēdzas uz FlorisBoard, atlasot to ievades izvēles logā.</string>
-    <string name="setup__make_default__text_after_switch" comment="Description of state in Make IME default fragment after user switched">Noklusējuma tastatūra ir veiksmīgi nomainīta uz FlorisBoard!</string>
-    <string name="setup__make_default__text_switch_button" comment="Label of switch button in Make IME default fragment">Pārslēgt tastatūru</string>
-    <string name="setup__finish__title" comment="Title of Setup finished fragment in Setup">Iestatīšana pabeigta!</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">FlorisBoard kļūdu ziņojums</string>
     <string name="crash_dialog__description" comment="Description of crash dialog">Atvainojamies par neērtībām, bet FlorsBoard avarēja neparedzētas kļūdas dēļ.</string>
     <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Ja ir vēlme ziņot par šo kļūdu, vispirms jāpārliecinās, vai GitHub pieteikumu ceļrādī par šādu avāriju jau ir ziņots.\nJa nē, starpliktuvē jāievieto izveidotais avārijas žurnāls un jāatver jauns pieteikums. Jāizmanto \"%s\" veidne un jānorāda apraksts, darbības atkārtošanai un beigās jāielīmē avārijas žurnāls. Tas palīdz padarīt FlorisBoard labāku un noturīgāku ikvienam. Paldies!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Ievietot sistēmas starpliktuvē</string>

@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FlorisBoard</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Παύση</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Αναμονή</string>
-    <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">Εικονίδιο με τρεις τελείες. Εάν εμφανιστεί, υποδεικνύει πως περισσότερα γράμματα μπορούν να χρησιμοποιηθούν εάν πατηθεί παρατεταμένα.</string>
     <!-- One-handed strings -->
     <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">Κλείσιμο λειτουργίας ενός χεριού.</string>
     <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">Μεταφορά πληκτρολογίου στα αριστερά.</string>
-    <string name="one_handed__move_end_btn_content_description" comment="Content description for the one-handed move to right button">Μεταφορά πληκτρολογίου στα δεξιά.</string>
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">Ιδιωτική λειτουργία</string>
     <!--
@@ -75,7 +72,6 @@
     <string name="settings__localization__subtype_error_already_exists" comment="Error message shown in subtype dialog when a subtype to add already exists">Αυτός ο υποτύπος υπάρχει ήδη!</string>
     <string name="settings__localization__subtype_error_layout_not_installed" comment="Error message shown in subtype list when a layout is not installed, where %s will be replaced by the layout ID">%s (δεν είναι εγκατεστημένο)</string>
     <string name="settings__theme__title" comment="Title of the Theme fragment">Θέμα πληκτρολογίου</string>
-    <string name="settings__theme__undefined" comment="General string for an undefined preference value">Μη ορισμένο</string>
     <string name="pref__theme__mode__label" comment="Label of the theme mode preference">Λειτουργία θέματος</string>
     <string name="pref__theme__mode__always_day" comment="Preference value for theme mode">Πάντα μέρα</string>
     <string name="pref__theme__mode__always_night" comment="Preference value for theme mode">Πάντα νύχτα</string>
@@ -111,8 +107,6 @@
     <string name="settings__theme_editor__value_type_reference_group" comment="Theme value type sub-field">Ομάδα</string>
     <string name="settings__theme_editor__value_type_reference_attr" comment="Theme value type sub-field">Χαρακτηριστικό</string>
     <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type">Συμπαγές χρώμα</string>
-    <string name="settings__theme_editor__value_type_lin_grad" comment="Theme value type">Γραμμικό ντεγκραντέ</string>
-    <string name="settings__theme_editor__value_type_rad_grad" comment="Theme value type">Ακτινικό ντεγκραντέ</string>
     <string name="settings__theme_editor__value_type_on_off" comment="Theme value type">Εναλλαγή</string>
     <string name="settings__theme_editor__value_type_on_off_state" comment="Theme value type sub-field">Κατάσταση</string>
     <string name="settings__theme_editor__value_type_other" comment="Theme value type">Άλλο</string>
@@ -262,7 +256,6 @@
     <string name="settings__udm__word_summary_freq_shortcut" comment="Summary label for a word entry. The first placeholder inserts the frequency for the word it summarizes, the second placeholder the shortcut defined.">Συχνότητα: %d | Συντόμευση: %s</string>
     <string name="settings__udm__all_languages" comment="Label of the For all languages entry in the language list">Για όλες τις γλώσσες</string>
     <string name="settings__udm__open_system_manager_ui" comment="Label of the Open system manager UI menu option">Άνοιγμα περιβάλλοντος διαχειριστή συστήματος</string>
-    <string name="settings__udm__dictionary_import_success" comment="Message for dictionary import success">Η εισαγωγή λεξικού χρήστη ήταν επιτυχής!</string>
     <string name="settings__udm__dictionary_export_success" comment="Message for dictionary export success">Η εξαγωγή λεξικού χρήστη ήταν επιτυχής!</string>
     <string name="settings__udm__dialog__title_add" comment="Label for the title (when in adding mode) in the user dictionary add/edit dialog">Προσθήκη καταχώρισης λέξεως</string>
     <string name="settings__udm__dialog__title_edit" comment="Label for the title (when in editing mode) in the user dictionary add/edit dialog">Επεξεργασία καταχώρισης λέξεως</string>
@@ -352,7 +345,6 @@
     <string name="settings__spelling__fab_extension_archive" comment="FAB option Extension archive.">Προέκταση / Αρχείο</string>
     <string name="settings__spelling__fab_affix_dictionary" comment="FAB option Affix dictionary.">Πρόθυμα + Αρχείο λεξικού</string>
     <string name="pref__spelling__active_spellchecker__label" comment="Label of Active spellchecker pref">Ενεργός ορθογραφικός έλεγχος</string>
-    <string name="pref__spelling__active_spellchecker__summary_none" comment="Summary of Active spellchecker pref">Κανένα ορισμένο</string>
     <string name="pref__spelling__active_spellchecker__summary_check_in_system" comment="Summary of Active spellchecker pref">Ελέγχος στις ρυθμίσεις συστήματος</string>
     <string name="pref__spelling__manage_dictionaries__label" comment="Label of Manage dictionaries pref">Διαχείριση λεξικών ορθογραφικού ελέγχου</string>
     <plurals name="pref__spelling__manage_dictionaries__summary" comment="Summary of Manage dictionaries pref (%d will be replaced by the number of dictionaries).">
@@ -407,37 +399,13 @@
     <string name="assets__action__import">Εισαγωγή</string>
     <string name="assets__action__no">Όχι</string>
     <string name="assets__action__save">Αποθήκευση</string>
-    <string name="assets__action__select">Επολογή</string>
-    <string name="assets__action__select_dir">Επιλογή φακέλου</string>
     <string name="assets__action__select_file">Επιλογή αρχείου</string>
     <string name="assets__action__yes">Ναι</string>
     <string name="assets__error__details">Λεπτομέρειες</string>
     <string name="assets__error__invalid">Μη έγκυρο</string>
     <string name="assets__error__snackbar_message">Κάτι πήγε στραβά</string>
     <!-- Setup UI strings -->
-    <string name="setup__title" comment="Title of Setup">Ρύθμιση</string>
-    <string name="setup__prev_button" comment="Label of Previous button in Setup (try to find a short translation due to limited space in UI)">Προηγ</string>
-    <string name="setup__cancel_button" comment="Label of Cancel button in Setup">Ακύρωση</string>
-    <string name="setup__next_button" comment="Label of Next button in Setup (try to find a short translation due to limited space in UI)">Επόμενο</string>
-    <string name="setup__finish_button" comment="Label of Finish button in Setup">Ολοκλήρωση</string>
-    <string name="setup__ok_button" comment="Label of OK button in Setup">ΟΚ</string>
-    <string name="setup__welcome__title" comment="Title of Welcome fragment in Setup">Καλώς ήλθατε!</string>
-    <string name="setup__welcome__intro" comment="Paragraph in Welcome fragment in Setup">Ευχαριστώ που δοκιμάζετε το FlorisBoard! Προτού μπορέσετε να ξεκινήσετε να το χρησιμοποιείτε, πρέπει να κάνουμε τα συνηθισμένα πράγματα και να το ενεργοποιήσουμε στις ρυθμίσεις συστήματος, να ορίσουμε τη προτιμώμενη γλώσσα/διάταξη, κτλ... Άλλα μην ανησυχείτε - ο βοηθός ρύθμισης θα σας καθοδηγήσει σε αυτό!</string>
-    <string name="setup__welcome__privacy" comment="Paragraph in Welcome fragment in Setup">Το FlorisBoard σέβεται πλήρως την ιδιωτικότητά σας και δε συλλέγει καθόλου δεδομένα χρήστη. Για περισσότερες πληροφορίες δείτε εδώ:</string>
-    <string name="setup__welcome__trust" comment="Paragraph in Welcome fragment in Setup">Ο πηγαίος κώδικας του FlorisBoard είναι δημοσίως προσβάσιμος για τον καθένα, οπότε μπορείτε εύκολα να εξετάσετε τι κάνει το FlorisBoard στο παρασκήνιο. Ρίξτε μία ματιά στον σύνδεσμο αποθετηρίου, παρακάτω.</string>
-    <string name="setup__welcome__contribute" comment="Paragraph in Welcome fragment in Setup">Κάτι τελευταίο προτού ξεκινήσετε τη ρύθμιση - εάν αντιμετωπίσετε προβλήματα/καταρρεύσεις/θέματα με το FlorisBoard ή εάν έχετε να προτείνετε κάποιο χαρακτηριστικό - μεταβείτε στο αποθετήριο του GitHub με τον παρακάτω σύνδεσμο και υποβάλλετε ένα θέμα. Αυτό βοηθάει στη βελτίωση της εμπειρίας για όλους τους χρήστες!</string>
-    <string name="setup__welcome__outro" comment="Paragraph in Welcome fragment in Setup">Για να ξεκινήσετε τη ρύθμιση, πατήστε<i>ΕΠΟΜΕΝΟ</i>.</string>
-    <string name="setup__enable_ime__title" comment="Title of Enable IME fragment in Setup">Ενεργοποίηση FlorisBoard</string>
-    <string name="setup__enable_ime__text_before_enabled" comment="Description of state in Enable IME fragment before user enabled">Το Android απαιτεί κάθε ειδικό πληκτρολόγιο να ενεργοποιείται χειροκίνητα πριν τη χρήση. Πατήστε το παρακάτω κουμπί για να μεταβείτε στις ρυθμίσεις <i>Γλώσσας &amp; Εισαγωγής</i>, έπειτα φροντίστε να επιλέξετε το \'<i>FlorisBoard</i>\'.</string>
-    <string name="setup__enable_ime__text_after_enabled" comment="Description of state in Enable IME fragment after user enabled">Το FlorisBoard έχει ενεργοποιηθεί επιτυχώς. Για να συνεχίσετε πατήστε <i>ΕΠΟΜΕΝΟ</i>!</string>
-    <string name="setup__enable_ime__text_button_language_and_input" comment="Label of language and input button in Enable IME fragment">Άνοιγμα ρυθμίσεων Γλώσσας &amp; Εισαγωγής</string>
-    <string name="setup__make_default__title" comment="Title of Make IME default fragment in Setup">Ορισμός FlorisBoard ως προεπιλογή</string>
-    <string name="setup__make_default__text_before_switch" comment="Description of state in Make IME default fragment before user switched">Το FlorisBoard είναι τώρα ενεργοποιημένο στο σύστημα σας. Για να το χρησιμοποιήσετε ενεργά, αλλάξτε στο FlorisBoard επιλέγοντας το στο διάλογο επιλογέα εισαγωγής!</string>
-    <string name="setup__make_default__text_after_switch" comment="Description of state in Make IME default fragment after user switched">Αλλάξατε επιτυχώς το προεπιλεγμένο πληκτρολόγιο στο FlorisBoard!</string>
-    <string name="setup__make_default__text_switch_button" comment="Label of switch button in Make IME default fragment">Εναλλαγή πληκτρολογίου</string>
-    <string name="setup__finish__title" comment="Title of Setup finished fragment in Setup">Η ρύθμιση ολοκληρώθηκε!</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Αναφορά σφάλματος FlorisBoard</string>
     <string name="crash_dialog__description" comment="Description of crash dialog">Συγγνώμη για την ταλαιπωρία, αλλά το FlorisBoard έχει τερματιστεί απρόοπτα εξαιτίας ενός απρόσμενου σφάλματος.</string>
     <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Εάν επιθυμείτε να αναφέρετε αυτό το σφάλμα, πρώτα ελέγξτε αν το πρόβλημά σας δεν έχει ακόμα αναφερθεί στην παρακολούθηση προβλημάτων στο GitHub.\nΕάν δεν έχει αναφερθεί, αντιγράψτε την καταγραφή του τερματισμού που έχει προκύψει και ανοίξτε ένα νέο θέμα. Χρησιμοποιήστε το πρότυπο \"%s\" και συμπληρώσει την περιγραφή, τα βήματα για αναπαραγωγή, και αντιγράψτε την καταγραφή του τερματισμού στο τέλος. Αυτό βοηθάει να γίνει το FlorisBoard καλύτερο και πιο σταθερό για όλους. Ευχαριστώ!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Αντιγραφή στο πρόχειρο συστήματος</string>

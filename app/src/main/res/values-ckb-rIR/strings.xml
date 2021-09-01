@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FlorisBoard</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">ڕاگرتن</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">چاوەڕوانبە</string>
-    <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">ئایکۆنی سی نوقتە، ئەگەر چالاک بێت پیت و هێما لاوەکیەکانی خانەی دووەم پیشان ئەدرێن لەکاتی دەست ڕاگرتن</string>
     <!-- One-handed strings -->
     <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">داخستنی دۆخی بەکارهێنانی یەک دەست</string>
     <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">بردنی تەختەکلیل بۆ لای چەپ</string>
-    <string name="one_handed__move_end_btn_content_description" comment="Content description for the one-handed move to right button">بردنی تەختەکلیل بۆ لای ڕاست</string>
     <!-- Private mode info dialog strings -->
     <string name="private_mode_dialog__title" comment="Title of the private mode dialog">دۆخی تایبەت</string>
     <!--
@@ -75,7 +72,6 @@
     <string name="settings__localization__subtype_error_already_exists" comment="Error message shown in subtype dialog when a subtype to add already exists">ئەم زمانە پێشتر زیادکراوە لە لیستەکەدا هەیە!</string>
     <string name="settings__localization__subtype_error_layout_not_installed" comment="Error message shown in subtype list when a layout is not installed, where %s will be replaced by the layout ID">%s (دانەبەزێنراوە)</string>
     <string name="settings__theme__title" comment="Title of the Theme fragment">ڕووکارەکانی تەختەکلیل</string>
-    <string name="settings__theme__undefined" comment="General string for an undefined preference value">بێ ناو</string>
     <string name="pref__theme__mode__label" comment="Label of the theme mode preference">دۆخی ڕووکار</string>
     <string name="pref__theme__mode__always_day" comment="Preference value for theme mode">هەمیشە ڕووناک</string>
     <string name="pref__theme__mode__always_night" comment="Preference value for theme mode">هەمیشە تاریک</string>
@@ -111,8 +107,6 @@
     <string name="settings__theme_editor__value_type_reference_group" comment="Theme value type sub-field">گرووپ</string>
     <string name="settings__theme_editor__value_type_reference_attr" comment="Theme value type sub-field">تایبەتمەندی</string>
     <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type">تاک ڕەنگ</string>
-    <string name="settings__theme_editor__value_type_lin_grad" comment="Theme value type">هەمەڕەنگ</string>
-    <string name="settings__theme_editor__value_type_rad_grad" comment="Theme value type">ڕەنگی بریقەدار</string>
     <string name="settings__theme_editor__value_type_on_off" comment="Theme value type">گۆڕین</string>
     <string name="settings__theme_editor__value_type_on_off_state" comment="Theme value type sub-field">دۆخ</string>
     <string name="settings__theme_editor__value_type_other" comment="Theme value type">جۆری تر</string>
@@ -266,7 +260,6 @@
     <string name="settings__udm__word_summary_freq_shortcut" comment="Summary label for a word entry. The first placeholder inserts the frequency for the word it summarizes, the second placeholder the shortcut defined.">ژمارە: %d | کورتکراوە: %s</string>
     <string name="settings__udm__all_languages" comment="Label of the For all languages entry in the language list">بۆ هەموو زمانەکان</string>
     <string name="settings__udm__open_system_manager_ui" comment="Label of the Open system manager UI menu option">ڕێکخستنی فەرهەنگی سیستەم</string>
-    <string name="settings__udm__dictionary_import_success" comment="Message for dictionary import success">فەرهەنگی بەکارهێنەر بەسەرکەوتوویی هێنرا!</string>
     <string name="settings__udm__dictionary_export_success" comment="Message for dictionary export success">فەرهەنگی بەکارهێنەر بەسەرکەوتوویی هەڵگیرا!</string>
     <string name="settings__udm__dialog__title_add" comment="Label for the title (when in adding mode) in the user dictionary add/edit dialog">ووشەیەک بنوسە</string>
     <string name="settings__udm__dialog__title_edit" comment="Label for the title (when in editing mode) in the user dictionary add/edit dialog">دەستکاریکردن</string>
@@ -356,7 +349,6 @@
     <string name="settings__spelling__fab_extension_archive" comment="FAB option Extension archive.">زیادکراو / ئەرشیف</string>
     <string name="settings__spelling__fab_affix_dictionary" comment="FAB option Affix dictionary.">فایلی Affix + فەرهەنگ</string>
     <string name="pref__spelling__active_spellchecker__label" comment="Label of Active spellchecker pref">ڕاستکردنەوەی هەڵەی ڕێنووس</string>
-    <string name="pref__spelling__active_spellchecker__summary_none" comment="Summary of Active spellchecker pref">هەڵنەبژێردراوە</string>
     <string name="pref__spelling__active_spellchecker__summary_check_in_system" comment="Summary of Active spellchecker pref">ڕێکخستنەکانی مۆبایلدا هەڵیبژێرە</string>
     <string name="pref__spelling__manage_dictionaries__label" comment="Label of Manage dictionaries pref">ڕێکخستنی فەرهەنگەکانی ڕاستکردنەوەی هەڵەی ڕێنووس</string>
     <plurals name="pref__spelling__manage_dictionaries__summary" comment="Summary of Manage dictionaries pref (%d will be replaced by the number of dictionaries).">
@@ -411,38 +403,13 @@
     <string name="assets__action__import">هێنان</string>
     <string name="assets__action__no">نەخێر</string>
     <string name="assets__action__save">پاراستن</string>
-    <string name="assets__action__select">دیاریکردن</string>
-    <string name="assets__action__select_dir">فۆڵدەر دیاریبکە</string>
     <string name="assets__action__select_file">فایلێک دیاریبکە</string>
     <string name="assets__action__yes">بەڵێ</string>
     <string name="assets__error__details">زانیاری زیاتر</string>
     <string name="assets__error__invalid">نا درووستە</string>
     <string name="assets__error__snackbar_message">هەڵەیەکی نەزانراو ڕوویدا</string>
     <!-- Setup UI strings -->
-    <string name="setup__title" comment="Title of Setup">دامەزراندن</string>
-    <string name="setup__prev_button" comment="Label of Previous button in Setup (try to find a short translation due to limited space in UI)">پێشتر</string>
-    <string name="setup__cancel_button" comment="Label of Cancel button in Setup">پاشگەزبونەوە</string>
-    <string name="setup__next_button" comment="Label of Next button in Setup (try to find a short translation due to limited space in UI)">دواتر</string>
-    <string name="setup__finish_button" comment="Label of Finish button in Setup">تەواو</string>
-    <string name="setup__ok_button" comment="Label of OK button in Setup">باشە</string>
-    <string name="setup__welcome__title" comment="Title of Welcome fragment in Setup">بەخێربێیت!</string>
-    <string name="setup__welcome__intro" comment="Paragraph in Welcome fragment in Setup">سوپاس بۆ بەکارهێنانی تەختەکلیلی FlorisBoard! بۆ بەکارهێنانی تەختەکلیلەکەو نووسین پێی سەرەتا پێویستە دایمەزرێنت لەسەر ئامێرەکەت، بۆ چالاککردن و هەڵبژاردن بە بنەڕەتی - هەنگاو بە هەنگاو ڕێنمونی دەکرێیت!</string>
-    <string name="setup__welcome__privacy" comment="Paragraph in Welcome fragment in Setup">تەختەکلیلی FlorisBoard بەتەواوی پارێزراوە و ڕێز لە زانیاری و داتای بەکارهێنەرانی دەگرێت، بۆ زانیاری زیاتر سەردانی ئێرە بکە:</string>
-    <string name="setup__welcome__trust" comment="Paragraph in Welcome fragment in Setup">کۆدی سەرچاوەکراوەی تەختەکلیلی FlorisBoard بەردەستە بۆ هەمووان بەگشتی، کە دەتوانرێ بزانرێت سەرچاوەکانی چیەو چۆن بەرهەم هاتووە، لەڕێی ئەو لینکەی خوارەوە ئەتوانی سەردانی بکەیت.</string>
-    <string name="setup__welcome__contribute" comment="Paragraph in Welcome fragment in Setup">پێش ئەوەی دەست بە دامەزراندنەکە بکەیت - ئەگەر تووشی هەر کێشەیەکی وەک جامبوون/تێکچون/وەستان  لەگەڵ FlorisBorad دا هەبوو یان داواکارییەکی تایبەتت هەیە - سەردانی GitHub تایبەتی ئێمە بکە کە لە خوارەوە لینک دانراوە ، ئەمە یارمەتی دەدات لە باشترکردنی ئەزموون بۆ هەموو بەکارهێنەران!</string>
-    <string name="setup__welcome__outro" comment="Paragraph in Welcome fragment in Setup">بۆ دەستپێکردنی دامەزراندن پەنجە بنێ بە <i>دواتر</i>.</string>
-    <string name="setup__enable_ime__title" comment="Title of Enable IME fragment in Setup">چالاککردنی تەختەکلیل</string>
-    <string name="setup__enable_ime__text_before_enabled" comment="Description of state in Enable IME fragment before user enabled">سیستەمی ئەندرۆید داوا دەکات کە هەموو تەختەکلیلێکی تایبەت بە دەستی چالاک بکرێت پێش ئەوەی بتوانیت بەکاری بهێنیت.
-کرتە لەسەر دوگمەی خوارەوە بکە بۆ ئەوەی بچیتە سەر <i> زمان و تەختەکلیل </i>، پاشان تەختەکلیلی \'<i>FlorisBoard</i>\'. چالاک بکە.</string>
-    <string name="setup__enable_ime__text_after_enabled" comment="Description of state in Enable IME fragment after user enabled">تەختەکلیلەکە بە سەرکەوتوویی چالاککرا، بۆ بەردەوامبوون پەنجەبنێ بە <i>دواتر</i>!</string>
-    <string name="setup__enable_ime__text_button_language_and_input" comment="Label of language and input button in Enable IME fragment">ڕێکخستنی تەختەکلیل و زمان</string>
-    <string name="setup__make_default__title" comment="Title of Make IME default fragment in Setup">دانان وەک تەختەکلیلی بنەڕەتی</string>
-    <string name="setup__make_default__text_before_switch" comment="Description of state in Make IME default fragment before user switched">FlorisBoard ئێستا چالاککراوە لە سیستەمەکەتدا. بۆ بەکارهێنانی بنەڕەتی، بیگۆڕە بۆ FlorisBoard بە دیاریکردنی لە بەشی تەختەکلیلەکاندا.</string>
-    <string name="setup__make_default__text_after_switch" comment="Description of state in Make IME default fragment after user switched">تەختەکلیلی FlorisBoard بە سەرکەوتوویی هەڵبژێردا!</string>
-    <string name="setup__make_default__text_switch_button" comment="Label of switch button in Make IME default fragment">گۆڕینی تەختەکلیل</string>
-    <string name="setup__finish__title" comment="Title of Setup finished fragment in Setup">دامەزراندن کۆتایی هات!</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">FlorisBorad ڕاپۆرتی هەڵەی</string>
     <string name="crash_dialog__description" comment="Description of crash dialog">بەداخەوە، بەهۆی هەڵەیەکی لەناکاو تەختەکلیلی FlorisBoard لەکارکەوت.</string>
     <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">بەهۆی هەڵەیەکی لەناکاو تەختەکلیل  لەکارکەوت...\nبەکارهێنەری بەرێز لەکاتی بوونی کێشە یان وەستانی لەناکاوی بەرنامەکە تکایە ئەم بەشە فەرامۆش مەکەو هاوکاربە لە چارەسەرکردنیدا\n
 پەنجەبنێ بە دوگمەی <b>لەبەرگرتنەوەی ڕاپۆرتی هەڵە</b>، دواتر پەنجەبنێ بە دوگمەی <b>ناردنی ڕاپۆرتی هەڵە</b> بۆ دۆزینەوەی جۆری کێشەکە و چارەسەرکردن و باشترکردنی بەرنامەکەمان لە وەشانەکانی دواتردا</string>

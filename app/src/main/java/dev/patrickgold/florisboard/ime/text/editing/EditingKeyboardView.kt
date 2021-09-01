@@ -50,12 +50,12 @@ class EditingKeyboardView : ConstraintLayout, FlorisBoard.EventListener,
         super.onAttachedToWindow()
         florisboard?.addEventListener(this)
         themeManager.registerOnThemeUpdatedListener(this)
-
-        selectKey = findViewById(R.id.select)
-        selectAllKey = findViewById(R.id.select_all)
-        cutKey = findViewById(R.id.clipboard_cut)
-        copyKey = findViewById(R.id.clipboard_copy)
-        pasteKey = findViewById(R.id.clipboard_paste)
+// TODO RESTORE
+//        selectKey = findViewById(R.id.select)
+//        selectAllKey = findViewById(R.id.select_all)
+//        cutKey = findViewById(R.id.clipboard_cut)
+//        copyKey = findViewById(R.id.clipboard_copy)
+//        pasteKey = findViewById(R.id.clipboard_paste)
 
         val clipboardManager = FlorisClipboardManager.getInstance()
         pasteKey?.isEnabled = clipboardManager.canBePasted(clipboardManager.primaryClip)
