@@ -37,19 +37,100 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/editCategoryTabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E9E9E9"
+            app:tabGravity="fill"
+            app:tabIndicatorHeight="0sp"
+            app:tabMode="scrollable"
+            app:tabRippleColor="@{null}"
+            app:tabTextAppearance="@style/TabLayoutStyle">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fonts" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Colors" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Backgrounds" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opacity" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Strokes" />
+
+        </com.google.android.material.tabs.TabLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0sp"
-            android:layout_weight="1" />
+            android:layout_weight="1">
 
-        <androidx.recyclerview.widget.RecyclerView
-            itemDecoration="@{viewModel.itemDecoration}"
+            <com.makeramen.roundedimageview.RoundedImageView
+                imageUri="@{viewModel.testImage}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layoutFonts"
+            visibleId="@{viewModel.visibleLayoutId}"
             android:layout_width="match_parent"
             android:layout_height="100sp"
-            android:background="@android:color/black"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            bind:adapter="@{viewModel.backgroundAdapter}" />
+            android:background="@android:color/holo_blue_dark" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layoutColors"
+            visibleId="@{viewModel.visibleLayoutId}"
+            android:layout_width="match_parent"
+            android:layout_height="100sp"
+            android:background="@android:color/black" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layoutBackgrounds"
+            visibleId="@{viewModel.visibleLayoutId}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                itemDecoration="@{viewModel.itemDecoration}"
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:background="@android:color/black"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:adapter="@{viewModel.backgroundAdapter}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layoutOpacity"
+            visibleId="@{viewModel.visibleLayoutId}"
+            android:layout_width="match_parent"
+            android:layout_height="100sp"
+            android:background="@android:color/holo_orange_dark" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layoutStockes"
+            visibleId="@{viewModel.visibleLayoutId}"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:background="@android:color/holo_green_dark" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>

@@ -60,7 +60,13 @@
         <item name="fontFamily">@font/roboto_500</item>
     </style>
 
-    <style name="NormalText" parent="KeyboardThemeBase" >
+    <style name="NormalText" parent="KeyboardThemeBase">
         <item name="fontFamily">@font/roboto_300</item>
+    </style>
+
+    <style name="TabLayoutStyle" parent="Base.Widget.Design.TabLayout">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/roboto_300</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 </resources>

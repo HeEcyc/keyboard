@@ -1,6 +1,7 @@
 package dev.patrickgold.florisboard.ui.theme.editor.activity
 
 import android.net.Uri
+import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.RecyclerView
 import dev.patrickgold.florisboard.FlorisApplication
 import dev.patrickgold.florisboard.R
@@ -15,10 +16,13 @@ class ThemeEditorViewModel : BaseViewModel() {
     private val bgFolderNamePath = "images"
 
     val itemDecoration = HorizontalItemDecoration(30)
+    val testImage = ObservableField<Uri>()
+    val visibleLayoutId = ObservableField(R.id.layoutBackgrounds)
 
     val backgroundAdapter =
         createAdapter<BackgroundAsset, ItemKeyboardThemeBinding>(R.layout.item_keyboard_background_asset) {
             initItems = readAssetImages()
+            onItemClick = { if (it is BackgroundAsset.ImageAsset) testImage.set(it.uri) }
         }
 
     private fun readAssetImages(): List<BackgroundAsset> =
