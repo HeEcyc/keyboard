@@ -10,7 +10,7 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Config.OLDEST_SDK])
-class ThemeValueTest {
+class KeyboardThemeValueTest {
     @Test
     fun testFromString() {
         assertThat(ThemeValue.fromString("@abc/def"), `is`(ThemeValue.Reference("abc", "def")))

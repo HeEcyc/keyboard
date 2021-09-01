@@ -8,12 +8,15 @@ import dev.patrickgold.florisboard.databinding.ItemKeyboardThemeBinding
 import dev.patrickgold.florisboard.ui.base.BaseViewModel
 import dev.patrickgold.florisboard.ui.base.createAdapter
 import dev.patrickgold.florisboard.ui.custom.ThemesItemDecoration
+import dev.patrickgold.florisboard.util.SingleLiveData
 
 class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
 
+    val onThemeClick = SingleLiveData<String>()
     val keyboardItemDecoration = ThemesItemDecoration(2, 30)
     val assetsThemeAdapter = createAdapter<String, ItemKeyboardThemeBinding>(R.layout.item_keyboard_theme) {
         initItems = arrayListOf("", "", "", "", "", "", "", "", "", "", "", "")
+        onItemClick = { onThemeClick.postValue("") }
     }
 
     fun loadAssets() {

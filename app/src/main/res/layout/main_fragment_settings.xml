@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,9 +9,127 @@
             type="dev.patrickgold.florisboard.ui.main.activity.MainActivityViewModel" />
     </data>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" />
+        android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16sp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/NormalText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings"
+                android:textColor="@color/textColorSecondaty"
+                android:textSize="48sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/MediumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24sp"
+                android:text="@string/language"
+                android:textColor="@color/textColorMain"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/MediumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24sp"
+                android:text="Glide typing"
+                android:textColor="@color/textColorSecondaty"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:layout_marginTop="24sp"
+                android:layout_marginBottom="24sp"
+                android:background="@color/dividerColor" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                style="@style/MediumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Show emoji"
+                android:textColor="@color/textColorMain"
+                android:textSize="16sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                style="@style/MediumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24sp"
+                android:text="Tips"
+                android:textColor="@color/textColorMain"
+                android:textSize="16sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                style="@style/MediumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24sp"
+                android:text="Keyboard swipe"
+                android:textColor="@color/textColorMain"
+                android:textSize="16sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                style="@style/MediumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24sp"
+                android:text="Show Number row"
+                android:textColor="@color/textColorMain"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:layout_marginTop="24sp"
+                android:layout_marginBottom="24sp"
+                android:background="@color/dividerColor" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/MediumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="One handed mode"
+                android:textColor="@color/textColorMain"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/MediumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Off"
+                android:textColor="@color/textColorSecondaty"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/MediumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24sp"
+                android:text="Language change button"
+                android:textColor="@color/textColorMain"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/MediumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24sp"
+                android:text="Special symbols editor"
+                android:textColor="@color/textColorMain"
+                android:textSize="16sp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
 </layout>

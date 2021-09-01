@@ -68,6 +68,10 @@
             android:roundIcon="@mipmap/floris_app_icon_round"
             android:theme="@style/SettingsTheme" />
 
+        <activity
+            android:name=".ui.preview.theme.activity.ThemePreviewActivity"
+            android:launchMode="singleTask" />
+
         <!-- Using an activity alias to disable/enable the app icon in the launcher -->
 
 
@@ -144,21 +148,6 @@
             android:label="@string/settings__advanced__title"
             android:roundIcon="@mipmap/floris_app_icon_round"
             android:theme="@style/SettingsTheme" />
-
-        <!-- Setup Activity -->
-        <activity
-            android:name="dev.patrickgold.florisboard.setup.SetupActivity"
-            android:icon="@mipmap/floris_app_icon"
-            android:label="@string/setup__title"
-            android:roundIcon="@mipmap/floris_app_icon_round"
-            android:theme="@style/SettingsTheme" />
-
-        <!-- Crash Dialog Activity -->
-        <activity
-            android:name="dev.patrickgold.florisboard.crashutility.CrashDialogActivity"
-            android:icon="@mipmap/floris_app_icon"
-            android:label="@string/crash_dialog__title"
-            android:theme="@style/CrashDialogTheme" />
 
         <provider
             android:name="dev.patrickgold.florisboard.ime.clip.provider.FlorisContentProvider"

@@ -2,36 +2,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp"
-    android:theme="@style/CrashDialogTheme">
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="@string/crash_dialog__description"/>
+        android:text="@string/crash_dialog__description" />
 
     <TextView
         android:id="@+id/report_instructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="@string/crash_dialog__report_instructions"/>
+        android:text="@string/crash_dialog__report_instructions" />
 
     <Button
         android:id="@+id/copy_to_clipboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="@string/crash_dialog__copy_to_clipboard"/>
+        android:text="@string/crash_dialog__copy_to_clipboard" />
 
     <Button
         android:id="@+id/open_bug_report_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="@string/crash_dialog__open_issue_tracker"/>
+        android:text="@string/crash_dialog__open_issue_tracker" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -42,7 +41,7 @@
             android:id="@+id/stacktrace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"/>
+            android:padding="8dp" />
 
     </ScrollView>
 
@@ -51,6 +50,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="@string/crash_dialog__close"/>
+        android:text="@string/crash_dialog__close" />
 
 </LinearLayout>

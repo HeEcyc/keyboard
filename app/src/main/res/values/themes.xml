@@ -38,7 +38,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        
+
         <item name="colorSuccess">@color/colorSuccess</item>
         <item name="textColorSuccess">@color/textColorSuccess</item>
         <item name="colorWarning">@color/colorWarning</item>
@@ -55,6 +55,12 @@
         <item name="android:navigationBarColor">@color/navigationBarColor</item>
     </style>
 
-    <style name="CrashDialogTheme" parent="Theme.AppCompat.DayNight"/>
 
+    <style name="MediumText" parent="KeyboardThemeBase">
+        <item name="fontFamily">@font/roboto_500</item>
+    </style>
+
+    <style name="NormalText" parent="KeyboardThemeBase" >
+        <item name="fontFamily">@font/roboto_300</item>
+    </style>
 </resources>
