@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dev.patrickgold.florisboard.BR
+import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel
 
 abstract class BaseActivity<TViewModel : BaseViewModel, TBinding : ViewDataBinding>(@LayoutRes val layout: Int) :
     AppCompatActivity() {
@@ -21,7 +22,7 @@ abstract class BaseActivity<TViewModel : BaseViewModel, TBinding : ViewDataBindi
         super.onCreate(savedInstanceState)
         StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder().build())
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        binding = DataBindingUtil.setContentView(this,layout)
+        binding = DataBindingUtil.setContentView(this, layout)
         binding.setVariable(BR.viewModel, provideViewModel())
         binding.lifecycleOwner = this
         setupUI()

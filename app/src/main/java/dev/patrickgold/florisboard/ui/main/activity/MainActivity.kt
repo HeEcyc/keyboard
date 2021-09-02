@@ -27,7 +27,10 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         with(viewModel) {
             onThemeClick.observe(this@MainActivity) { onThemeClick(it) }
             viewModel.nextActivity.observe(this@MainActivity, { showNexActivity(it) })
+
         }
+
+
 
 //        DialogChooser(R.string.ok, arrayOf("hello", "by", "die"), "by") {
 //            Log.d("12345", it)

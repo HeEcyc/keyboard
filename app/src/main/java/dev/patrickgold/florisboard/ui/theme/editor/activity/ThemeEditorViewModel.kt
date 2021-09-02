@@ -13,15 +13,23 @@ import dev.patrickgold.florisboard.databinding.ItemFontBinding
 import dev.patrickgold.florisboard.databinding.ItemKeyboardThemeBinding
 import dev.patrickgold.florisboard.databinding.ItemNoColorBinding
 import dev.patrickgold.florisboard.databinding.ItemStrokeBinding
+import dev.patrickgold.florisboard.ui.base.AppBaseAdapter
 import dev.patrickgold.florisboard.ui.base.BaseViewModel
 import dev.patrickgold.florisboard.ui.base.createAdapter
 import dev.patrickgold.florisboard.ui.custom.HorizontalItemDecoration
+import dev.patrickgold.florisboard.util.SingleLiveData
 import java.io.File
 
 class ThemeEditorViewModel : BaseViewModel() {
 
     private val bgFolderNamePath = "images"
+
     val currentFont = ObservableField<Int>()
+    val currentKeyColor = ObservableField<Int?>()
+    val currentBorderColor = ObservableField<Int?>()
+    val currentBackgroundColor = ObservableField<Int?>()
+
+    val colorPicker = SingleLiveData<ColorType>()
 
     val itemDecoration = HorizontalItemDecoration(40)
     val colorItemDecoration = HorizontalItemDecoration(55)
@@ -38,19 +46,53 @@ class ThemeEditorViewModel : BaseViewModel() {
         initItems = getColors()
         viewBinding = { inflater, viewGroup, viewType -> getColorBinding(viewType, inflater, viewGroup) }
         itemViewTypeProvider = { getColorItemViewType(it) }
+        onItemClick = { handleColorClick(it, ColorType.KEY) }
     }
 
     val backgoroundColorAdapter = createAdapter<ColorItem, ViewDataBinding> {
         initItems = getColors()
         viewBinding = { inflater, viewGroup, viewType -> getColorBinding(viewType, inflater, viewGroup) }
         itemViewTypeProvider = { getColorItemViewType(it) }
+        onItemClick = { handleColorClick(it, ColorType.BACKGROUND) }
     }
 
-    val stokeColorAdapter = createAdapter<ColorItem, ViewDataBinding> {
+    val strokeColorAdapter = createAdapter<ColorItem, ViewDataBinding> {
         initItems = getColors(NoColor)
         viewBinding = { inflater, viewGroup, viewType -> getColorBinding(viewType, inflater, viewGroup) }
         itemViewTypeProvider = { getColorItemViewType(it) }
+        onItemClick = { handleColorClick(it, ColorType.STROKE) }
     }
+
+    private fun handleColorClick(item: ColorItem, colorType: ColorType) {
+        val currentAdapter = getAdapterByColorType(colorType)
+
+        clearSelectedItemInAdapter(currentAdapter)
+
+        when (item) {
+            is Color -> {
+                item.isSelected = true
+                currentAdapter.updateItem(item)
+            }
+            is NewColor -> colorPicker.postValue(colorType)
+            else -> currentBorderColor.set(null)
+        }
+    }
+
+    private fun getAdapterByColorType(colorType: ColorType) = when (colorType) {
+        ColorType.KEY -> keyColorAdapter
+        ColorType.BACKGROUND -> backgoroundColorAdapter
+        ColorType.STROKE -> strokeColorAdapter
+    }
+
+    private fun clearSelectedItemInAdapter(adapter: AppBaseAdapter<ColorItem, *>) {
+        adapter.getData()
+            .filterIsInstance(Color::class.java)
+            .firstOrNull { it.isSelected }?.let {
+                it.isSelected = false
+                adapter.updateItem(it)
+            }
+    }
+
 
     val stokeBorderAdapter = createAdapter<Int, ItemStrokeBinding>(R.layout.item_stroke) {
         initItems = getStrockes()
@@ -147,4 +189,10 @@ class ThemeEditorViewModel : BaseViewModel() {
     object NewColor : ColorItem()
 
     object NoColor : ColorItem()
+
+    enum class ColorType {
+        KEY,
+        STROKE,
+        BACKGROUND
+    }
 }

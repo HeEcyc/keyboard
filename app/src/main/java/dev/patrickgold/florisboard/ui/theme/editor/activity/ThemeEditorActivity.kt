@@ -1,5 +1,6 @@
 package dev.patrickgold.florisboard.ui.theme.editor.activity
 
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.annotation.FontRes
@@ -24,6 +25,9 @@ class ThemeEditorActivity :
     override fun setupUI() {
         binding.editCategoryTabs.addOnTabSelectedListener(this)
         binding.editCategoryTabs.getTabAt(2)?.select()
+
+        viewModel.colorPicker.observe(this) { showColorPicker(it) }
+
         lifecycleScope.launch {
             binding.keyboardPreview.setComputedKeyboard(
                 LayoutManager().computeKeyboardAsync(
@@ -32,6 +36,10 @@ class ThemeEditorActivity :
                 ).await()
             )
         }
+    }
+
+    private fun showColorPicker(it: ThemeEditorViewModel.ColorType?) {
+        Log.d("12345", "enter")
     }
 
     override fun provideViewModel() = viewModel

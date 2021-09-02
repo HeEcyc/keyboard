@@ -216,7 +216,7 @@
                 android:layout_height="90sp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                bind:adapter="@{viewModel.stokeColorAdapter}" />
+                bind:adapter="@{viewModel.strokeColorAdapter}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
