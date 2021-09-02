@@ -5,10 +5,15 @@ import androidx.activity.viewModels
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.forEach
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayout
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.ThemeEditorActivityAppBinding
+import dev.patrickgold.florisboard.ime.core.Subtype
+import dev.patrickgold.florisboard.ime.text.keyboard.KeyboardMode
+import dev.patrickgold.florisboard.ime.text.layout.LayoutManager
 import dev.patrickgold.florisboard.ui.base.BaseActivity
+import kotlinx.coroutines.launch
 
 class ThemeEditorActivity :
     BaseActivity<ThemeEditorViewModel, ThemeEditorActivityAppBinding>(R.layout.theme_editor_activity_app),
@@ -19,6 +24,13 @@ class ThemeEditorActivity :
     override fun setupUI() {
         binding.editCategoryTabs.addOnTabSelectedListener(this)
         binding.editCategoryTabs.getTabAt(2)?.select()
+        lifecycleScope.launch {
+            binding.keyboardPreview.setComputedKeyboard(
+                LayoutManager().computeKeyboardAsync(
+                    KeyboardMode.CHARACTERS, Subtype.DEFAULT
+                ).await()
+            )
+        }
     }
 
     override fun provideViewModel() = viewModel

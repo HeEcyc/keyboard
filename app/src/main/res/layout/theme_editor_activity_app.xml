@@ -86,6 +86,16 @@
 
         </com.google.android.material.tabs.TabLayout>
 
+        <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
+            android:id="@+id/keyboardPreview"
+            android:layout_width="match_parent"
+            android:layout_height="208sp"
+            app:isPreviewKeyboard="true"
+            app:layout_constraintBottom_toBottomOf="@id/barrier"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editCategoryTabs" />
+
         <View
             android:id="@+id/layoutGradent"
             android:layout_width="match_parent"

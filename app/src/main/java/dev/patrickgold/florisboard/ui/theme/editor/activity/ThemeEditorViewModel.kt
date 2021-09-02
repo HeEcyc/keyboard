@@ -24,7 +24,7 @@ class ThemeEditorViewModel : BaseViewModel() {
     val currentFont = ObservableField<Int>()
 
     val itemDecoration = HorizontalItemDecoration(40)
-    val colorItemDecoration = HorizontalItemDecoration(50)
+    val colorItemDecoration = HorizontalItemDecoration(55)
 
     val testImage = ObservableField<Uri>()
     val visibleLayoutId = ObservableField(R.id.layoutBackgrounds)
