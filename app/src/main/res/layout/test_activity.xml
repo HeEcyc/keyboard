@@ -71,30 +71,6 @@
             android:layout_marginTop="20dp"
             android:columnCount="3">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/chuck"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:fontFamily="@font/chuck_fine"
-                android:gravity="center"
-                android:text="Chuck fine" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/great"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:fontFamily="@font/great_viber"
-                android:gravity="center"
-                android:text="Great viber" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/lobter"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:fontFamily="@font/lobster"
-                android:gravity="center"
-                android:text="lobster" />
-
         </GridLayout>
 
         <androidx.appcompat.widget.AppCompatTextView

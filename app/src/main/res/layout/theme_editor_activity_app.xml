@@ -8,16 +8,18 @@
             type="dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel" />
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="40sp"
             android:layout_marginStart="16sp"
-            android:layout_marginEnd="16sp">
+            android:layout_marginEnd="16sp"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/backButton"
@@ -36,17 +38,26 @@
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <View
+            android:id="@+id/tabGradient"
+            android:layout_width="match_parent"
+            android:layout_height="5sp"
+            android:background="@drawable/top_gradient_shadow"
+            app:layout_constraintTop_toBottomOf="@+id/topLayout" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/editCategoryTabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#E9E9E9"
+            android:background="@drawable/blue_gradient"
+            app:layout_constraintTop_toBottomOf="@id/tabGradient"
             app:tabGravity="fill"
             app:tabIndicatorHeight="0sp"
             app:tabMode="scrollable"
             app:tabRippleColor="@{null}"
-            app:tabTextAppearance="@style/TabLayoutStyle">
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabTextAppearance="@style/TabLayoutStyle"
+            app:tabTextColor="@android:color/white">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -75,43 +86,76 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <View
+            android:id="@+id/layoutGradent"
+            android:layout_width="match_parent"
+            android:layout_height="5sp"
+            android:background="@drawable/top_gradient_shadow"
+            app:layout_constraintBottom_toTopOf="@id/barrier" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="layoutFonts,layoutColors,layoutBackgrounds" />
+
+        <View
             android:layout_width="match_parent"
             android:layout_height="0sp"
-            android:layout_weight="1">
+            android:background="@drawable/blue_gradient"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrier" />
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                imageUri="@{viewModel.testImage}"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/layoutFonts"
+            itemDecoration="@{viewModel.itemDecoration}"
             visibleId="@{viewModel.visibleLayoutId}"
             android:layout_width="match_parent"
-            android:layout_height="100sp"
-            android:background="@android:color/holo_blue_dark" />
+            android:layout_height="90sp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            bind:adapter="@{viewModel.fontsAdapter}" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/layoutColors"
+            itemDecoration="@{viewModel.colorItemDecoration}"
             visibleId="@{viewModel.visibleLayoutId}"
             android:layout_width="match_parent"
-            android:layout_height="100sp"
-            android:background="@android:color/black" />
+            android:layout_height="90sp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            bind:adapter="@{viewModel.keyColorAdapter}" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/layoutBackgrounds"
             visibleId="@{viewModel.visibleLayoutId}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                itemDecoration="@{viewModel.colorItemDecoration}"
+                android:layout_width="match_parent"
+                android:layout_height="90sp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:adapter="@{viewModel.backgoroundColorAdapter}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@android:color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
                 itemDecoration="@{viewModel.itemDecoration}"
                 android:layout_width="match_parent"
                 android:layout_height="100sp"
-                android:background="@android:color/black"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 bind:adapter="@{viewModel.backgroundAdapter}" />
@@ -122,15 +166,19 @@
             visibleId="@{viewModel.visibleLayoutId}"
             android:layout_width="match_parent"
             android:layout_height="100sp"
-            android:background="@android:color/holo_orange_dark" />
+            android:background="@android:color/holo_orange_dark"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/layoutStockes"
             visibleId="@{viewModel.visibleLayoutId}"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:background="@android:color/holo_green_dark" />
+            android:background="@android:color/holo_green_dark"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

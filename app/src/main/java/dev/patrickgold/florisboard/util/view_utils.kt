@@ -79,3 +79,6 @@ tailrec fun Context?.getActivity(): AppCompatActivity? = when (this) {
 }
 
 fun View.addInto(viewGroup: ViewGroup) = viewGroup.addView(this)
+
+fun Context.dpToPx(dp: Int) = (dp.toFloat() * resources.displayMetrics.density).toInt()
+
