@@ -27,7 +27,8 @@ class ThemeEditorActivity :
         lifecycleScope.launch {
             binding.keyboardPreview.setComputedKeyboard(
                 LayoutManager().computeKeyboardAsync(
-                    KeyboardMode.CHARACTERS, Subtype.DEFAULT
+                    KeyboardMode.CHARACTERS,
+                    Subtype.DEFAULT
                 ).await()
             )
         }
