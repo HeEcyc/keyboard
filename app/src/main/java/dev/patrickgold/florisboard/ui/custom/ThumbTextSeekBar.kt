@@ -1,0 +1,109 @@
+package dev.patrickgold.florisboard.ui.custom
+
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.OvalShape
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.widget.SeekBar
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.databinding.DataBindingUtil
+import dev.patrickgold.florisboard.R
+import dev.patrickgold.florisboard.databinding.CustomThumbTextSeekBarBinding
+import dev.patrickgold.florisboard.util.dpToPx
+
+class ThumbTextSeekBar @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : LinearLayoutCompat(context, attrs, defStyleAttr) {
+
+    private val seekBar by lazy { binding.progress }
+    private val seekBarWidth by lazy { seekBar.width - seekBar.paddingLeft - seekBar.paddingRight }
+
+    private val textPaint = Paint().apply {
+        textAlign = Paint.Align.CENTER
+        color = Color.WHITE
+        textSize = context.dpToPx(18).toFloat()
+    }
+
+    var onSeekBarChangeListener: ProgressListener? = null
+    val progress get() = binding.progress.progress
+
+    val binding: CustomThumbTextSeekBarBinding = DataBindingUtil.inflate(
+        LayoutInflater.from(context), R.layout.custom_thumb_text_seek_bar, this, true
+    )
+
+    init {
+        setWillNotDraw(false)
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                onSeekBarChangeListener?.onStopTrackingTouch(this@ThumbTextSeekBar)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+                onSeekBarChangeListener?.onStartTrackingTouch(this@ThumbTextSeekBar)
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                onSeekBarChangeListener
+                    ?.onProgressChanged(this@ThumbTextSeekBar, progress, fromUser)
+                invalidate()
+            }
+        })
+
+        seekBar.thumb = ShapeDrawable(OvalShape()).apply {
+            paint.color = Color.WHITE
+            intrinsicHeight = context.dpToPx(25)
+            intrinsicWidth = context.dpToPx(25)
+        }
+    }
+
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+        seekBar.isEnabled = enabled
+    }
+
+    fun setProgressDrawable(drawable: Drawable?) {
+        binding.progress.progressTintList = null
+        binding.progress.progressBackgroundTintList = null
+        binding.progress.setProgressDrawableTiled(drawable)
+    }
+
+    fun setProgress(progress: Int?) {
+        progress ?: return
+        binding.progress.progress = progress
+    }
+
+    fun setMax(max: Int?) {
+        max ?: return
+        binding.progress.max = max
+    }
+
+    interface ProgressListener {
+
+        fun onProgressChanged(view: ThumbTextSeekBar, progress: Int, formUser: Boolean) {
+
+        }
+
+        fun onStartTrackingTouch(view: ThumbTextSeekBar) {
+
+        }
+
+        fun onStopTrackingTouch(view: ThumbTextSeekBar) {
+
+        }
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        canvas.drawText(progress.toString(), getThumbPos().toFloat(), height / 3f, textPaint)
+    }
+
+    private fun getThumbPos() =
+        seekBar.paddingLeft + seekBarWidth * seekBar.progress / seekBar.max
+}

@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:barrierDirection="top"
-            app:constraint_referenced_ids="layoutFonts,layoutColors,layoutBackgrounds" />
+            app:constraint_referenced_ids="layoutFonts,layoutColors,layoutBackgrounds,layoutOpacity,layoutStockes" />
 
         <View
             android:layout_width="match_parent"
@@ -137,6 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -161,23 +162,53 @@
                 bind:adapter="@{viewModel.backgroundAdapter}" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <RelativeLayout
             android:id="@+id/layoutOpacity"
             visibleId="@{viewModel.visibleLayoutId}"
             android:layout_width="match_parent"
-            android:layout_height="100sp"
-            android:background="@android:color/holo_orange_dark"
+            android:layout_height="90sp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <dev.patrickgold.florisboard.ui.custom.ThumbTextSeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginHorizontal="16sp"
+                bind:max="@{100}" />
+        </RelativeLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/layoutStockes"
             visibleId="@{viewModel.visibleLayoutId}"
             android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:background="@android:color/holo_green_dark"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                itemDecoration="@{viewModel.colorItemDecoration}"
+                android:layout_width="match_parent"
+                android:layout_height="90sp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:adapter="@{viewModel.stokeBorderAdapter}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@android:color/white" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                itemDecoration="@{viewModel.colorItemDecoration}"
+                android:layout_width="match_parent"
+                android:layout_height="90sp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:adapter="@{viewModel.stokeColorAdapter}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

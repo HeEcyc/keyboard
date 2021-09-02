@@ -37,10 +37,15 @@ fun AppCompatTextView.setFont(fontRes: Int) {
 }
 
 @BindingAdapter("colorItem")
-fun AppCompatImageView.setColorItem(textColor: ThemeEditorViewModel.TextColor) {
+fun AppCompatImageView.setColorItem(textColor: ThemeEditorViewModel.Color) {
     val stockeColor = if (textColor.isSelected) textColor.getBorderColor()
     else textColor.stockeColor ?: textColor.textColor
     val gradientDrawable = background as GradientDrawable
     gradientDrawable.setColor(Color.parseColor(textColor.textColor))
     gradientDrawable.setStroke(context.dpToPx(2), Color.parseColor(stockeColor))
+}
+
+@BindingAdapter("drawable")
+fun AppCompatImageView.setDrawableRes(drawableRes: Int) {
+    setImageResource(drawableRes)
 }

@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel.Color" />
+            type="Integer" />
 
     </data>
 
@@ -15,13 +15,12 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            colorItem="@{item}"
+            drawable="@{item}"
             android:layout_width="0sp"
             android:layout_height="0sp"
-            android:background="@drawable/image_color_overlay"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintHeight_percent="0.8"
+            app:layout_constraintHeight_percent="0.9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tintMode="add" />
