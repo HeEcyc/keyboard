@@ -3,12 +3,14 @@ package dev.patrickgold.florisboard.background.view.keyboard.repository
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup.LayoutParams
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
 import com.doctoror.particlesdrawable.ParticlesView
 import com.nfaralli.particleflow.ParticlesSurfaceView
 
@@ -71,11 +73,13 @@ object BackgroundViewRepository {
             override fun getViewFactory() = ViewFactory.from(getViewFrom)
         }
 
-        class ImageView(private val image: Bitmap) : BackgroundView {
+        class ImageView(private val uri: Uri) : BackgroundView {
             override fun getViewFactory() = ViewFactory.from {
                 val view = dispatchBackgroundView(AppCompatImageView::class.java, it) as AppCompatImageView
-                view.setImageBitmap(image)
                 view.scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
+                Glide.with(view)
+                    .load(uri)
+                    .into(view)
                 view
             }
         }

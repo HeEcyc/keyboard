@@ -86,6 +86,16 @@
 
         </com.google.android.material.tabs.TabLayout>
 
+        <FrameLayout
+            colorBackground="@{viewModel.currentBackgroundColor}"
+            imageBackground="@{viewModel.backgroundView}"
+            android:layout_width="0sp"
+            android:layout_height="0sp"
+            app:layout_constraintBottom_toBottomOf="@id/keyboardPreview"
+            app:layout_constraintEnd_toEndOf="@id/keyboardPreview"
+            app:layout_constraintStart_toStartOf="@id/keyboardPreview"
+            app:layout_constraintTop_toTopOf="@id/keyboardPreview" />
+
         <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
             android:id="@+id/keyboardPreview"
             android:layout_width="match_parent"
@@ -97,7 +107,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editCategoryTabs"
             bind:font="@{viewModel.currentFont}"
-            bind:keyColor="@{viewModel.currentKeyColor}" />
+            bind:keyColor="@{viewModel.currentKeyColor}"
+            bind:opacity="@{viewModel.keyBGOpacity}" />
 
         <View
             android:id="@+id/layoutGradent"
@@ -179,16 +190,18 @@
             android:id="@+id/layoutOpacity"
             visibleId="@{viewModel.visibleLayoutId}"
             android:layout_width="match_parent"
-            android:layout_height="90sp"
+            android:layout_height="120sp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <dev.patrickgold.florisboard.ui.custom.ThumbTextSeekBar
+                android:id="@+id/progressLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:layout_marginHorizontal="16sp"
-                bind:max="@{100}" />
+                android:layout_marginTop="20sp"
+                bind:max="@{100}"
+                bind:progress="@{100}" />
         </RelativeLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat

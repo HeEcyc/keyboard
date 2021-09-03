@@ -23,6 +23,7 @@ import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.annotation.FontRes
@@ -71,6 +72,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     private var keyColor: Int? = null
     private var cachedTheme: Theme? = null
     private var cachedState: KeyboardState = KeyboardState.new(maskOfInterest = KeyboardState.INTEREST_TEXT)
+    private var keyBGOpacity: Int = 100
 
     private var externalComputingEvaluator: ComputingEvaluator? = null
     private val internalComputingEvaluator = object : ComputingEvaluator {
@@ -875,6 +877,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             getChildAt(n)?.let { rv ->
                 if (rv is TextKeyView) {
                     rv.key = key
+                    rv.bgDrawable.alpha = (255 * (keyBGOpacity / 100f)).toInt()
+                    rv.background = rv.bgDrawable
                     layoutRenderView(rv, key, isBorderless)
                     prepareKey(key, theme, rv)
                     rv.invalidate()
@@ -1041,9 +1045,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     override fun onThemeUpdated(theme: Theme) {
         if (isPreviewMode) {
             cachedTheme = theme
-            backgroundDrawable.apply {
-                paint.color = theme.getAttr(Theme.Attr.KEYBOARD_BACKGROUND).toSolidColor().color
-            }
+            backgroundDrawable.apply { paint.color = Color.TRANSPARENT }
         }
         if (theme.getAttr(Theme.Attr.GLIDE_TRAIL_COLOR).toSolidColor().color == 0) {
             glideTrailPaint.color = theme.getAttr(Theme.Attr.WINDOW_COLOR_PRIMARY).toSolidColor().color
@@ -1360,7 +1362,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     fun onNewFont(@FontRes font: Int) {
         fontFamily = if (font != -1) ResourcesCompat.getFont(context, font)
         else return
-
         reDrawKeyboard()
     }
 
@@ -1405,8 +1406,15 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         reDrawKeyboard()
     }
 
-    fun setKeyColor(color: Int?) {
-        keyColor = color
+    fun setKeyColor(color: String?) {
+        color ?: return
+        keyColor = Color.parseColor(color)
+        reDrawKeyboard()
+    }
+
+    fun setOpacity(percent: Int?) {
+        percent ?: return
+        keyBGOpacity = percent
         reDrawKeyboard()
     }
 

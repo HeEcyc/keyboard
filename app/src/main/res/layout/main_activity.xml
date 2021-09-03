@@ -22,12 +22,7 @@
             android:overScrollMode="never"
             bind:adapter="@{viewModel.adapter}" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_height="70sp"
-            android:background="@android:color/white"
-            bind:itemRippleColor="@{null}"
-            bind:labelVisibilityMode="labeled"
-            bind:menu="@menu/main_menu" />
+        <include layout="@layout/custom_nav_bar" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

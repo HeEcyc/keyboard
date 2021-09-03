@@ -29,8 +29,7 @@ class ThumbTextSeekBar @JvmOverloads constructor(
         color = Color.WHITE
         textSize = context.dpToPx(18).toFloat()
     }
-
-    var onSeekBarChangeListener: ProgressListener? = null
+    var onProgress: ((Int) -> Unit)? = null
     val progress get() = binding.progress.progress
 
     val binding: CustomThumbTextSeekBarBinding = DataBindingUtil.inflate(
@@ -41,17 +40,16 @@ class ThumbTextSeekBar @JvmOverloads constructor(
         setWillNotDraw(false)
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                onSeekBarChangeListener?.onStopTrackingTouch(this@ThumbTextSeekBar)
+
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
-                onSeekBarChangeListener?.onStartTrackingTouch(this@ThumbTextSeekBar)
+
             }
 
             @SuppressLint("SetTextI18n")
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                onSeekBarChangeListener
-                    ?.onProgressChanged(this@ThumbTextSeekBar, progress, fromUser)
+                onProgress?.invoke(progress)
                 invalidate()
             }
         })
@@ -63,16 +61,6 @@ class ThumbTextSeekBar @JvmOverloads constructor(
         }
     }
 
-    override fun setEnabled(enabled: Boolean) {
-        super.setEnabled(enabled)
-        seekBar.isEnabled = enabled
-    }
-
-    fun setProgressDrawable(drawable: Drawable?) {
-        binding.progress.progressTintList = null
-        binding.progress.progressBackgroundTintList = null
-        binding.progress.setProgressDrawableTiled(drawable)
-    }
 
     fun setProgress(progress: Int?) {
         progress ?: return
@@ -82,21 +70,6 @@ class ThumbTextSeekBar @JvmOverloads constructor(
     fun setMax(max: Int?) {
         max ?: return
         binding.progress.max = max
-    }
-
-    interface ProgressListener {
-
-        fun onProgressChanged(view: ThumbTextSeekBar, progress: Int, formUser: Boolean) {
-
-        }
-
-        fun onStartTrackingTouch(view: ThumbTextSeekBar) {
-
-        }
-
-        fun onStopTrackingTouch(view: ThumbTextSeekBar) {
-
-        }
     }
 
     override fun onDraw(canvas: Canvas) {

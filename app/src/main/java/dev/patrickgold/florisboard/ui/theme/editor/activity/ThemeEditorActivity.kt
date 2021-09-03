@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 class ThemeEditorActivity :
     BaseActivity<ThemeEditorViewModel, ThemeEditorActivityAppBinding>(R.layout.theme_editor_activity_app),
     TabLayout.OnTabSelectedListener {
+
     private lateinit var textKeyboardIconSet: TextKeyboardIconSet
     private val textComputingEvaluator = object : ComputingEvaluator by DefaultComputingEvaluator {
         override fun evaluateVisible(data: KeyData): Boolean {
@@ -45,12 +46,13 @@ class ThemeEditorActivity :
     private val viewModel: ThemeEditorViewModel by viewModels()
 
     override fun setupUI() {
-        binding.editCategoryTabs.addOnTabSelectedListener(this)
-        binding.editCategoryTabs.getTabAt(2)?.select()
+        textKeyboardIconSet = TextKeyboardIconSet.new(this)
 
         viewModel.colorPicker.observe(this) { showColorPicker(it) }
 
-        textKeyboardIconSet = TextKeyboardIconSet.new(this)
+        binding.progressLayout.onProgress = { viewModel.keyBGOpacity.set(it) }
+        binding.editCategoryTabs.addOnTabSelectedListener(this)
+        binding.editCategoryTabs.getTabAt(2)?.select()
         binding.keyboardPreview.setIconSet(textKeyboardIconSet)
         binding.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
         binding.keyboardPreview.sync()
@@ -109,4 +111,5 @@ class ThemeEditorActivity :
             return@forEach
         }
     }
+
 }
