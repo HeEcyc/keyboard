@@ -48,18 +48,18 @@ class EditingKeyView : AppCompatImageButton, ThemeManager.OnThemeUpdatedListener
     private val prefs get() = Preferences.default()
     private val themeManager: ThemeManager = ThemeManager.default()
     private val data: TextKeyData = when (id) {
-//        R.id.arrow_down -> TextKeyData.ARROW_DOWN
-//        R.id.arrow_left -> TextKeyData.ARROW_LEFT
-//        R.id.arrow_right -> TextKeyData.ARROW_RIGHT
-//        R.id.arrow_up -> TextKeyData.ARROW_UP
-//        R.id.backspace -> TextKeyData.DELETE
-//        R.id.clipboard_copy -> TextKeyData.CLIPBOARD_COPY
-//        R.id.clipboard_cut -> TextKeyData.CLIPBOARD_CUT
-//        R.id.clipboard_paste -> TextKeyData.CLIPBOARD_PASTE
-//        R.id.move_start_of_line -> TextKeyData.MOVE_START_OF_LINE
-//        R.id.move_end_of_line -> TextKeyData.MOVE_END_OF_LINE
-//        R.id.select -> TextKeyData.CLIPBOARD_SELECT
-//        R.id.select_all -> TextKeyData.CLIPBOARD_SELECT_ALL
+        R.id.arrow_down -> TextKeyData.ARROW_DOWN
+        R.id.arrow_left -> TextKeyData.ARROW_LEFT
+        R.id.arrow_right -> TextKeyData.ARROW_RIGHT
+        R.id.arrow_up -> TextKeyData.ARROW_UP
+        R.id.backspace -> TextKeyData.DELETE
+        R.id.clipboard_copy -> TextKeyData.CLIPBOARD_COPY
+        R.id.clipboard_cut -> TextKeyData.CLIPBOARD_CUT
+        R.id.clipboard_paste -> TextKeyData.CLIPBOARD_PASTE
+        R.id.move_start_of_line -> TextKeyData.MOVE_START_OF_LINE
+        R.id.move_end_of_line -> TextKeyData.MOVE_END_OF_LINE
+        R.id.select -> TextKeyData.CLIPBOARD_SELECT
+        R.id.select_all -> TextKeyData.CLIPBOARD_SELECT_ALL
         else -> TextKeyData.UNSPECIFIED
     }
     private var isKeyPressed: Boolean = false
@@ -82,7 +82,9 @@ class EditingKeyView : AppCompatImageButton, ThemeManager.OnThemeUpdatedListener
     private var colorDefault: ThemeValue = ThemeValue.SolidColor(0)
 
     var isHighlighted: Boolean = false
-        set(value) { field = value; invalidate() }
+        set(value) {
+            field = value; invalidate()
+        }
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, R.style.TextEditingButton)
@@ -143,10 +145,12 @@ class EditingKeyView : AppCompatImageButton, ThemeManager.OnThemeUpdatedListener
     }
 
     override fun onThemeUpdated(theme: Theme) {
-        imageTintList = ColorStateList.valueOf(when {
-            isEnabled -> theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND).toSolidColor().color
-            else -> theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND_ALT).toSolidColor().color
-        })
+        imageTintList = ColorStateList.valueOf(
+            when {
+                isEnabled -> theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND).toSolidColor().color
+                else -> theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND_ALT).toSolidColor().color
+            }
+        )
         colorHighlightedEnabled = theme.getAttr(Theme.Attr.WINDOW_COLOR_PRIMARY)
         colorEnabled = theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND_ALT)
         colorDefault = theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND)

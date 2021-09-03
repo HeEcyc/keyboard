@@ -86,10 +86,11 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-        <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/keyboardPreview"
             android:layout_width="match_parent"
             android:layout_height="208sp"
+            android:layout_marginHorizontal="12sp"
             app:isPreviewKeyboard="true"
             app:layout_constraintBottom_toBottomOf="@id/barrier"
             app:layout_constraintEnd_toEndOf="parent"

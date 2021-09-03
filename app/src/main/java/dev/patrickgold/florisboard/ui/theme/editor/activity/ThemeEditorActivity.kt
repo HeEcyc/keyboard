@@ -11,14 +11,36 @@ import com.google.android.material.tabs.TabLayout
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.ThemeEditorActivityAppBinding
 import dev.patrickgold.florisboard.ime.core.Subtype
+import dev.patrickgold.florisboard.ime.keyboard.ComputingEvaluator
+import dev.patrickgold.florisboard.ime.keyboard.DefaultComputingEvaluator
+import dev.patrickgold.florisboard.ime.keyboard.KeyData
+import dev.patrickgold.florisboard.ime.text.key.CurrencySet
+import dev.patrickgold.florisboard.ime.text.key.KeyCode
 import dev.patrickgold.florisboard.ime.text.keyboard.KeyboardMode
+import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyData
+import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardIconSet
 import dev.patrickgold.florisboard.ime.text.layout.LayoutManager
+import dev.patrickgold.florisboard.ime.theme.Theme
 import dev.patrickgold.florisboard.ui.base.BaseActivity
 import kotlinx.coroutines.launch
 
 class ThemeEditorActivity :
     BaseActivity<ThemeEditorViewModel, ThemeEditorActivityAppBinding>(R.layout.theme_editor_activity_app),
     TabLayout.OnTabSelectedListener {
+    private lateinit var textKeyboardIconSet: TextKeyboardIconSet
+    private val textComputingEvaluator = object : ComputingEvaluator by DefaultComputingEvaluator {
+        override fun evaluateVisible(data: KeyData): Boolean {
+            return data.code != KeyCode.SWITCH_TO_MEDIA_CONTEXT
+        }
+
+        override fun isSlot(data: KeyData): Boolean {
+            return CurrencySet.isCurrencySlot(data.code)
+        }
+
+        override fun getSlotData(data: KeyData): KeyData {
+            return TextKeyData(label = ".")
+        }
+    }
 
     private val viewModel: ThemeEditorViewModel by viewModels()
 
@@ -28,14 +50,19 @@ class ThemeEditorActivity :
 
         viewModel.colorPicker.observe(this) { showColorPicker(it) }
 
-        lifecycleScope.launch {
-            binding.keyboardPreview.setComputedKeyboard(
-                LayoutManager().computeKeyboardAsync(
-                    KeyboardMode.CHARACTERS,
-                    Subtype.DEFAULT
-                ).await()
-            )
-        }
+        textKeyboardIconSet = TextKeyboardIconSet.new(this)
+//        binding.keyboardPreview..setIconSet(textKeyboardIconSet)
+//        binding.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
+//        binding.keyboardPreview.sync()
+//
+//        lifecycleScope.launch {
+//            binding.keyboardPreview.setComputedKeyboard(
+//                LayoutManager().computeKeyboardAsync(
+//                    KeyboardMode.CHARACTERS,
+//                    Subtype.DEFAULT
+//                ).await()
+//            )
+//        }
     }
 
     private fun showColorPicker(it: ThemeEditorViewModel.ColorType?) {

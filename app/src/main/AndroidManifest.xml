@@ -59,17 +59,15 @@
                 android:resource="@xml/spellchecker" />
         </service>
 
-        <!-- Settings Activity -->
-        <activity
-            android:name="dev.patrickgold.florisboard.settings.SettingsMainActivity"
-            android:icon="@mipmap/floris_app_icon"
-            android:label="@string/settings__title"
-            android:launchMode="singleTask"
-            android:roundIcon="@mipmap/floris_app_icon_round"
-            android:theme="@style/SettingsTheme" />
-
         <activity
             android:name=".ui.preview.theme.activity.ThemePreviewActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".settings.ThemeManagerActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
@@ -97,7 +95,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.splash.activity.SplashActivity"
+            android:name=".settings.SettingsMainActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -121,11 +119,6 @@
             android:theme="@style/SettingsTheme" />
 
         <!-- Theme Selector Activity -->
-        <activity
-            android:name="dev.patrickgold.florisboard.settings.ThemeManagerActivity"
-            android:icon="@mipmap/floris_app_icon"
-            android:label="@string/settings__title"
-            android:theme="@style/SettingsTheme" />
 
         <!-- Theme Editor Activity -->
         <activity
