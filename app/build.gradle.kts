@@ -3,6 +3,7 @@ plugins {
     kotlin("android") version "1.5.20"
     kotlin("kapt") version "1.5.20"
     kotlin("plugin.serialization") version "1.5.20"
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -149,6 +150,13 @@ dependencies {
     implementation("com.nambimobile.widgets", "expandable-fab", "1.0.2")
     implementation("androidx.room", "room-runtime", "2.2.6")
     implementation("com.google.code.gson", "gson", "2.8.8")
+
+    implementation("com.google.firebase:firebase-storage-ktx:20.0.0")
+
+    implementation("com.makeramen:roundedimageview:2.3.0")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation(files("libs/color_picker.aar"))
+
     kapt("androidx.room", "room-compiler", "2.2.6")
     implementation(project(":particles"))
     testImplementation(kotlin("test"))
@@ -156,10 +164,12 @@ dependencies {
     testImplementation("org.mockito", "mockito-inline", "3.7.7")
     testImplementation("org.robolectric", "robolectric", "4.5.1")
 
+
+
     androidTestImplementation("androidx.test.ext", "junit", "1.1.2")
     androidTestImplementation("androidx.test.espresso", "espresso-core", "3.3.0")
 
     // BACKGROUND VIEWS
-    implementation("com.github.doctoror.particlesdrawable:library:1.0.9")
 
+    implementation("com.github.doctoror.particlesdrawable:library:1.0.9")
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="dev.patrickgold.florisboard.ui.glide.preferences.activity.GlideTypingPreferenceViewModel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@android:color/white" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            style="@style/MediumText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16sp"
+            android:layout_marginTop="@dimen/main_magin_top"
+            android:text="Enable glide typing"
+            android:textColor="@color/textColorMain"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/NormalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16sp"
+            android:text="Input a word by sliding through the letters" />
+
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            style="@style/MediumText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16sp"
+            android:layout_marginTop="@dimen/main_magin_top"
+            android:text="Enable glide typing"
+            android:textColor="@color/textColorMain"
+            android:textSize="16sp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            style="@style/MediumText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16sp"
+            android:layout_marginTop="@dimen/main_magin_top"
+            android:text="Enable glide typing"
+            android:textColor="@color/textColorMain"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/NormalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16sp"
+            android:text="Input a word by sliding through the letters" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

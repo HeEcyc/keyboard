@@ -64,12 +64,10 @@ class FlorisApplication : Application() {
         super.onCreate()
         instance = this
         try {
-            if (BuildConfig.DEBUG) {
-                Timber.plant(Timber.DebugTree())
-            }
+            Timber.plant(Timber.DebugTree())
             Flog.install(
                 applicationContext = this,
-                isFloggingEnabled = BuildConfig.DEBUG,
+                isFloggingEnabled = true,
                 flogTopics = LogTopic.ALL,
                 flogLevels = Flog.LEVEL_ALL,
                 flogOutputs = Flog.OUTPUT_CONSOLE

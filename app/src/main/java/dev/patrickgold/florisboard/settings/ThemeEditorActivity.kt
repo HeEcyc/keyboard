@@ -106,9 +106,7 @@ class ThemeEditorActivity : AppCompatActivity() {
 
         FlorisRef.from(intent.getStringExtra(EXTRA_THEME_REF) ?: "").takeIf { it.isValid }?.let { ref ->
             editedThemeRef = ref
-            themeManager.loadTheme(ref).onSuccess { theme ->
-                editedTheme = theme.copy()
-            }
+            themeManager.loadTheme(ref).onSuccess { theme -> editedTheme = theme.copy() }
         }
 
         binding.themeNameEditBtn.setOnClickListener { showMetaEditDialog() }
@@ -343,9 +341,11 @@ class ThemeEditorActivity : AppCompatActivity() {
             }
         }
         mainScope.launch {
-            binding.keyboardPreview.setComputedKeyboard(layoutManager.computeKeyboardAsync(
-                KeyboardMode.CHARACTERS, Subtype.DEFAULT
-            ).await())
+            binding.keyboardPreview.setComputedKeyboard(
+                layoutManager.computeKeyboardAsync(
+                    KeyboardMode.CHARACTERS, Subtype.DEFAULT
+                ).await()
+            )
             binding.keyboardPreview.onThemeUpdated(editedTheme)
         }
         sortGroups()
@@ -369,7 +369,8 @@ class ThemeEditorActivity : AppCompatActivity() {
                     themeLabel = tempThemeLabel
                     dialog.dismiss()
                 } else {
-                    dialogView.metaNameLabel.error = resources.getString(R.string.settings__theme_editor__error_theme_label_empty)
+                    dialogView.metaNameLabel.error =
+                        resources.getString(R.string.settings__theme_editor__error_theme_label_empty)
                     dialogView.metaNameLabel.isErrorEnabled = true
                 }
             }

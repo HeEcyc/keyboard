@@ -82,7 +82,9 @@ class EditingKeyView : AppCompatImageButton, ThemeManager.OnThemeUpdatedListener
     private var colorDefault: ThemeValue = ThemeValue.SolidColor(0)
 
     var isHighlighted: Boolean = false
-        set(value) { field = value; invalidate() }
+        set(value) {
+            field = value; invalidate()
+        }
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, R.style.TextEditingButton)
@@ -143,10 +145,12 @@ class EditingKeyView : AppCompatImageButton, ThemeManager.OnThemeUpdatedListener
     }
 
     override fun onThemeUpdated(theme: Theme) {
-        imageTintList = ColorStateList.valueOf(when {
-            isEnabled -> theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND).toSolidColor().color
-            else -> theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND_ALT).toSolidColor().color
-        })
+        imageTintList = ColorStateList.valueOf(
+            when {
+                isEnabled -> theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND).toSolidColor().color
+                else -> theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND_ALT).toSolidColor().color
+            }
+        )
         colorHighlightedEnabled = theme.getAttr(Theme.Attr.WINDOW_COLOR_PRIMARY)
         colorEnabled = theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND_ALT)
         colorDefault = theme.getAttr(Theme.Attr.SMARTBAR_FOREGROUND)

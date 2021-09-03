@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel.BackgroundAsset.ImageAsset" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            imageUri="@{item.uri}"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:riv_border_color="@android:color/holo_red_dark"
+            app:riv_border_width="2sp"
+            app:riv_corner_radius="15sp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -2,6 +2,7 @@ package dev.patrickgold.florisboard.background.view.keyboard.repository
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.net.Uri
 import android.util.AttributeSet
 import android.view.View
@@ -9,9 +10,9 @@ import android.view.ViewGroup.LayoutParams
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
 import com.doctoror.particlesdrawable.ParticlesView
 import com.nfaralli.particleflow.ParticlesSurfaceView
-import dev.patrickgold.florisboard.background.view.keyboard.views.FluidView
 
 object BackgroundViewRepository {
 
@@ -30,9 +31,7 @@ object BackgroundViewRepository {
     fun dispatchBackgroundView(viewType: Class<out View>, context: Context): View = viewType
         .getConstructor(Context::class.java, AttributeSet::class.java)
         .newInstance(context, null)
-        .apply {
-            layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-        }
+        .apply { layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT) }
 
     interface ViewFactory {
         fun createView(context: Context): View
@@ -49,13 +48,18 @@ object BackgroundViewRepository {
 
         object FluidView : BackgroundView {
             override fun getViewFactory() = ViewFactory.from {
-                dispatchBackgroundView(dev.patrickgold.florisboard.background.view.keyboard.views.FluidView::class.java, it)
+                dispatchBackgroundView(
+                    dev.patrickgold.florisboard.background.view.keyboard.views.FluidView::class.java,
+                    it
+                )
             }
         }
 
         object ParticleView : BackgroundView {
             override fun getViewFactory() = ViewFactory.from {
-                dispatchBackgroundView(ParticlesView::class.java, it)
+                val view = dispatchBackgroundView(ParticlesView::class.java, it) as ParticlesView
+                view.setBackgroundColor(Color.BLACK)
+                view
             }
         }
 
@@ -69,11 +73,13 @@ object BackgroundViewRepository {
             override fun getViewFactory() = ViewFactory.from(getViewFrom)
         }
 
-        class ImageView(private val image: Bitmap) : BackgroundView {
+        class ImageView(private val uri: Uri) : BackgroundView {
             override fun getViewFactory() = ViewFactory.from {
                 val view = dispatchBackgroundView(AppCompatImageView::class.java, it) as AppCompatImageView
-                view.setImageBitmap(image)
                 view.scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
+                Glide.with(view)
+                    .load(uri)
+                    .into(view)
                 view
             }
         }

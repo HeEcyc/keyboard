@@ -52,9 +52,7 @@
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
     </style>
-    <style name="SettingsCardView.Clickable.Success">
-        <item name="cardBackgroundColor">?colorSuccess</item>
-    </style>
+
     <style name="SettingsCardView.Clickable.Warning">
         <item name="cardBackgroundColor">?colorWarning</item>
     </style>

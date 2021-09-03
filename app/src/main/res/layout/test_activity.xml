@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -8,10 +8,20 @@
             type="dev.patrickgold.florisboard.ui.TestViewModel" />
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="BG" />
 
         <GridLayout
             android:layout_width="match_parent"
@@ -49,32 +59,70 @@
 
         </GridLayout>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Font" />
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
             android:columnCount="3">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:fontFamily="@font/chuck_fine"
-                android:gravity="center"
-                android:text="Chuck fine" />
+        </GridLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:fontFamily="@font/great_viber"
-                android:gravity="center"
-                android:text="Great viber" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="COLOR" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:fontFamily="@font/lobster"
-                android:gravity="center"
-                android:text="lobster" />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:columnCount="3">
+
+            <RelativeLayout android:layout_columnWeight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/red"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_columnWeight="1"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/test_circle"
+                    android:backgroundTint="@android:color/holo_red_dark" />
+            </RelativeLayout>
+
+
+            <RelativeLayout android:layout_columnWeight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/black"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_columnWeight="1"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/test_circle"
+                    android:backgroundTint="@android:color/black" />
+            </RelativeLayout>
+
+
+            <RelativeLayout android:layout_columnWeight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/blue"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_columnWeight="1"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/test_circle"
+                    android:backgroundTint="@android:color/holo_blue_dark" />
+            </RelativeLayout>
+
 
         </GridLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -50,7 +50,6 @@ class EditingKeyboardView : ConstraintLayout, FlorisBoard.EventListener,
         super.onAttachedToWindow()
         florisboard?.addEventListener(this)
         themeManager.registerOnThemeUpdatedListener(this)
-
         selectKey = findViewById(R.id.select)
         selectAllKey = findViewById(R.id.select_all)
         cutKey = findViewById(R.id.clipboard_cut)

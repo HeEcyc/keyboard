@@ -25,8 +25,6 @@ import android.view.ViewGroup
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.SettingsFragmentHomeBinding
 import dev.patrickgold.florisboard.settings.SettingsMainActivity
-import dev.patrickgold.florisboard.settings.spelling.SpellingActivity
-import dev.patrickgold.florisboard.setup.SetupActivity
 import dev.patrickgold.florisboard.util.checkIfImeIsEnabled
 import dev.patrickgold.florisboard.util.checkIfImeIsSelected
 
@@ -39,17 +37,9 @@ class HomeFragment : SettingsMainActivity.SettingsFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = SettingsFragmentHomeBinding.inflate(inflater, container, false)
-        binding.imeNotEnabledCard.setOnClickListener {
-            Intent(context, SetupActivity::class.java).apply {
-                putExtra(SetupActivity.EXTRA_SHOW_SINGLE_STEP, SetupActivity.Step.ENABLE_IME)
-                startActivity(this)
-            }
-        }
+
         binding.imeNotSelectedCard.setOnClickListener {
-            Intent(context, SetupActivity::class.java).apply {
-                putExtra(SetupActivity.EXTRA_SHOW_SINGLE_STEP, SetupActivity.Step.MAKE_DEFAULT)
-                startActivity(this)
-            }
+
         }
         binding.repoUrlCard.setOnClickListener {
             Intent(

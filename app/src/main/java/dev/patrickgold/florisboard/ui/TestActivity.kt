@@ -1,8 +1,8 @@
 package dev.patrickgold.florisboard.ui
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodInfo
 import android.view.inputmethod.InputMethodManager
@@ -19,6 +19,10 @@ class TestActivity : BaseActivity<TestViewModel, TestActivityBinding>(R.layout.t
         binding.lines.setOnClickListener(this)
         binding.image.setOnClickListener(this)
         binding.particlse.setOnClickListener(this)
+
+        binding.black.setOnClickListener(this)
+        binding.blue.setOnClickListener(this)
+        binding.red.setOnClickListener(this)
     }
 
     override fun provideViewModel() = viewModel
@@ -44,8 +48,9 @@ class TestActivity : BaseActivity<TestViewModel, TestActivityBinding>(R.layout.t
             Settings.Secure.getString(contentResolver, "default_input_method")
 
     override fun onClick(v: View) {
-        if (v.id in listOf(R.id.lines, R.id.image, R.id.fluid, R.id.particlse)) {
-            if (checkSettings()) viewModel.attachThemeType()
-        }
+
     }
+
+    private fun getImage() = assets.open("images/butterfly.png")
+        .use { BitmapFactory.decodeStream(it) }
 }

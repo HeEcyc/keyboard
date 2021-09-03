@@ -23,9 +23,7 @@ class BackgroundViewKeyboardService : FlorisBoard() {
     override fun onCreateInputView(): View {
         flogInfo(LogTopic.IMS_EVENTS)
         CrashUtility.handleStagedButUnhandledExceptions()
-
         updateThemeContext(currentThemeResId)
-
         popupLayerView = PopupLayerView(themeContext)
         window?.window?.findViewById<View>(android.R.id.content)?.let { content ->
             if (content is ViewGroup) {
@@ -49,8 +47,8 @@ class BackgroundViewKeyboardService : FlorisBoard() {
             true
         }
 
-        BackgroundViewRepository.newBackgroundViews.observe(this) {
-            onNewBackgroundView(it?.createView(themeContext))
+        BackgroundViewRepository.newBackgroundViews.observeForever { view ->
+            onNewBackgroundView(view?.createView(themeContext)?.also { println("12345  sdflsdkf" + it::class.java) })
         }
 
         eventListeners.toList().forEach { it?.onInitializeInputUi(uiBinding!!) }
