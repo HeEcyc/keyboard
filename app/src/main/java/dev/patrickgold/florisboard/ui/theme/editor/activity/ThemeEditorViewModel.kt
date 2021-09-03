@@ -1,5 +1,6 @@
 package dev.patrickgold.florisboard.ui.theme.editor.activity
 
+import android.graphics.Color.parseColor
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -24,7 +25,7 @@ class ThemeEditorViewModel : BaseViewModel() {
 
     private val bgFolderNamePath = "images"
 
-    val currentFont = ObservableField<Int>()
+    val currentFont = ObservableField<Int?>()
     val currentKeyColor = ObservableField<Int?>()
     val currentBorderColor = ObservableField<Int?>()
     val currentBackgroundColor = ObservableField<Int?>()
@@ -71,6 +72,7 @@ class ThemeEditorViewModel : BaseViewModel() {
         when (item) {
             is Color -> {
                 item.isSelected = true
+                currentKeyColor.set(parseColor(item.textColor))
                 currentAdapter.updateItem(item)
             }
             is NewColor -> colorPicker.postValue(colorType)
@@ -165,6 +167,13 @@ class ThemeEditorViewModel : BaseViewModel() {
         R.drawable.stroke_4,
         R.drawable.stroke_5
     )
+
+    fun onColorSelected(selectedColor: Int, colorType: ThemeEditorViewModel.ColorType) {
+        clearSelectedItemInAdapter(getAdapterByColorType((colorType)))
+        when (colorType) {
+            ColorType.KEY -> currentKeyColor.set(selectedColor)
+        }
+    }
 
     data class KeyboardFont(val name: String, val fontRes: Int, var isSelected: Boolean = false)
 

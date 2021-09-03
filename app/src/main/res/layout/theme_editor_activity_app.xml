@@ -86,7 +86,7 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
             android:id="@+id/keyboardPreview"
             android:layout_width="match_parent"
             android:layout_height="208sp"
@@ -95,7 +95,9 @@
             app:layout_constraintBottom_toBottomOf="@id/barrier"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editCategoryTabs" />
+            app:layout_constraintTop_toBottomOf="@id/editCategoryTabs"
+            bind:font="@{viewModel.currentFont}"
+            bind:keyColor="@{viewModel.currentKeyColor}" />
 
         <View
             android:id="@+id/layoutGradent"

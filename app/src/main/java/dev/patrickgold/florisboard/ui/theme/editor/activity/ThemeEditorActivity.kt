@@ -1,12 +1,13 @@
 package dev.patrickgold.florisboard.ui.theme.editor.activity
 
-import android.util.Log
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.forEach
 import androidx.lifecycle.lifecycleScope
+import com.flask.colorpicker.ColorPickerView
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import com.google.android.material.tabs.TabLayout
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.ThemeEditorActivityAppBinding
@@ -20,7 +21,6 @@ import dev.patrickgold.florisboard.ime.text.keyboard.KeyboardMode
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyData
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardIconSet
 import dev.patrickgold.florisboard.ime.text.layout.LayoutManager
-import dev.patrickgold.florisboard.ime.theme.Theme
 import dev.patrickgold.florisboard.ui.base.BaseActivity
 import kotlinx.coroutines.launch
 
@@ -51,22 +51,30 @@ class ThemeEditorActivity :
         viewModel.colorPicker.observe(this) { showColorPicker(it) }
 
         textKeyboardIconSet = TextKeyboardIconSet.new(this)
-//        binding.keyboardPreview..setIconSet(textKeyboardIconSet)
-//        binding.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
-//        binding.keyboardPreview.sync()
-//
-//        lifecycleScope.launch {
-//            binding.keyboardPreview.setComputedKeyboard(
-//                LayoutManager().computeKeyboardAsync(
-//                    KeyboardMode.CHARACTERS,
-//                    Subtype.DEFAULT
-//                ).await()
-//            )
-//        }
+        binding.keyboardPreview.setIconSet(textKeyboardIconSet)
+        binding.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
+        binding.keyboardPreview.sync()
+
+        lifecycleScope.launch {
+            binding.keyboardPreview.setComputedKeyboard(
+                LayoutManager().computeKeyboardAsync(
+                    KeyboardMode.CHARACTERS,
+                    Subtype.DEFAULT
+                ).await()
+            )
+        }
     }
 
-    private fun showColorPicker(it: ThemeEditorViewModel.ColorType?) {
-        Log.d("12345", "enter")
+    private fun showColorPicker(colorType: ThemeEditorViewModel.ColorType) {
+        ColorPickerDialogBuilder
+            .with(this)
+            .setTitle("Choose color")
+            .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+            .density(12)
+            .setPositiveButton(R.string.ok) { _, p1, _ -> viewModel.onColorSelected(p1, colorType) }
+            .setNegativeButton(R.string.cancel) { dialog, _ -> dialog?.dismiss() }
+            .build()
+            .show()
     }
 
     override fun provideViewModel() = viewModel

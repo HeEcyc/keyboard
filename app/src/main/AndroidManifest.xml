@@ -95,7 +95,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".settings.SettingsMainActivity"
+            android:name=".ui.splash.activity.SplashActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait">

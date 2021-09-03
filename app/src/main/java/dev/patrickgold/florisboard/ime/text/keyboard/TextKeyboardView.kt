@@ -23,13 +23,11 @@ import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
 import dev.patrickgold.florisboard.R
-import dev.patrickgold.florisboard.repository.PrefsReporitory
 import dev.patrickgold.florisboard.common.Pointer
 import dev.patrickgold.florisboard.common.PointerMap
 import dev.patrickgold.florisboard.common.ViewUtils
@@ -50,6 +48,7 @@ import dev.patrickgold.florisboard.ime.text.gestures.SwipeGesture
 import dev.patrickgold.florisboard.ime.text.key.*
 import dev.patrickgold.florisboard.ime.theme.Theme
 import dev.patrickgold.florisboard.ime.theme.ThemeValue
+import dev.patrickgold.florisboard.repository.PrefsReporitory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -219,11 +218,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
         computedKeyboard = keyboard
         initGlideClassifier(keyboard)
-        if (isMeasured) {
-            computeDesiredDimensions()
-            computeKeyboard()
-            invalidate()
-        }
+        reDrawKeyboard()
     }
 
     fun setIconSet(textKeyboardIconSet: TextKeyboardIconSet) {
@@ -1366,21 +1361,13 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         fontFamily = if (font != -1) ResourcesCompat.getFont(context, font)
         else return
 
-        if (isMeasured) {
-            computeDesiredDimensions()
-            computeKeyboard()
-            invalidate()
-        }
+        reDrawKeyboard()
     }
 
     fun onNewColor(color: Int) {
         if (color == -1) return
         keyColor = color
-        if (isMeasured) {
-            computeDesiredDimensions()
-            computeKeyboard()
-            invalidate()
-        }
+        reDrawKeyboard()
     }
 
     private class TouchPointer : Pointer() {
@@ -1406,10 +1393,28 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
-        Log.d("12345", "listener")
         when (key) {
             PrefsReporitory.fontResKey -> onNewFont(PrefsReporitory.fontFamilyRes)
             PrefsReporitory.keyColorKey -> onNewColor(PrefsReporitory.keyColor)
+        }
+    }
+
+    fun setFont(font: Int?) {
+        font ?: return
+        fontFamily = ResourcesCompat.getFont(context, font)
+        reDrawKeyboard()
+    }
+
+    fun setKeyColor(color: Int?) {
+        keyColor = color
+        reDrawKeyboard()
+    }
+
+    private fun reDrawKeyboard() {
+        if (isMeasured) {
+            computeDesiredDimensions()
+            computeKeyboard()
+            invalidate()
         }
     }
 }
