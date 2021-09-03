@@ -1,144 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="100sp">
-
-    <View
-        android:id="@+id/topShadow"
-        android:layout_width="match_parent"
-        android:layout_height="5sp"
-        android:background="@drawable/top_gradient_shadow"
-        app:layout_constraintBottom_toTopOf="@+id/navBG" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/navBG"
+        android:id="@+id/root"
         android:layout_width="match_parent"
-        android:layout_height="65sp"
-        android:background="@drawable/blue_gradient"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_height="100sp">
 
-    <RelativeLayout
-        android:id="@+id/pressetsButtonLayout"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/customButtonLayout"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="40sp"
-            android:layout_height="40sp"
-            android:background="@android:color/holo_green_dark"
-            app:cardCornerRadius="6sp"
-            app:cardElevation="5dp" />
-
-        <androidx.appcompat.widget.AppCompatImageView
+        <View
+            android:id="@+id/topShadow"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:elevation="10sp"
-            android:padding="8sp"
-            android:src="@drawable/ic_home"
-            android:tint="@color/blueColor" />
-    </RelativeLayout>
+            android:layout_height="5sp"
+            android:background="@drawable/top_gradient_shadow"
+            app:layout_constraintBottom_toTopOf="@+id/navBG" />
 
-
-    <RelativeLayout
-        android:id="@+id/customButtonLayout"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="40sp"
-            android:layout_height="40sp"
-            android:background="@android:color/holo_green_dark"
-            android:visibility="gone"
-            app:cardCornerRadius="6sp"
-            app:cardElevation="5dp" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="40sp"
-            android:layout_height="40sp"
-            android:elevation="10sp"
-            android:padding="8sp"
-            android:src="@drawable/ic_menu_custom"
-            android:tint="@android:color/white" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/settingsButtonLayout"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toEndOf="@id/customButtonLayout"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="40sp"
-            android:layout_height="40sp"
-            android:background="@android:color/holo_green_dark"
-            android:visibility="gone"
-            app:cardCornerRadius="6sp"
-            app:cardElevation="5dp" />
-
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/navBG"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:elevation="10sp"
-            android:padding="8sp"
-            android:src="@drawable/ic_settings"
-            android:tint="@android:color/white" />
-    </RelativeLayout>
+            android:layout_height="65sp"
+            android:background="@drawable/blue_gradient"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/pressetsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/presets"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/customText"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/navBG"
-        app:layout_constraintVertical_bias="0.83" />
+        <RelativeLayout
+            android:id="@+id/pressetsButtonLayout"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/customButtonLayout"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/customText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/custom"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/navBG"
-        app:layout_constraintVertical_bias="0.83" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_centerInParent="true"
+                app:cardCornerRadius="6sp"
+                app:cardElevation="4dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/settingsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/settings"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toEndOf="@id/customText"
-        app:layout_constraintTop_toTopOf="@id/navBG"
-        app:layout_constraintVertical_bias="0.83" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_centerInParent="true"
+                android:elevation="10sp"
+                android:padding="8sp"
+                android:src="@drawable/ic_home"
+                android:tint="@color/blueColor" />
+        </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:id="@+id/customButtonLayout"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                app:cardCornerRadius="6sp"
+                app:cardElevation="4dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_centerInParent="true"
+                android:elevation="10sp"
+                android:padding="8sp"
+                android:src="@drawable/ic_menu_custom"
+                android:tint="@android:color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/settingsButtonLayout"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.55"
+            app:layout_constraintStart_toEndOf="@id/customButtonLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_centerInParent="true"
+                android:background="@android:color/holo_green_dark"
+                android:visibility="gone"
+                app:cardCornerRadius="6sp"
+                app:cardElevation="4dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_centerInParent="true"
+                android:elevation="10sp"
+                android:padding="8sp"
+                android:src="@drawable/ic_settings"
+                android:tint="@android:color/white" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/pressetsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/presets"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/customText"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/navBG"
+            app:layout_constraintVertical_bias="0.83" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/customText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/custom"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/navBG"
+            app:layout_constraintVertical_bias="0.83" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/settingsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.55"
+            app:layout_constraintStart_toEndOf="@id/customText"
+            app:layout_constraintTop_toTopOf="@id/navBG"
+            app:layout_constraintVertical_bias="0.83" />
+
+        <RelativeLayout
+            android:id="@+id/presetsOverlay"
+            android:layout_width="0sp"
+            android:layout_height="0sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/customOverlay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/navBG" />
+
+        <RelativeLayout
+            android:id="@+id/customOverlay"
+            android:layout_width="0sp"
+            android:layout_height="0sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/settingsOverlay"
+            app:layout_constraintStart_toEndOf="@id/presetsOverlay"
+            app:layout_constraintTop_toTopOf="@id/navBG" />
+
+        <RelativeLayout
+            android:id="@+id/settingsOverlay"
+            android:layout_width="0sp"
+            android:layout_height="0sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/customOverlay"
+            app:layout_constraintTop_toTopOf="@id/navBG" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

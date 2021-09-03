@@ -1,5 +1,6 @@
 package dev.patrickgold.florisboard.ui.main.activity
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dev.patrickgold.florisboard.R
@@ -17,6 +18,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
 
     val onThemeClick = SingleLiveData<String>()
     val nextActivity = SingleLiveData<Class<out BaseActivity<*, *>>>()
+    val currentPage = ObservableField(0)
 
     val keyboardItemDecoration = ThemesItemDecoration(2, 30)
     val assetsThemeAdapter = createAdapter<String, ItemKeyboardThemeBinding>(R.layout.item_keyboard_theme) {
@@ -27,7 +29,6 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     fun loadAssets() {
 
     }
-
 
     class Factory(private val adapter: VPAdapter) : ViewModelProvider.Factory {
 
