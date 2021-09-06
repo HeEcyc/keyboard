@@ -17,10 +17,12 @@ class DialogPermissions(private val onPermissionAction: OnPermissionAction) :
         }
     }
 
+    override fun getTheme() = R.style.DialogTheme
+
     override fun setupUI() {
         isCancelable = false
-        binding.root.setOnClickListener { onPermissionAction.askPermissions() }
         view?.viewTreeObserver?.addOnWindowFocusChangeListener(focusListener)
+        binding.permissionsButton.setOnClickListener { onPermissionAction.askPermissions() }
     }
 
     fun removeListener() {

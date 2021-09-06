@@ -28,11 +28,10 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     private val dialogPermissions = DialogPermissions(this)
 
     private val inputManager by lazy { getSystemService(InputMethodManager::class.java) }
-    private val settingsLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { _ ->
-            if (isKeyboardActive() && !isKeyboardEnable()) Handler(Looper.getMainLooper())
-                .postDelayed({ showEnableKeyboardDialog() }, 200)
-        }
+    private val settingsLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { _ ->
+        if (isKeyboardActive() && !isKeyboardEnable()) Handler(Looper.getMainLooper())
+            .postDelayed({ showEnableKeyboardDialog() }, 200)
+    }
 
     private fun showEnableKeyboardDialog() {
         inputManager.showInputMethodPicker()
@@ -76,7 +75,8 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     }
 
     override fun askPermissions() {
-        if (!isKeyboardActive()) settingsLauncher.launch(Intent("android.settings.INPUT_METHOD_SETTINGS"))
+        if (!isKeyboardActive()) settingsLauncher
+            .launch(Intent("android.settings.INPUT_METHOD_SETTINGS"))
         else showEnableKeyboardDialog()
     }
 

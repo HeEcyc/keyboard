@@ -47,6 +47,7 @@
         <item name="cardBackgroundColor">@color/cardViewBackgroundColor</item>
         <item name="cardCornerRadius">4dp</item>
     </style>
+
     <style name="SettingsCardView.Clickable">
         <item name="android:foreground">?selectableItemBackground</item>
         <item name="android:clickable">true</item>
@@ -56,8 +57,15 @@
     <style name="SettingsCardView.Clickable.Warning">
         <item name="cardBackgroundColor">?colorWarning</item>
     </style>
+
     <style name="SettingsCardView.Clickable.Error">
         <item name="cardBackgroundColor">?colorError</item>
+    </style>
+
+
+    <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.MinWidth">
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowBackground">@drawable/dialog_rounded_corner</item>
     </style>
 
 </resources>

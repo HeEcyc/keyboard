@@ -9,6 +9,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 
+
 abstract class BaseDialog<T : ViewDataBinding>(private val layout: Int) : DialogFragment() {
 
     protected lateinit var binding: T

@@ -496,6 +496,7 @@
     <string name="pref__glide_trail_fade_duration">Glide trail fade time</string>
     <string name="pref__glide_preview_refresh_delay">Preview refresh delay</string>
     <string name="pref__glide__show_preview">Show preview while glide typing</string>
+
     <string name="settings">Settings</string>
     <string name="language">Language</string>
     <string name="custom">Custom</string>
@@ -505,5 +506,8 @@
     <string name="backgrounds">Backgrounds</string>
     <string name="opacity">Opacity</string>
     <string name="strokes">Strokes</string>
+    <string name="set_appclication_as_your_default_nphone_app_this_is_necessary_for_ncorrect_work_application">Set appclication as your default\nphone app. This is necessary for\ncorrect work application</string>
+    <string name="give_permissions_for_the_napplication_work_properly">Give permissions for the\napplication work properly</string>
+    <string name="allow">Allow</string>
 
 </resources>

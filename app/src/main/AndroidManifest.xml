@@ -152,13 +152,6 @@
             android:roundIcon="@mipmap/floris_app_icon_round"
             android:theme="@style/SettingsTheme" />
 
-        <activity
-            android:name=".ui.TestActivity"
-            android:icon="@mipmap/floris_app_icon"
-            android:label="@string/settings__advanced__title"
-            android:roundIcon="@mipmap/floris_app_icon_round"
-            android:theme="@style/SettingsTheme" />
-
         <provider
             android:name="dev.patrickgold.florisboard.ime.clip.provider.FlorisContentProvider"
             android:authorities="${applicationId}.provider.clip"
