@@ -39,7 +39,6 @@ class ThemeEditorViewModel : BaseViewModel() {
     val colorItemDecoration = HorizontalItemDecoration(55)
     val visibleLayoutId = ObservableField(R.id.layoutBackgrounds)
 
-
     val stokeBorderAdapter = createAdapter<StrokeType, ItemStrokeBinding>(R.layout.item_stroke) {
         initItems = getStrockes()
         onItemClick = { if (it.strokeRadius > -1) currenetStrokeCornersRadius.set(it.strokeRadius) }
@@ -140,6 +139,7 @@ class ThemeEditorViewModel : BaseViewModel() {
     private fun readAssetImages(): List<BackgroundAsset> =
         FlorisApplication.instance.assets
             .list(bgFolderNamePath)
+            ?.filter { it.startsWith("img") }
             ?.map { BackgroundAsset.ImageAsset(Uri.fromFile(File("//android_asset/${bgFolderNamePath}/$it"))) }
             ?: listOf()
 

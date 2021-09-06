@@ -52,7 +52,6 @@ class TextKeyView : View {
         setWillNotDraw(false)
         background = GradientDrawable().apply {
             shape = GradientDrawable.RECTANGLE
-            setStroke(2, Color.BLUE)
             setColor(Color.parseColor("#292e33"))
             cornerRadius = ViewUtils.dp2px(6.0f)
         }
