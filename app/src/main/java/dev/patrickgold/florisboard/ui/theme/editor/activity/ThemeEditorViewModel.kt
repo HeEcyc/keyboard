@@ -11,7 +11,8 @@ import dev.patrickgold.florisboard.background.view.keyboard.repository.Backgroun
 import dev.patrickgold.florisboard.databinding.ItemColorBinding
 import dev.patrickgold.florisboard.databinding.ItemColorNewBinding
 import dev.patrickgold.florisboard.databinding.ItemFontBinding
-import dev.patrickgold.florisboard.databinding.ItemKeyboardThemeBinding
+import dev.patrickgold.florisboard.databinding.ItemKeyboardBackgroundAssetBinding
+import dev.patrickgold.florisboard.databinding.ItemKeyboardBackgroundNewBinding
 import dev.patrickgold.florisboard.databinding.ItemNoColorBinding
 import dev.patrickgold.florisboard.databinding.ItemStrokeBinding
 import dev.patrickgold.florisboard.ui.base.AppBaseAdapter
@@ -28,32 +29,50 @@ class ThemeEditorViewModel : BaseViewModel() {
     val currentFont = ObservableField<Int?>()
     val currentKeyColor = ObservableField<String?>()
     val currentStrokeColor = ObservableField<String?>()
-    val strokeCorners = ObservableField<Int?>()
     val currentBackgroundColor = ObservableField<String?>()
+    val currentButtonsColor = ObservableField<String?>()
+    val currenetStrokeCornersRadius = ObservableField<Int?>()
+
     val backgroundView = ObservableField<BackgroundViewRepository.BackgroundView?>()
     val colorPicker = SingleLiveData<ColorType>()
     val keyBGOpacity = ObservableField<Int>()
     val itemDecoration = HorizontalItemDecoration(40)
     val colorItemDecoration = HorizontalItemDecoration(55)
     val visibleLayoutId = ObservableField(R.id.layoutBackgrounds)
-
-
+    val imagePicker = SingleLiveData<Unit>()
     val stokeBorderAdapter = createAdapter<StrokeType, ItemStrokeBinding>(R.layout.item_stroke) {
         initItems = getStrockes()
+        onItemClick = { if (it.strokeRadius > -1) currenetStrokeCornersRadius.set(it.strokeRadius) }
     }
 
     val backgroundAdapter =
-        createAdapter<BackgroundAsset, ItemKeyboardThemeBinding>(R.layout.item_keyboard_background_asset) {
-            initItems = readAssetImages()
+        createAdapter<BackgroundAsset, ViewDataBinding> {
+            initItems = mutableListOf<BackgroundAsset>(BackgroundAsset.NewImage)
+                .apply { addAll(readAssetImages()) }
             onItemClick = { handleBgClick(it) }
+            viewBinding = { inflater, viewGroup, viewType -> getBackgroundBinding(viewType, inflater, viewGroup) }
+            itemViewTypeProvider = { getBGItemType(it) }
         }
+
+    private fun getBGItemType(it: BackgroundAsset) = when (it) {
+        is BackgroundAsset.ImageAsset -> 1
+        else -> 0
+    }
+
+    private fun getBackgroundBinding(viewType: Int, inflater: LayoutInflater, viewGroup: ViewGroup) = when (viewType) {
+        0 -> ItemKeyboardBackgroundNewBinding.inflate(inflater, viewGroup, false)
+        else -> ItemKeyboardBackgroundAssetBinding.inflate(inflater, viewGroup, false)
+    }
 
     private fun handleBgClick(it: BackgroundAsset) {
         clearSelectedItemInAdapter(backgoroundColorAdapter)
         currentBackgroundColor.set(null)
         when (it) {
+            is BackgroundAsset.NewImage -> {
+                imagePicker.postValue(Unit)
+                null
+            }
             is BackgroundAsset.ImageAsset -> BackgroundViewRepository.BackgroundView.ImageView(it.uri)
-            else -> null
         }?.let { backgroundView.set(it) }
     }
 
@@ -74,6 +93,13 @@ class ThemeEditorViewModel : BaseViewModel() {
         viewBinding = { inflater, viewGroup, viewType -> getColorBinding(viewType, inflater, viewGroup) }
         itemViewTypeProvider = { getColorItemViewType(it) }
         onItemClick = { handleColorClick(it, ColorType.BACKGROUND) }
+    }
+
+    val buttonsColorAdapter = createAdapter<ColorItem, ViewDataBinding> {
+        initItems = getColors()
+        viewBinding = { inflater, viewGroup, viewType -> getColorBinding(viewType, inflater, viewGroup) }
+        itemViewTypeProvider = { getColorItemViewType(it) }
+        onItemClick = { handleColorClick(it, ColorType.BUTTONS) }
     }
 
     val strokeColorAdapter = createAdapter<ColorItem, ViewDataBinding> {
@@ -103,6 +129,7 @@ class ThemeEditorViewModel : BaseViewModel() {
         ColorType.KEY -> keyColorAdapter
         ColorType.BACKGROUND -> backgoroundColorAdapter
         ColorType.STROKE -> strokeColorAdapter
+        ColorType.BUTTONS -> buttonsColorAdapter
     }
 
     private fun clearSelectedItemInAdapter(adapter: AppBaseAdapter<ColorItem, *>) {
@@ -129,6 +156,7 @@ class ThemeEditorViewModel : BaseViewModel() {
     private fun readAssetImages(): List<BackgroundAsset> =
         FlorisApplication.instance.assets
             .list(bgFolderNamePath)
+            ?.filter { it.startsWith("img") }
             ?.map { BackgroundAsset.ImageAsset(Uri.fromFile(File("//android_asset/${bgFolderNamePath}/$it"))) }
             ?: listOf()
 
@@ -143,8 +171,7 @@ class ThemeEditorViewModel : BaseViewModel() {
     private fun getColors(noColorItem: NoColor? = null) = listOf(
         noColorItem,
         NewColor,
-        Color("#000000", stockeColor = "#736D60")
-            .apply { isSelected = true },
+        Color("#000000", stockeColor = "#736D60").apply { isSelected = true },
         Color("#FFFEF9", isDarkBorder = true),
         Color("#C4C4C4"),
         Color("#626262"),
@@ -184,6 +211,9 @@ class ThemeEditorViewModel : BaseViewModel() {
     data class KeyboardFont(val name: String, val fontRes: Int, var isSelected: Boolean = false)
 
     sealed class BackgroundAsset {
+
+        object NewImage : BackgroundAsset()
+
         data class ImageAsset(val uri: Uri) : BackgroundAsset()
     }
 
@@ -208,13 +238,15 @@ class ThemeEditorViewModel : BaseViewModel() {
     enum class ColorType {
         KEY,
         STROKE,
-        BACKGROUND
+        BACKGROUND,
+        BUTTONS
     }
 
     private fun getColorObservableField(colorType: ColorType) = when (colorType) {
         ColorType.STROKE -> currentStrokeColor
         ColorType.BACKGROUND -> currentBackgroundColor
         ColorType.KEY -> currentKeyColor
+        ColorType.BUTTONS -> currentButtonsColor
     }
 
     data class StrokeType(val strokeRes: Int, val strokeRadius: Int)

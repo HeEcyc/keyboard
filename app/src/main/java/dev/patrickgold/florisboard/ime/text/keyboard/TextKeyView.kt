@@ -18,8 +18,11 @@ package dev.patrickgold.florisboard.ime.text.keyboard
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.*
-import android.graphics.drawable.PaintDrawable
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -30,9 +33,6 @@ class TextKeyView : View {
 
     var key: TextKey? = null
 
-    val bgDrawable = PaintDrawable().also {
-        it.setCornerRadius(ViewUtils.dp2px(6.0f))
-    }
     val labelPaint: Paint = Paint().also {
         it.isAntiAlias = true
         it.isFakeBoldText = false
@@ -49,8 +49,12 @@ class TextKeyView : View {
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        background = bgDrawable
         setWillNotDraw(false)
+        background = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            setColor(Color.parseColor("#292e33"))
+            cornerRadius = ViewUtils.dp2px(6.0f)
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
