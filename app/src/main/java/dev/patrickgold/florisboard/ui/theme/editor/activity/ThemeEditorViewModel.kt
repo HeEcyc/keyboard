@@ -11,7 +11,8 @@ import dev.patrickgold.florisboard.background.view.keyboard.repository.Backgroun
 import dev.patrickgold.florisboard.databinding.ItemColorBinding
 import dev.patrickgold.florisboard.databinding.ItemColorNewBinding
 import dev.patrickgold.florisboard.databinding.ItemFontBinding
-import dev.patrickgold.florisboard.databinding.ItemKeyboardThemeBinding
+import dev.patrickgold.florisboard.databinding.ItemKeyboardBackgroundAssetBinding
+import dev.patrickgold.florisboard.databinding.ItemKeyboardBackgroundNewBinding
 import dev.patrickgold.florisboard.databinding.ItemNoColorBinding
 import dev.patrickgold.florisboard.databinding.ItemStrokeBinding
 import dev.patrickgold.florisboard.ui.base.AppBaseAdapter
@@ -38,24 +39,40 @@ class ThemeEditorViewModel : BaseViewModel() {
     val itemDecoration = HorizontalItemDecoration(40)
     val colorItemDecoration = HorizontalItemDecoration(55)
     val visibleLayoutId = ObservableField(R.id.layoutBackgrounds)
-
+    val imagePicker = SingleLiveData<Unit>()
     val stokeBorderAdapter = createAdapter<StrokeType, ItemStrokeBinding>(R.layout.item_stroke) {
         initItems = getStrockes()
         onItemClick = { if (it.strokeRadius > -1) currenetStrokeCornersRadius.set(it.strokeRadius) }
     }
 
     val backgroundAdapter =
-        createAdapter<BackgroundAsset, ItemKeyboardThemeBinding>(R.layout.item_keyboard_background_asset) {
-            initItems = readAssetImages()
+        createAdapter<BackgroundAsset, ViewDataBinding> {
+            initItems = mutableListOf<BackgroundAsset>(BackgroundAsset.NewImage)
+                .apply { addAll(readAssetImages()) }
             onItemClick = { handleBgClick(it) }
+            viewBinding = { inflater, viewGroup, viewType -> getBackgroundBinding(viewType, inflater, viewGroup) }
+            itemViewTypeProvider = { getBGItemType(it) }
         }
+
+    private fun getBGItemType(it: BackgroundAsset) = when (it) {
+        is BackgroundAsset.ImageAsset -> 1
+        else -> 0
+    }
+
+    private fun getBackgroundBinding(viewType: Int, inflater: LayoutInflater, viewGroup: ViewGroup) = when (viewType) {
+        0 -> ItemKeyboardBackgroundNewBinding.inflate(inflater, viewGroup, false)
+        else -> ItemKeyboardBackgroundAssetBinding.inflate(inflater, viewGroup, false)
+    }
 
     private fun handleBgClick(it: BackgroundAsset) {
         clearSelectedItemInAdapter(backgoroundColorAdapter)
         currentBackgroundColor.set(null)
         when (it) {
+            is BackgroundAsset.NewImage -> {
+                imagePicker.postValue(Unit)
+                null
+            }
             is BackgroundAsset.ImageAsset -> BackgroundViewRepository.BackgroundView.ImageView(it.uri)
-            else -> null
         }?.let { backgroundView.set(it) }
     }
 
@@ -194,6 +211,9 @@ class ThemeEditorViewModel : BaseViewModel() {
     data class KeyboardFont(val name: String, val fontRes: Int, var isSelected: Boolean = false)
 
     sealed class BackgroundAsset {
+
+        object NewImage : BackgroundAsset()
+
         data class ImageAsset(val uri: Uri) : BackgroundAsset()
     }
 

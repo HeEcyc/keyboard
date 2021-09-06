@@ -1,6 +1,8 @@
 package dev.patrickgold.florisboard.ui.theme.editor.activity
 
+import android.app.Activity
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
@@ -9,6 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import com.google.android.material.tabs.TabLayout
+import com.nguyenhoanglam.imagepicker.model.Config
+import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.ThemeEditorActivityAppBinding
 import dev.patrickgold.florisboard.ime.core.Subtype
@@ -27,6 +31,15 @@ import kotlinx.coroutines.launch
 class ThemeEditorActivity :
     BaseActivity<ThemeEditorViewModel, ThemeEditorActivityAppBinding>(R.layout.theme_editor_activity_app),
     TabLayout.OnTabSelectedListener {
+    private val pickerImageActivityLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val imageUri = ImagePicker
+                    .getImages(result.data)
+                    .map { it.uri }
+                    .first()
+            }
+        }
 
     private lateinit var textKeyboardIconSet: TextKeyboardIconSet
     private val textComputingEvaluator = object : ComputingEvaluator by DefaultComputingEvaluator {
@@ -49,6 +62,7 @@ class ThemeEditorActivity :
         textKeyboardIconSet = TextKeyboardIconSet.new(this)
 
         viewModel.colorPicker.observe(this) { showColorPicker(it) }
+        viewModel.imagePicker.observe(this, { showImagePicker() })
 
         binding.progressLayout.onProgress = { viewModel.keyBGOpacity.set(it) }
         binding.editCategoryTabs.addOnTabSelectedListener(this)
@@ -56,7 +70,6 @@ class ThemeEditorActivity :
         binding.keyboardPreview.setIconSet(textKeyboardIconSet)
         binding.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
         binding.keyboardPreview.sync()
-
         lifecycleScope.launch {
             binding.keyboardPreview.setComputedKeyboard(
                 LayoutManager().computeKeyboardAsync(
@@ -65,6 +78,17 @@ class ThemeEditorActivity :
                 ).await()
             )
         }
+    }
+
+    private fun showImagePicker() {
+        ImagePicker.with(this)
+            .setFolderMode(false)
+            .setRootDirectoryName(Config.ROOT_DIR_DCIM)
+            .setMultipleMode(false)
+            .setShowNumberIndicator(false)
+            .setMaxSize(1)
+            .setRequestCode(100)
+            .intent.let(pickerImageActivityLauncher::launch)
     }
 
     private fun showColorPicker(colorType: ThemeEditorViewModel.ColorType) {
