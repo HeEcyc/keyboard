@@ -1418,6 +1418,10 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         reDrawKeyboard()
     }
 
+    fun setStrokeCornerRadius(radius: Int?) {
+
+    }
+
     private fun reDrawKeyboard() {
         if (isMeasured) {
             computeDesiredDimensions()

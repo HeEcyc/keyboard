@@ -13,22 +13,13 @@ class DialogChooser<T>(
 ) {
 
     fun show(context: Context) {
-        var pickedItem: T = selectedItem
         AlertDialog.Builder(context).apply {
             setTitle(titleRes)
-
-
             setSingleChoiceItems(
                 items.map { it.toString() }.toTypedArray(),
-                items.indexOf(pickedItem)
-            ) { _, which -> pickedItem = items[which] }
-
-
-            setPositiveButton(R.string.ok) { dialog, _ ->
-                onItemSelected.invoke(pickedItem)
-                dialog.dismiss()
-            }
-            setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
+                items.indexOf(selectedItem)
+            ) { _, which -> onItemSelected.invoke(items[which]) }
+            setPositiveButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
 
         }.create().show()
     }

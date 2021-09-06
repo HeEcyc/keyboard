@@ -62,27 +62,27 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fonts" />
+                android:text="@string/fonts" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Colors" />
+                android:text="@string/buttons" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Backgrounds" />
+                android:text="@string/backgrounds" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Opacity" />
+                android:text="@string/opacity" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Strokes" />
+                android:text="@string/strokes" />
 
         </com.google.android.material.tabs.TabLayout>
 
@@ -107,6 +107,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editCategoryTabs"
             bind:font="@{viewModel.currentFont}"
+            bind:strokeCornerRadius="@{10}"
             bind:keyColor="@{viewModel.currentKeyColor}"
             bind:opacity="@{viewModel.keyBGOpacity}" />
 

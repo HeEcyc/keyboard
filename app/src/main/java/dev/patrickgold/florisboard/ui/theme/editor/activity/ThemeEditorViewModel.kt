@@ -27,7 +27,8 @@ class ThemeEditorViewModel : BaseViewModel() {
 
     val currentFont = ObservableField<Int?>()
     val currentKeyColor = ObservableField<String?>()
-    val currentBorderColor = ObservableField<String?>()
+    val currentStrokeColor = ObservableField<String?>()
+    val strokeCorners = ObservableField<Int?>()
     val currentBackgroundColor = ObservableField<String?>()
     val backgroundView = ObservableField<BackgroundViewRepository.BackgroundView?>()
     val colorPicker = SingleLiveData<ColorType>()
@@ -37,7 +38,7 @@ class ThemeEditorViewModel : BaseViewModel() {
     val visibleLayoutId = ObservableField(R.id.layoutBackgrounds)
 
 
-    val stokeBorderAdapter = createAdapter<Int, ItemStrokeBinding>(R.layout.item_stroke) {
+    val stokeBorderAdapter = createAdapter<StrokeType, ItemStrokeBinding>(R.layout.item_stroke) {
         initItems = getStrockes()
     }
 
@@ -94,7 +95,7 @@ class ThemeEditorViewModel : BaseViewModel() {
                 currentAdapter.updateItem(item)
             }
             is NewColor -> colorPicker.postValue(colorType)
-            else -> currentBorderColor.set(null)
+            else -> currentStrokeColor.set(null)
         }
     }
 
@@ -167,12 +168,12 @@ class ThemeEditorViewModel : BaseViewModel() {
     ).mapNotNull { it }
 
     private fun getStrockes() = listOf(
-        R.drawable.ic_no_border,
-        R.drawable.stroke_1,
-        R.drawable.stroke_2,
-        R.drawable.stroke_3,
-        R.drawable.stroke_4,
-        R.drawable.stroke_5
+        StrokeType(R.drawable.ic_no_border, -1),
+        StrokeType(R.drawable.stroke_1, 0),
+        StrokeType(R.drawable.stroke_2, 4),
+        StrokeType(R.drawable.stroke_3, 10),
+        StrokeType(R.drawable.stroke_4, 15),
+        StrokeType(R.drawable.stroke_5, 20),
     )
 
     fun onColorSelected(selectedColor: Int, colorType: ColorType) {
@@ -211,9 +212,11 @@ class ThemeEditorViewModel : BaseViewModel() {
     }
 
     private fun getColorObservableField(colorType: ColorType) = when (colorType) {
-        ColorType.STROKE -> currentBorderColor
+        ColorType.STROKE -> currentStrokeColor
         ColorType.BACKGROUND -> currentBackgroundColor
         ColorType.KEY -> currentKeyColor
     }
+
+    data class StrokeType(val strokeRes: Int, val strokeRadius: Int)
 
 }
