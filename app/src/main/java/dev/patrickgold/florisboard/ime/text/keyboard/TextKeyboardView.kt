@@ -888,8 +888,9 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     private fun layoutRenderView(rv: TextKeyView, key: TextKey, isBorderless: Boolean) {
-        val shouldReduceSize = isBorderless &&
-            (key.computedData.code == KeyCode.SPACE || key.computedData.code == KeyCode.CJK_SPACE || key.computedData.code == KeyCode.ENTER)
+        val shouldReduceSize = false
+//            isBorderless &&
+//            (key.computedData.code == KeyCode.SPACE || key.computedData.code == KeyCode.CJK_SPACE || key.computedData.code == KeyCode.ENTER)
         rv.layout(
             key.visibleBounds.left,
             if (shouldReduceSize) {
