@@ -500,5 +500,10 @@
     <string name="language">Language</string>
     <string name="custom">Custom</string>
     <string name="presets">Presets</string>
+    <string name="fonts">Fonts</string>
+    <string name="buttons">Buttons</string>
+    <string name="backgrounds">Backgrounds</string>
+    <string name="opacity">Opacity</string>
+    <string name="strokes">Strokes</string>
 
 </resources>
