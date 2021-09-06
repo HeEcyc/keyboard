@@ -86,6 +86,21 @@
 
         </com.google.android.material.tabs.TabLayout>
 
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:id="@+id/ss"
+                layout="@layout/smartbar" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
         <FrameLayout
             colorBackground="@{viewModel.currentBackgroundColor}"
             imageBackground="@{viewModel.backgroundView}"

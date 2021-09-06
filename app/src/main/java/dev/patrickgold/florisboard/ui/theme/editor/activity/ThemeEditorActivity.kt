@@ -70,6 +70,8 @@ class ThemeEditorActivity :
         binding.keyboardPreview.setIconSet(textKeyboardIconSet)
         binding.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
         binding.keyboardPreview.sync()
+        binding.ss.root.sync()
+
         lifecycleScope.launch {
             binding.keyboardPreview.setComputedKeyboard(
                 LayoutManager().computeKeyboardAsync(

@@ -60,7 +60,7 @@ fun FrameLayout.setBgColor(color: String?) {
 
 @BindingAdapter("imageBackground")
 fun FrameLayout.backgroundView(backgroundView: BackgroundViewRepository.BackgroundView?) {
-    if (childCount > 0) removeAllViews()
+    if (childCount > 0) removeViewAt(0)
     backgroundView ?: return
     addView(backgroundView.getViewFactory().createView(context))
 }
