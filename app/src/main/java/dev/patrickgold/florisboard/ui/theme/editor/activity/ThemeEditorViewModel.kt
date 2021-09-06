@@ -28,8 +28,10 @@ class ThemeEditorViewModel : BaseViewModel() {
     val currentFont = ObservableField<Int?>()
     val currentKeyColor = ObservableField<String?>()
     val currentStrokeColor = ObservableField<String?>()
-    val strokeCorners = ObservableField<Int?>()
     val currentBackgroundColor = ObservableField<String?>()
+    val currentButtonsColor = ObservableField<String?>()
+    val currenetStrokeCornersRadius = ObservableField<Int?>()
+
     val backgroundView = ObservableField<BackgroundViewRepository.BackgroundView?>()
     val colorPicker = SingleLiveData<ColorType>()
     val keyBGOpacity = ObservableField<Int>()
@@ -40,6 +42,7 @@ class ThemeEditorViewModel : BaseViewModel() {
 
     val stokeBorderAdapter = createAdapter<StrokeType, ItemStrokeBinding>(R.layout.item_stroke) {
         initItems = getStrockes()
+        onItemClick = { if (it.strokeRadius > -1) currenetStrokeCornersRadius.set(it.strokeRadius) }
     }
 
     val backgroundAdapter =
@@ -76,6 +79,13 @@ class ThemeEditorViewModel : BaseViewModel() {
         onItemClick = { handleColorClick(it, ColorType.BACKGROUND) }
     }
 
+    val buttonsColorAdapter = createAdapter<ColorItem, ViewDataBinding> {
+        initItems = getColors()
+        viewBinding = { inflater, viewGroup, viewType -> getColorBinding(viewType, inflater, viewGroup) }
+        itemViewTypeProvider = { getColorItemViewType(it) }
+        onItemClick = { handleColorClick(it, ColorType.BUTTONS) }
+    }
+
     val strokeColorAdapter = createAdapter<ColorItem, ViewDataBinding> {
         initItems = getColors(NoColor)
         viewBinding = { inflater, viewGroup, viewType -> getColorBinding(viewType, inflater, viewGroup) }
@@ -103,6 +113,7 @@ class ThemeEditorViewModel : BaseViewModel() {
         ColorType.KEY -> keyColorAdapter
         ColorType.BACKGROUND -> backgoroundColorAdapter
         ColorType.STROKE -> strokeColorAdapter
+        ColorType.BUTTONS -> buttonsColorAdapter
     }
 
     private fun clearSelectedItemInAdapter(adapter: AppBaseAdapter<ColorItem, *>) {
@@ -143,8 +154,7 @@ class ThemeEditorViewModel : BaseViewModel() {
     private fun getColors(noColorItem: NoColor? = null) = listOf(
         noColorItem,
         NewColor,
-        Color("#000000", stockeColor = "#736D60")
-            .apply { isSelected = true },
+        Color("#000000", stockeColor = "#736D60").apply { isSelected = true },
         Color("#FFFEF9", isDarkBorder = true),
         Color("#C4C4C4"),
         Color("#626262"),
@@ -208,13 +218,15 @@ class ThemeEditorViewModel : BaseViewModel() {
     enum class ColorType {
         KEY,
         STROKE,
-        BACKGROUND
+        BACKGROUND,
+        BUTTONS
     }
 
     private fun getColorObservableField(colorType: ColorType) = when (colorType) {
         ColorType.STROKE -> currentStrokeColor
         ColorType.BACKGROUND -> currentBackgroundColor
         ColorType.KEY -> currentKeyColor
+        ColorType.BUTTONS -> currentButtonsColor
     }
 
     data class StrokeType(val strokeRes: Int, val strokeRadius: Int)

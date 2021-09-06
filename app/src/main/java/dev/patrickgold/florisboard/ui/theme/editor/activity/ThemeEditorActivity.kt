@@ -89,7 +89,7 @@ class ThemeEditorActivity :
     private fun changeVisibleLayout(tab: TabLayout.Tab) {
         when (tab.position) {
             0 -> R.id.layoutFonts
-            1 -> R.id.layoutColors
+            1 -> R.id.layoutButtons
             2 -> R.id.layoutBackgrounds
             3 -> R.id.layoutOpacity
             4 -> R.id.layoutStockes

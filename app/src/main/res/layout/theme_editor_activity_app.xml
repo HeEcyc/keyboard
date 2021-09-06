@@ -41,7 +41,7 @@
         <View
             android:id="@+id/tabGradient"
             android:layout_width="match_parent"
-            android:layout_height="5sp"
+            android:layout_height="5dp"
             android:background="@drawable/top_gradient_shadow"
             app:layout_constraintTop_toBottomOf="@+id/topLayout" />
 
@@ -106,15 +106,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editCategoryTabs"
+            bind:buttonColor="@{viewModel.currentButtonsColor}"
             bind:font="@{viewModel.currentFont}"
-            bind:strokeCornerRadius="@{10}"
             bind:keyColor="@{viewModel.currentKeyColor}"
-            bind:opacity="@{viewModel.keyBGOpacity}" />
+            bind:opacity="@{viewModel.keyBGOpacity}"
+            bind:strokeColor="@{viewModel.currentStrokeColor}"
+            bind:strokeCornerRadius="@{viewModel.currenetStrokeCornersRadius}" />
 
         <View
             android:id="@+id/layoutGradent"
             android:layout_width="match_parent"
-            android:layout_height="5sp"
+            android:layout_height="5dp"
             android:background="@drawable/top_gradient_shadow"
             app:layout_constraintBottom_toTopOf="@id/barrier" />
 
@@ -123,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:barrierDirection="top"
-            app:constraint_referenced_ids="layoutFonts,layoutColors,layoutBackgrounds,layoutOpacity,layoutStockes" />
+            app:constraint_referenced_ids="layoutFonts,layoutButtons,layoutBackgrounds,layoutOpacity,layoutStockes" />
 
         <View
             android:layout_width="match_parent"
@@ -132,20 +134,39 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/barrier" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/layoutFonts"
-            itemDecoration="@{viewModel.itemDecoration}"
             visibleId="@{viewModel.visibleLayoutId}"
             android:layout_width="match_parent"
-            android:layout_height="90sp"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            bind:adapter="@{viewModel.fontsAdapter}" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                itemDecoration="@{viewModel.itemDecoration}"
+                android:layout_width="match_parent"
+                android:layout_height="90sp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:adapter="@{viewModel.fontsAdapter}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/white" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                itemDecoration="@{viewModel.colorItemDecoration}"
+                android:layout_width="match_parent"
+                android:layout_height="90sp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:adapter="@{viewModel.keyColorAdapter}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/layoutColors"
+            android:id="@+id/layoutButtons"
             itemDecoration="@{viewModel.colorItemDecoration}"
             visibleId="@{viewModel.visibleLayoutId}"
             android:layout_width="match_parent"
@@ -154,7 +175,7 @@
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            bind:adapter="@{viewModel.keyColorAdapter}" />
+            bind:adapter="@{viewModel.buttonsColorAdapter}" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/layoutBackgrounds"
@@ -175,7 +196,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1sp"
+                android:layout_height="1dp"
                 android:background="@android:color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -224,7 +245,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1sp"
+                android:layout_height="1dp"
                 android:background="@android:color/white" />
 
             <androidx.recyclerview.widget.RecyclerView

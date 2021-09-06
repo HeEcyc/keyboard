@@ -21,9 +21,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.*
+import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.annotation.FontRes
@@ -72,7 +72,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     private var keyColor: Int? = null
     private var cachedTheme: Theme? = null
     private var cachedState: KeyboardState = KeyboardState.new(maskOfInterest = KeyboardState.INTEREST_TEXT)
-    private var keyBGOpacity: Int = 100
+
 
     private var externalComputingEvaluator: ComputingEvaluator? = null
     private val internalComputingEvaluator = object : ComputingEvaluator {
@@ -877,11 +877,11 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             getChildAt(n)?.let { rv ->
                 if (rv is TextKeyView) {
                     rv.key = key
-                    rv.bgDrawable.alpha = (255 * (keyBGOpacity / 100f)).toInt()
-                    rv.background = rv.bgDrawable
                     layoutRenderView(rv, key, isBorderless)
                     prepareKey(key, theme, rv)
                     rv.invalidate()
+                    //   rv.background = buttonBG
+                    //    rv.background = buttonBG
                 }
             }
         }
@@ -965,7 +965,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
             //TODO SET BORDER
 
-            rv.bgDrawable.paint.color = keyBackground.toSolidColor().color
             rv.labelPaint.let {
                 it.color = keyForeground.toSolidColor().color
                 if (computedKeyboard?.mode == KeyboardMode.CHARACTERS && (key.computedData.code == KeyCode.SPACE || key.computedData.code == KeyCode.CJK_SPACE)) {
@@ -1414,12 +1413,41 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun setOpacity(percent: Int?) {
         percent ?: return
-        keyBGOpacity = percent
+        handleKey {
+            (it.background as? GradientDrawable)?.alpha = (255 * (percent / 100f)).toInt()
+        }
         reDrawKeyboard()
     }
 
     fun setStrokeCornerRadius(radius: Int?) {
+        radius ?: return
+        handleKey {
+            (it.background as? GradientDrawable)
+                ?.cornerRadius = ViewUtils.dp2px(radius.toFloat())
+        }
+    }
 
+    fun setStrokeColor(strokeColor: String?) {
+        handleKey {
+            (it.background as? GradientDrawable)?.setStroke(
+                4,
+                if (strokeColor.isNullOrBlank()) Color.TRANSPARENT
+                else Color.parseColor(strokeColor)
+            )
+        }
+    }
+
+    fun setButtonColor(buttonColor: String?) {
+        buttonColor ?: return
+        handleKey { (it.background as? GradientDrawable)?.setColor(Color.parseColor(buttonColor)) }
+    }
+
+    private fun handleKey(action: (TextKeyView) -> Unit) {
+        computedKeyboard?.keys()?.withIndex()?.forEach { (n, key) ->
+            getChildAt(n)?.let { rv ->
+                if (rv is TextKeyView) action.invoke(rv)
+            }
+        }
     }
 
     private fun reDrawKeyboard() {
