@@ -510,4 +510,24 @@
     <string name="give_permissions_for_the_napplication_work_properly">Give permissions for the\napplication work properly</string>
     <string name="allow">Allow</string>
 
+    <string name="one_handed_mode">One-handed mode</string>
+    <string name="one_handed_mode_off">Off</string>
+    <string name="one_handed_mode_right">Right-handed mode</string>
+    <string name="one_handed_mode_left">Left-handed mode</string>
+
+    <string name="keyboard_height">Keyboard height</string>
+    <string name="keyboard_height_short">Short</string>
+    <string name="keyboard_height_normal">Normal</string>
+    <string name="keyboard_height_tall">Tall</string>
+
+    <string name="language_change">Language change</string>
+    <string name="language_change_swipe_through_space">Swipe through Space</string>
+    <string name="language_change_special_button">Special button</string>
+
+    <string name="special_symbols_editor">Special symbols editor</string>
+    <string name="special_symbols_editor_display_name_dot">Dot (.)</string>
+    <string name="special_symbols_editor_display_name_question">Question (?)</string>
+    <string name="special_symbols_editor_display_name_exclamation">Exclamation (!)</string>
+    <string name="special_symbols_editor_display_name_hash">Hash (#)</string>
+
 </resources>
