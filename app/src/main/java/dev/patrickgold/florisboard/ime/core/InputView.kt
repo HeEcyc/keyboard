@@ -28,10 +28,11 @@ import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.widget.LinearLayout
 import dev.patrickgold.florisboard.R
-import dev.patrickgold.florisboard.ime.onehanded.OneHandedMode
+import dev.patrickgold.florisboard.common.ViewUtils
 import dev.patrickgold.florisboard.ime.text.key.KeyVariation
 import dev.patrickgold.florisboard.ime.text.keyboard.KeyboardMode
-import dev.patrickgold.florisboard.common.ViewUtils
+import dev.patrickgold.florisboard.repository.PrefsReporitory
+import dev.patrickgold.florisboard.util.enums.OneHandedMode
 import kotlin.math.roundToInt
 
 /**
@@ -81,7 +82,7 @@ class InputView : LinearLayout {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         heightFactor = when (resources.configuration.orientation) {
             Configuration.ORIENTATION_LANDSCAPE -> 1.0f
-            else -> if (prefs.keyboard.oneHandedMode != OneHandedMode.OFF) {
+            else -> if (PrefsReporitory.Settings.oneHandedMode != OneHandedMode.OFF) {
                 prefs.keyboard.oneHandedModeScaleFactor / 100.0f
             } else {
                 1.0f

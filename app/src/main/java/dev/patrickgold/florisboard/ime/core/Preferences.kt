@@ -23,7 +23,6 @@ import androidx.core.os.UserManagerCompat
 import androidx.preference.PreferenceManager
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.ime.landscapeinput.LandscapeInputUiMode
-import dev.patrickgold.florisboard.ime.onehanded.OneHandedMode
 import dev.patrickgold.florisboard.ime.text.gestures.DistanceThreshold
 import dev.patrickgold.florisboard.ime.text.gestures.SwipeAction
 import dev.patrickgold.florisboard.ime.text.gestures.VelocityThreshold
@@ -34,6 +33,7 @@ import dev.patrickgold.florisboard.ime.text.smartbar.CandidateView
 import dev.patrickgold.florisboard.ime.theme.ThemeMode
 import dev.patrickgold.florisboard.util.TimeUtil
 import dev.patrickgold.florisboard.util.VersionName
+import dev.patrickgold.florisboard.util.enums.OneHandedMode
 import java.lang.ref.WeakReference
 
 /**
@@ -493,7 +493,7 @@ class Preferences(
         var numberRow: Boolean
             get() =  prefs.getPref(NUMBER_ROW, false)
             set(v) = prefs.setPref(NUMBER_ROW, v)
-        var oneHandedMode: String
+        var oneHandedMode: OneHandedMode
             get() = prefs.getPref(ONE_HANDED_MODE, OneHandedMode.OFF)
             set(value) = prefs.setPref(ONE_HANDED_MODE, value)
         var oneHandedModeScaleFactor: Int

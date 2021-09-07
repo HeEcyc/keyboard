@@ -66,7 +66,6 @@ import dev.patrickgold.florisboard.ime.keyboard.KeyboardState
 import dev.patrickgold.florisboard.ime.keyboard.updateKeyboardState
 import dev.patrickgold.florisboard.ime.landscapeinput.LandscapeInputUiMode
 import dev.patrickgold.florisboard.ime.media.MediaInputManager
-import dev.patrickgold.florisboard.ime.onehanded.OneHandedMode
 import dev.patrickgold.florisboard.ime.popup.PopupLayerView
 import dev.patrickgold.florisboard.ime.text.TextInputManager
 import dev.patrickgold.florisboard.ime.text.composing.Appender
@@ -76,9 +75,11 @@ import dev.patrickgold.florisboard.ime.text.key.CurrencySet
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyData
 import dev.patrickgold.florisboard.ime.theme.Theme
 import dev.patrickgold.florisboard.ime.theme.ThemeManager
+import dev.patrickgold.florisboard.repository.PrefsReporitory
 import dev.patrickgold.florisboard.ui.splash.activity.SplashActivity
 import dev.patrickgold.florisboard.util.AppVersionUtils
 import dev.patrickgold.florisboard.util.debugSummarize
+import dev.patrickgold.florisboard.util.enums.OneHandedMode
 import dev.patrickgold.florisboard.util.findViewWithType
 import dev.patrickgold.florisboard.util.refreshLayoutOf
 import kotlinx.coroutines.Dispatchers
@@ -842,11 +843,11 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     }
 
     fun toggleOneHandedMode(isRight: Boolean) {
-        prefs.keyboard.oneHandedMode = when (prefs.keyboard.oneHandedMode) {
+        PrefsReporitory.Settings.oneHandedMode = when (PrefsReporitory.Settings.oneHandedMode) {
             OneHandedMode.OFF -> if (isRight) {
-                OneHandedMode.END
+                OneHandedMode.RIGHT
             } else {
-                OneHandedMode.START
+                OneHandedMode.LEFT
             }
             else -> OneHandedMode.OFF
         }
@@ -858,16 +859,16 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
             uiBinding?.oneHandedCtrlPanelStart?.visibility = View.GONE
             uiBinding?.oneHandedCtrlPanelEnd?.visibility = View.GONE
         } else {
-            when (prefs.keyboard.oneHandedMode) {
+            when (PrefsReporitory.Settings.oneHandedMode) {
                 OneHandedMode.OFF -> {
                     uiBinding?.oneHandedCtrlPanelStart?.visibility = View.GONE
                     uiBinding?.oneHandedCtrlPanelEnd?.visibility = View.GONE
                 }
-                OneHandedMode.START -> {
+                OneHandedMode.LEFT -> {
                     uiBinding?.oneHandedCtrlPanelStart?.visibility = View.GONE
                     uiBinding?.oneHandedCtrlPanelEnd?.visibility = View.VISIBLE
                 }
-                OneHandedMode.END -> {
+                OneHandedMode.RIGHT -> {
                     uiBinding?.oneHandedCtrlPanelStart?.visibility = View.VISIBLE
                     uiBinding?.oneHandedCtrlPanelEnd?.visibility = View.GONE
                 }

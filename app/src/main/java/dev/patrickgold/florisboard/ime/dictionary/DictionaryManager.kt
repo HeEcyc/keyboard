@@ -17,19 +17,16 @@
 package dev.patrickgold.florisboard.ime.dictionary
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Room
 import dev.patrickgold.florisboard.common.FlorisLocale
 import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.core.Subtype
 import dev.patrickgold.florisboard.ime.nlp.SuggestionList
 import dev.patrickgold.florisboard.ime.nlp.Word
-import dev.patrickgold.florisboard.res.FlorisRef
-import dev.patrickgold.florisboard.util.Language
+import dev.patrickgold.florisboard.util.enums.Language
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import java.lang.ref.WeakReference
-import java.util.*
 
 /**
  * TODO: document

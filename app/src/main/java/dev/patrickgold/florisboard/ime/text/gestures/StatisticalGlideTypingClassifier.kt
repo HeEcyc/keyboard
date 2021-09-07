@@ -9,7 +9,7 @@ import dev.patrickgold.florisboard.ime.text.key.KeyCode
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKey
 import dev.patrickgold.florisboard.res.AssetManager
 import dev.patrickgold.florisboard.res.FlorisRef
-import dev.patrickgold.florisboard.util.Language
+import dev.patrickgold.florisboard.util.enums.Language
 import org.json.JSONObject
 import java.text.Normalizer
 import java.util.*

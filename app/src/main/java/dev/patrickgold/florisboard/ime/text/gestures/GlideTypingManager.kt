@@ -7,7 +7,7 @@ import dev.patrickgold.florisboard.ime.text.TextInputManager
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKey
 import dev.patrickgold.florisboard.res.AssetManager
 import dev.patrickgold.florisboard.res.FlorisRef
-import dev.patrickgold.florisboard.util.Language
+import dev.patrickgold.florisboard.util.enums.Language
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope

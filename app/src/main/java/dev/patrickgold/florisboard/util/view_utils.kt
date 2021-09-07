@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
+import dev.patrickgold.florisboard.FlorisApplication
 import kotlin.reflect.KClass
 
 fun getColorFromAttr(
@@ -81,4 +82,6 @@ tailrec fun Context?.getActivity(): AppCompatActivity? = when (this) {
 fun View.addInto(viewGroup: ViewGroup) = viewGroup.addView(this)
 
 fun Context.dpToPx(dp: Int) = (dp.toFloat() * resources.displayMetrics.density).toInt()
+
+fun Int.toPx() = FlorisApplication.instance.applicationContext.dpToPx(this)
 
