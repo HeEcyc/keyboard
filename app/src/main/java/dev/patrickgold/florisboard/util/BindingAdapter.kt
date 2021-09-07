@@ -1,6 +1,8 @@
 package dev.patrickgold.florisboard.util
 
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.view.View
@@ -11,6 +13,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
+import com.isseiaoki.simplecropview.CropImageView
 import com.makeramen.roundedimageview.RoundedImageView
 import dev.patrickgold.florisboard.background.view.keyboard.repository.BackgroundViewRepository
 import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel
@@ -63,4 +68,21 @@ fun FrameLayout.backgroundView(backgroundView: BackgroundViewRepository.Backgrou
     if (childCount > 0) removeViewAt(0)
     backgroundView ?: return
     addView(backgroundView.getViewFactory().createView(context))
+}
+
+@BindingAdapter("image")
+fun CropImageView.setImage(fileUri: String?) {
+    fileUri ?: return
+    Glide.with(context)
+        .asBitmap()
+        .load(Uri.parse(fileUri))
+        .into(object : CustomTarget<Bitmap>() {
+            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                imageBitmap = resource
+            }
+
+            override fun onLoadCleared(placeholder: Drawable?) {
+
+            }
+        })
 }

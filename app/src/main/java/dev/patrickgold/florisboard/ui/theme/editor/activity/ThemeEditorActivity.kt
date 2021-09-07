@@ -1,6 +1,7 @@
 package dev.patrickgold.florisboard.ui.theme.editor.activity
 
 import android.app.Activity
+import android.content.Intent
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -26,18 +27,27 @@ import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyData
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardIconSet
 import dev.patrickgold.florisboard.ime.text.layout.LayoutManager
 import dev.patrickgold.florisboard.ui.base.BaseActivity
+import dev.patrickgold.florisboard.ui.crop.activity.CropActivity
+import dev.patrickgold.florisboard.util.BUNDLE_CROPPED_IMAGE_KEY
 import kotlinx.coroutines.launch
 
 class ThemeEditorActivity :
     BaseActivity<ThemeEditorViewModel, ThemeEditorActivityAppBinding>(R.layout.theme_editor_activity_app),
     TabLayout.OnTabSelectedListener {
+    private val cropImageLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) viewModel
+                .setCustomBackground(result.data?.getStringExtra(BUNDLE_CROPPED_IMAGE_KEY))
+        }
+
     private val pickerImageActivityLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                val imageUri = ImagePicker
-                    .getImages(result.data)
-                    .map { it.uri }
-                    .first()
+                val imageUri = ImagePicker.getImages(result.data).first().uri.toString()
+                cropImageLauncher.launch(
+                    Intent(this, CropActivity::class.java)
+                        .putExtra(BUNDLE_CROPPED_IMAGE_KEY, imageUri)
+                )
             }
         }
 
@@ -97,6 +107,7 @@ class ThemeEditorActivity :
         ColorPickerDialogBuilder
             .with(this)
             .setTitle("Choose color")
+            .showAlphaSlider(false)
             .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
             .density(12)
             .setPositiveButton(R.string.ok) { _, p1, _ -> viewModel.onColorSelected(p1, colorType) }
