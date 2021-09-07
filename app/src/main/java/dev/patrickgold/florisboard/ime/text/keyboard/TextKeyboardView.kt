@@ -894,6 +894,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val shouldReduceSize = false
 //            isBorderless &&
 //            (key.computedData.code == KeyCode.SPACE || key.computedData.code == KeyCode.CJK_SPACE || key.computedData.code == KeyCode.ENTER)
+//        rv.layout(0,0,10,10)
         rv.layout(
             key.visibleBounds.left,
             if (shouldReduceSize) {
@@ -922,11 +923,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                     keyBackground = theme.getAttr(Theme.Attr.KEY_BACKGROUND_PRESSED, themeLabel)
                     keyForeground = theme.getAttr(Theme.Attr.KEY_FOREGROUND_PRESSED, themeLabel)
                 } else {
-                    keyBackground = if (shouldShowBorder) {
-                        theme.getAttr(Theme.Attr.KEY_BACKGROUND, themeLabel)
-                    } else {
-                        theme.getAttr(Theme.Attr.SMARTBAR_BUTTON_BACKGROUND, themeLabel)
-                    }
                     keyForeground = theme.getAttr(Theme.Attr.KEY_FOREGROUND, themeLabel)
                 }
             }
@@ -1081,7 +1077,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     fun onDrawComputedKey(canvas: Canvas, key: TextKey, renderView: TextKeyView) {
         if (!key.isVisible) return
         val label = key.label
-        Log.d("12345", "${key.computedData.label} ${key.computedData.code.toString()}")
         if (label != null) {
             renderView.labelPaint.let {
                 it.typeface = fontFamily ?: Typeface.MONOSPACE

@@ -64,8 +64,13 @@
 
 
     <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.MinWidth">
-        <item name="android:windowMinWidthMajor">90%</item>
-        <item name="android:windowBackground">@drawable/dialog_rounded_corner</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+
+    <style name="MSwitch" parent="AppBaseTheme">
+        <item name="thumbTint">@color/thumb_color</item>
+        <item name="trackTint">@color/track_color</item>
+        <item name="android:fontFamily">@font/roboto_500</item>
+    </style>
 </resources>

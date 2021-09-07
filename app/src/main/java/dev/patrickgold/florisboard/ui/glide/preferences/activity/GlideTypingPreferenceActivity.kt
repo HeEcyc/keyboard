@@ -13,6 +13,6 @@ class GlideTypingPreferenceActivity :
     override fun provideViewModel() = viewModel
 
     override fun setupUI() {
-
+        binding.backButton.setOnClickListener { onBackPressed() }
     }
 }

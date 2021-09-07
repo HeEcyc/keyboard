@@ -3,59 +3,69 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="24sp">
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/permissionImage"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0sp"
-            android:layout_height="0sp"
-            android:layout_marginTop="35sp"
-            android:src="@drawable/ic_permissions"
-            app:layout_constraintDimensionRatio="1:1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_rounded_corner"
+            android:paddingBottom="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.7" />
+            app:layout_constraintWidth_percent="0.85">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/permissinsTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="37sp"
-            android:fontFamily="@font/roboto"
-            android:gravity="center"
-            android:text="@string/give_permissions_for_the_napplication_work_properly"
-            android:textColor="@color/textColorMain"
-            android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/permissionImage" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/permissionImage"
+                android:layout_width="0sp"
+                android:layout_height="0sp"
+                android:layout_marginTop="35sp"
+                android:src="@drawable/ic_permissions"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.7" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/permissinsPermissionText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14sp"
-            android:fontFamily="@font/roboto"
-            android:gravity="center"
-            android:text="@string/set_appclication_as_your_default_nphone_app_this_is_necessary_for_ncorrect_work_application"
-            android:textColor="@color/textGrayColor"
-            android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@id/permissinsTitle" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/permissinsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="37sp"
+                android:fontFamily="@font/roboto_400"
+                android:gravity="center"
+                android:text="@string/give_permissions_for_the_napplication_work_properly"
+                android:textColor="@color/textColorMain"
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@id/permissionImage" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/permissionsButton"
-            android:layout_width="match_parent"
-            android:layout_height="60sp"
-            android:layout_marginHorizontal="32sp"
-            android:layout_marginTop="50sp"
-            android:layout_marginBottom="40sp"
-            android:background="@drawable/button_blue_gradient"
-            android:fontFamily="@font/roboto_500"
-            android:gravity="center"
-            android:text="@string/allow"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/permissinsPermissionText" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/permissinsPermissionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14sp"
+                android:fontFamily="@font/roboto_400"
+                android:gravity="center"
+                android:text="@string/set_appclication_as_your_default_nphone_app_this_is_necessary_for_ncorrect_work_application"
+                android:textColor="@color/textGrayColor"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/permissinsTitle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/permissionsButton"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_marginHorizontal="32sp"
+                android:layout_marginTop="50sp"
+                android:layout_marginBottom="40sp"
+                android:background="@drawable/button_blue_gradient"
+                android:fontFamily="@font/roboto_500"
+                android:gravity="center"
+                android:text="@string/allow"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/permissinsPermissionText" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

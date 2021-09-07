@@ -12,6 +12,7 @@ import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.adapters.VPAdapter
 import dev.patrickgold.florisboard.databinding.MainActivityBinding
 import dev.patrickgold.florisboard.ui.base.BaseActivity
+import dev.patrickgold.florisboard.ui.dialogs.DialogDone
 import dev.patrickgold.florisboard.ui.dialogs.DialogPermissions
 import dev.patrickgold.florisboard.ui.main.activity.assets.FragmentAssets
 import dev.patrickgold.florisboard.ui.main.activity.custom.FragmentCustomTheme
@@ -82,4 +83,8 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
 
     override fun hasAllPermissions() = isKeyboardActive() && isKeyboardEnable()
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        DialogDone().show(supportFragmentManager)
+    }
 }
