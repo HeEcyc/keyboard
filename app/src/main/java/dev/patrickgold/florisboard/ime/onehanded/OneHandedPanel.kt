@@ -28,6 +28,8 @@ import dev.patrickgold.florisboard.ime.core.FlorisBoard
 import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.theme.Theme
 import dev.patrickgold.florisboard.ime.theme.ThemeManager
+import dev.patrickgold.florisboard.repository.PrefsReporitory
+import dev.patrickgold.florisboard.util.enums.OneHandedMode
 
 class OneHandedPanel : LinearLayout, ThemeManager.OnThemeUpdatedListener {
     private var florisboard: FlorisBoard? = null
@@ -37,13 +39,18 @@ class OneHandedPanel : LinearLayout, ThemeManager.OnThemeUpdatedListener {
     private var closeBtn: ImageButton? = null
     private var moveBtn: ImageButton? = null
 
-    private val panelSide: String
+    private val panelSide: OneHandedMode
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         context.obtainStyledAttributes(attrs, R.styleable.OneHandedPanel).apply {
-            panelSide = getString(R.styleable.OneHandedPanel_panelSide) ?: OneHandedMode.START
+            panelSide = when (getString(R.styleable.OneHandedPanel_panelSide)) {
+                "start" -> OneHandedMode.LEFT
+                "end" -> OneHandedMode.RIGHT
+                "off" -> OneHandedMode.OFF
+                else -> OneHandedMode.LEFT
+            }
             recycle()
         }
         orientation = VERTICAL
@@ -59,7 +66,7 @@ class OneHandedPanel : LinearLayout, ThemeManager.OnThemeUpdatedListener {
         closeBtn?.setOnClickListener {
             florisboard?.let {
                 it.inputFeedbackManager.keyPress()
-                prefs.keyboard.oneHandedMode = OneHandedMode.OFF
+                PrefsReporitory.Settings.oneHandedMode = OneHandedMode.OFF
                 it.updateOneHandedPanelVisibility()
             }
         }
@@ -67,7 +74,7 @@ class OneHandedPanel : LinearLayout, ThemeManager.OnThemeUpdatedListener {
         moveBtn?.setOnClickListener {
             florisboard?.let {
                 it.inputFeedbackManager.keyPress()
-                prefs.keyboard.oneHandedMode = panelSide
+                PrefsReporitory.Settings.oneHandedMode = panelSide
                 it.updateOneHandedPanelVisibility()
             }
         }
