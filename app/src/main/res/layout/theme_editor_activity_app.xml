@@ -236,13 +236,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 itemDecoration="@{viewModel.colorItemDecoration}"
                 android:layout_width="match_parent"
-                android:layout_height="90sp"
+                android:layout_height="100sp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 bind:adapter="@{viewModel.stokeBorderAdapter}" />
