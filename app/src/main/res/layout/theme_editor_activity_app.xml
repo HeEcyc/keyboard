@@ -39,9 +39,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
+            android:translationY="-10sp"
             android:id="@+id/tabGradient"
             android:layout_width="match_parent"
             android:layout_height="5dp"
+            android:alpha="0.6"
             android:background="@drawable/top_gradient_shadow"
             app:layout_constraintTop_toBottomOf="@+id/topLayout" />
 
@@ -50,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/blue_gradient"
+            android:translationY="-10sp"
             app:layout_constraintTop_toBottomOf="@id/tabGradient"
             app:tabGravity="fill"
             app:tabIndicatorHeight="0sp"
@@ -117,6 +120,7 @@
             android:id="@+id/layoutGradent"
             android:layout_width="match_parent"
             android:layout_height="5dp"
+            android:alpha="0.6"
             android:background="@drawable/top_gradient_shadow"
             app:layout_constraintBottom_toTopOf="@id/barrier" />
 

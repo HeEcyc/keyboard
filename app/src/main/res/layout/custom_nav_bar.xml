@@ -8,6 +8,7 @@
         android:layout_height="100sp">
 
         <View
+            android:alpha="0.6"
             android:id="@+id/topShadow"
             android:layout_width="match_parent"
             android:layout_height="5sp"
