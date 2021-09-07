@@ -24,10 +24,12 @@ import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.ColorUtils
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.common.Pointer
 import dev.patrickgold.florisboard.common.PointerMap
@@ -60,6 +62,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.math.abs
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
+
 
 @Suppress("UNUSED_PARAMETER")
 class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture.Listener, CoroutineScope,
@@ -1077,8 +1080,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun onDrawComputedKey(canvas: Canvas, key: TextKey, renderView: TextKeyView) {
         if (!key.isVisible) return
-
         val label = key.label
+        Log.d("12345", "${key.computedData.label} ${key.computedData.code.toString()}")
         if (label != null) {
             renderView.labelPaint.let {
                 it.typeface = fontFamily ?: Typeface.MONOSPACE
@@ -1096,6 +1099,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                 }
             }
         }
+
 
         val hintedLabel = key.hintedLabel
         if (hintedLabel != null) {
@@ -1440,8 +1444,39 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun setButtonColor(buttonColor: String?) {
         buttonColor ?: return
-        handleKey { (it.background as? GradientDrawable)?.setColor(Color.parseColor(buttonColor)) }
+        handleKey {
+            val color = Color.parseColor(buttonColor)
+            val keyBackground = when {
+                isEnterKey(it) -> getDarkerShade(color, 0.4f)
+                isAddictionKey(it) -> getDarkerShade(color, 0.2f)
+                else -> color
+            }
+            (it.background as? GradientDrawable)?.setColor(keyBackground)
+        }
     }
+
+    fun isEnterKey(textKeyView: TextKeyView) = textKeyView.key?.computedData?.code == KeyCode.ENTER
+
+    fun isAddictionKey(textKeyView: TextKeyView): Boolean {
+        if (textKeyView.key?.computedData?.code in listOf(
+                KeyCode.DELETE,
+                KeyCode.SHIFT,
+                KeyCode.SHIFT_LOCK,
+                KeyCode.PHONE_PAUSE,
+                KeyCode.VIEW_SYMBOLS
+            )
+        ) return true
+        return false
+    }
+
+
+    private fun getDarkerShade(color: Int, factor: Float) =
+        ColorUtils.blendARGB(color, Color.BLACK, factor)
+//        return Color.rgb(
+//            (factor * Color.red(color)).toInt(),
+//            (factor * Color.green(color)).toInt(),
+//            (factor * Color.blue(color)).toInt()
+//        )
 
     private fun handleKey(action: (TextKeyView) -> Unit) {
         computedKeyboard?.keys()?.withIndex()?.forEach { (n, key) ->

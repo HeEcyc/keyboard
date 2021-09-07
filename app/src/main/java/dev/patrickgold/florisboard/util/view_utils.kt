@@ -83,12 +83,3 @@ tailrec fun Context?.getActivity(): AppCompatActivity? = when (this) {
 fun View.addInto(viewGroup: ViewGroup) = viewGroup.addView(this)
 
 fun Context.dpToPx(dp: Int) = (dp.toFloat() * resources.displayMetrics.density).toInt()
-
-
-private fun getDarkerShade(color: Int, factor: Float): Int {
-    return Color.rgb(
-        (factor * Color.red(color)).toInt(),
-        (factor * Color.green(color)).toInt(),
-        (factor * Color.blue(color)).toInt()
-    )
-}
