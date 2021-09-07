@@ -29,7 +29,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     private val dialogPermissions = DialogPermissions(this)
 
     private val inputManager by lazy { getSystemService(InputMethodManager::class.java) }
-    private val settingsLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { _ ->
+    private val settingsLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (isKeyboardActive() && !isKeyboardEnable()) Handler(Looper.getMainLooper())
             .postDelayed({ showEnableKeyboardDialog() }, 200)
     }

@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -69,6 +70,11 @@ fun FrameLayout.backgroundView(backgroundView: BackgroundViewRepository.Backgrou
     if (childCount > 0) removeViewAt(0)
     backgroundView ?: return
     addView(backgroundView.getViewFactory().createView(context))
+}
+
+@BindingAdapter("noAminatedCurretPage")
+fun ViewPager2.setPage(page: Int) {
+    setCurrentItem(page, false)
 }
 
 @BindingAdapter("textRes")
