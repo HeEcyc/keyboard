@@ -14,7 +14,7 @@ class FragmentCustomTheme :
     override fun provideViewModel() = viewModel
 
     override fun setupUI() {
-
+        viewModel.loadSavedThemes()
     }
 
 }

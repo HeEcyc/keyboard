@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="dev.patrickgold.florisboard.ui.crop.activity.CropViewModel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:layout_marginStart="16sp"
+            android:layout_marginEnd="16sp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/backButton"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_back"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/saveButton"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:onClick="@{()->viewModel.cropImage(cropView)}"
+                android:src="@drawable/ic_save"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.isseiaoki.simplecropview.CropImageView
+            android:id="@+id/cropView"
+            image="@{viewModel.imageUri}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16sp"
+            app:scv_background_color="@android:color/transparent"
+            app:scv_crop_mode="free"
+            app:scv_frame_color="@android:color/white"
+            app:scv_guide_color="@android:color/white"
+            app:scv_handle_color="@android:color/white"
+            app:scv_overlay_color="@android:color/transparent" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

@@ -249,6 +249,11 @@ class ThemeEditorViewModel : BaseViewModel() {
         ColorType.BUTTONS -> currentButtonsColor
     }
 
+    fun setCustomBackground(imagePath: String?) {
+        imagePath ?: return
+        backgroundView.set(BackgroundViewRepository.BackgroundView.ImageView(Uri.parse(imagePath)))
+    }
+
     data class StrokeType(val strokeRes: Int, val strokeRadius: Int)
 
 }

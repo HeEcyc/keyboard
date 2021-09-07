@@ -60,11 +60,6 @@ android {
             }
         }
 
-        ndk {
-            //abiFilters += listOf("x86", "x86_64", "armeabi-v7a", "arm64-v8a")
-            //abiFilters += listOf("armeabi-v7a", "arm64-v8a")
-        }
-
         sourceSets {
             maybeCreate("main").apply {
                 assets {
@@ -158,6 +153,7 @@ dependencies {
 
     implementation(files("libs/color_picker.aar"))
     implementation(files("libs/imagepicker.aar"))
+    implementation(files("libs/crop_view.aar"))
 
     kapt("androidx.room", "room-compiler", "2.2.6")
     implementation(project(":particles"))

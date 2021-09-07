@@ -6,8 +6,6 @@ import android.content.res.ColorStateList
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import dev.patrickgold.florisboard.FlorisApplication
@@ -38,6 +36,7 @@ fun setBackgroundTintColor(view: View, colorId: Int) {
         getColorFromAttr(view.context, colorId)
     )
 }
+
 fun setBackgroundTintColor2(view: View, colorInt: Int) {
     view.backgroundTintList = ColorStateList.valueOf(colorInt)
 }

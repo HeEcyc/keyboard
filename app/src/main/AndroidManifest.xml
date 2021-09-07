@@ -67,6 +67,13 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.crop.activity.CropActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".settings.ThemeManagerActivity"
             android:configChanges="orientation"
             android:exported="true"

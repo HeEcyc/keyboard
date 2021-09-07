@@ -73,7 +73,6 @@ class FlorisApplication : Application() {
                 flogOutputs = Flog.OUTPUT_CONSOLE
             )
             initICU()
-            CrashUtility.install(this)
             val prefs = Preferences.initDefault(this)
             val assetManager = AssetManager.init(this)
             SpellingManager.init(this, FlorisRef.assets("ime/spelling/config.json"))
@@ -82,7 +81,6 @@ class FlorisApplication : Application() {
             ThemeManager.init(this, assetManager)
             prefs.initDefaultPreferences()
         } catch (e: Exception) {
-            CrashUtility.stageException(e)
             return
         }
 
