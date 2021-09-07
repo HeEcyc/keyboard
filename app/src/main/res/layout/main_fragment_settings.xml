@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/settings"
                 android:textColor="@color/textColorSecondaty"
-                android:textSize="48sp" />
+                android:textSize="38sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/MediumText"
@@ -53,43 +53,43 @@
                 android:background="@color/dividerColor" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
-                style="@style/MediumText"
+                style="@style/MSwitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Show emoji"
+                android:checked="@={viewModel.showEmoji}"
+                android:text="@string/show_emoji"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:checked="@={viewModel.showEmoji}"/>
+                android:textSize="16sp" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
-                style="@style/MediumText"
+                style="@style/MSwitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/main_magin_top"
-                android:text="Tips"
+                android:checked="@={viewModel.tips}"
+                android:text="@string/tips"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:checked="@={viewModel.tips}"/>
+                android:textSize="16sp" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
-                style="@style/MediumText"
+                style="@style/MSwitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/main_magin_top"
-                android:text="Keyboard swipe"
+                android:checked="@={viewModel.keyboardSwipe}"
+                android:text="@string/keyboard_swipe"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:checked="@={viewModel.keyboardSwipe}"/>
+                android:textSize="16sp" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
-                style="@style/MediumText"
+                style="@style/MSwitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/main_magin_top"
-                android:text="Show Number row"
+                android:checked="@={viewModel.showNumberRow}"
+                android:text="@string/show_number_row"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:checked="@={viewModel.showNumberRow}"/>
+                android:textSize="16sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -100,8 +100,9 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:onClick="@{(_) -> viewModel.onOneHandedModeClick()}">
+                android:onClick="@{(_) -> viewModel.onOneHandedModeClick()}"
+                android:orientation="vertical">
+
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/MediumText"
                     android:layout_width="match_parent"
@@ -109,13 +110,14 @@
                     android:text="@string/one_handed_mode"
                     android:textColor="@color/textColorMain"
                     android:textSize="16sp" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/MediumText"
+                    textRes="@{viewModel.oneHandedMode}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    textRes="@{viewModel.oneHandedMode}"
                     android:textColor="@color/textColorSecondaty"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -123,30 +125,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/main_magin_top"
+                android:onClick="@{(_) -> viewModel.onKeyboardHeightClick()}"
                 android:text="@string/keyboard_height"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:onClick="@{(_) -> viewModel.onKeyboardHeightClick()}"/>
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/main_magin_top"
+                android:onClick="@{(_) -> viewModel.onLanguageChangeClick()}"
                 android:text="@string/language_change"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:onClick="@{(_) -> viewModel.onLanguageChangeClick()}"/>
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/main_magin_top"
+                android:onClick="@{(_) -> viewModel.onSpecialSymbolsEditorClick()}"
                 android:text="@string/special_symbols_editor"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:onClick="@{(_) -> viewModel.onSpecialSymbolsEditorClick()}"/>
+                android:textSize="16sp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -16,13 +16,13 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/mainScreens"
+            noAminatedCurretPage="@{viewModel.currentPage}"
             android:layout_width="match_parent"
             android:layout_height="0sp"
             android:layout_marginBottom="65sp"
             android:layout_weight="1"
             android:overScrollMode="never"
             bind:adapter="@{viewModel.adapter}"
-            bind:currentItem="@{viewModel.currentPage}"
             bind:layout_constraintBottom_toBottomOf="parent"
             bind:layout_constraintTop_toTopOf="parent" />
 

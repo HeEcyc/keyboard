@@ -28,6 +28,7 @@ import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardIconSet
 import dev.patrickgold.florisboard.ime.text.layout.LayoutManager
 import dev.patrickgold.florisboard.ui.base.BaseActivity
 import dev.patrickgold.florisboard.ui.crop.activity.CropActivity
+import dev.patrickgold.florisboard.ui.main.activity.MainActivity
 import dev.patrickgold.florisboard.util.BUNDLE_CROPPED_IMAGE_KEY
 import kotlinx.coroutines.launch
 
@@ -69,6 +70,10 @@ class ThemeEditorActivity :
     private val viewModel: ThemeEditorViewModel by viewModels()
 
     override fun setupUI() {
+
+        binding.saveButton.setOnClickListener { onAttachTheme() }
+        binding.backButton.setOnClickListener { onBackPressed()}
+
         textKeyboardIconSet = TextKeyboardIconSet.new(this)
 
         viewModel.colorPicker.observe(this) { showColorPicker(it) }
@@ -80,7 +85,6 @@ class ThemeEditorActivity :
         binding.keyboardPreview.setIconSet(textKeyboardIconSet)
         binding.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
         binding.keyboardPreview.sync()
-        binding.ss.root.sync()
 
         lifecycleScope.launch {
             binding.keyboardPreview.setComputedKeyboard(
@@ -147,6 +151,13 @@ class ThemeEditorActivity :
             if (it is TextView) it.typeface = ResourcesCompat.getFont(this, font)
             return@forEach
         }
+    }
+
+    fun onAttachTheme() {
+        Intent(this, MainActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            .let(::startActivity)
+        finishAffinity()
     }
 
 }

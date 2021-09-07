@@ -1,30 +1,71 @@
 package dev.patrickgold.florisboard.ui.preview.theme.activity
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
 import android.view.View
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.ThemePreviewActivityBinding
+import dev.patrickgold.florisboard.ime.core.Subtype
+import dev.patrickgold.florisboard.ime.keyboard.ComputingEvaluator
+import dev.patrickgold.florisboard.ime.keyboard.DefaultComputingEvaluator
+import dev.patrickgold.florisboard.ime.keyboard.KeyData
+import dev.patrickgold.florisboard.ime.text.key.CurrencySet
+import dev.patrickgold.florisboard.ime.text.key.KeyCode
+import dev.patrickgold.florisboard.ime.text.keyboard.KeyboardMode
+import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyData
+import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardIconSet
+import dev.patrickgold.florisboard.ime.text.layout.LayoutManager
 import dev.patrickgold.florisboard.ui.base.BaseActivity
+import dev.patrickgold.florisboard.ui.main.activity.MainActivity
 import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorActivity
+import kotlinx.coroutines.launch
 
 class ThemePreviewActivity :
     BaseActivity<ThemePreviewViewModel, ThemePreviewActivityBinding>(R.layout.theme_preview_activity),
     View.OnClickListener {
 
     private val viewModel: ThemePreviewViewModel by viewModels()
+    private val textComputingEvaluator = object : ComputingEvaluator by DefaultComputingEvaluator {
+        override fun evaluateVisible(data: KeyData): Boolean {
+            return data.code != KeyCode.SWITCH_TO_MEDIA_CONTEXT
+        }
+
+        override fun isSlot(data: KeyData): Boolean {
+            return CurrencySet.isCurrencySlot(data.code)
+        }
+
+        override fun getSlotData(data: KeyData): KeyData {
+            return TextKeyData(label = ".")
+        }
+    }
 
     override fun setupUI() {
         binding.backButton.setOnClickListener(this)
         binding.saveButton.setOnClickListener(this)
         binding.editButton.setOnClickListener(this)
+
+        binding.keyboardPreview.setIconSet(TextKeyboardIconSet.new(this))
+        binding.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
+        binding.keyboardPreview.sync()
+
+        lifecycleScope.launch {
+            binding.keyboardPreview.setComputedKeyboard(
+                LayoutManager().computeKeyboardAsync(
+                    KeyboardMode.CHARACTERS,
+                    Subtype.DEFAULT
+                ).await()
+            )
+        }
     }
 
     override fun provideViewModel() = viewModel
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.saveButton -> saveKeyboardTheme()
+            R.id.backButton -> onBackPressed()
+            R.id.saveButton -> onAttachTheme()
             R.id.editButton -> editKeyboardTheme()
         }
         finish()
@@ -34,8 +75,11 @@ class ThemePreviewActivity :
         startActivity(Intent(this, ThemeEditorActivity::class.java))
     }
 
-    private fun saveKeyboardTheme() {
-
+    fun onAttachTheme() {
+        Intent(this, MainActivity::class.java)
+            .addFlags(FLAG_ACTIVITY_REORDER_TO_FRONT)
+            .let(::startActivity)
+        finishAffinity()
     }
 
 }

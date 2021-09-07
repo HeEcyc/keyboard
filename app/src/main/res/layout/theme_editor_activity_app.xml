@@ -16,15 +16,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/topLayout"
             android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:layout_marginStart="16sp"
-            android:layout_marginEnd="16sp"
+            android:layout_height="?actionBarSize"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/backButton"
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
+                android:padding="@dimen/top_button_padding"
                 android:src="@drawable/ic_back"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -33,15 +32,18 @@
                 android:id="@+id/saveButton"
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
+                android:padding="@dimen/top_button_padding"
                 android:src="@drawable/ic_save"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
+            android:translationY="-10sp"
             android:id="@+id/tabGradient"
             android:layout_width="match_parent"
             android:layout_height="5dp"
+            android:alpha="0.6"
             android:background="@drawable/top_gradient_shadow"
             app:layout_constraintTop_toBottomOf="@+id/topLayout" />
 
@@ -50,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/blue_gradient"
+            android:translationY="-10sp"
             app:layout_constraintTop_toBottomOf="@id/tabGradient"
             app:tabGravity="fill"
             app:tabIndicatorHeight="0sp"
@@ -86,21 +89,6 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <include
-                android:layout_width="match_parent"
-                android:layout_height="200sp"
-                android:id="@+id/ss"
-                layout="@layout/smartbar" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
         <FrameLayout
             colorBackground="@{viewModel.currentBackgroundColor}"
             imageBackground="@{viewModel.backgroundView}"
@@ -132,6 +120,7 @@
             android:id="@+id/layoutGradent"
             android:layout_width="match_parent"
             android:layout_height="5dp"
+            android:alpha="0.6"
             android:background="@drawable/top_gradient_shadow"
             app:layout_constraintBottom_toTopOf="@id/barrier" />
 
@@ -247,13 +236,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 itemDecoration="@{viewModel.colorItemDecoration}"
                 android:layout_width="match_parent"
-                android:layout_height="90sp"
+                android:layout_height="100sp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 bind:adapter="@{viewModel.stokeBorderAdapter}" />

@@ -10,7 +10,7 @@ class LanguageSelectorActivity :
     private val viewModel: LanguageSelectorViewModel by viewModels()
 
     override fun setupUI() {
-
+        binding.backButton.setOnClickListener { onBackPressed() }
     }
 
     override fun provideViewModel() = viewModel
