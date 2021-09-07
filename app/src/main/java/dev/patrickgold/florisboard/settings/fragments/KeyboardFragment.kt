@@ -26,7 +26,8 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.ime.core.Preferences
-import dev.patrickgold.florisboard.ime.onehanded.OneHandedMode
+import dev.patrickgold.florisboard.repository.PrefsReporitory
+import dev.patrickgold.florisboard.util.enums.OneHandedMode
 import dev.patrickgold.florisboard.settings.components.DialogSeekBarPreference
 
 class KeyboardFragment : PreferenceFragmentCompat(),
@@ -64,7 +65,7 @@ class KeyboardFragment : PreferenceFragmentCompat(),
                 heightFactorCustom?.isVisible = sharedPrefs?.getString(key, "") == "custom"
             }
             Preferences.Keyboard.ONE_HANDED_MODE -> {
-                oneHandedModeScaleFactor?.isEnabled = sharedPrefs?.getString(key, "") != OneHandedMode.OFF
+                oneHandedModeScaleFactor?.isEnabled = PrefsReporitory.Settings.oneHandedMode != OneHandedMode.OFF
             }
             Preferences.Keyboard.UTILITY_KEY_ENABLED -> {
                 utilityKeyAction?.isVisible = sharedPrefs?.getBoolean(key, false) == true

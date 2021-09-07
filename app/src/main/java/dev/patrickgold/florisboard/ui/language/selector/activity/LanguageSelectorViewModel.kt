@@ -4,22 +4,33 @@ import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.ItemLanguageBinding
 import dev.patrickgold.florisboard.ui.base.BaseViewModel
 import dev.patrickgold.florisboard.ui.base.createAdapter
-import dev.patrickgold.florisboard.ui.custom.HorizontalItemDecoration
+import dev.patrickgold.florisboard.ui.custom.ItemDecorationWithEnds
+import dev.patrickgold.florisboard.util.enums.Language
+import dev.patrickgold.florisboard.util.toPx
 
 class LanguageSelectorViewModel : BaseViewModel() {
 
-    val itemDecoration = HorizontalItemDecoration(50)
-    val adapter = createAdapter<LanguageModel, ItemLanguageBinding>(R.layout.item_language) {
-        initItems = getLanguageModels()
+    val itemDecoration = ItemDecorationWithEnds(
+        24.toPx(),
+        5.toPx(),
+        5.toPx(),
+        5.toPx(),
+        5.toPx(),
+        24.toPx(),
+        16.toPx(),
+        16.toPx()
+    )
+    val adapter = createAdapter<Language, ItemLanguageBinding>(R.layout.item_language) {
+        initItems = Language.values().toList()
         onItemClick = ::handleLanguagePress
     }
 
-    private fun getLanguageModels() = listOf(LanguageModel())
-
-    private fun handleLanguagePress(languageModel: LanguageModel) {
-        languageModel.isSelected = !languageModel.isSelected
-        adapter.updateItem(languageModel)
+    private fun handleLanguagePress(language: Language) {
+        val canChangeSelection = !language.isSelected || Language.values().count { it.isSelected } > 1
+        if (canChangeSelection) {
+            language.isSelected = !language.isSelected
+            adapter.updateItem(language)
+        }
     }
 
-    data class LanguageModel(var name: String = System.currentTimeMillis().toString(), var isSelected: Boolean = false)
 }

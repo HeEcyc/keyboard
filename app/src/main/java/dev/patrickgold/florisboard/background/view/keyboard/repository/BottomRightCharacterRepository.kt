@@ -1,8 +1,10 @@
 package dev.patrickgold.florisboard.background.view.keyboard.repository
 
+import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.ime.keyboard.AbstractKeyData
 import dev.patrickgold.florisboard.ime.popup.PopupSet
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyData
+import dev.patrickgold.florisboard.repository.PrefsReporitory
 
 typealias Character = Pair<Int, String>
 
@@ -31,8 +33,8 @@ object BottomRightCharacterRepository {
     )
 
     var selectedBottomRightCharacterCode: Int
-        get() = 38//defaultBottomRightCharacter.first
-        set(value) {}
+        get() = PrefsReporitory.Settings.specialSymbol
+        set(value) { PrefsReporitory.Settings.specialSymbol = value }
 
     val selectedBottomRightCharacterLabel: String
         get() = bottomRightCharacters.firstOrNull { it.first == selectedBottomRightCharacterCode }?.second ?: mainPopupRightBottomCharacter.second
@@ -59,5 +61,17 @@ object BottomRightCharacterRepository {
     }
 
     private fun Character.toTextKeyData() = TextKeyData(code = first, label = second)
+
+    enum class SelectableCharacter(val code: Int, val label: String, val displayName: Int) {
+        DOT(46 , ".", R.string.special_symbols_editor_display_name_dot),
+        QUESTION(63 , "?", R.string.special_symbols_editor_display_name_question),
+        EXCLAMATION(33 , "!", R.string.special_symbols_editor_display_name_exclamation),
+        HASH(35 , "#", R.string.special_symbols_editor_display_name_hash);
+
+        companion object {
+            fun from(code: Int) = values().first { it.code == code }
+        }
+
+    }
 
 }

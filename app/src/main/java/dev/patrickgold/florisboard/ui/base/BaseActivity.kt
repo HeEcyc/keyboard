@@ -25,7 +25,12 @@ abstract class BaseActivity<TViewModel : BaseViewModel, TBinding : ViewDataBindi
         binding = DataBindingUtil.setContentView(this, layout)
         binding.setVariable(BR.viewModel, provideViewModel())
         binding.lifecycleOwner = this
+        initListeners()
         setupUI()
+    }
+
+    private fun initListeners() {
+        provideViewModel().newChooserDialogs.observe(this) { it.show(this) }
     }
 
     abstract fun setupUI()

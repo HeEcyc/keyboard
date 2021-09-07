@@ -7,6 +7,7 @@ import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
@@ -69,6 +70,9 @@ fun FrameLayout.backgroundView(backgroundView: BackgroundViewRepository.Backgrou
     backgroundView ?: return
     addView(backgroundView.getViewFactory().createView(context))
 }
+
+@BindingAdapter("textRes")
+fun TextView.setTextFromResource(res: Int) = setText(res)
 
 @BindingAdapter("image")
 fun CropImageView.setImage(fileUri: String?) {
