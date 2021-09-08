@@ -791,7 +791,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             0.90f
         } else {
             1.00f
-        }
+        }.div(2f)
 
         super.onMeasure(
             MeasureSpec.makeMeasureSpec(desiredWidth.roundToInt(), MeasureSpec.EXACTLY),
