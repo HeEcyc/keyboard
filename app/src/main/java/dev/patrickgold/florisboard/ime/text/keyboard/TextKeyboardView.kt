@@ -25,7 +25,11 @@ import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
 import android.view.MotionEvent
+import android.view.View
 import android.view.animation.AccelerateInterpolator
+import androidx.annotation.FontRes
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.ColorUtils
 import dev.patrickgold.florisboard.R
@@ -178,6 +182,13 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        addOnAttachStateChangeListener(object : OnAttachStateChangeListener {
+            override fun onViewAttachedToWindow(v: View?) {
+
+            }
+
+            override fun onViewDetachedFromWindow(v: View?) {}
+        })
         context.obtainStyledAttributes(attrs, R.styleable.TextKeyboardView).apply {
             isPreviewMode = getBoolean(R.styleable.TextKeyboardView_isPreviewKeyboard, false)
             isTouchable = !isPreviewMode
@@ -767,6 +778,27 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        (parent as? ConstraintLayout)?.let {
+            ConstraintSet().apply {
+
+                clear(id, ConstraintSet.TOP)
+                clear(id, ConstraintSet.LEFT)
+                clear(id, ConstraintSet.RIGHT)
+                clear(id, ConstraintSet.BOTTOM)
+
+                connect(id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+                connect(id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+                connect(id, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
+                connect(id, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
+                constrainHeight(id, ConstraintSet.WRAP_CONTENT)
+                if (id == R.id.main_keyboard_view) {
+                    constrainPercentWidth(
+                        id,
+                        PrefsReporitory.Settings.keyboardHeight.mainKeyboardSizePercent
+                    )
+                }
+            }.applyTo(it)
+        }
         val desiredWidth = MeasureSpec.getSize(widthMeasureSpec).toFloat()
         val desiredHeight = if (isSmartbarKeyboardView || isPreviewMode) {
             MeasureSpec.getSize(heightMeasureSpec).toFloat()
@@ -777,7 +809,12 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             0.90f
         } else {
             1.00f
-        }
+        }.times(
+            if (id == R.id.main_keyboard_view)
+                PrefsReporitory.Settings.keyboardHeight.mainKeyboardSizePercent
+            else
+                1f
+        )
 
         super.onMeasure(
             MeasureSpec.makeMeasureSpec(desiredWidth.roundToInt(), MeasureSpec.EXACTLY),
@@ -800,6 +837,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             } else {
                 measuredWidth / 10
             }
+            if (id == R.id.keyboard) bounds.left -= 1
             bounds.bottom = when {
                 isSmartbarKeyboardView -> {
                     measuredHeight
@@ -810,7 +848,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                 else -> {
                     measuredHeight / keyboard.rowCount.coerceAtLeast(1)
                 }
-            }
+            }.times(if (id == R.id.keyboard) 0.95f else 1f).toInt()
         }
         desiredKey.visibleBounds.apply {
             left = keyMarginH
@@ -909,7 +947,12 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                     KeyCode.VIEW_NUMERIC,
                     KeyCode.VIEW_NUMERIC_ADVANCED -> labelPaintTextSize * 0.55f
                     else -> labelPaintTextSize
-                }
+                }.times(
+                    if (id == R.id.main_keyboard_view)
+                        PrefsReporitory.Settings.keyboardHeight.mainKeyboardLabelFontSizePercent
+                    else
+                        1f
+                )
             }
             rv.hintedLabelPaint.let {
                 it.color = Color.parseColor(theme.buttonColor)
@@ -917,7 +960,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                 it.textSize = hintedLabelPaintTextSize
             }
         }
-
     }
 
     /**
@@ -1040,7 +1082,26 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val foregroundDrawableId = key.foregroundDrawableId
         if (foregroundDrawableId != null) {
             iconSet?.withDrawable(foregroundDrawableId) {
-                bounds = key.visibleDrawableBounds
+                bounds = key.visibleDrawableBounds.let {
+                    if (id == R.id.main_keyboard_view) {
+                        val centerX = (it.left + (it.right - it.left) / 2f).toInt()
+                        val centerY = (it.top + (it.bottom - it.top) / 2f).toInt()
+                        Rect(
+                            centerX - (centerX - it.left).times(
+                                PrefsReporitory.Settings.keyboardHeight.mainKeyboardDrawableSizePercent
+                            ).toInt(),
+                            centerY - (centerY - it.top).times(
+                                PrefsReporitory.Settings.keyboardHeight.mainKeyboardDrawableSizePercent
+                            ).toInt(),
+                            centerX + (it.right - centerX).times(
+                                PrefsReporitory.Settings.keyboardHeight.mainKeyboardDrawableSizePercent
+                            ).toInt(),
+                            centerY + (it.bottom - centerY).times(
+                                PrefsReporitory.Settings.keyboardHeight.mainKeyboardDrawableSizePercent
+                            ).toInt()
+                        )
+                    } else it
+                }
                 setTint(renderView.labelPaint.color)
                 draw(canvas)
             }
