@@ -17,6 +17,7 @@ import dev.patrickgold.florisboard.background.view.keyboard.repository.BottomRig
 import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.data.NewTheme
 import dev.patrickgold.florisboard.data.Theme
+import dev.patrickgold.florisboard.data.db.ThemeDataBase
 import dev.patrickgold.florisboard.databinding.ItemKeyboardNewBinding
 import dev.patrickgold.florisboard.databinding.ItemKeyboardThemeBinding
 import dev.patrickgold.florisboard.ime.core.Subtype
@@ -77,9 +78,13 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         initItems = listOf(NewTheme)
         viewBinding = { inflater, viewGroup, viewType -> getViewBinding(inflater, viewGroup, viewType) }
         itemViewTypeProvider = ::getThemeViewType
+        onBind = { theme, binding ->
+            if (binding is ItemKeyboardThemeBinding)
+                syncKeyboard(binding.keyboard, theme as KeyboardTheme)
+        }
         onItemClick = {
             if (it is NewTheme) showCreateThemeActivity()
-            else onThemeClick::postValue
+            else onThemeClick.postValue(it as KeyboardTheme)
         }
     }
 
@@ -172,7 +177,10 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     }
 
     fun loadSavedThemes() {
-
+        viewModelScope.launch(Dispatchers.Main) {
+            val themes = withContext(Dispatchers.IO) { ThemeDataBase.dataBase.getThemesDao().getTheme().reversed() }
+            customThemeAdapter.addItems(themes)
+        }
     }
 
     class Factory(private val adapter: VPAdapter) : ViewModelProvider.Factory {
@@ -192,4 +200,18 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     private fun showCreateThemeActivity() {
         nextActivity.postValue(ThemeEditorActivity::class.java)
     }
+
+    fun handleNewTheme(keyboardTheme: KeyboardTheme?) {
+        keyboardTheme ?: return
+        keyboardTheme.id = ThemeDataBase.dataBase.getThemesDao().insertTheme(keyboardTheme)
+        customThemeAdapter
+            .getData()
+            .firstOrNull { it is KeyboardTheme && it.id == keyboardTheme.id }
+            ?.let { currentTheme ->
+                currentTheme as KeyboardTheme
+                currentTheme.copyTheme(keyboardTheme)
+                customThemeAdapter.updateItem(currentTheme)
+            } ?: customThemeAdapter.addItem(1, keyboardTheme)
+    }
+
 }

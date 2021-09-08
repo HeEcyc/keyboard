@@ -5,7 +5,6 @@ import android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.google.gson.Gson
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.databinding.ThemePreviewActivityBinding
@@ -29,6 +28,8 @@ class ThemePreviewActivity :
     BaseActivity<ThemePreviewViewModel, ThemePreviewActivityBinding>(R.layout.theme_preview_activity),
     View.OnClickListener {
 
+    private val currentTheme: KeyboardTheme by lazy { intent.getSerializableExtra(BUNDLE_THEME_KEY) as KeyboardTheme }
+
     private val viewModel: ThemePreviewViewModel by viewModels()
     private val textComputingEvaluator = object : ComputingEvaluator by DefaultComputingEvaluator {
         override fun evaluateVisible(data: KeyData): Boolean {
@@ -45,8 +46,6 @@ class ThemePreviewActivity :
     }
 
     override fun setupUI() {
-        val currentTheme = Gson().fromJson(intent.getStringExtra(BUNDLE_THEME_KEY), KeyboardTheme::class.java)
-
         viewModel.backgroundImage.set(currentTheme.backgroundImagePath)
         viewModel.currentBackgroundColor.set(currentTheme.backgroundColor)
 
@@ -59,10 +58,10 @@ class ThemePreviewActivity :
         binding.keyboardPreview.sync()
 
         lifecycleScope.launch {
-            binding.keyboardPreview.setComputedKeyboard(
-                LayoutManager().computeKeyboardAsync(KeyboardMode.CHARACTERS, Subtype.DEFAULT).await(),
-                currentTheme
-            )
+            binding.keyboardPreview
+                .setComputedKeyboard(
+                    LayoutManager().computeKeyboardAsync(KeyboardMode.CHARACTERS, Subtype.DEFAULT).await(), currentTheme
+                )
         }
     }
 
@@ -78,7 +77,7 @@ class ThemePreviewActivity :
 
     private fun editKeyboardTheme() {
         Intent(this, ThemeEditorActivity::class.java)
-            .putExtra(BUNDLE_THEME_KEY, intent.getStringExtra(BUNDLE_THEME_KEY))
+            .putExtra(BUNDLE_THEME_KEY, currentTheme)
             .let(::startActivity)
     }
 

@@ -57,7 +57,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
 
     private fun onThemeClick(keyboardTheme: KeyboardTheme) {
         Intent(this@MainActivity, ThemePreviewActivity::class.java)
-            .putExtra(BUNDLE_THEME_KEY, Gson().toJson(keyboardTheme))
+            .putExtra(BUNDLE_THEME_KEY, keyboardTheme)
             .let(::startActivity)
     }
 
@@ -89,6 +89,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        viewModel.handleNewTheme(intent.getSerializableExtra(BUNDLE_THEME_KEY) as? KeyboardTheme)
         DialogDone().show(supportFragmentManager)
     }
 }

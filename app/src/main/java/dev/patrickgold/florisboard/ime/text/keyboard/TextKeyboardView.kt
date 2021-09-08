@@ -24,10 +24,8 @@ import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
-import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.ColorUtils
 import dev.patrickgold.florisboard.R
@@ -72,8 +70,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     private var computedKeyboard: TextKeyboard? = null
     private var iconSet: TextKeyboardIconSet? = null
-    private var fontFamily: Typeface? = null
-    private var keyColor: Int? = null
+
     private var keyboardTheme: KeyboardTheme = KeyboardTheme()
     private var cachedState: KeyboardState = KeyboardState.new(maskOfInterest = KeyboardState.INTEREST_TEXT)
 
@@ -270,11 +267,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        fontFamily = PrefsReporitory.fontFamilyRes
-            .takeIf { it != -1 }
-            ?.let { ResourcesCompat.getFont(context, it)!! }
-        keyColor = PrefsReporitory.keyColor.takeIf { it != -1 }
-
+        //if(!isPreviewMode) keyboardTheme = PrefsReporitory.theme
         glideTypingDetector.let {
             it.registerListener(this)
             it.registerListener(glideTypingManager)
@@ -902,6 +895,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     private fun prepareKey(key: TextKey, theme: KeyboardTheme, renderView: TextKeyView) {
         renderView.let { rv ->
+            (rv.background as? GradientDrawable)?.alpha = (255 * (theme.opacity / 100f)).toInt()
             rv.labelPaint.let {
                 it.color = Color.parseColor(theme.keyTextColor)
                 if (computedKeyboard?.mode == KeyboardMode.CHARACTERS && (key.computedData.code == KeyCode.SPACE || key.computedData.code == KeyCode.CJK_SPACE)) {
@@ -1011,7 +1005,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun onDrawComputedKey(canvas: Canvas, key: TextKey, renderView: TextKeyView) {
         if (!key.isVisible) return
-        Log.d("12345", "${key.computedData.code} ${key.computedData.label}")
         val label = key.label
         if (label != null) {
             renderView.labelPaint.let {
@@ -1338,7 +1331,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         percent ?: return
         keyboardTheme.opacity = percent
         handleKey {
-            (it.background as? GradientDrawable)?.alpha = (255 * (percent / 100f)).toInt()
+            invalidate(it.key ?: return@handleKey)
         }
     }
 
@@ -1420,4 +1413,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         setButtonColor(buttonColor, keyboardTheme.imeButtonColor, keyboardTheme.buttonSecondaryColor)
         setKeyColor(keyboardTheme.keyTextColor)
     }
+
+    fun getKeyboardTheme() = keyboardTheme
 }

@@ -7,6 +7,7 @@ import androidx.databinding.ObservableField
 import androidx.databinding.ViewDataBinding
 import dev.patrickgold.florisboard.FlorisApplication
 import dev.patrickgold.florisboard.R
+import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.databinding.ItemColorBinding
 import dev.patrickgold.florisboard.databinding.ItemColorNewBinding
 import dev.patrickgold.florisboard.databinding.ItemFontBinding
@@ -14,6 +15,7 @@ import dev.patrickgold.florisboard.databinding.ItemKeyboardBackgroundAssetBindin
 import dev.patrickgold.florisboard.databinding.ItemKeyboardBackgroundNewBinding
 import dev.patrickgold.florisboard.databinding.ItemNoColorBinding
 import dev.patrickgold.florisboard.databinding.ItemStrokeBinding
+import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
 import dev.patrickgold.florisboard.ui.base.AppBaseAdapter
 import dev.patrickgold.florisboard.ui.base.BaseViewModel
 import dev.patrickgold.florisboard.ui.base.createAdapter
@@ -22,6 +24,7 @@ import dev.patrickgold.florisboard.util.SingleLiveData
 import java.io.File
 
 class ThemeEditorViewModel : BaseViewModel() {
+
 
     private val bgFolderNamePath = "images"
 
@@ -34,6 +37,8 @@ class ThemeEditorViewModel : BaseViewModel() {
     val currentKeyboardBackgorund = ObservableField<String?>()
 
     val colorPicker = SingleLiveData<ColorType>()
+    val onThemeSaved = SingleLiveData<KeyboardTheme>()
+
     val keyBGOpacity = ObservableField<Int>()
     val itemDecoration = HorizontalItemDecoration(40)
     val colorItemDecoration = HorizontalItemDecoration(55)
@@ -118,6 +123,7 @@ class ThemeEditorViewModel : BaseViewModel() {
                 item.isSelected = true
                 getColorObservableField(colorType).set(item.textColor)
                 currentAdapter.updateItem(item)
+                if (colorType == ColorType.BACKGROUND) currentKeyboardBackgorund.set(null)
             }
             is NewColor -> colorPicker.postValue(colorType)
             else -> currentStrokeColor.set(null)
@@ -205,6 +211,7 @@ class ThemeEditorViewModel : BaseViewModel() {
     fun onColorSelected(selectedColor: Int, colorType: ColorType) {
         clearSelectedItemInAdapter(getAdapterByColorType((colorType)))
         getColorObservableField(colorType).set(String.format("#%06X", 0xFFFFFF and selectedColor))
+        if (colorType == ColorType.BACKGROUND) currentKeyboardBackgorund.set(null)
     }
 
     data class KeyboardFont(val name: String, val fontRes: Int, var isSelected: Boolean = false)
@@ -255,4 +262,12 @@ class ThemeEditorViewModel : BaseViewModel() {
 
     data class StrokeType(val strokeRes: Int, val strokeRadius: Int)
 
+    fun saveTheme(keyboardView: TextKeyboardView) {
+        val keyboardTheme = keyboardView.getKeyboardTheme()
+        keyboardTheme.apply {
+            backgroundImagePath = currentKeyboardBackgorund.get()
+            backgroundColor = currentBackgroundColor.get()
+        }
+        onThemeSaved.postValue(keyboardTheme)
+    }
 }

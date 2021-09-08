@@ -12,7 +12,6 @@ import androidx.lifecycle.lifecycleScope
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import com.google.android.material.tabs.TabLayout
-import com.google.gson.Gson
 import com.nguyenhoanglam.imagepicker.model.Config
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker
 import dev.patrickgold.florisboard.R
@@ -40,10 +39,8 @@ class ThemeEditorActivity :
     TabLayout.OnTabSelectedListener {
 
     private val currentTheme: KeyboardTheme by lazy {
-        Gson().fromJson(
-            intent.getStringExtra(BUNDLE_THEME_KEY),
-            KeyboardTheme::class.java
-        ) ?: KeyboardTheme()
+        intent.getSerializableExtra(BUNDLE_THEME_KEY) as? KeyboardTheme
+            ?: KeyboardTheme()
     }
 
     private val cropImageLauncher =
@@ -82,7 +79,6 @@ class ThemeEditorActivity :
 
     override fun setupUI() {
 
-        binding.saveButton.setOnClickListener { onAttachTheme() }
         binding.backButton.setOnClickListener { onBackPressed() }
 
         viewModel.currentKeyboardBackgorund.set(currentTheme.backgroundImagePath)
@@ -92,8 +88,10 @@ class ThemeEditorActivity :
 
         viewModel.colorPicker.observe(this) { showColorPicker(it) }
         viewModel.imagePicker.observe(this, { showImagePicker() })
+        viewModel.onThemeSaved.observe(this, { onAttachTheme(it) })
 
         binding.progressLayout.onProgress = { viewModel.keyBGOpacity.set(it) }
+
         binding.editCategoryTabs.addOnTabSelectedListener(this)
         binding.editCategoryTabs.getTabAt(2)?.select()
         binding.keyboardPreview.setIconSet(textKeyboardIconSet)
@@ -167,9 +165,10 @@ class ThemeEditorActivity :
         }
     }
 
-    fun onAttachTheme() {
+    fun onAttachTheme(keyboardTheme: KeyboardTheme) {
         Intent(this, MainActivity::class.java)
             .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            .putExtra(BUNDLE_THEME_KEY, keyboardTheme)
             .let(::startActivity)
         finishAffinity()
     }

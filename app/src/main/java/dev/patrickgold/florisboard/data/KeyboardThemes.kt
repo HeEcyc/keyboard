@@ -2,10 +2,9 @@ package dev.patrickgold.florisboard.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import dev.patrickgold.florisboard.R
 import java.io.Serializable
 
-sealed class Theme
+sealed class Theme : Serializable
 
 object NewTheme : Theme()
 
@@ -24,4 +23,19 @@ data class KeyboardTheme(
     var imeButtonColor: String = "#5F97F6",
     var buttonSecondaryColor: String = "#373C40",
     var opacity: Int = 100
-) : Theme(), Serializable
+) : Theme(), Serializable {
+
+    fun copyTheme(keyboardTheme: KeyboardTheme) {
+        this.backgoundType = keyboardTheme.backgoundType
+        this.backgroundImagePath = keyboardTheme.backgroundImagePath
+        this.backgroundColor = keyboardTheme.backgroundColor
+        this.keyFont = keyboardTheme.keyFont
+        this.keyTextColor = keyboardTheme.keyTextColor
+        this.radius = keyboardTheme.radius
+        this.strokeColor = keyboardTheme.strokeColor
+        this.buttonColor = keyboardTheme.buttonColor
+        this.imeButtonColor = keyboardTheme.imeButtonColor
+        this.buttonSecondaryColor = keyboardTheme.buttonSecondaryColor
+        this.opacity = keyboardTheme.opacity
+    }
+}
