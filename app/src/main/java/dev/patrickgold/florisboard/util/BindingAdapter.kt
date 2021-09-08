@@ -84,7 +84,6 @@ fun CropImageView.setImage(fileUri: String?) {
 
 @BindingAdapter("image")
 fun AppCompatImageView.setImage(uri: String?) {
-    setBackgroundColor(Color.TRANSPARENT)
     uri ?: return
     Glide.with(this)
         .load(Uri.parse(uri))

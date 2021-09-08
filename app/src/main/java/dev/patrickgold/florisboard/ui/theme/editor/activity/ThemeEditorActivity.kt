@@ -39,11 +39,11 @@ class ThemeEditorActivity :
     BaseActivity<ThemeEditorViewModel, ThemeEditorActivityAppBinding>(R.layout.theme_editor_activity_app),
     TabLayout.OnTabSelectedListener {
 
-    val currentTheme: KeyboardTheme by lazy {
+    private val currentTheme: KeyboardTheme by lazy {
         Gson().fromJson(
             intent.getStringExtra(BUNDLE_THEME_KEY),
             KeyboardTheme::class.java
-        )
+        ) ?: KeyboardTheme()
     }
 
     private val cropImageLauncher =

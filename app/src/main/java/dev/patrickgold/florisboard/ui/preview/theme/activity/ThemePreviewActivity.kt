@@ -74,7 +74,6 @@ class ThemePreviewActivity :
             R.id.saveButton -> onAttachTheme()
             R.id.editButton -> editKeyboardTheme()
         }
-        finish()
     }
 
     private fun editKeyboardTheme() {
