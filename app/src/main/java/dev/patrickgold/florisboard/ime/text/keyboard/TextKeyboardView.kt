@@ -24,12 +24,14 @@ import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.ColorUtils
 import dev.patrickgold.florisboard.R
+import dev.patrickgold.florisboard.background.view.keyboard.repository.BottomRightCharacterRepository
 import dev.patrickgold.florisboard.common.Pointer
 import dev.patrickgold.florisboard.common.PointerMap
 import dev.patrickgold.florisboard.common.ViewUtils
@@ -874,7 +876,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                 }
             }
         }
-        hanleTheme(keyboardTheme)
+        handleTheme(keyboardTheme)
     }
 
     private fun layoutRenderView(rv: TextKeyView, key: TextKey, isBorderless: Boolean) {
@@ -1009,9 +1011,11 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun onDrawComputedKey(canvas: Canvas, key: TextKey, renderView: TextKeyView) {
         if (!key.isVisible) return
+        Log.d("12345", "${key.computedData.code} ${key.computedData.label}")
         val label = key.label
         if (label != null) {
             renderView.labelPaint.let {
+                it.typeface = ResourcesCompat.getFont(context, keyboardTheme.keyFont ?: R.font.roboto_400)
                 it.color = Color.parseColor(keyboardTheme.keyTextColor)
                 val centerX = key.visibleLabelBounds.exactCenterX()
                 val centerY = key.visibleLabelBounds.exactCenterY() + (it.textSize - it.descent()) / 2
@@ -1290,18 +1294,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
     }
 
-    fun onNewFont(@FontRes font: Int) {
-        handleKey {
-
-        }
-    }
-
-    fun onNewColor(color: Int) {
-        if (color == -1) return
-        keyColor = color
-        reDrawKeyboard()
-    }
-
     private class TouchPointer : Pointer() {
         var initialKey: TextKey? = null
         var activeKey: TextKey? = null
@@ -1332,22 +1324,22 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun setFont(font: Int?) {
         font ?: return
-        fontFamily = ResourcesCompat.getFont(context, font)
-        reDrawKeyboard()
+        keyboardTheme.keyFont = font
+        handleKey { invalidate(it.key ?: return@handleKey) }
     }
 
     fun setKeyColor(color: String?) {
         color ?: return
-        keyColor = Color.parseColor(color)
-        reDrawKeyboard()
+        keyboardTheme.keyTextColor = color
+        handleKey { invalidate(it.key ?: return@handleKey) }
     }
 
     fun setOpacity(percent: Int?) {
         percent ?: return
+        keyboardTheme.opacity = percent
         handleKey {
             (it.background as? GradientDrawable)?.alpha = (255 * (percent / 100f)).toInt()
         }
-        reDrawKeyboard()
     }
 
     fun setStrokeCornerRadius(radius: Int?) {
@@ -1370,17 +1362,20 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun setButtonColor(buttonColor: String?) {
         buttonColor ?: return
-        setButtonColor(buttonColor, getDarkerShade(buttonColor, 0.4f), getDarkerShade(buttonColor, 0.2f))
+        keyboardTheme.buttonColor = buttonColor
+        keyboardTheme.imeButtonColor = String.format("#%06X", 0xFFFFFF and getDarkerShade(buttonColor, 0.4f))
+        keyboardTheme.buttonSecondaryColor = String.format("#%06X", 0xFFFFFF and getDarkerShade(buttonColor, 0.2f))
+        setButtonColor(keyboardTheme.buttonColor, keyboardTheme.imeButtonColor, keyboardTheme.buttonSecondaryColor)
     }
 
-    private fun setButtonColor(buttonColor: String, imeColor: Int, secondaryKeyColor: Int) {
+    private fun setButtonColor(buttonColor: String, imeColor: String, secondaryKeyColor: String) {
         handleKey {
             val keyBackground = when {
                 isEnterKey(it) -> imeColor
                 isAddictionKey(it) -> secondaryKeyColor
-                else -> Color.parseColor(buttonColor)
+                else -> buttonColor
             }
-            (it.background as? GradientDrawable)?.setColor(keyBackground)
+            (it.background as? GradientDrawable)?.setColor(Color.parseColor(keyBackground))
         }
     }
 
@@ -1395,9 +1390,13 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                 KeyCode.VIEW_SYMBOLS
             )
         ) return true
+        if (textKeyView.key?.computedData?.code in
+            BottomRightCharacterRepository.SelectableCharacter
+                .values()
+                .map { it.code } && computedKeyboard?.mode == KeyboardMode.CHARACTERS
+        ) return true
         return false
     }
-
 
     private fun getDarkerShade(color: String, factor: Float) =
         ColorUtils.blendARGB(Color.parseColor(color), Color.BLACK, factor)
@@ -1416,12 +1415,9 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
     }
 
-    fun hanleTheme(keyboardTheme: KeyboardTheme) {
+    fun handleTheme(keyboardTheme: KeyboardTheme) {
         val buttonColor = keyboardTheme.buttonColor
-        setButtonColor(
-            buttonColor,
-            Color.parseColor(keyboardTheme.imeButtonColor),
-            Color.parseColor(keyboardTheme.buttonSecondaryColor)
-        )
+        setButtonColor(buttonColor, keyboardTheme.imeButtonColor, keyboardTheme.buttonSecondaryColor)
+        setKeyColor(keyboardTheme.keyTextColor)
     }
 }

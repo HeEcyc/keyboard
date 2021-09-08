@@ -21,7 +21,7 @@ data class KeyboardTheme(
     var radius: Int? = null,
     var strokeColor: String? = null,
     var buttonColor: String = "#484C4F",
-    var imeButtonColor: String? = "#5F97F6",
-    var buttonSecondaryColor: String? = "#373C40",
+    var imeButtonColor: String = "#5F97F6",
+    var buttonSecondaryColor: String = "#373C40",
     var opacity: Int = 100
 ) : Theme(), Serializable
