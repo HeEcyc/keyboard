@@ -43,7 +43,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
 
     val keyboardItemDecoration = ThemesItemDecoration(2, 10)
     val assetsThemeAdapter = createAdapter<String, ItemKeyboardThemeBinding>(R.layout.item_keyboard_theme) {
-//        initItems = arrayListOf("", "", "", "", "", "", "", "", "", "", "", "")
+        initItems = arrayListOf("", "", "", "", "", "", "", "", "", "", "", "")
         onItemClick = {
             onThemeClick.postValue("")
         }
