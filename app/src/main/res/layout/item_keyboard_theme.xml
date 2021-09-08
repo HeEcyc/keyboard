@@ -29,8 +29,7 @@
             android:layout_height="0sp"
             app:isPreviewKeyboard="true"
             app:layout_constraintDimensionRatio="1:0.6"
-            app:layout_constraintTop_toTopOf="parent"
-            bind:previewTheme="@{item}" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

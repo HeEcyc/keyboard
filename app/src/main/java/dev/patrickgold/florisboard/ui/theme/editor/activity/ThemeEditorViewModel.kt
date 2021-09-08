@@ -7,7 +7,6 @@ import androidx.databinding.ObservableField
 import androidx.databinding.ViewDataBinding
 import dev.patrickgold.florisboard.FlorisApplication
 import dev.patrickgold.florisboard.R
-import dev.patrickgold.florisboard.background.view.keyboard.repository.BackgroundViewRepository
 import dev.patrickgold.florisboard.databinding.ItemColorBinding
 import dev.patrickgold.florisboard.databinding.ItemColorNewBinding
 import dev.patrickgold.florisboard.databinding.ItemFontBinding
@@ -32,8 +31,8 @@ class ThemeEditorViewModel : BaseViewModel() {
     val currentBackgroundColor = ObservableField<String?>()
     val currentButtonsColor = ObservableField<String?>()
     val currenetStrokeCornersRadius = ObservableField<Int?>()
+    val currentKeyboardBackgorund = ObservableField<String?>()
 
-    val backgroundView = ObservableField<BackgroundViewRepository.BackgroundView?>()
     val colorPicker = SingleLiveData<ColorType>()
     val keyBGOpacity = ObservableField<Int>()
     val itemDecoration = HorizontalItemDecoration(40)
@@ -55,7 +54,7 @@ class ThemeEditorViewModel : BaseViewModel() {
         }
 
     private fun getBGItemType(it: BackgroundAsset) = when (it) {
-        is BackgroundAsset.ImageAsset -> 1
+        is BackgroundAsset.ImageTheme -> 1
         else -> 0
     }
 
@@ -72,8 +71,8 @@ class ThemeEditorViewModel : BaseViewModel() {
                 imagePicker.postValue(Unit)
                 null
             }
-            is BackgroundAsset.ImageAsset -> BackgroundViewRepository.BackgroundView.ImageView(it.uri)
-        }?.let { backgroundView.set(it) }
+            is BackgroundAsset.ImageTheme -> it.uri.toString()
+        }?.let { currentKeyboardBackgorund.set(it) }
     }
 
     val fontsAdapter = createAdapter<KeyboardFont, ItemFontBinding>(R.layout.item_font) {
@@ -157,7 +156,7 @@ class ThemeEditorViewModel : BaseViewModel() {
         FlorisApplication.instance.assets
             .list(bgFolderNamePath)
             ?.filter { it.startsWith("img") }
-            ?.map { BackgroundAsset.ImageAsset(Uri.fromFile(File("//android_asset/${bgFolderNamePath}/$it"))) }
+            ?.map { BackgroundAsset.ImageTheme(Uri.fromFile(File("//android_asset/${bgFolderNamePath}/$it"))) }
             ?: listOf()
 
     private fun getFontsList() = listOf(
@@ -214,7 +213,7 @@ class ThemeEditorViewModel : BaseViewModel() {
 
         object NewImage : BackgroundAsset()
 
-        data class ImageAsset(val uri: Uri) : BackgroundAsset()
+        data class ImageTheme(val uri: Uri) : BackgroundAsset()
     }
 
     sealed class ColorItem
@@ -251,7 +250,7 @@ class ThemeEditorViewModel : BaseViewModel() {
 
     fun setCustomBackground(imagePath: String?) {
         imagePath ?: return
-        backgroundView.set(BackgroundViewRepository.BackgroundView.ImageView(Uri.parse(imagePath)))
+        currentKeyboardBackgorund.set(imagePath)
     }
 
     data class StrokeType(val strokeRes: Int, val strokeRadius: Int)

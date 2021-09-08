@@ -48,14 +48,14 @@ import kotlinx.coroutines.withContext
 
 class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
 
-    val onThemeClick = SingleLiveData<String>()
+    val onThemeClick = SingleLiveData<KeyboardTheme>()
     val nextActivity = SingleLiveData<Class<out BaseActivity<*, *>>>()
     val currentPage = ObservableField(0)
 
     val keyboardItemDecoration = ThemesItemDecoration(2, 10)
     val assetsThemeAdapter = createAdapter<KeyboardTheme, ItemKeyboardThemeBinding>(R.layout.item_keyboard_theme) {
-        onItemClick = { onThemeClick.postValue("") }
-        onBind = { _, binding -> syncKeyboard(binding.keyboard) }
+        onItemClick = onThemeClick::postValue
+        onBind = { theme, binding -> syncKeyboard(binding.keyboard, theme) }
     }
 
     private val keyboardIconSet = TextKeyboardIconSet.new(FlorisApplication.instance)
@@ -83,12 +83,13 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         }
     }
 
-    private fun syncKeyboard(textKeyboardView: TextKeyboardView) {
+    private fun syncKeyboard(textKeyboardView: TextKeyboardView, keyboardTheme: KeyboardTheme) {
         textKeyboardView.setIconSet(keyboardIconSet)
         textKeyboardView.setComputingEvaluator(textComputingEvaluator)
         viewModelScope.launch {
             textKeyboardView.setComputedKeyboard(
-                LayoutManager().computeKeyboardAsync(KeyboardMode.CHARACTERS, Subtype.DEFAULT).await()
+                LayoutManager().computeKeyboardAsync(KeyboardMode.CHARACTERS, Subtype.DEFAULT).await(),
+                keyboardTheme
             )
         }
     }

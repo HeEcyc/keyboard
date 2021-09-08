@@ -5,9 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
-import android.util.Log
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -20,7 +18,6 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.isseiaoki.simplecropview.CropImageView
 import com.makeramen.roundedimageview.RoundedImageView
-import dev.patrickgold.florisboard.background.view.keyboard.repository.BackgroundViewRepository
 import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel
 
 @BindingAdapter("itemDecoration")
@@ -60,19 +57,6 @@ fun AppCompatImageView.setDrawableRes(drawableRes: Int) {
     setImageResource(drawableRes)
 }
 
-@BindingAdapter("colorBackground")
-fun FrameLayout.setBgColor(color: String?) {
-    if (childCount > 0) removeAllViews()
-    setBackgroundColor(color?.let { Color.parseColor(color) } ?: Color.TRANSPARENT)
-}
-
-@BindingAdapter("imageBackground")
-fun FrameLayout.backgroundView(backgroundView: BackgroundViewRepository.BackgroundView?) {
-    if (childCount > 0) removeViewAt(0)
-    backgroundView ?: return
-    addView(backgroundView.getViewFactory().createView(context))
-}
-
 @BindingAdapter("noAminatedCurretPage")
 fun ViewPager2.setPage(page: Int) {
     setCurrentItem(page, false)
@@ -100,8 +84,16 @@ fun CropImageView.setImage(fileUri: String?) {
 
 @BindingAdapter("image")
 fun AppCompatImageView.setImage(uri: String?) {
+    setBackgroundColor(Color.TRANSPARENT)
     uri ?: return
     Glide.with(this)
         .load(Uri.parse(uri))
         .into(this)
+}
+
+@BindingAdapter("color")
+fun AppCompatImageView.setColor(color: String?) {
+    color ?: return
+    setImageResource(0)
+    setBackgroundColor(Color.parseColor(color))
 }

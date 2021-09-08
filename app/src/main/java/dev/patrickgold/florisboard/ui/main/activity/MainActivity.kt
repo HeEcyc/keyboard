@@ -8,8 +8,10 @@ import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import com.google.gson.Gson
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.adapters.VPAdapter
+import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.databinding.MainActivityBinding
 import dev.patrickgold.florisboard.ui.base.BaseActivity
 import dev.patrickgold.florisboard.ui.dialogs.DialogDone
@@ -18,6 +20,7 @@ import dev.patrickgold.florisboard.ui.main.activity.assets.FragmentAssets
 import dev.patrickgold.florisboard.ui.main.activity.custom.FragmentCustomTheme
 import dev.patrickgold.florisboard.ui.main.activity.settings.FragmentSettings
 import dev.patrickgold.florisboard.ui.preview.theme.activity.ThemePreviewActivity
+import dev.patrickgold.florisboard.util.BUNDLE_THEME_KEY
 
 class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.layout.main_activity),
     DialogPermissions.OnPermissionAction {
@@ -52,8 +55,9 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         binding.mainScreens.offscreenPageLimit = 3
     }
 
-    private fun onThemeClick(it: String?) {
+    private fun onThemeClick(keyboardTheme: KeyboardTheme) {
         Intent(this@MainActivity, ThemePreviewActivity::class.java)
+            .putExtra(BUNDLE_THEME_KEY, Gson().toJson(keyboardTheme))
             .let(::startActivity)
     }
 

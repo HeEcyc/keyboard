@@ -206,7 +206,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         externalComputingEvaluator = evaluator
     }
 
-    fun setComputedKeyboard(keyboard: TextKeyboard) {
+    fun setComputedKeyboard(keyboard: TextKeyboard, keyboardTheme: KeyboardTheme? = null) {
+        this.keyboardTheme = keyboardTheme ?: KeyboardTheme()
         flogInfo(LogTopic.TEXT_KEYBOARD_VIEW) { keyboard.mode.toString() }
         val renderViewDiff = keyboard.keyCount - childCount
         if (renderViewDiff > 0) {
@@ -445,15 +446,11 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     private fun onTouchDownInternal(event: MotionEvent, pointer: TouchPointer) {
-        flogDebug(LogTopic.TEXT_KEYBOARD_VIEW) { "pointer=$pointer" }
-
         val key = computedKeyboard?.getKeyForPos(
             event.getX(pointer.index).roundToInt(), event.getY(pointer.index).roundToInt()
         )
         if (key != null && key.isEnabled) {
-            florisboard!!.textInputManager.inputEventDispatcher.let { dispatcher ->
-                dispatcher.send(InputKeyEvent.down(key.computedData))
-            }
+            florisboard!!.textInputManager.inputEventDispatcher.send(InputKeyEvent.down(key.computedData))
             if (prefs.keyboard.popupEnabled && popupManager.isSuitableForPopups(key)) {
                 popupManager.show(key, keyHintConfiguration)
             }
@@ -877,7 +874,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                 }
             }
         }
-        setPreviewTheme(keyboardTheme)
+        hanleTheme(keyboardTheme)
     }
 
     private fun layoutRenderView(rv: TextKeyView, key: TextKey, isBorderless: Boolean) {
@@ -1406,10 +1403,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         ColorUtils.blendARGB(Color.parseColor(color), Color.BLACK, factor)
 
     private fun handleKey(action: (TextKeyView) -> Unit) {
-        computedKeyboard?.keys()?.withIndex()?.forEach { (n, key) ->
-            getChildAt(n)?.let { rv ->
-                if (rv is TextKeyView) action.invoke(rv)
-            }
+        computedKeyboard?.keys()?.withIndex()?.forEach { (n, _) ->
+            getChildAt(n)?.let { rv -> if (rv is TextKeyView) action.invoke(rv) }
         }
     }
 
@@ -1421,8 +1416,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
     }
 
-    fun setPreviewTheme(keyboardTheme: KeyboardTheme) {
-        this.keyboardTheme = keyboardTheme
+    fun hanleTheme(keyboardTheme: KeyboardTheme) {
         val buttonColor = keyboardTheme.buttonColor
         setButtonColor(
             buttonColor,

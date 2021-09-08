@@ -12,9 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
 import com.nguyenhoanglam.imagepicker.model.Config
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker
 import dev.patrickgold.florisboard.R
+import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.databinding.ThemeEditorActivityAppBinding
 import dev.patrickgold.florisboard.ime.core.Subtype
 import dev.patrickgold.florisboard.ime.keyboard.ComputingEvaluator
@@ -30,11 +32,20 @@ import dev.patrickgold.florisboard.ui.base.BaseActivity
 import dev.patrickgold.florisboard.ui.crop.activity.CropActivity
 import dev.patrickgold.florisboard.ui.main.activity.MainActivity
 import dev.patrickgold.florisboard.util.BUNDLE_CROPPED_IMAGE_KEY
+import dev.patrickgold.florisboard.util.BUNDLE_THEME_KEY
 import kotlinx.coroutines.launch
 
 class ThemeEditorActivity :
     BaseActivity<ThemeEditorViewModel, ThemeEditorActivityAppBinding>(R.layout.theme_editor_activity_app),
     TabLayout.OnTabSelectedListener {
+
+    val currentTheme: KeyboardTheme by lazy {
+        Gson().fromJson(
+            intent.getStringExtra(BUNDLE_THEME_KEY),
+            KeyboardTheme::class.java
+        )
+    }
+
     private val cropImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) viewModel
@@ -72,7 +83,10 @@ class ThemeEditorActivity :
     override fun setupUI() {
 
         binding.saveButton.setOnClickListener { onAttachTheme() }
-        binding.backButton.setOnClickListener { onBackPressed()}
+        binding.backButton.setOnClickListener { onBackPressed() }
+
+        viewModel.currentKeyboardBackgorund.set(currentTheme.backgroundImagePath)
+        viewModel.currentBackgroundColor.set(currentTheme.backgroundColor)
 
         textKeyboardIconSet = TextKeyboardIconSet.new(this)
 
@@ -91,7 +105,7 @@ class ThemeEditorActivity :
                 LayoutManager().computeKeyboardAsync(
                     KeyboardMode.CHARACTERS,
                     Subtype.DEFAULT
-                ).await()
+                ).await(), currentTheme
             )
         }
     }
