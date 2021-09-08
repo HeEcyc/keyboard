@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -95,4 +96,12 @@ fun CropImageView.setImage(fileUri: String?) {
 
             }
         })
+}
+
+@BindingAdapter("image")
+fun AppCompatImageView.setImage(uri: String?) {
+    uri ?: return
+    Glide.with(this)
+        .load(Uri.parse(uri))
+        .into(this)
 }

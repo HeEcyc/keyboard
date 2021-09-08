@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="dev.patrickgold.florisboard.data.KeyboardTheme" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            image="@{item.backgroundImagePath}"
+            android:layout_width="0sp"
+            android:layout_height="0sp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@id/keyboard"
+            app:layout_constraintEnd_toEndOf="@id/keyboard"
+            app:layout_constraintStart_toStartOf="@id/keyboard"
+            app:layout_constraintTop_toTopOf="@id/keyboard" />
 
         <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
             android:id="@+id/keyboard"
@@ -11,7 +29,8 @@
             android:layout_height="0sp"
             app:isPreviewKeyboard="true"
             app:layout_constraintDimensionRatio="1:0.6"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            bind:previewTheme="@{item}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

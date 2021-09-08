@@ -50,11 +50,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <FrameLayout
+                colorBackground="@{viewModel.currentBackgroundColor}"
+                imageBackground="@{viewModel.backgroundView}"
+                android:layout_width="0sp"
+                android:layout_height="0sp"
+                app:layout_constraintBottom_toBottomOf="@id/keyboardPreview"
+                app:layout_constraintEnd_toEndOf="@id/keyboardPreview"
+                app:layout_constraintStart_toStartOf="@id/keyboardPreview"
+                app:layout_constraintTop_toTopOf="@id/keyboardPreview" />
+
             <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
                 android:id="@+id/keyboardPreview"
                 android:layout_width="match_parent"
                 android:layout_height="208sp"
-                android:layout_marginHorizontal="12sp"
+                android:layout_marginHorizontal="16sp"
                 app:isPreviewKeyboard="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
