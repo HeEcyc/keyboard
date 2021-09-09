@@ -36,14 +36,12 @@ class CustomNavBar @JvmOverloads constructor(
         true
     )!!
 
-
     private var currentActiveView = binding.pressetsButtonLayout
 
     init {
         binding.presetsOverlay.setOnClickListener(this)
         binding.customOverlay.setOnClickListener(this)
         binding.settingsOverlay.setOnClickListener(this)
-        animateView(currentActiveView, 0.35f)
     }
 
     private fun animateView(currentView: View, bias: Float) {
