@@ -183,13 +183,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        addOnAttachStateChangeListener(object : OnAttachStateChangeListener {
-            override fun onViewAttachedToWindow(v: View?) {
-
-            }
-
-            override fun onViewDetachedFromWindow(v: View?) {}
-        })
         context.obtainStyledAttributes(attrs, R.styleable.TextKeyboardView).apply {
             isPreviewMode = getBoolean(R.styleable.TextKeyboardView_isPreviewKeyboard, false)
             isTouchable = !isPreviewMode
@@ -790,28 +783,12 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        (parent as? ConstraintLayout)?.let {
-            ConstraintSet().apply {
-
-                clear(id, ConstraintSet.TOP)
-                clear(id, ConstraintSet.LEFT)
-                clear(id, ConstraintSet.RIGHT)
-                clear(id, ConstraintSet.BOTTOM)
-
-                connect(id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
-                connect(id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
-                connect(id, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
-                connect(id, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
-                constrainHeight(id, ConstraintSet.WRAP_CONTENT)
-                if (id == R.id.main_keyboard_view) {
-                    constrainPercentWidth(
-                        id,
-                        PrefsReporitory.Settings.keyboardHeight.mainKeyboardSizePercent
-                    )
-                }
-            }.applyTo(it)
-        }
-        val desiredWidth = MeasureSpec.getSize(widthMeasureSpec).toFloat()
+        val desiredWidth = MeasureSpec.getSize(widthMeasureSpec).toFloat().times(
+            if (id == R.id.main_keyboard_view)
+                PrefsReporitory.Settings.keyboardHeight.mainKeyboardSizePercent
+            else
+                1f
+        )
         val desiredHeight = if (isSmartbarKeyboardView || isPreviewMode) {
             MeasureSpec.getSize(heightMeasureSpec).toFloat()
         } else {

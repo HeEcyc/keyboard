@@ -30,24 +30,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="@id/main_keyboard_view"
-                app:layout_constraintBottom_toBottomOf="@id/main_keyboard_view"
-                app:layout_constraintStart_toStartOf="@id/main_keyboard_view"
-                app:layout_constraintEnd_toEndOf="@id/main_keyboard_view"
-                android:background="@android:color/holo_green_dark"/>
-
             <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
                 android:id="@+id/main_keyboard_view"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintWidth_percent="0.8"/>
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
