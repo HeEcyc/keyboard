@@ -531,7 +531,6 @@
     <string name="special_symbols_editor_display_name_hash">Hash (#)</string>
     <string name="the_keyboard_has_installed">The keyboard has installed</string>
     <string name="languages">Languages</string>
-    <string name="glide_typing">Glide typing</string>
     <string name="move_cursor_by_sliding_across_space_bar">Move cursor by sliding across space bar</string>
     <string name="enable_gesture_cursor_control">Enable gesture cursor control</string>
     <string name="show_gesture_trail">Show gesture trail</string>
@@ -541,5 +540,6 @@
     <string name="tips">Tips</string>
     <string name="keyboard_swipe">Keyboard swipe</string>
     <string name="show_number_row">Show Number row</string>
+    <string name="glide_typing">Glide typing</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package dev.patrickgold.florisboard.ui.main.activity
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ObservableBoolean
@@ -123,6 +124,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
             PrefsReporitory.Settings.tips = tips.get()
         }
         observe(keyboardSwipe) { _, _ ->
+            PrefsReporitory.Settings.GlideTyping.enableGlideTyping = !keyboardSwipe.get()
             PrefsReporitory.Settings.keyboardSwipe = keyboardSwipe.get()
         }
         observe(showNumberRow) { _, _ ->
@@ -214,4 +216,10 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
             } ?: customThemeAdapter.addItem(1, keyboardTheme)
     }
 
+
+    fun checkEnableKeyboardSwipe() {
+        if (PrefsReporitory.Settings.keyboardSwipe != keyboardSwipe.get()) {
+            keyboardSwipe.set(PrefsReporitory.Settings.keyboardSwipe)
+        }
+    }
 }

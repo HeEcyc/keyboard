@@ -12,6 +12,7 @@ class GlideTypingPreferenceViewModel : BaseViewModel() {
 
     init {
         observe(enableGlideTyping) { _, _ ->
+            PrefsReporitory.Settings.keyboardSwipe = !enableGlideTyping.get()
             PrefsReporitory.Settings.GlideTyping.enableGlideTyping = enableGlideTyping.get()
         }
         observe(showGestureTrail) { _, _ ->
