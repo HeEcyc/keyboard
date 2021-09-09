@@ -129,6 +129,7 @@ class GlideTypingGesture {
             pointerId = -1
         }
 
+
         data class PointerData(
             val positions: MutableList<Position>,
             var startTime: Long,

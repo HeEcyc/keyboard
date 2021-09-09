@@ -39,13 +39,13 @@ import kotlinx.serialization.Transient
 @SerialName("emoji_key")
 class EmojiKeyData(
     val codePoints: List<Int>,
-    override val label: String = "",
+    override var label: String = "",
     val popupList: MutableList<EmojiKeyData> = mutableListOf()
 ) : KeyData {
-    @Transient override val type: KeyType = KeyType.CHARACTER
-    @Transient override val code: Int = KeyCode.UNSPECIFIED
-    @Transient override val groupId: Int = KeyData.GROUP_DEFAULT
-    @Transient override val popup: PopupSet<AbstractKeyData> = PopupSet()
+    @Transient override var type: KeyType = KeyType.CHARACTER
+    @Transient override var code: Int = KeyCode.UNSPECIFIED
+    @Transient override var groupId: Int = KeyData.GROUP_DEFAULT
+    @Transient override var popup: PopupSet<AbstractKeyData> = PopupSet()
 
     override fun compute(evaluator: ComputingEvaluator): TextKeyData? {
         return null
