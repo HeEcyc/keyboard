@@ -1,6 +1,5 @@
 package dev.patrickgold.florisboard.ui.base
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +31,19 @@ abstract class AppBaseAdapter<T, V : ViewDataBinding> private constructor(initIt
     }
 
     open fun addItems(newItems: List<T>) {
+        val oldItemSize = itemCount
         items.addAll(newItems)
+        notifyItemRangeInserted(oldItemSize, itemCount)
+    }
+
+    open fun addItem(newItem: T) {
+        items.add(newItem)
+        notifyItemInserted(itemCount)
+    }
+
+    open fun addItem(pos: Int, newItem: T) {
+        items.add(pos, newItem)
+        notifyItemInserted(pos)
     }
 
     open fun reloadData(items: List<T>) {
@@ -119,7 +130,6 @@ abstract class AppBaseAdapter<T, V : ViewDataBinding> private constructor(initIt
                 ?: items[position]
 
             override fun onBindViewHolder(holder: BaseItem<T, out ViewDataBinding>, position: Int) {
-                Log.d("12345", "enter 1")
                 provideItem(position).let { item ->
                     holder.setVariable(item)
                     holder.binding.root.setOnClickListener {
@@ -128,8 +138,6 @@ abstract class AppBaseAdapter<T, V : ViewDataBinding> private constructor(initIt
                     }
                     holder.bind(item)
                     setViewsClick(holder, item)
-                    Log.d("12345", "enter 2")
-                    Log.d("12345", "${onBind == null}")
                     onBind?.invoke(item, holder.binding as V)
                 }
             }

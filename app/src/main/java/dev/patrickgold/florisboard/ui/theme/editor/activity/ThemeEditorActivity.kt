@@ -15,6 +15,7 @@ import com.google.android.material.tabs.TabLayout
 import com.nguyenhoanglam.imagepicker.model.Config
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker
 import dev.patrickgold.florisboard.R
+import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.databinding.ThemeEditorActivityAppBinding
 import dev.patrickgold.florisboard.ime.core.Subtype
 import dev.patrickgold.florisboard.ime.keyboard.ComputingEvaluator
@@ -30,11 +31,18 @@ import dev.patrickgold.florisboard.ui.base.BaseActivity
 import dev.patrickgold.florisboard.ui.crop.activity.CropActivity
 import dev.patrickgold.florisboard.ui.main.activity.MainActivity
 import dev.patrickgold.florisboard.util.BUNDLE_CROPPED_IMAGE_KEY
+import dev.patrickgold.florisboard.util.BUNDLE_THEME_KEY
 import kotlinx.coroutines.launch
 
 class ThemeEditorActivity :
     BaseActivity<ThemeEditorViewModel, ThemeEditorActivityAppBinding>(R.layout.theme_editor_activity_app),
     TabLayout.OnTabSelectedListener {
+
+    private val currentTheme: KeyboardTheme by lazy {
+        intent.getSerializableExtra(BUNDLE_THEME_KEY) as? KeyboardTheme
+            ?: KeyboardTheme()
+    }
+
     private val cropImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) viewModel
@@ -71,15 +79,19 @@ class ThemeEditorActivity :
 
     override fun setupUI() {
 
-        binding.saveButton.setOnClickListener { onAttachTheme() }
-        binding.backButton.setOnClickListener { onBackPressed()}
+        binding.backButton.setOnClickListener { onBackPressed() }
+
+        viewModel.currentKeyboardBackgorund.set(currentTheme.backgroundImagePath)
+        viewModel.currentBackgroundColor.set(currentTheme.backgroundColor)
 
         textKeyboardIconSet = TextKeyboardIconSet.new(this)
 
         viewModel.colorPicker.observe(this) { showColorPicker(it) }
         viewModel.imagePicker.observe(this, { showImagePicker() })
+        viewModel.onThemeSaved.observe(this, { onAttachTheme(it) })
 
         binding.progressLayout.onProgress = { viewModel.keyBGOpacity.set(it) }
+
         binding.editCategoryTabs.addOnTabSelectedListener(this)
         binding.editCategoryTabs.getTabAt(2)?.select()
         binding.keyboardPreview.setIconSet(textKeyboardIconSet)
@@ -91,7 +103,7 @@ class ThemeEditorActivity :
                 LayoutManager().computeKeyboardAsync(
                     KeyboardMode.CHARACTERS,
                     Subtype.DEFAULT
-                ).await()
+                ).await(), currentTheme
             )
         }
     }
@@ -153,9 +165,10 @@ class ThemeEditorActivity :
         }
     }
 
-    fun onAttachTheme() {
+    fun onAttachTheme(keyboardTheme: KeyboardTheme) {
         Intent(this, MainActivity::class.java)
             .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            .putExtra(BUNDLE_THEME_KEY, keyboardTheme)
             .let(::startActivity)
         finishAffinity()
     }

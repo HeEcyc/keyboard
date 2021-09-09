@@ -1,24 +1,34 @@
 package dev.patrickgold.florisboard.ui.main.activity
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
-import androidx.databinding.ViewDataBinding
 import androidx.databinding.ObservableInt
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import dev.patrickgold.florisboard.FlorisApplication
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.adapters.VPAdapter
+import dev.patrickgold.florisboard.background.view.keyboard.repository.BottomRightCharacterRepository
+import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.data.NewTheme
 import dev.patrickgold.florisboard.data.Theme
+import dev.patrickgold.florisboard.data.db.ThemeDataBase
 import dev.patrickgold.florisboard.databinding.ItemKeyboardNewBinding
-import dev.patrickgold.florisboard.background.view.keyboard.repository.BottomRightCharacterRepository
 import dev.patrickgold.florisboard.databinding.ItemKeyboardThemeBinding
 import dev.patrickgold.florisboard.ime.core.Subtype
+import dev.patrickgold.florisboard.ime.keyboard.ComputingEvaluator
+import dev.patrickgold.florisboard.ime.keyboard.DefaultComputingEvaluator
+import dev.patrickgold.florisboard.ime.keyboard.KeyData
+import dev.patrickgold.florisboard.ime.text.key.CurrencySet
+import dev.patrickgold.florisboard.ime.text.key.KeyCode
 import dev.patrickgold.florisboard.ime.text.keyboard.KeyboardMode
+import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyData
+import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardIconSet
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
 import dev.patrickgold.florisboard.ime.text.layout.LayoutManager
 import dev.patrickgold.florisboard.repository.PrefsReporitory
@@ -30,48 +40,61 @@ import dev.patrickgold.florisboard.ui.glide.preferences.activity.GlideTypingPref
 import dev.patrickgold.florisboard.ui.language.selector.activity.LanguageSelectorActivity
 import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorActivity
 import dev.patrickgold.florisboard.util.SingleLiveData
-import kotlinx.coroutines.launch
 import dev.patrickgold.florisboard.util.enums.KeyboardHeight
 import dev.patrickgold.florisboard.util.enums.LanguageChange
 import dev.patrickgold.florisboard.util.enums.OneHandedMode
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
 
-    val onThemeClick = SingleLiveData<String>()
+    val onThemeClick = SingleLiveData<KeyboardTheme>()
     val nextActivity = SingleLiveData<Class<out BaseActivity<*, *>>>()
     val currentPage = ObservableField(0)
 
     val keyboardItemDecoration = ThemesItemDecoration(2, 10)
-    val assetsThemeAdapter = createAdapter<String, ItemKeyboardThemeBinding>(R.layout.item_keyboard_theme) {
-        initItems = arrayListOf("", "", "", "", "", "", "", "", "", "", "", "")
-        onItemClick = {
-            onThemeClick.postValue("")
-        }
-        onBind = { _, binding -> syncKeyboard(binding.keyboard) }
+    val assetsThemeAdapter = createAdapter<KeyboardTheme, ItemKeyboardThemeBinding>(R.layout.item_keyboard_theme) {
+        onItemClick = onThemeClick::postValue
+        onBind = { theme, binding -> syncKeyboard(binding.keyboard, theme) }
     }
-    val customThemeAdapter = createAdapter<Theme, ViewDataBinding>(R.layout.item_keyboard_theme) {
+
+    private val keyboardIconSet = TextKeyboardIconSet.new(FlorisApplication.instance)
+    private val textComputingEvaluator = object : ComputingEvaluator by DefaultComputingEvaluator {
+        override fun evaluateVisible(data: KeyData): Boolean {
+            return data.code != KeyCode.SWITCH_TO_MEDIA_CONTEXT
+        }
+
+        override fun isSlot(data: KeyData): Boolean {
+            return CurrencySet.isCurrencySlot(data.code)
+        }
+
+        override fun getSlotData(data: KeyData): KeyData {
+            return TextKeyData(label = ".")
+        }
+    }
+
+    val customThemeAdapter = createAdapter<Theme, ViewDataBinding> {
         initItems = listOf(NewTheme)
         viewBinding = { inflater, viewGroup, viewType -> getViewBinding(inflater, viewGroup, viewType) }
         itemViewTypeProvider = ::getThemeViewType
+        onBind = { theme, binding ->
+            if (binding is ItemKeyboardThemeBinding)
+                syncKeyboard(binding.keyboard, theme as KeyboardTheme)
+        }
         onItemClick = {
             if (it is NewTheme) showCreateThemeActivity()
-            else onThemeClick::postValue
+            else onThemeClick.postValue(it as KeyboardTheme)
         }
     }
 
-    init {
-        Log.d("12345", "12345")
-    }
-
-    private fun syncKeyboard(textKeyboardView: TextKeyboardView) {
-        Log.d("12345", "bind")
+    private fun syncKeyboard(textKeyboardView: TextKeyboardView, keyboardTheme: KeyboardTheme) {
+        textKeyboardView.setIconSet(keyboardIconSet)
+        textKeyboardView.setComputingEvaluator(textComputingEvaluator)
         viewModelScope.launch {
-
             textKeyboardView.setComputedKeyboard(
-                LayoutManager().computeKeyboardAsync(
-                    KeyboardMode.CHARACTERS,
-                    Subtype.DEFAULT
-                ).await()
+                LayoutManager().computeKeyboardAsync(KeyboardMode.CHARACTERS, Subtype.DEFAULT).await(),
+                keyboardTheme
             )
         }
     }
@@ -140,11 +163,24 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
 
 
     fun loadAssetsThemes() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val gson = Gson()
+            val assetFolder = "ime/theme"
+            val assets = FlorisApplication.instance.assets
 
+            val themeList = assets.list(assetFolder)
+                ?.map { assets.open("${assetFolder}/$it").bufferedReader().use { theme -> theme.readText() } }
+                ?.map { gson.fromJson(it, KeyboardTheme::class.java) } ?: return@launch
+
+            withContext(Dispatchers.Main) { assetsThemeAdapter.reloadData(themeList) }
+        }
     }
 
     fun loadSavedThemes() {
-
+        viewModelScope.launch(Dispatchers.Main) {
+            val themes = withContext(Dispatchers.IO) { ThemeDataBase.dataBase.getThemesDao().getTheme().reversed() }
+            customThemeAdapter.addItems(themes)
+        }
     }
 
     class Factory(private val adapter: VPAdapter) : ViewModelProvider.Factory {
@@ -164,4 +200,18 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     private fun showCreateThemeActivity() {
         nextActivity.postValue(ThemeEditorActivity::class.java)
     }
+
+    fun handleNewTheme(keyboardTheme: KeyboardTheme?) {
+        keyboardTheme ?: return
+        keyboardTheme.id = ThemeDataBase.dataBase.getThemesDao().insertTheme(keyboardTheme)
+        customThemeAdapter
+            .getData()
+            .firstOrNull { it is KeyboardTheme && it.id == keyboardTheme.id }
+            ?.let { currentTheme ->
+                currentTheme as KeyboardTheme
+                currentTheme.copyTheme(keyboardTheme)
+                customThemeAdapter.updateItem(currentTheme)
+            } ?: customThemeAdapter.addItem(1, keyboardTheme)
+    }
+
 }
