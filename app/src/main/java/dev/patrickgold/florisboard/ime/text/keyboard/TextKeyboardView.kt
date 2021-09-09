@@ -24,13 +24,8 @@ import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
-import android.view.View
 import android.view.animation.AccelerateInterpolator
-import androidx.annotation.FontRes
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.ColorUtils
 import dev.patrickgold.florisboard.R
@@ -41,7 +36,6 @@ import dev.patrickgold.florisboard.common.ViewUtils
 import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.debug.*
 import dev.patrickgold.florisboard.ime.core.*
-import dev.patrickgold.florisboard.ime.keyboard.AbstractKeyData
 import dev.patrickgold.florisboard.ime.keyboard.ComputingEvaluator
 import dev.patrickgold.florisboard.ime.keyboard.DefaultComputingEvaluator
 import dev.patrickgold.florisboard.ime.keyboard.ImeOptions
@@ -50,7 +44,6 @@ import dev.patrickgold.florisboard.ime.keyboard.Keyboard
 import dev.patrickgold.florisboard.ime.keyboard.KeyboardState
 import dev.patrickgold.florisboard.ime.keyboard.KeyboardView
 import dev.patrickgold.florisboard.ime.popup.PopupManager
-import dev.patrickgold.florisboard.ime.popup.PopupSet
 import dev.patrickgold.florisboard.ime.text.gestures.GlideTypingGesture
 import dev.patrickgold.florisboard.ime.text.gestures.GlideTypingManager
 import dev.patrickgold.florisboard.ime.text.gestures.SwipeAction
@@ -1391,20 +1384,17 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun setStrokeCornerRadius(radius: Int?) {
         radius ?: return
+
         handleKey {
             (it.background as? GradientDrawable)
                 ?.cornerRadius = ViewUtils.dp2px(radius.toFloat())
         }
+        handleKey { it.invalidate() }
     }
 
     fun setStrokeColor(strokeColor: String?) {
-        handleKey {
-            (it.background as? GradientDrawable)?.setStroke(
-                4,
-                if (strokeColor.isNullOrBlank()) Color.TRANSPARENT
-                else Color.parseColor(strokeColor)
-            )
-        }
+        keyboardTheme.strokeColor = strokeColor
+        handleKey { it.invalidate() }
     }
 
     fun setButtonColor(buttonColor: String?) {
@@ -1470,4 +1460,13 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     fun getKeyboardTheme() = keyboardTheme
+
+    fun onDrawStroke(canvas: Canvas, key: TextKey) {
+        keyboardTheme.strokeColor ?: return
+        val gradientDrawable = GradientDrawable()
+        gradientDrawable.cornerRadius = ViewUtils.dp2px(20f)
+        gradientDrawable.setStroke(2, Color.parseColor(keyboardTheme.strokeColor))
+        gradientDrawable.bounds.set(key.visibleBounds)
+        gradientDrawable.draw(canvas)
+    }
 }

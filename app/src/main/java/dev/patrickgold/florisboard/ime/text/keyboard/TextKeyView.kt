@@ -74,12 +74,10 @@ class TextKeyView : View {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val key = key ?: return
-
-        Log.d("12345","${key==null}")
-
         canvas.save()
         canvas.translate(-x, -y)
         parentKeyboardView?.onDrawComputedKey(canvas, key, this)
+        parentKeyboardView?.onDrawStroke(canvas, key)
         canvas.restore()
     }
 }
