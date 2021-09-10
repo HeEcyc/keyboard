@@ -1456,6 +1456,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val buttonColor = keyboardTheme.buttonColor
         setButtonColor(buttonColor, keyboardTheme.imeButtonColor, keyboardTheme.buttonSecondaryColor)
         setKeyColor(keyboardTheme.keyTextColor)
+        setStrokeCornerRadius(keyboardTheme.strokeRadius)
         handleKey { it.invalidate() }
     }
 
