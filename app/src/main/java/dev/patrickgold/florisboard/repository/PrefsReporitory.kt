@@ -5,6 +5,7 @@ import android.graphics.Color
 import com.google.gson.Gson
 import dev.patrickgold.florisboard.FlorisApplication
 import dev.patrickgold.florisboard.background.view.keyboard.repository.BottomRightCharacterRepository
+import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.core.SubtypeManager
 import dev.patrickgold.florisboard.ime.text.gestures.SwipeAction

@@ -65,7 +65,6 @@ class BackgroundViewKeyboardService : FlorisBoard() {
             backgroundView.onTouchEvent(event)
             true
         }
-        Log.d("12345", "add view")
         backgroundContainer.addView(backgroundView)
     }
 }
