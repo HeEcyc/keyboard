@@ -82,7 +82,7 @@
 
         <ListPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="switch_to_next_subtype"
+            android:defaultValue="delete_word"
             app:entries="@array/pref__gestures__swipe_action__entries"
             app:entryValues="@array/pref__gestures__swipe_action__values"
             app:dependency="glide__enabled"

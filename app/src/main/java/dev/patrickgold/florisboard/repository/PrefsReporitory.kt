@@ -79,16 +79,26 @@ object PrefsReporitory {
             private const val enableGestureCursorControlKey = "enable_gesture_cursor_control"
 
             var enableGlideTyping: Boolean
-                get() = sharedPreferences.getBoolean(enableGlideTypingKey, true)
-                set(value) = sharedPreferences.edit().putBoolean(enableGlideTypingKey, value).apply()
+                get() = sharedPreferences.getBoolean(enableGlideTypingKey, false)
+                set(value) {
+                    if (value) keyboardSwipe = false
+                    sharedPreferences.edit().putBoolean(enableGlideTypingKey, value).apply()
+                    Preferences.default().glide.enabled = value
+                }
 
             var showGestureTrail: Boolean
                 get() = sharedPreferences.getBoolean(showGestureTrailKey, true)
-                set(value) = sharedPreferences.edit().putBoolean(showGestureTrailKey, value).apply()
+                set(value) {
+                    sharedPreferences.edit().putBoolean(showGestureTrailKey, value).apply()
+                    Preferences.default().glide.showTrail = value
+                }
 
             var enableGestureCursorControl: Boolean
                 get() = sharedPreferences.getBoolean(enableGestureCursorControlKey, true)
-                set(value) = sharedPreferences.edit().putBoolean(enableGestureCursorControlKey, value).apply()
+                set(value) {
+                    if (value) languageChange = LanguageChange.SPECIAL_BUTTON
+                    sharedPreferences.edit().putBoolean(enableGestureCursorControlKey, value).apply()
+                }
         }
 
         var showEmoji: Boolean
@@ -101,7 +111,10 @@ object PrefsReporitory {
 
         var keyboardSwipe: Boolean
             get() = sharedPreferences.getBoolean(keyboardSwipeKey, true)
-            set(value) = sharedPreferences.edit().putBoolean(keyboardSwipeKey, value).apply()
+            set(value) {
+                if (value) GlideTyping.enableGlideTyping = false
+                sharedPreferences.edit().putBoolean(keyboardSwipeKey, value).apply()
+            }
 
         var showNumberRow: Boolean
             get() = sharedPreferences.getBoolean(showNumberRowKey, true)
@@ -122,8 +135,9 @@ object PrefsReporitory {
             }
 
         var languageChange: LanguageChange
-            get() = LanguageChange.valueOf(sharedPreferences.getString(languageChangeKey, LanguageChange.SWIPE_THROUGH_SPACE.name)!!)
+            get() = LanguageChange.valueOf(sharedPreferences.getString(languageChangeKey, LanguageChange.SPECIAL_BUTTON.name)!!)
             set(value) {
+                if (value == LanguageChange.SWIPE_THROUGH_SPACE) GlideTyping.enableGestureCursorControl = false
                 sharedPreferences.edit().putString(languageChangeKey, value.name).apply()
                 Preferences.default().gestures.apply {
                     spaceBarSwipeLeft = (if (value == LanguageChange.SPECIAL_BUTTON) SwipeAction.MOVE_CURSOR_LEFT else SwipeAction.SWITCH_TO_PREV_SUBTYPE)
