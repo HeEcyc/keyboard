@@ -10,20 +10,21 @@ object NewTheme : Theme()
 
 @Entity
 data class KeyboardTheme(
-    @PrimaryKey(autoGenerate = true)
-    var id: Long? = null,
     var backgoundType: String? = null,
     var backgroundImagePath: String? = null,
     var backgroundColor: String? = "#292E32",
     var keyFont: Int? = null,
     var keyTextColor: String = "#FFFFFF",
-    var strokeRadius: Int = 16,
+    var strokeRadius: Int = 6,
     var strokeColor: String? = null,
     var buttonColor: String = "#484C4F",
     var imeButtonColor: String = "#5F97F6",
     var buttonSecondaryColor: String = "#373C40",
     var opacity: Int = 100
 ) : Theme(), Serializable {
+
+    @PrimaryKey(autoGenerate = true)
+    var id: Long? = null
 
     fun copyTheme(keyboardTheme: KeyboardTheme) {
         this.backgoundType = keyboardTheme.backgoundType

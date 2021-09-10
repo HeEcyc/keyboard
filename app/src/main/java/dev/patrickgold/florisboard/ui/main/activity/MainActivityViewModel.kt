@@ -1,5 +1,6 @@
 package dev.patrickgold.florisboard.ui.main.activity
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ObservableBoolean
@@ -39,6 +40,8 @@ import dev.patrickgold.florisboard.ui.custom.ThemesItemDecoration
 import dev.patrickgold.florisboard.ui.glide.preferences.activity.GlideTypingPreferenceActivity
 import dev.patrickgold.florisboard.ui.language.selector.activity.LanguageSelectorActivity
 import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorActivity
+import dev.patrickgold.florisboard.util.BUNDLE_THEME_KEY
+import dev.patrickgold.florisboard.util.IS_EDITING_THEME_KEY
 import dev.patrickgold.florisboard.util.SingleLiveData
 import dev.patrickgold.florisboard.util.enums.KeyboardHeight
 import dev.patrickgold.florisboard.util.enums.LanguageChange
@@ -202,9 +205,27 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         nextActivity.postValue(ThemeEditorActivity::class.java)
     }
 
-    fun onThemeApply(keyboardTheme: KeyboardTheme?) {
-        keyboardTheme ?: return
+    fun checkEnableKeyboardSwipe() {
+        if (PrefsReporitory.Settings.keyboardSwipe != keyboardSwipe.get()) {
+            keyboardSwipe.set(PrefsReporitory.Settings.keyboardSwipe)
+        }
+    }
+
+    fun handleKeyboardApplyResult(intent: Intent) {
+        val keyboardTheme = intent.getSerializableExtra(BUNDLE_THEME_KEY) as? KeyboardTheme ?: return
+
         PrefsReporitory.keyboardTheme = keyboardTheme
+        if (intent.getBooleanExtra(IS_EDITING_THEME_KEY, false)) onThemeApply(keyboardTheme)
+        else if (keyboardTheme == KeyboardTheme() && !defaultKeyboardAttached()) onThemeApply(keyboardTheme)
+    }
+
+    private fun defaultKeyboardAttached(): Boolean {
+        val defaultKeyboard = KeyboardTheme()
+        customThemeAdapter.getData().forEach { if (it == defaultKeyboard) return true }
+        return false
+    }
+
+    fun onThemeApply(keyboardTheme: KeyboardTheme) {
         keyboardTheme.id = ThemeDataBase.dataBase.getThemesDao().insertTheme(keyboardTheme)
         customThemeAdapter
             .getData()
@@ -216,10 +237,4 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
             } ?: customThemeAdapter.addItem(1, keyboardTheme)
     }
 
-
-    fun checkEnableKeyboardSwipe() {
-        if (PrefsReporitory.Settings.keyboardSwipe != keyboardSwipe.get()) {
-            keyboardSwipe.set(PrefsReporitory.Settings.keyboardSwipe)
-        }
-    }
 }

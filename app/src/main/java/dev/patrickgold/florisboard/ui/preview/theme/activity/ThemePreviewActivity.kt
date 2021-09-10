@@ -84,6 +84,7 @@ class ThemePreviewActivity :
     fun onAttachTheme() {
         Intent(this, MainActivity::class.java)
             .addFlags(FLAG_ACTIVITY_REORDER_TO_FRONT)
+            .putExtra(BUNDLE_THEME_KEY, currentTheme)
             .let(::startActivity)
         finishAffinity()
     }

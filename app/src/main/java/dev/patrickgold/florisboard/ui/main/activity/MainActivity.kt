@@ -89,7 +89,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        viewModel.onThemeApply(intent.getSerializableExtra(BUNDLE_THEME_KEY) as? KeyboardTheme)
+        viewModel.handleKeyboardApplyResult(intent)
         DialogDone().show(supportFragmentManager)
     }
 }
