@@ -1,23 +1,24 @@
 package dev.patrickgold.florisboard.background.view.keyboard
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import dev.patrickgold.florisboard.background.view.keyboard.repository.BackgroundViewRepository
 import dev.patrickgold.florisboard.crashutility.CrashUtility
+import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.databinding.FlorisboardBinding
 import dev.patrickgold.florisboard.debug.LogTopic
 import dev.patrickgold.florisboard.debug.flogInfo
 import dev.patrickgold.florisboard.ime.core.FlorisBoard
 import dev.patrickgold.florisboard.ime.popup.PopupLayerView
-import dev.patrickgold.florisboard.util.addInto
+import dev.patrickgold.florisboard.repository.PrefsReporitory
 
 class BackgroundViewKeyboardService : FlorisBoard() {
-
-    private lateinit var backgroundContainer: FrameLayout
-    private var backgroundView: View? = null
 
     @SuppressLint("InflateParams", "ClickableViewAccessibility")
     override fun onCreateInputView(): View {
@@ -32,34 +33,39 @@ class BackgroundViewKeyboardService : FlorisBoard() {
         }
 
         uiBinding = FlorisboardBinding.inflate(LayoutInflater.from(themeContext))
-
-        backgroundContainer = uiBinding!!.text.backgroundViewContainer
-
-        onNewBackgroundView(BackgroundViewRepository.dispatchBackgroundView(themeContext))
-        uiBinding!!.text.smartbar.root.setOnTouchListener { view, event ->
-            view.onTouchEvent(event)
-            backgroundView?.onTouchEvent(event)
-            true
-        }
-        uiBinding!!.text.mainKeyboardView.setOnTouchListener { view, event ->
-            view.onTouchEvent(event)
-            backgroundView?.onTouchEvent(event)
-            true
-        }
-
-        BackgroundViewRepository.newBackgroundViews.observeForever { view ->
-            onNewBackgroundView(view?.createView(themeContext))
-        }
-
         eventListeners.toList().forEach { it?.onInitializeInputUi(uiBinding!!) }
 
         return uiBinding!!.inputWindowView
     }
 
-    private fun onNewBackgroundView(view: View?) {
-        backgroundView = view
+    override fun attachBackground(backgroundContainer: FrameLayout) {
+        backgroundContainer.setBackgroundColor(Color.TRANSPARENT)
         backgroundContainer.removeAllViews()
-        view?.addInto(backgroundContainer)
+
+        val keyboardTheme = PrefsReporitory.keyboardTheme ?: KeyboardTheme()
+
+        Log.d("12345", "${keyboardTheme.backgoundType ?: "sdfsdf"}")
+
+        when {
+            !keyboardTheme.backgoundType.isNullOrEmpty() -> BackgroundViewRepository.BackgroundView
+                .fromName(keyboardTheme.backgoundType)
+            !keyboardTheme.backgroundImagePath.isNullOrEmpty() -> BackgroundViewRepository.BackgroundView
+                .ImageView(Uri.parse(keyboardTheme.backgroundImagePath))
+            else -> null
+        }?.let { view -> attackBackground(view.getViewFactory().createView(themeContext), backgroundContainer) }
+
+        if (!keyboardTheme.backgroundColor.isNullOrEmpty())
+            backgroundContainer.setBackgroundColor(Color.parseColor(keyboardTheme.backgroundColor))
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private fun attackBackground(backgroundView: View, backgroundContainer: ViewGroup) {
+        uiBinding!!.text.mainKeyboardView.setOnTouchListener { view, event ->
+            view.onTouchEvent(event)
+            backgroundView.onTouchEvent(event)
+            true
+        }
+        Log.d("12345", "add view")
+        backgroundContainer.addView(backgroundView)
+    }
 }

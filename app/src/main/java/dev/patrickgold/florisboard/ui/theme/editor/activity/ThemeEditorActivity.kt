@@ -81,7 +81,13 @@ class ThemeEditorActivity :
 
         binding.backButton.setOnClickListener { onBackPressed() }
 
-        viewModel.currentKeyboardBackgorund.set(currentTheme.backgroundImagePath)
+        if (!currentTheme.backgroundImagePath.isNullOrEmpty()) {
+            viewModel.currentKeyboardBackgorund.set(
+                ThemeEditorViewModel.BackgroundAsset
+                    .BackgroundTheme(currentTheme.backgroundImagePath!!, currentTheme.backgoundType)
+            )
+        }
+
         viewModel.currentBackgroundColor.set(currentTheme.backgroundColor)
 
         textKeyboardIconSet = TextKeyboardIconSet.new(this)
@@ -90,10 +96,12 @@ class ThemeEditorActivity :
         viewModel.imagePicker.observe(this, { showImagePicker() })
         viewModel.onThemeSaved.observe(this, { onAttachTheme(it) })
 
+        binding.progressLayout.setProgress(currentTheme.opacity)
         binding.progressLayout.onProgress = { viewModel.keyBGOpacity.set(it) }
 
         binding.editCategoryTabs.addOnTabSelectedListener(this)
         binding.editCategoryTabs.getTabAt(2)?.select()
+
         binding.keyboardPreview.setIconSet(textKeyboardIconSet)
         binding.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
         binding.keyboardPreview.sync()

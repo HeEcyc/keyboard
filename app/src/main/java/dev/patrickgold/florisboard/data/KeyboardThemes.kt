@@ -17,7 +17,7 @@ data class KeyboardTheme(
     var backgroundColor: String? = "#292E32",
     var keyFont: Int? = null,
     var keyTextColor: String = "#FFFFFF",
-    var radius: Int? = null,
+    var strokeRadius: Int = 16,
     var strokeColor: String? = null,
     var buttonColor: String = "#484C4F",
     var imeButtonColor: String = "#5F97F6",
@@ -31,7 +31,7 @@ data class KeyboardTheme(
         this.backgroundColor = keyboardTheme.backgroundColor
         this.keyFont = keyboardTheme.keyFont
         this.keyTextColor = keyboardTheme.keyTextColor
-        this.radius = keyboardTheme.radius
+        this.strokeRadius = keyboardTheme.strokeRadius
         this.strokeColor = keyboardTheme.strokeColor
         this.buttonColor = keyboardTheme.buttonColor
         this.imeButtonColor = keyboardTheme.imeButtonColor

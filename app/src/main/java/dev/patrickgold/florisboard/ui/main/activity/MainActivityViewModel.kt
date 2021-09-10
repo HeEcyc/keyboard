@@ -123,6 +123,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
             PrefsReporitory.Settings.tips = tips.get()
         }
         observe(keyboardSwipe) { _, _ ->
+            PrefsReporitory.Settings.GlideTyping.enableGlideTyping = !keyboardSwipe.get()
             PrefsReporitory.Settings.keyboardSwipe = keyboardSwipe.get()
         }
         observe(showNumberRow) { _, _ ->
@@ -201,8 +202,9 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         nextActivity.postValue(ThemeEditorActivity::class.java)
     }
 
-    fun handleNewTheme(keyboardTheme: KeyboardTheme?) {
+    fun onThemeApply(keyboardTheme: KeyboardTheme?) {
         keyboardTheme ?: return
+        PrefsReporitory.keyboardTheme = keyboardTheme
         keyboardTheme.id = ThemeDataBase.dataBase.getThemesDao().insertTheme(keyboardTheme)
         customThemeAdapter
             .getData()
@@ -214,4 +216,10 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
             } ?: customThemeAdapter.addItem(1, keyboardTheme)
     }
 
+
+    fun checkEnableKeyboardSwipe() {
+        if (PrefsReporitory.Settings.keyboardSwipe != keyboardSwipe.get()) {
+            keyboardSwipe.set(PrefsReporitory.Settings.keyboardSwipe)
+        }
+    }
 }

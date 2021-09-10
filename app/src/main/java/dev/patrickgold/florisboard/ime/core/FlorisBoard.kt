@@ -27,6 +27,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.util.Size
 import android.view.ContextThemeWrapper
 import android.view.Gravity
@@ -498,14 +499,10 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
 
     override fun onWindowShown() {
         super.onWindowShown()
-        if (isWindowShown) {
-            flogInfo(LogTopic.IMS_EVENTS) { "Ignoring (is already shown)" }
-            return
-        } else {
-            flogInfo(LogTopic.IMS_EVENTS)
-        }
-        isWindowShown = true
+        if (isWindowShown) return
 
+        isWindowShown = true
+        attachBackground(uiBinding!!.text.backgroundViewContainer)
         val newActiveSubtype = subtypeManager.getActiveSubtype() ?: Subtype.DEFAULT
         if (newActiveSubtype != activeSubtype) {
             activeSubtype = newActiveSubtype
@@ -529,6 +526,10 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         }
 
         eventListeners.toList().forEach { it?.onWindowShown() }
+    }
+
+    open fun attachBackground(backgroundContainer: FrameLayout) {
+
     }
 
     override fun onWindowHidden() {
@@ -956,16 +957,22 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     ) {
         @Transient
         var currencySetNames: List<String> = listOf()
+
         @Transient
         var currencySetLabels: List<String> = listOf()
+
         @Transient
         var composerNames: List<String> = listOf()
+
         @Transient
         var composerLabels: List<String> = listOf()
+
         @Transient
         val composerFromName: Map<String, Composer> = composers.map { it.name to it }.toMap()
+
         @Transient
         var defaultSubtypesLanguageCodes: List<String> = listOf()
+
         @Transient
         var defaultSubtypesLanguageNames: List<String> = listOf()
 

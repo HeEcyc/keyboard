@@ -57,6 +57,7 @@ import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardIconSet
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
 import dev.patrickgold.florisboard.ime.text.layout.LayoutManager
 import dev.patrickgold.florisboard.ime.text.smartbar.SmartbarView
+import dev.patrickgold.florisboard.repository.PrefsReporitory
 import dev.patrickgold.florisboard.res.AssetManager
 import dev.patrickgold.florisboard.res.FlorisRef
 import kotlinx.coroutines.CoroutineScope
@@ -340,10 +341,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
             KeyboardMode.NUMERIC,
             KeyboardMode.PHONE,
             KeyboardMode.PHONE2 -> false
-            else -> activeState.keyVariation != KeyVariation.PASSWORD &&
-                prefs.suggestion.enabled// &&
-            //!instance.inputAttributes.flagTextAutoComplete &&
-            //!instance.inputAttributes.flagTextNoSuggestions
+            else -> activeState.keyVariation != KeyVariation.PASSWORD && prefs.suggestion.enabled
         }
         val newIsNumberRowVisible = prefs.keyboard.numberRow
         if (isNumberRowVisible != newIsNumberRowVisible) {
@@ -400,7 +398,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                 ).await()
             }.await()
             withContext(Dispatchers.Main) {
-                textInputKeyboardView?.setComputedKeyboard(activeKeyboard)
+                textInputKeyboardView?.setComputedKeyboard(activeKeyboard, PrefsReporitory.keyboardTheme)
                 if (updateState) {
                     florisboard.dispatchCurrentStateToInputUi()
                 }
@@ -957,6 +955,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                     }
                     else -> when (data.type) {
                         KeyType.CHARACTER, KeyType.NUMERIC -> {
+                            Log.d("12345", "${data.code}")
                             val text = data.asString(isForDisplay = false)
                             if (isGlidePostEffect && (TextProcessor.isWord(
                                     text,

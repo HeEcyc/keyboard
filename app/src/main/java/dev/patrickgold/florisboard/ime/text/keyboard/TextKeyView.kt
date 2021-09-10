@@ -24,6 +24,7 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import dev.patrickgold.florisboard.common.ViewUtils
@@ -70,13 +71,13 @@ class TextKeyView : View {
         return // This view does not measure itself
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val key = key ?: return
-        canvas ?: return
         canvas.save()
         canvas.translate(-x, -y)
         parentKeyboardView?.onDrawComputedKey(canvas, key, this)
+        parentKeyboardView?.onDrawStroke(canvas, key)
         canvas.restore()
     }
 }

@@ -3,6 +3,8 @@
 
     <data>
 
+        <import type="dev.patrickgold.florisboard.util.Converter"/>
+
         <variable
             name="viewModel"
             type="dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel" />
@@ -92,7 +94,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             color="@{viewModel.currentBackgroundColor}"
-            image="@{viewModel.currentKeyboardBackgorund}"
+            image="@{Converter.previewUri(viewModel.currentKeyboardBackgorund)}"
             android:layout_width="0sp"
             android:layout_height="0sp"
             android:scaleType="centerCrop"
@@ -228,8 +230,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16sp"
                 android:layout_marginTop="20sp"
-                bind:max="@{100}"
-                bind:progress="@{100}" />
+                bind:max="@{100}" />
         </RelativeLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat

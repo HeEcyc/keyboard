@@ -42,11 +42,11 @@ import kotlinx.serialization.*
 @Serializable
 @SerialName("text_key")
 class TextKeyData(
-    override val type: KeyType = KeyType.CHARACTER,
-    override val code: Int = KeyCode.UNSPECIFIED,
-    override val label: String = "",
-    override val groupId: Int = KeyData.GROUP_DEFAULT,
-    override val popup: PopupSet<AbstractKeyData>? = null
+    override var type: KeyType = KeyType.CHARACTER,
+    override var code: Int = KeyCode.UNSPECIFIED,
+    override var label: String = "",
+    override var groupId: Int = KeyData.GROUP_DEFAULT,
+    override var popup: PopupSet<AbstractKeyData>? = null
 ) : KeyData {
     override fun compute(evaluator: ComputingEvaluator): KeyData? {
         return if (evaluator.isSlot(this)) {

@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel.BackgroundAsset.ImageTheme" />
+            type="dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel.BackgroundAsset.BackgroundTheme" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

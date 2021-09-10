@@ -8,7 +8,6 @@ import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import com.google.gson.Gson
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.adapters.VPAdapter
 import dev.patrickgold.florisboard.data.KeyboardTheme
@@ -76,6 +75,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
 
     override fun onResume() {
         super.onResume()
+        viewModel.checkEnableKeyboardSwipe()
         if (!isKeyboardEnable() || !isKeyboardActive()) dialogPermissions.show(supportFragmentManager)
     }
 
@@ -89,7 +89,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        viewModel.handleNewTheme(intent.getSerializableExtra(BUNDLE_THEME_KEY) as? KeyboardTheme)
+        viewModel.onThemeApply(intent.getSerializableExtra(BUNDLE_THEME_KEY) as? KeyboardTheme)
         DialogDone().show(supportFragmentManager)
     }
 }

@@ -24,12 +24,9 @@ import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
-import android.view.View
 import android.view.animation.AccelerateInterpolator
-import androidx.annotation.FontRes
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.ColorUtils
 import dev.patrickgold.florisboard.R
@@ -169,7 +166,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     private var keyMarginH: Int = 0
     private var keyMarginV: Int = 0
 
-    private var backgroundDrawable: PaintDrawable = PaintDrawable()
     private val baselineTextSize = resources.getDimension(R.dimen.key_textSize)
     var fontSizeMultiplier: Double = 1.0
         private set
@@ -196,13 +192,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
         popupManager = PopupManager(this, popupLayerView)
         swipeGestureDetector.isEnabled = !isSmartbarKeyboardView
-
-        if (isPreviewMode) {
-            background = backgroundDrawable
-        }
-
         setWillNotDraw(false)
-        PrefsReporitory.registerListener(this)
     }
 
     fun setComputingEvaluator(evaluator: ComputingEvaluator?) {
@@ -211,7 +201,10 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun setComputedKeyboard(keyboard: TextKeyboard, keyboardTheme: KeyboardTheme? = null) {
         this.keyboardTheme = keyboardTheme ?: KeyboardTheme()
-        flogInfo(LogTopic.TEXT_KEYBOARD_VIEW) { keyboard.mode.toString() }
+//        this.keyboardTheme = keyboardTheme ?:
+//        if (isPreviewMode) keyboardTheme
+//        else PrefsReporitory.keyboardTheme ?: KeyboardTheme()
+
         val renderViewDiff = keyboard.keyCount - childCount
         if (renderViewDiff > 0) {
             // We have more keys than render views, add abs(diff) views
@@ -229,7 +222,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     fun setIconSet(textKeyboardIconSet: TextKeyboardIconSet) {
-        flogInfo(LogTopic.TEXT_KEYBOARD_VIEW) { computedKeyboard?.mode?.toString() ?: "" }
         iconSet = textKeyboardIconSet
     }
 
@@ -271,7 +263,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        //if(!isPreviewMode) keyboardTheme = PrefsReporitory.theme
         glideTypingDetector.let {
             it.registerListener(this)
             it.registerListener(glideTypingManager)
@@ -579,9 +570,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val activeKey = pointer.activeKey
         if (activeKey != null) {
             activeKey.setPressed(false) { invalidate(activeKey) }
-            florisboard.textInputManager.inputEventDispatcher.let { dispatcher ->
-                dispatcher.send(InputKeyEvent.cancel(activeKey.computedData))
-            }
+            florisboard.textInputManager.inputEventDispatcher
+                .send(InputKeyEvent.cancel(activeKey.computedData))
             if (popupManager.isSuitableForPopups(activeKey)) {
                 popupManager.hide()
             }
@@ -866,7 +856,9 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     private fun computeKeyboard() {
-        flogInfo(LogTopic.TEXT_KEYBOARD_VIEW) { computedKeyboard?.mode?.toString() ?: "" }
+
+        Log.d("12345", "compute")
+
         val keyboard = computedKeyboard ?: return
         for (key in keyboard.keys()) {
             key.compute(internalComputingEvaluator)
@@ -877,7 +869,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         keyboard.keys().withIndex().forEach { (n, key) ->
             getChildAt(n)?.let { rv ->
                 if (rv is TextKeyView) {
-                    rv.key = key
+                    rv.key = if (isSpecialKey(key) && !isPreviewMode) getNewKey(key)
+                    else key
                     layoutRenderView(rv, key, isBorderless)
                     prepareKey(key, keyboardTheme, rv)
                     rv.invalidate()
@@ -887,11 +880,25 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         handleTheme(keyboardTheme)
     }
 
+    private fun getNewKey(key: TextKey): TextKey {
+
+        val currentSymbol = BottomRightCharacterRepository.SelectableCharacter.values()
+            .firstOrNull { it.code == PrefsReporitory.Settings.specialSymbol } ?: return key
+
+        key.computedData.let {
+            if (it is TextKeyData) {
+                it.code = currentSymbol.code
+                it.label = currentSymbol.label
+            }
+        }
+
+        key.label = currentSymbol.label
+
+        return key
+    }
+
     private fun layoutRenderView(rv: TextKeyView, key: TextKey, isBorderless: Boolean) {
         val shouldReduceSize = false
-//            isBorderless &&
-//            (key.computedData.code == KeyCode.SPACE || key.computedData.code == KeyCode.CJK_SPACE || key.computedData.code == KeyCode.ENTER)
-//        rv.layout(0,0,10,10)
         rv.layout(
             key.visibleBounds.left,
             if (shouldReduceSize) {
@@ -910,7 +917,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     private fun prepareKey(key: TextKey, theme: KeyboardTheme, renderView: TextKeyView) {
         renderView.let { rv ->
-            (rv.background as? GradientDrawable)?.alpha = (255 * (theme.opacity / 100f)).toInt()
             rv.labelPaint.let {
                 it.color = Color.parseColor(theme.keyTextColor)
                 if (computedKeyboard?.mode == KeyboardMode.CHARACTERS && (key.computedData.code == KeyCode.SPACE || key.computedData.code == KeyCode.CJK_SPACE)) {
@@ -993,7 +999,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     override fun onThemeUpdated(theme: Theme) {
-        backgroundDrawable.apply { paint.color = Color.TRANSPARENT }
         if (theme.getAttr(Theme.Attr.GLIDE_TRAIL_COLOR).toSolidColor().color == 0) {
             glideTrailPaint.color = theme.getAttr(Theme.Attr.WINDOW_COLOR_PRIMARY).toSolidColor().color
             glideTrailPaint.alpha = 32
@@ -1038,7 +1043,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                     canvas.drawText(labelLines[0], centerX, centerY - verticalAdjustment, it)
                     canvas.drawText(labelLines[1], centerX, centerY + verticalAdjustment, it)
                 } else {
-                    canvas.drawText(label, centerX, centerY, it)
+                    if (isPreviewMode && isSpecialKey(key)) canvas.drawText(".", centerX, centerY, it)
+                    else canvas.drawText(label, centerX, centerY, it)
                 }
             }
         }
@@ -1090,7 +1096,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
      */
     private fun computeLabelsAndDrawables(key: TextKey, keyHintConfiguration: KeyHintConfiguration) {
         // Reset attributes first to avoid invalid states if not updated
-        key.label = null
+        //  key.label = null
         key.hintedLabel = null
         key.foregroundDrawableId = null
 
@@ -1161,7 +1167,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                             key.foregroundDrawableId = R.drawable.ic_space_bar
                         }
                         KeyboardMode.CHARACTERS -> {
-                            key.label = florisboard?.activeSubtype?.locale?.let { it.displayName() }
+                            key.label = florisboard?.activeSubtype?.locale?.displayName()
                         }
                         else -> {
                         }
@@ -1375,20 +1381,18 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun setStrokeCornerRadius(radius: Int?) {
         radius ?: return
+        keyboardTheme.strokeRadius = radius
         handleKey {
             (it.background as? GradientDrawable)
                 ?.cornerRadius = ViewUtils.dp2px(radius.toFloat())
+            it.invalidate()
         }
     }
 
     fun setStrokeColor(strokeColor: String?) {
-        handleKey {
-            (it.background as? GradientDrawable)?.setStroke(
-                4,
-                if (strokeColor.isNullOrBlank()) Color.TRANSPARENT
-                else Color.parseColor(strokeColor)
-            )
-        }
+        if (strokeColor == keyboardTheme.strokeColor) return
+        keyboardTheme.strokeColor = strokeColor
+        handleKey { it.invalidate() }
     }
 
     fun setButtonColor(buttonColor: String?) {
@@ -1403,7 +1407,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         handleKey {
             val keyBackground = when {
                 isEnterKey(it) -> imeColor
-                isAddictionKey(it) -> secondaryKeyColor
+                isAddictionKey(it.key) -> secondaryKeyColor
                 else -> buttonColor
             }
             (it.background as? GradientDrawable)?.setColor(Color.parseColor(keyBackground))
@@ -1412,8 +1416,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun isEnterKey(textKeyView: TextKeyView) = textKeyView.key?.computedData?.code == KeyCode.ENTER
 
-    fun isAddictionKey(textKeyView: TextKeyView): Boolean {
-        if (textKeyView.key?.computedData?.code in listOf(
+    fun isAddictionKey(key: TextKey?): Boolean {
+        if (key?.computedData?.code in listOf(
                 KeyCode.DELETE,
                 KeyCode.SHIFT,
                 KeyCode.SHIFT_LOCK,
@@ -1421,13 +1425,14 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                 KeyCode.VIEW_SYMBOLS
             )
         ) return true
-        if (textKeyView.key?.computedData?.code in
-            BottomRightCharacterRepository.SelectableCharacter
-                .values()
-                .map { it.code } && computedKeyboard?.mode == KeyboardMode.CHARACTERS
-        ) return true
+        if (isSpecialKey(key)) return true
         return false
     }
+
+    private fun isSpecialKey(key: TextKey?) = key?.computedData?.code in
+        BottomRightCharacterRepository.SelectableCharacter
+            .values()
+            .map { it.code } && computedKeyboard?.mode == KeyboardMode.CHARACTERS
 
     private fun getDarkerShade(color: String, factor: Float) =
         ColorUtils.blendARGB(Color.parseColor(color), Color.BLACK, factor)
@@ -1450,7 +1455,17 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val buttonColor = keyboardTheme.buttonColor
         setButtonColor(buttonColor, keyboardTheme.imeButtonColor, keyboardTheme.buttonSecondaryColor)
         setKeyColor(keyboardTheme.keyTextColor)
+        handleKey { it.invalidate() }
     }
 
     fun getKeyboardTheme() = keyboardTheme
+
+    fun onDrawStroke(canvas: Canvas, key: TextKey) {
+        keyboardTheme.strokeColor ?: return
+        val gradientDrawable = GradientDrawable()
+        gradientDrawable.cornerRadius = ViewUtils.dp2px(keyboardTheme.strokeRadius.toFloat())
+        gradientDrawable.setStroke(3, Color.parseColor(keyboardTheme.strokeColor))
+        gradientDrawable.bounds.set(key.visibleBounds)
+        gradientDrawable.draw(canvas)
+    }
 }
