@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.SeekBar
 import androidx.appcompat.widget.LinearLayoutCompat

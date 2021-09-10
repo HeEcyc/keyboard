@@ -17,7 +17,7 @@ data class KeyboardTheme(
     var backgroundColor: String? = "#292E32",
     var keyFont: Int? = null,
     var keyTextColor: String = "#FFFFFF",
-    var strokeRadius: Int? = null,
+    var strokeRadius: Int = 16,
     var strokeColor: String? = null,
     var buttonColor: String = "#484C4F",
     var imeButtonColor: String = "#5F97F6",

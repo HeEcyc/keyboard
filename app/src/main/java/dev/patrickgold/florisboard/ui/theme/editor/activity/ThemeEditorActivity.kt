@@ -90,10 +90,12 @@ class ThemeEditorActivity :
         viewModel.imagePicker.observe(this, { showImagePicker() })
         viewModel.onThemeSaved.observe(this, { onAttachTheme(it) })
 
+        binding.progressLayout.setProgress(currentTheme.opacity)
         binding.progressLayout.onProgress = { viewModel.keyBGOpacity.set(it) }
 
         binding.editCategoryTabs.addOnTabSelectedListener(this)
         binding.editCategoryTabs.getTabAt(2)?.select()
+
         binding.keyboardPreview.setIconSet(textKeyboardIconSet)
         binding.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
         binding.keyboardPreview.sync()

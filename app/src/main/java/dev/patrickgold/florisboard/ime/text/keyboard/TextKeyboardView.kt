@@ -573,9 +573,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val activeKey = pointer.activeKey
         if (activeKey != null) {
             activeKey.setPressed(false) { invalidate(activeKey) }
-            florisboard.textInputManager.inputEventDispatcher.let { dispatcher ->
-                dispatcher.send(InputKeyEvent.cancel(activeKey.computedData))
-            }
+            florisboard.textInputManager.inputEventDispatcher
+                .send(InputKeyEvent.cancel(activeKey.computedData))
             if (popupManager.isSuitableForPopups(activeKey)) {
                 popupManager.hide()
             }
@@ -1384,15 +1383,16 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun setStrokeCornerRadius(radius: Int?) {
         radius ?: return
-
+        keyboardTheme.strokeRadius = radius
         handleKey {
             (it.background as? GradientDrawable)
                 ?.cornerRadius = ViewUtils.dp2px(radius.toFloat())
+            it.invalidate()
         }
-        handleKey { it.invalidate() }
     }
 
     fun setStrokeColor(strokeColor: String?) {
+        if (strokeColor == keyboardTheme.strokeColor) return
         keyboardTheme.strokeColor = strokeColor
         handleKey { it.invalidate() }
     }
@@ -1464,8 +1464,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     fun onDrawStroke(canvas: Canvas, key: TextKey) {
         keyboardTheme.strokeColor ?: return
         val gradientDrawable = GradientDrawable()
-        gradientDrawable.cornerRadius = ViewUtils.dp2px(20f)
-        gradientDrawable.setStroke(2, Color.parseColor(keyboardTheme.strokeColor))
+        gradientDrawable.cornerRadius = ViewUtils.dp2px(keyboardTheme.strokeRadius.toFloat())
+        gradientDrawable.setStroke(3, Color.parseColor(keyboardTheme.strokeColor))
         gradientDrawable.bounds.set(key.visibleBounds)
         gradientDrawable.draw(canvas)
     }
