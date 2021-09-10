@@ -22,9 +22,7 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
@@ -263,6 +261,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        setBackgroundColor(Color.TRANSPARENT)
         glideTypingDetector.let {
             it.registerListener(this)
             it.registerListener(glideTypingManager)
@@ -279,7 +278,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     override fun onTouchEventInternal(event: MotionEvent) {
-        flogDebug { "event=$event" }
         val dispatcher = florisboard?.textInputManager?.inputEventDispatcher ?: return
         swipeGestureDetector.onTouchEvent(event)
 
@@ -856,8 +854,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     private fun computeKeyboard() {
-
-        Log.d("12345", "compute")
 
         val keyboard = computedKeyboard ?: return
         for (key in keyboard.keys()) {
@@ -1456,6 +1452,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val buttonColor = keyboardTheme.buttonColor
         setButtonColor(buttonColor, keyboardTheme.imeButtonColor, keyboardTheme.buttonSecondaryColor)
         setKeyColor(keyboardTheme.keyTextColor)
+        setStrokeCornerRadius(keyboardTheme.strokeRadius)
         handleKey { it.invalidate() }
     }
 

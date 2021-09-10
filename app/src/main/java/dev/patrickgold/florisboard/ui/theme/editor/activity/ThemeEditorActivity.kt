@@ -32,6 +32,7 @@ import dev.patrickgold.florisboard.ui.crop.activity.CropActivity
 import dev.patrickgold.florisboard.ui.main.activity.MainActivity
 import dev.patrickgold.florisboard.util.BUNDLE_CROPPED_IMAGE_KEY
 import dev.patrickgold.florisboard.util.BUNDLE_THEME_KEY
+import dev.patrickgold.florisboard.util.IS_EDITING_THEME_KEY
 import kotlinx.coroutines.launch
 
 class ThemeEditorActivity :
@@ -111,7 +112,7 @@ class ThemeEditorActivity :
                 LayoutManager().computeKeyboardAsync(
                     KeyboardMode.CHARACTERS,
                     Subtype.DEFAULT
-                ).await(), currentTheme
+                ).await(), currentTheme.copy()
             )
         }
     }
@@ -177,8 +178,10 @@ class ThemeEditorActivity :
         Intent(this, MainActivity::class.java)
             .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             .putExtra(BUNDLE_THEME_KEY, keyboardTheme)
+            .putExtra(IS_EDITING_THEME_KEY, isKeyboardHasModifications(keyboardTheme))
             .let(::startActivity)
         finishAffinity()
     }
 
+    private fun isKeyboardHasModifications(keyboardTheme: KeyboardTheme) = currentTheme != keyboardTheme
 }

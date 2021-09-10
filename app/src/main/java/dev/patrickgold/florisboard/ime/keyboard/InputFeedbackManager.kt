@@ -110,13 +110,16 @@ class InputFeedbackManager private constructor(private val ims: InputMethodServi
             } else {
                 HapticFeedbackConstants.KEYBOARD_TAP
             }
-            val didPerform = view.performHapticFeedback(hfc,
+            val didPerform = view.performHapticFeedback(
+                hfc,
                 HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING or
                     HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING
             )
             if (didPerform) return
             // If not performed fall back to using the vibrator directly
         }
+
+        return
 
         val duration = prefs.inputFeedback.hapticVibrationDuration
         if (duration != 0) {
@@ -128,7 +131,8 @@ class InputFeedbackManager private constructor(private val ims: InputMethodServi
                 }
                 if (strength != 0) {
                     val effectiveStrength = when {
-                        vibrator.hasAmplitudeControl() -> (255.0 * ((strength * factor) / 100.0)).toInt().coerceIn(1, 255)
+                        vibrator.hasAmplitudeControl() -> (255.0 * ((strength * factor) / 100.0)).toInt()
+                            .coerceIn(1, 255)
                         else -> strength
                     }
                     flogDebug { "Perform haptic with duration=$effectiveDuration and strength=$effectiveStrength" }

@@ -17,7 +17,7 @@ data class KeyboardTheme(
     var backgroundColor: String? = "#292E32",
     var keyFont: Int? = null,
     var keyTextColor: String = "#FFFFFF",
-    var strokeRadius: Int = 16,
+    var strokeRadius: Int = 6,
     var strokeColor: String? = null,
     var buttonColor: String = "#484C4F",
     var imeButtonColor: String = "#5F97F6",
@@ -38,4 +38,42 @@ data class KeyboardTheme(
         this.buttonSecondaryColor = keyboardTheme.buttonSecondaryColor
         this.opacity = keyboardTheme.opacity
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as KeyboardTheme
+
+        if (backgoundType != other.backgoundType) return false
+        if (backgroundImagePath != other.backgroundImagePath) return false
+        if (backgroundColor != other.backgroundColor) return false
+        if (keyFont != other.keyFont) return false
+        if (keyTextColor != other.keyTextColor) return false
+        if (strokeRadius != other.strokeRadius) return false
+        if (strokeColor != other.strokeColor) return false
+        if (buttonColor != other.buttonColor) return false
+        if (imeButtonColor != other.imeButtonColor) return false
+        if (buttonSecondaryColor != other.buttonSecondaryColor) return false
+        if (opacity != other.opacity) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id?.hashCode() ?: 0
+        result = 31 * result + (backgoundType?.hashCode() ?: 0)
+        result = 31 * result + (backgroundImagePath?.hashCode() ?: 0)
+        result = 31 * result + (backgroundColor?.hashCode() ?: 0)
+        result = 31 * result + (keyFont ?: 0)
+        result = 31 * result + keyTextColor.hashCode()
+        result = 31 * result + strokeRadius
+        result = 31 * result + (strokeColor?.hashCode() ?: 0)
+        result = 31 * result + buttonColor.hashCode()
+        result = 31 * result + imeButtonColor.hashCode()
+        result = 31 * result + buttonSecondaryColor.hashCode()
+        result = 31 * result + opacity
+        return result
+    }
+
 }
