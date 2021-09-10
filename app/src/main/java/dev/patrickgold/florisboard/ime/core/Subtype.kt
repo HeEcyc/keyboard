@@ -328,4 +328,6 @@ data class DefaultSubtype(
     @SerialName("currencySet")
     var currencySetName: String,
     var preferred: SubtypeLayoutMap
-)
+) {
+    fun toSubtype() = Subtype(id, locale, composerName, currencySetName, preferred)
+}
