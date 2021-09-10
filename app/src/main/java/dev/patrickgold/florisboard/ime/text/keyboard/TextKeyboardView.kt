@@ -918,6 +918,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     private fun prepareKey(key: TextKey, theme: KeyboardTheme, renderView: TextKeyView) {
         renderView.let { rv ->
             rv.labelPaint.let {
+                (rv.background as? GradientDrawable)?.alpha = (255 * (theme.opacity / 100f)).toInt()
                 it.color = Color.parseColor(theme.keyTextColor)
                 if (computedKeyboard?.mode == KeyboardMode.CHARACTERS && (key.computedData.code == KeyCode.SPACE || key.computedData.code == KeyCode.CJK_SPACE)) {
                     it.alpha = 120
