@@ -48,7 +48,7 @@ class BackgroundViewKeyboardService : FlorisBoard() {
         }
 
         BackgroundViewRepository.newBackgroundViews.observeForever { view ->
-            onNewBackgroundView(view?.createView(themeContext)?.also { println("12345  sdflsdkf" + it::class.java) })
+            onNewBackgroundView(view?.createView(themeContext))
         }
 
         eventListeners.toList().forEach { it?.onInitializeInputUi(uiBinding!!) }
