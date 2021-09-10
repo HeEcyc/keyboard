@@ -5,7 +5,9 @@ import android.graphics.Color
 import com.google.gson.Gson
 import dev.patrickgold.florisboard.FlorisApplication
 import dev.patrickgold.florisboard.background.view.keyboard.repository.BottomRightCharacterRepository
-import dev.patrickgold.florisboard.data.KeyboardTheme
+import dev.patrickgold.florisboard.ime.core.Preferences
+import dev.patrickgold.florisboard.ime.core.SubtypeManager
+import dev.patrickgold.florisboard.ime.text.gestures.SwipeAction
 import dev.patrickgold.florisboard.util.enums.KeyboardHeight
 import dev.patrickgold.florisboard.util.enums.Language
 import dev.patrickgold.florisboard.util.enums.LanguageChange
@@ -57,15 +59,16 @@ object PrefsReporitory {
         object Language {
             private const val languageKey = "language_"
 
-            operator fun getValue(thisRef: Any?, property: KProperty<*>): Boolean {
-                if (thisRef !is L) return false
-                val isDefaultLanguage = thisRef == L.EN
-                return sharedPreferences.getBoolean(languageKey + thisRef.name, isDefaultLanguage)
+            operator fun getValue(language: Any?, property: KProperty<*>): Boolean {
+                if (language !is L) return false
+                val isDefaultLanguage = language == L.EN
+                return sharedPreferences.getBoolean(languageKey + language.name, isDefaultLanguage)
             }
 
-            operator fun setValue(thisRef: Any?, property: KProperty<*>, value: Boolean) {
-                if (thisRef !is L) return
-                sharedPreferences.edit().putBoolean(languageKey + thisRef.name, value).apply()
+            operator fun setValue(language: Any?, property: KProperty<*>, isSelected: Boolean) {
+                if (language !is L) return
+                SubtypeManager.default().apply { language.let(if (isSelected) ::addSubtypeForLanguage else ::removeSubtypeForLanguage) }
+                sharedPreferences.edit().putBoolean(languageKey + language.name, isSelected).apply()
             }
         }
 
@@ -105,20 +108,27 @@ object PrefsReporitory {
 
         var oneHandedMode: OneHandedMode
             get() = OneHandedMode.valueOf(sharedPreferences.getString(oneHandedModeKey, OneHandedMode.OFF.name)!!)
-            set(value) = sharedPreferences.edit().putString(oneHandedModeKey, value.name).apply()
+            set(value) {
+                if (oneHandedMode == OneHandedMode.OFF && value != OneHandedMode.OFF) keyboardHeight = KeyboardHeight.NORMAL
+                sharedPreferences.edit().putString(oneHandedModeKey, value.name).apply()
+            }
 
         var keyboardHeight: KeyboardHeight
             get() = KeyboardHeight.valueOf(sharedPreferences.getString(keyboardHeightKey, KeyboardHeight.NORMAL.name)!!)
-            set(value) = sharedPreferences.edit().putString(keyboardHeightKey, value.name).apply()
+            set(value) {
+                if (keyboardHeight == KeyboardHeight.NORMAL && value != KeyboardHeight.NORMAL) oneHandedMode = OneHandedMode.OFF
+                sharedPreferences.edit().putString(keyboardHeightKey, value.name).apply()
+            }
 
         var languageChange: LanguageChange
-            get() = LanguageChange.valueOf(
-                sharedPreferences.getString(
-                    languageChangeKey,
-                    LanguageChange.SWIPE_THROUGH_SPACE.name
-                )!!
-            )
-            set(value) = sharedPreferences.edit().putString(languageChangeKey, value.name).apply()
+            get() = LanguageChange.valueOf(sharedPreferences.getString(languageChangeKey, LanguageChange.SWIPE_THROUGH_SPACE.name)!!)
+            set(value) {
+                sharedPreferences.edit().putString(languageChangeKey, value.name).apply()
+                Preferences.default().gestures.apply {
+                    spaceBarSwipeLeft = (if (value == LanguageChange.SPECIAL_BUTTON) SwipeAction.MOVE_CURSOR_LEFT else SwipeAction.SWITCH_TO_PREV_SUBTYPE)
+                    spaceBarSwipeRight = (if (value == LanguageChange.SPECIAL_BUTTON) SwipeAction.MOVE_CURSOR_RIGHT else SwipeAction.SWITCH_TO_NEXT_SUBTYPE)
+                }
+            }
 
         var specialSymbol: Int
             get() = sharedPreferences.getInt(

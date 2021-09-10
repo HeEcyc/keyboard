@@ -22,6 +22,7 @@ import dev.patrickgold.florisboard.debug.*
 import dev.patrickgold.florisboard.res.AssetManager
 import dev.patrickgold.florisboard.ime.text.key.CurrencySet
 import dev.patrickgold.florisboard.res.FlorisRef
+import dev.patrickgold.florisboard.util.enums.Language
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlin.collections.ArrayList
@@ -70,6 +71,15 @@ class SubtypeManager(
             listRaw.split(SUBTYPE_LIST_STR_DELIMITER).forEach {
                 _subtypes.add(Subtype.fromString(it))
             }
+        }
+        if (_subtypes.isEmpty()) {
+            _subtypes.addAll(
+                imeConfig
+                    .defaultSubtypes
+                    .filter { it.id != 102 }
+                    .filter { Language.values().any { l -> it.locale.language == l.name.lowercase() && l.isSelected } }
+                    .map { it.toSubtype() }
+            )
         }
     }
 
@@ -283,4 +293,12 @@ class SubtypeManager(
         }
         return newActiveSubtype
     }
+
+    fun addSubtypeForLanguage(language: Language) = addSubtype(subtypeFor(language))
+
+    fun removeSubtypeForLanguage(language: Language) = removeSubtype(subtypeFor(language))
+
+    private fun subtypeFor(language: Language) =
+        imeConfig.defaultSubtypes.first { it.locale.language == language.name.lowercase()}.toSubtype()
+
 }

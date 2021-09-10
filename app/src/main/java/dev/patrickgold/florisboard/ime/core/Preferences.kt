@@ -270,10 +270,10 @@ class Preferences(
             set(v) = prefs.setPref(SPACE_BAR_SWIPE_UP, v)
         var spaceBarSwipeLeft: SwipeAction
             get() =  SwipeAction.fromString(prefs.getPref(SPACE_BAR_SWIPE_LEFT, "no_action"))
-            set(v) = prefs.setPref(SPACE_BAR_SWIPE_LEFT, v)
+            set(v) = prefs.setPref(SPACE_BAR_SWIPE_LEFT, v.name)
         var spaceBarSwipeRight: SwipeAction
             get() =  SwipeAction.fromString(prefs.getPref(SPACE_BAR_SWIPE_RIGHT, "no_action"))
-            set(v) = prefs.setPref(SPACE_BAR_SWIPE_RIGHT, v)
+            set(v) = prefs.setPref(SPACE_BAR_SWIPE_RIGHT, v.name)
         var deleteKeySwipeLeft: SwipeAction
             get() =  SwipeAction.fromString(prefs.getPref(DELETE_KEY_SWIPE_LEFT, "no_action"))
             set(v) = prefs.setPref(DELETE_KEY_SWIPE_LEFT, v)
@@ -527,7 +527,7 @@ class Preferences(
         }
 
         var activeSubtypeId: Int
-            get() =  prefs.getPref(ACTIVE_SUBTYPE_ID, Subtype.DEFAULT.id)
+            get() =  prefs.getPref(ACTIVE_SUBTYPE_ID, 101)
             set(v) = prefs.setPref(ACTIVE_SUBTYPE_ID, v)
         var subtypes: String
             get() =  prefs.getPref(SUBTYPES, "")
