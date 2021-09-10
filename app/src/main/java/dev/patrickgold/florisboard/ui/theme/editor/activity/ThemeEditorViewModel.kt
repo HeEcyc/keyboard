@@ -58,6 +58,14 @@ class ThemeEditorViewModel : BaseViewModel() {
                     uriPathFromAsset("fluid.png"),
                     BackgroundViewRepository.BackgroundView.FluidView.name()
                 ),
+                BackgroundAsset.BackgroundTheme(
+                    uriPathFromAsset("particles.jpg"),
+                    BackgroundViewRepository.BackgroundView.ParticleView.name()
+                ),
+                BackgroundAsset.BackgroundTheme(
+                    uriPathFromAsset("flow.png"),
+                    BackgroundViewRepository.BackgroundView.ParticleFlowView.name()
+                ),
             ).apply { addAll(readAssetImages()) }
             onItemClick = { handleBgClick(it) }
             viewBinding = { inflater, viewGroup, viewType -> getBackgroundBinding(viewType, inflater, viewGroup) }
