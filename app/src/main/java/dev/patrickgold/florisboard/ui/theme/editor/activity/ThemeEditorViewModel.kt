@@ -50,27 +50,26 @@ class ThemeEditorViewModel : BaseViewModel() {
         onItemClick = { if (it.strokeRadius > -1) currenetStrokeCornersRadius.set(it.strokeRadius) }
     }
 
-    val backgroundAdapter =
-        createAdapter<BackgroundAsset, ViewDataBinding> {
-            initItems = mutableListOf(
-                BackgroundAsset.NewImage,
-                BackgroundAsset.BackgroundTheme(
-                    uriPathFromAsset("fluid.png"),
-                    BackgroundViewRepository.BackgroundView.FluidView.name()
-                ),
-                BackgroundAsset.BackgroundTheme(
-                    uriPathFromAsset("particles.jpg"),
-                    BackgroundViewRepository.BackgroundView.ParticleView.name()
-                ),
-                BackgroundAsset.BackgroundTheme(
-                    uriPathFromAsset("flow.png"),
-                    BackgroundViewRepository.BackgroundView.ParticleFlowView.name()
-                ),
-            ).apply { addAll(readAssetImages()) }
-            onItemClick = { handleBgClick(it) }
-            viewBinding = { inflater, viewGroup, viewType -> getBackgroundBinding(viewType, inflater, viewGroup) }
-            itemViewTypeProvider = { getBGItemType(it) }
-        }
+    val backgroundAdapter = createAdapter<BackgroundAsset, ViewDataBinding> {
+        initItems = mutableListOf(
+            BackgroundAsset.NewImage,
+            BackgroundAsset.BackgroundTheme(
+                uriPathFromAsset("fluid.png"),
+                BackgroundViewRepository.BackgroundView.FluidView.name()
+            ),
+            BackgroundAsset.BackgroundTheme(
+                uriPathFromAsset("particles.jpg"),
+                BackgroundViewRepository.BackgroundView.ParticleView.name()
+            ),
+            BackgroundAsset.BackgroundTheme(
+                uriPathFromAsset("flow.png"),
+                BackgroundViewRepository.BackgroundView.ParticleFlowView.name()
+            ),
+        ).apply { addAll(readAssetImages()) }
+        onItemClick = { handleBgClick(it) }
+        viewBinding = { inflater, viewGroup, viewType -> getBackgroundBinding(viewType, inflater, viewGroup) }
+        itemViewTypeProvider = { getBGItemType(it) }
+    }
 
     private fun getBGItemType(it: BackgroundAsset) = when (it) {
         is BackgroundAsset.BackgroundTheme -> 1
