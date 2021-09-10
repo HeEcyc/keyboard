@@ -24,6 +24,7 @@ import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
@@ -192,11 +193,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
         popupManager = PopupManager(this, popupLayerView)
         swipeGestureDetector.isEnabled = !isSmartbarKeyboardView
-
-        if (isPreviewMode) {
-            background = backgroundDrawable
-        }
-
         setWillNotDraw(false)
     }
 
@@ -206,7 +202,10 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun setComputedKeyboard(keyboard: TextKeyboard, keyboardTheme: KeyboardTheme? = null) {
         this.keyboardTheme = keyboardTheme ?: KeyboardTheme()
-        flogInfo(LogTopic.TEXT_KEYBOARD_VIEW) { keyboard.mode.toString() }
+//        this.keyboardTheme = keyboardTheme ?:
+//        if (isPreviewMode) keyboardTheme
+//        else PrefsReporitory.keyboardTheme ?: KeyboardTheme()
+
         val renderViewDiff = keyboard.keyCount - childCount
         if (renderViewDiff > 0) {
             // We have more keys than render views, add abs(diff) views
@@ -265,7 +264,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        //if(!isPreviewMode) keyboardTheme = PrefsReporitory.theme
         glideTypingDetector.let {
             it.registerListener(this)
             it.registerListener(glideTypingManager)
@@ -859,6 +857,9 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     private fun computeKeyboard() {
+
+        Log.d("12345", "compute")
+
         val keyboard = computedKeyboard ?: return
         for (key in keyboard.keys()) {
             key.compute(internalComputingEvaluator)
@@ -1169,7 +1170,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                             key.foregroundDrawableId = R.drawable.ic_space_bar
                         }
                         KeyboardMode.CHARACTERS -> {
-                            key.label = florisboard?.activeSubtype?.locale?.let { it.displayName() }
+                            key.label = florisboard?.activeSubtype?.locale?.displayName()
                         }
                         else -> {
                         }
@@ -1457,6 +1458,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val buttonColor = keyboardTheme.buttonColor
         setButtonColor(buttonColor, keyboardTheme.imeButtonColor, keyboardTheme.buttonSecondaryColor)
         setKeyColor(keyboardTheme.keyTextColor)
+        handleKey { it.invalidate() }
     }
 
     fun getKeyboardTheme() = keyboardTheme

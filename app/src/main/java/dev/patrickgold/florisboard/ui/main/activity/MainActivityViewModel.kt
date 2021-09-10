@@ -1,6 +1,5 @@
 package dev.patrickgold.florisboard.ui.main.activity
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ObservableBoolean
@@ -203,8 +202,9 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         nextActivity.postValue(ThemeEditorActivity::class.java)
     }
 
-    fun handleNewTheme(keyboardTheme: KeyboardTheme?) {
+    fun onThemeApply(keyboardTheme: KeyboardTheme?) {
         keyboardTheme ?: return
+        PrefsReporitory.keyboardTheme = keyboardTheme
         keyboardTheme.id = ThemeDataBase.dataBase.getThemesDao().insertTheme(keyboardTheme)
         customThemeAdapter
             .getData()

@@ -1,10 +1,11 @@
 package dev.patrickgold.florisboard.repository
 
 import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
 import android.graphics.Color
+import com.google.gson.Gson
 import dev.patrickgold.florisboard.FlorisApplication
 import dev.patrickgold.florisboard.background.view.keyboard.repository.BottomRightCharacterRepository
+import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.util.enums.KeyboardHeight
 import dev.patrickgold.florisboard.util.enums.Language
 import dev.patrickgold.florisboard.util.enums.LanguageChange
@@ -19,6 +20,7 @@ object PrefsReporitory {
     const val fontResKey = "font_res_key"
     const val keyColorKey = "key_color_key"
     const val isEnableGetsureKey = "is_enable_getsure_key"
+    const val keyboadThemeKey = "keyboard_theme_key"
 
     var fontFamilyRes: Int = -1
         get() = sharedPreferences.getInt(fontResKey, -1)
@@ -34,16 +36,13 @@ object PrefsReporitory {
             field = value
         }
 
-    var isEnableGetsure: Boolean = false
-        get() = sharedPreferences.getBoolean(isEnableGetsureKey, false)
+
+    var keyboardTheme: KeyboardTheme? = null
+        get() = Gson().fromJson(sharedPreferences.getString(keyboadThemeKey, null), KeyboardTheme::class.java)
         set(value) {
-            sharedPreferences.edit().putBoolean(keyColorKey, value).apply()
+            if (value != null) sharedPreferences.edit().putString(keyboadThemeKey, Gson().toJson(value)).apply()
             field = value
         }
-
-    fun registerListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
-        sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
-    }
 
     object Settings {
         private const val showEmojiKey = "show_emoji"
@@ -113,11 +112,19 @@ object PrefsReporitory {
             set(value) = sharedPreferences.edit().putString(keyboardHeightKey, value.name).apply()
 
         var languageChange: LanguageChange
-            get() = LanguageChange.valueOf(sharedPreferences.getString(languageChangeKey, LanguageChange.SWIPE_THROUGH_SPACE.name)!!)
+            get() = LanguageChange.valueOf(
+                sharedPreferences.getString(
+                    languageChangeKey,
+                    LanguageChange.SWIPE_THROUGH_SPACE.name
+                )!!
+            )
             set(value) = sharedPreferences.edit().putString(languageChangeKey, value.name).apply()
 
         var specialSymbol: Int
-            get() = sharedPreferences.getInt(specialSymbolKey, BottomRightCharacterRepository.defaultBottomRightCharacter.first)
+            get() = sharedPreferences.getInt(
+                specialSymbolKey,
+                BottomRightCharacterRepository.defaultBottomRightCharacter.first
+            )
             set(value) = sharedPreferences.edit().putInt(specialSymbolKey, value).apply()
 
     }
