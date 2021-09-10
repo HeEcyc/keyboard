@@ -257,7 +257,7 @@ class Preferences(
             get() =  SwipeAction.fromString(prefs.getPref(SWIPE_DOWN, "no_action"))
             set(v) = prefs.setPref(SWIPE_DOWN, v)
         var swipeLeft: SwipeAction
-            get() =  SwipeAction.fromString(prefs.getPref(SWIPE_LEFT, "no_action"))
+            get() =  SwipeAction.fromString(prefs.getPref(SWIPE_LEFT, SwipeAction.DELETE_WORD.name))
             set(v) = prefs.setPref(SWIPE_LEFT, v)
         var swipeRight: SwipeAction
             get() =  SwipeAction.fromString(prefs.getPref(SWIPE_RIGHT, "no_action"))

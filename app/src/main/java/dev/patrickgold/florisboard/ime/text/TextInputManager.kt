@@ -497,7 +497,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                 KeyboardMode.SYMBOLS2 -> TextKeyData.VIEW_NUMERIC_ADVANCED
                 else -> TextKeyData.VIEW_CHARACTERS
             }
-            SwipeAction.DELETE_WORD -> TextKeyData.DELETE_WORD
+            SwipeAction.DELETE_WORD -> if (PrefsReporitory.Settings.keyboardSwipe) TextKeyData.DELETE_WORD else null
             SwipeAction.INSERT_SPACE -> TextKeyData.SPACE
             SwipeAction.MOVE_CURSOR_DOWN -> TextKeyData.ARROW_DOWN
             SwipeAction.MOVE_CURSOR_UP -> TextKeyData.ARROW_UP
