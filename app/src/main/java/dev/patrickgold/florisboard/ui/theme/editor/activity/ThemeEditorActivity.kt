@@ -2,7 +2,6 @@ package dev.patrickgold.florisboard.ui.theme.editor.activity
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -179,9 +178,7 @@ class ThemeEditorActivity :
         Intent(this, MainActivity::class.java)
             .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             .putExtra(BUNDLE_THEME_KEY, keyboardTheme)
-            .putExtra(IS_EDITING_THEME_KEY, isKeyboardHasModifications(keyboardTheme).apply {
-                Log.d("12345", "result  ${this}")
-            })
+            .putExtra(IS_EDITING_THEME_KEY, isKeyboardHasModifications(keyboardTheme))
             .let(::startActivity)
         finishAffinity()
     }

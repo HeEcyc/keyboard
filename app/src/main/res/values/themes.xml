@@ -49,8 +49,8 @@
         <!-- IMPORTANT: the following 2 colors MUST be references and not inline colors, or older
              versions of Android will not set the window background and thus causing weird
              rendering glitches!! -->
-        <item name="android:windowBackground">@color/windowBackground</item>
-        <item name="android:colorBackground">@color/windowBackground</item>
+<!--        <item name="android:windowBackground">@color/windowBackground</item>-->
+<!--        <item name="android:colorBackground">@color/windowBackground</item>-->
 
         <item name="android:navigationBarColor">@color/navigationBarColor</item>
         <item name="android:windowLightStatusBar">true</item>

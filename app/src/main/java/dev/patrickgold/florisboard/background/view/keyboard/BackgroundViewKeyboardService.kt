@@ -3,7 +3,6 @@ package dev.patrickgold.florisboard.background.view.keyboard
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,8 +42,6 @@ class BackgroundViewKeyboardService : FlorisBoard() {
         backgroundContainer.removeAllViews()
 
         val keyboardTheme = PrefsReporitory.keyboardTheme ?: KeyboardTheme()
-
-        Log.d("12345", "${keyboardTheme.backgoundType ?: "sdfsdf"}")
 
         when {
             !keyboardTheme.backgoundType.isNullOrEmpty() -> BackgroundViewRepository.BackgroundView

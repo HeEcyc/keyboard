@@ -226,6 +226,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     }
 
     fun onThemeApply(keyboardTheme: KeyboardTheme) {
+
         keyboardTheme.id = ThemeDataBase.dataBase.getThemesDao().insertTheme(keyboardTheme)
         customThemeAdapter
             .getData()

@@ -18,7 +18,7 @@ import dev.patrickgold.florisboard.ui.dialogs.DialogPermissions
 import dev.patrickgold.florisboard.ui.main.activity.assets.FragmentAssets
 import dev.patrickgold.florisboard.ui.main.activity.custom.FragmentCustomTheme
 import dev.patrickgold.florisboard.ui.main.activity.settings.FragmentSettings
-import dev.patrickgold.florisboard.ui.preview.theme.activity.ThemePreviewActivity
+import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorActivity
 import dev.patrickgold.florisboard.util.BUNDLE_THEME_KEY
 
 class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.layout.main_activity),
@@ -55,7 +55,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     }
 
     private fun onThemeClick(keyboardTheme: KeyboardTheme) {
-        Intent(this@MainActivity, ThemePreviewActivity::class.java)
+        Intent(this@MainActivity, ThemeEditorActivity::class.java)
             .putExtra(BUNDLE_THEME_KEY, keyboardTheme)
             .let(::startActivity)
     }

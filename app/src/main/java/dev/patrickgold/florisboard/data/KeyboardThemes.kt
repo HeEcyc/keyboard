@@ -10,6 +10,8 @@ object NewTheme : Theme()
 
 @Entity
 data class KeyboardTheme(
+    @PrimaryKey(autoGenerate = true)
+    var id: Long? = null,
     var backgoundType: String? = null,
     var backgroundImagePath: String? = null,
     var backgroundColor: String? = "#292E32",
@@ -22,9 +24,6 @@ data class KeyboardTheme(
     var buttonSecondaryColor: String = "#373C40",
     var opacity: Int = 100
 ) : Theme(), Serializable {
-
-    @PrimaryKey(autoGenerate = true)
-    var id: Long? = null
 
     fun copyTheme(keyboardTheme: KeyboardTheme) {
         this.backgoundType = keyboardTheme.backgoundType
@@ -39,4 +38,42 @@ data class KeyboardTheme(
         this.buttonSecondaryColor = keyboardTheme.buttonSecondaryColor
         this.opacity = keyboardTheme.opacity
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as KeyboardTheme
+
+        if (backgoundType != other.backgoundType) return false
+        if (backgroundImagePath != other.backgroundImagePath) return false
+        if (backgroundColor != other.backgroundColor) return false
+        if (keyFont != other.keyFont) return false
+        if (keyTextColor != other.keyTextColor) return false
+        if (strokeRadius != other.strokeRadius) return false
+        if (strokeColor != other.strokeColor) return false
+        if (buttonColor != other.buttonColor) return false
+        if (imeButtonColor != other.imeButtonColor) return false
+        if (buttonSecondaryColor != other.buttonSecondaryColor) return false
+        if (opacity != other.opacity) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id?.hashCode() ?: 0
+        result = 31 * result + (backgoundType?.hashCode() ?: 0)
+        result = 31 * result + (backgroundImagePath?.hashCode() ?: 0)
+        result = 31 * result + (backgroundColor?.hashCode() ?: 0)
+        result = 31 * result + (keyFont ?: 0)
+        result = 31 * result + keyTextColor.hashCode()
+        result = 31 * result + strokeRadius
+        result = 31 * result + (strokeColor?.hashCode() ?: 0)
+        result = 31 * result + buttonColor.hashCode()
+        result = 31 * result + imeButtonColor.hashCode()
+        result = 31 * result + buttonSecondaryColor.hashCode()
+        result = 31 * result + opacity
+        return result
+    }
+
 }

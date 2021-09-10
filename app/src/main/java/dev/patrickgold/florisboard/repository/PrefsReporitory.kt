@@ -68,7 +68,8 @@ object PrefsReporitory {
 
             operator fun setValue(language: Any?, property: KProperty<*>, isSelected: Boolean) {
                 if (language !is L) return
-                SubtypeManager.default().apply { language.let(if (isSelected) ::addSubtypeForLanguage else ::removeSubtypeForLanguage) }
+                SubtypeManager.default()
+                    .apply { language.let(if (isSelected) ::addSubtypeForLanguage else ::removeSubtypeForLanguage) }
                 sharedPreferences.edit().putBoolean(languageKey + language.name, isSelected).apply()
             }
         }
@@ -100,7 +101,7 @@ object PrefsReporitory {
             set(value) = sharedPreferences.edit().putBoolean(tipsKey, value).apply()
 
         var keyboardSwipe: Boolean
-            get() = sharedPreferences.getBoolean(keyboardSwipeKey, true)
+            get() = sharedPreferences.getBoolean(keyboardSwipeKey, false)
             set(value) = sharedPreferences.edit().putBoolean(keyboardSwipeKey, value).apply()
 
         var showNumberRow: Boolean
@@ -110,24 +111,33 @@ object PrefsReporitory {
         var oneHandedMode: OneHandedMode
             get() = OneHandedMode.valueOf(sharedPreferences.getString(oneHandedModeKey, OneHandedMode.OFF.name)!!)
             set(value) {
-                if (oneHandedMode == OneHandedMode.OFF && value != OneHandedMode.OFF) keyboardHeight = KeyboardHeight.NORMAL
+                if (oneHandedMode == OneHandedMode.OFF && value != OneHandedMode.OFF) keyboardHeight =
+                    KeyboardHeight.NORMAL
                 sharedPreferences.edit().putString(oneHandedModeKey, value.name).apply()
             }
 
         var keyboardHeight: KeyboardHeight
             get() = KeyboardHeight.valueOf(sharedPreferences.getString(keyboardHeightKey, KeyboardHeight.NORMAL.name)!!)
             set(value) {
-                if (keyboardHeight == KeyboardHeight.NORMAL && value != KeyboardHeight.NORMAL) oneHandedMode = OneHandedMode.OFF
+                if (keyboardHeight == KeyboardHeight.NORMAL && value != KeyboardHeight.NORMAL) oneHandedMode =
+                    OneHandedMode.OFF
                 sharedPreferences.edit().putString(keyboardHeightKey, value.name).apply()
             }
 
         var languageChange: LanguageChange
-            get() = LanguageChange.valueOf(sharedPreferences.getString(languageChangeKey, LanguageChange.SWIPE_THROUGH_SPACE.name)!!)
+            get() = LanguageChange.valueOf(
+                sharedPreferences.getString(
+                    languageChangeKey,
+                    LanguageChange.SWIPE_THROUGH_SPACE.name
+                )!!
+            )
             set(value) {
                 sharedPreferences.edit().putString(languageChangeKey, value.name).apply()
                 Preferences.default().gestures.apply {
-                    spaceBarSwipeLeft = (if (value == LanguageChange.SPECIAL_BUTTON) SwipeAction.MOVE_CURSOR_LEFT else SwipeAction.SWITCH_TO_PREV_SUBTYPE)
-                    spaceBarSwipeRight = (if (value == LanguageChange.SPECIAL_BUTTON) SwipeAction.MOVE_CURSOR_RIGHT else SwipeAction.SWITCH_TO_NEXT_SUBTYPE)
+                    spaceBarSwipeLeft =
+                        (if (value == LanguageChange.SPECIAL_BUTTON) SwipeAction.MOVE_CURSOR_LEFT else SwipeAction.SWITCH_TO_PREV_SUBTYPE)
+                    spaceBarSwipeRight =
+                        (if (value == LanguageChange.SPECIAL_BUTTON) SwipeAction.MOVE_CURSOR_RIGHT else SwipeAction.SWITCH_TO_NEXT_SUBTYPE)
                 }
             }
 
