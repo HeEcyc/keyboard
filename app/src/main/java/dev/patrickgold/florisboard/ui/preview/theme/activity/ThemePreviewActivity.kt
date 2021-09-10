@@ -6,6 +6,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import dev.patrickgold.florisboard.R
+import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.databinding.ThemePreviewActivityBinding
 import dev.patrickgold.florisboard.ime.core.Subtype
 import dev.patrickgold.florisboard.ime.keyboard.ComputingEvaluator
@@ -20,11 +21,14 @@ import dev.patrickgold.florisboard.ime.text.layout.LayoutManager
 import dev.patrickgold.florisboard.ui.base.BaseActivity
 import dev.patrickgold.florisboard.ui.main.activity.MainActivity
 import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorActivity
+import dev.patrickgold.florisboard.util.BUNDLE_THEME_KEY
 import kotlinx.coroutines.launch
 
 class ThemePreviewActivity :
     BaseActivity<ThemePreviewViewModel, ThemePreviewActivityBinding>(R.layout.theme_preview_activity),
     View.OnClickListener {
+
+    private val currentTheme: KeyboardTheme by lazy { intent.getSerializableExtra(BUNDLE_THEME_KEY) as KeyboardTheme }
 
     private val viewModel: ThemePreviewViewModel by viewModels()
     private val textComputingEvaluator = object : ComputingEvaluator by DefaultComputingEvaluator {
@@ -42,6 +46,9 @@ class ThemePreviewActivity :
     }
 
     override fun setupUI() {
+        viewModel.backgroundImage.set(currentTheme.backgroundImagePath)
+        viewModel.currentBackgroundColor.set(currentTheme.backgroundColor)
+
         binding.backButton.setOnClickListener(this)
         binding.saveButton.setOnClickListener(this)
         binding.editButton.setOnClickListener(this)
@@ -51,12 +58,10 @@ class ThemePreviewActivity :
         binding.keyboardPreview.sync()
 
         lifecycleScope.launch {
-            binding.keyboardPreview.setComputedKeyboard(
-                LayoutManager().computeKeyboardAsync(
-                    KeyboardMode.CHARACTERS,
-                    Subtype.DEFAULT
-                ).await()
-            )
+            binding.keyboardPreview
+                .setComputedKeyboard(
+                    LayoutManager().computeKeyboardAsync(KeyboardMode.CHARACTERS, Subtype.DEFAULT).await(), currentTheme
+                )
         }
     }
 
@@ -68,11 +73,12 @@ class ThemePreviewActivity :
             R.id.saveButton -> onAttachTheme()
             R.id.editButton -> editKeyboardTheme()
         }
-        finish()
     }
 
     private fun editKeyboardTheme() {
-        startActivity(Intent(this, ThemeEditorActivity::class.java))
+        Intent(this, ThemeEditorActivity::class.java)
+            .putExtra(BUNDLE_THEME_KEY, currentTheme)
+            .let(::startActivity)
     }
 
     fun onAttachTheme() {

@@ -1,7 +1,6 @@
 package dev.patrickgold.florisboard.background.view.keyboard.repository
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.util.AttributeSet
@@ -83,7 +82,6 @@ object BackgroundViewRepository {
                 view
             }
         }
-
     }
 
 }

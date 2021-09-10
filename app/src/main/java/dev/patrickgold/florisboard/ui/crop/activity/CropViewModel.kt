@@ -17,6 +17,7 @@ import java.io.FileOutputStream
 import kotlin.coroutines.suspendCoroutine
 
 class CropViewModel : BaseViewModel() {
+
     val cropeedImageUri = SingleLiveData<String>()
     val imageUri = ObservableField<String>()
 

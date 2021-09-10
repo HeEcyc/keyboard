@@ -2,26 +2,40 @@ package dev.patrickgold.florisboard.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import dev.patrickgold.florisboard.R
 import java.io.Serializable
 
-sealed class Theme
+sealed class Theme : Serializable
 
 object NewTheme : Theme()
 
 @Entity
 data class KeyboardTheme(
     @PrimaryKey(autoGenerate = true)
-    val id: Long = -1,
-    val backgoundType: String,
-    val backgroundImagePath: String? = null,
-    val backgroundColor: String? = "#292E32",
-    val keyFont: Int = R.font.roboto_400,
-    val keyTextColor: String = "#000000",
-    val radius: Int? = null,
-    val strokeColor: String? = null,
-    val buttonColor: String = "#484C4F",
-    val imeButtonColor: String = "#373C40",
-    val buttonSecondaryColor: String = "#373C40",
-    val opacity: Int = 100
-) : Theme(), Serializable
+    var id: Long? = null,
+    var backgoundType: String? = null,
+    var backgroundImagePath: String? = null,
+    var backgroundColor: String? = "#292E32",
+    var keyFont: Int? = null,
+    var keyTextColor: String = "#FFFFFF",
+    var radius: Int? = null,
+    var strokeColor: String? = null,
+    var buttonColor: String = "#484C4F",
+    var imeButtonColor: String = "#5F97F6",
+    var buttonSecondaryColor: String = "#373C40",
+    var opacity: Int = 100
+) : Theme(), Serializable {
+
+    fun copyTheme(keyboardTheme: KeyboardTheme) {
+        this.backgoundType = keyboardTheme.backgoundType
+        this.backgroundImagePath = keyboardTheme.backgroundImagePath
+        this.backgroundColor = keyboardTheme.backgroundColor
+        this.keyFont = keyboardTheme.keyFont
+        this.keyTextColor = keyboardTheme.keyTextColor
+        this.radius = keyboardTheme.radius
+        this.strokeColor = keyboardTheme.strokeColor
+        this.buttonColor = keyboardTheme.buttonColor
+        this.imeButtonColor = keyboardTheme.imeButtonColor
+        this.buttonSecondaryColor = keyboardTheme.buttonSecondaryColor
+        this.opacity = keyboardTheme.opacity
+    }
+}

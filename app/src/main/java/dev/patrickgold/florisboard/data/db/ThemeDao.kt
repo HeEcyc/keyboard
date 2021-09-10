@@ -13,6 +13,6 @@ interface ThemeDao {
     fun getTheme(): List<KeyboardTheme>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTheme(themes: List<KeyboardTheme>)
+    fun insertTheme(KeyboardTheme: KeyboardTheme): Long
 
 }
