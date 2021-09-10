@@ -81,7 +81,13 @@ class ThemeEditorActivity :
 
         binding.backButton.setOnClickListener { onBackPressed() }
 
-        viewModel.currentKeyboardBackgorund.set(currentTheme.backgroundImagePath)
+        if (!currentTheme.backgroundImagePath.isNullOrEmpty()) {
+            viewModel.currentKeyboardBackgorund.set(
+                ThemeEditorViewModel.BackgroundAsset
+                    .BackgroundTheme(currentTheme.backgroundImagePath!!, currentTheme.backgoundType)
+            )
+        }
+
         viewModel.currentBackgroundColor.set(currentTheme.backgroundColor)
 
         textKeyboardIconSet = TextKeyboardIconSet.new(this)

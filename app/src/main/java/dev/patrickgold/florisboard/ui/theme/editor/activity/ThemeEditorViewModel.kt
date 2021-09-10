@@ -7,6 +7,7 @@ import androidx.databinding.ObservableField
 import androidx.databinding.ViewDataBinding
 import dev.patrickgold.florisboard.FlorisApplication
 import dev.patrickgold.florisboard.R
+import dev.patrickgold.florisboard.background.view.keyboard.repository.BackgroundViewRepository
 import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.databinding.ItemColorBinding
 import dev.patrickgold.florisboard.databinding.ItemColorNewBinding
@@ -34,7 +35,7 @@ class ThemeEditorViewModel : BaseViewModel() {
     val currentBackgroundColor = ObservableField<String?>()
     val currentButtonsColor = ObservableField<String?>()
     val currenetStrokeCornersRadius = ObservableField<Int?>()
-    val currentKeyboardBackgorund = ObservableField<String?>()
+    val currentKeyboardBackgorund = ObservableField<BackgroundAsset.BackgroundTheme?>()
 
     val colorPicker = SingleLiveData<ColorType>()
     val onThemeSaved = SingleLiveData<KeyboardTheme>()
@@ -51,15 +52,20 @@ class ThemeEditorViewModel : BaseViewModel() {
 
     val backgroundAdapter =
         createAdapter<BackgroundAsset, ViewDataBinding> {
-            initItems = mutableListOf<BackgroundAsset>(BackgroundAsset.NewImage)
-                .apply { addAll(readAssetImages()) }
+            initItems = mutableListOf(
+                BackgroundAsset.NewImage,
+                BackgroundAsset.BackgroundTheme(
+                    uriPathFromAsset("fluid.png"),
+                    BackgroundViewRepository.BackgroundView.FluidView.name()
+                ),
+            ).apply { addAll(readAssetImages()) }
             onItemClick = { handleBgClick(it) }
             viewBinding = { inflater, viewGroup, viewType -> getBackgroundBinding(viewType, inflater, viewGroup) }
             itemViewTypeProvider = { getBGItemType(it) }
         }
 
     private fun getBGItemType(it: BackgroundAsset) = when (it) {
-        is BackgroundAsset.ImageTheme -> 1
+        is BackgroundAsset.BackgroundTheme -> 1
         else -> 0
     }
 
@@ -72,12 +78,9 @@ class ThemeEditorViewModel : BaseViewModel() {
         clearSelectedItemInAdapter(backgoroundColorAdapter)
         currentBackgroundColor.set(null)
         when (it) {
-            is BackgroundAsset.NewImage -> {
-                imagePicker.postValue(Unit)
-                null
-            }
-            is BackgroundAsset.ImageTheme -> it.uri.toString()
-        }?.let { currentKeyboardBackgorund.set(it) }
+            is BackgroundAsset.NewImage -> imagePicker.postValue(Unit)
+            is BackgroundAsset.BackgroundTheme -> currentKeyboardBackgorund.set(it)
+        }
     }
 
     val fontsAdapter = createAdapter<KeyboardFont, ItemFontBinding>(R.layout.item_font) {
@@ -162,8 +165,11 @@ class ThemeEditorViewModel : BaseViewModel() {
         FlorisApplication.instance.assets
             .list(bgFolderNamePath)
             ?.filter { it.startsWith("img") }
-            ?.map { BackgroundAsset.ImageTheme(Uri.fromFile(File("//android_asset/${bgFolderNamePath}/$it"))) }
+            ?.map { BackgroundAsset.BackgroundTheme(uriPathFromAsset(it)) }
             ?: listOf()
+
+    private fun uriPathFromAsset(it: String) =
+        Uri.fromFile(File("//android_asset/${bgFolderNamePath}/$it")).toString()
 
     private fun getFontsList() = listOf(
         KeyboardFont("Arial", R.font.arial),
@@ -220,7 +226,7 @@ class ThemeEditorViewModel : BaseViewModel() {
 
         object NewImage : BackgroundAsset()
 
-        data class ImageTheme(val uri: Uri) : BackgroundAsset()
+        data class BackgroundTheme(val uri: String, val backgroundTypeName: String? = null) : BackgroundAsset()
     }
 
     sealed class ColorItem
@@ -257,7 +263,7 @@ class ThemeEditorViewModel : BaseViewModel() {
 
     fun setCustomBackground(imagePath: String?) {
         imagePath ?: return
-        currentKeyboardBackgorund.set(imagePath)
+        currentKeyboardBackgorund.set(BackgroundAsset.BackgroundTheme(imagePath))
     }
 
     data class StrokeType(val strokeRes: Int, val strokeRadius: Int)
@@ -265,7 +271,8 @@ class ThemeEditorViewModel : BaseViewModel() {
     fun saveTheme(keyboardView: TextKeyboardView) {
         val keyboardTheme = keyboardView.getKeyboardTheme()
         keyboardTheme.apply {
-            backgroundImagePath = currentKeyboardBackgorund.get()
+            backgroundImagePath = currentKeyboardBackgorund.get()?.uri
+            backgoundType = currentKeyboardBackgorund.get()?.backgroundTypeName
             backgroundColor = currentBackgroundColor.get()
         }
         onThemeSaved.postValue(keyboardTheme)

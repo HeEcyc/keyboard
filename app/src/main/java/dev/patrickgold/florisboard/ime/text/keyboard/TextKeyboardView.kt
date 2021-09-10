@@ -166,7 +166,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     private var keyMarginH: Int = 0
     private var keyMarginV: Int = 0
 
-    private var backgroundDrawable: PaintDrawable = PaintDrawable()
     private val baselineTextSize = resources.getDimension(R.dimen.key_textSize)
     var fontSizeMultiplier: Double = 1.0
         private set
@@ -918,7 +917,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     private fun prepareKey(key: TextKey, theme: KeyboardTheme, renderView: TextKeyView) {
         renderView.let { rv ->
-            (rv.background as? GradientDrawable)?.alpha = (255 * (theme.opacity / 100f)).toInt()
             rv.labelPaint.let {
                 it.color = Color.parseColor(theme.keyTextColor)
                 if (computedKeyboard?.mode == KeyboardMode.CHARACTERS && (key.computedData.code == KeyCode.SPACE || key.computedData.code == KeyCode.CJK_SPACE)) {
@@ -1001,7 +999,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     override fun onThemeUpdated(theme: Theme) {
-        backgroundDrawable.apply { paint.color = Color.TRANSPARENT }
         if (theme.getAttr(Theme.Attr.GLIDE_TRAIL_COLOR).toSolidColor().color == 0) {
             glideTrailPaint.color = theme.getAttr(Theme.Attr.WINDOW_COLOR_PRIMARY).toSolidColor().color
             glideTrailPaint.alpha = 32

@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
@@ -27,9 +26,9 @@ fun RecyclerView.itemDecoration(itemDecoration: RecyclerView.ItemDecoration) {
 }
 
 @BindingAdapter("imageUri")
-fun RoundedImageView.itemDecoration(uri: Uri?) {
+fun RoundedImageView.itemDecoration(uri: String?) {
     Glide.with(this)
-        .load(uri)
+        .load(Uri.parse(uri))
         .into(this)
 }
 
@@ -96,4 +95,11 @@ fun AppCompatImageView.setColor(color: String?) {
     color ?: return
     setImageResource(0)
     setBackgroundColor(Color.parseColor(color))
+}
+
+
+object Converter {
+
+    @JvmStatic
+    fun previewUri(backgroundView: ThemeEditorViewModel.BackgroundAsset.BackgroundTheme?) = backgroundView?.uri
 }

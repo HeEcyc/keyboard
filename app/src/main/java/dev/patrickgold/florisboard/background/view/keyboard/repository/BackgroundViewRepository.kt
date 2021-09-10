@@ -45,6 +45,19 @@ object BackgroundViewRepository {
     sealed interface BackgroundView {
         fun getViewFactory(): ViewFactory
 
+        companion object {
+
+            fun fromName(name: String?): BackgroundView? = when (name) {
+                FluidView::class.java.simpleName -> FluidView
+                ParticleView::class.java.simpleName -> ParticleView
+                ParticleFlowView::class.java.simpleName -> ParticleFlowView
+                else -> null
+            }
+
+        }
+
+        fun name(): String = this::class.java.simpleName
+
         object FluidView : BackgroundView {
             override fun getViewFactory() = ViewFactory.from {
                 dispatchBackgroundView(
