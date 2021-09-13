@@ -208,7 +208,11 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         computedKeyboard = if (isShowingNubmerRow() && keyboard.mode == KeyboardMode.CHARACTERS)
             TextKeyboard(
                 Array(5) {
-                    if (it == 0) Array(10) { TextKey(TextKeyData(code = 48 + it, label = it.toString())) }
+                    if (it == 0) Array(10) { position ->
+                        val code = if (position == 9) 48
+                        else 49 + position
+                        TextKey(TextKeyData(code = code, label = code.toChar().toString()))
+                    }
                     else keyboard.arrangement[it - 1]
                 },
                 keyboard.mode,
