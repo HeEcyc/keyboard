@@ -185,7 +185,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     }
 
     fun setupKeyboard(keyboardTheme: KeyboardTheme) {
-
+        PrefsReporitory.keyboardTheme = keyboardTheme
     }
 
     private fun clearSelectedItem() {

@@ -18,12 +18,14 @@ import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.adapters.VPAdapter
 import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.databinding.MainActivityBinding
+import dev.patrickgold.florisboard.repository.PrefsReporitory
 import dev.patrickgold.florisboard.ui.base.BaseActivity
 import dev.patrickgold.florisboard.ui.dialogs.DialogDone
 import dev.patrickgold.florisboard.ui.dialogs.DialogPermissions
 import dev.patrickgold.florisboard.ui.main.activity.assets.FragmentAssets
 import dev.patrickgold.florisboard.ui.main.activity.custom.FragmentCustomTheme
 import dev.patrickgold.florisboard.ui.main.activity.settings.FragmentSettings
+import dev.patrickgold.florisboard.ui.preview.theme.activity.ThemePreviewActivity
 import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorActivity
 import dev.patrickgold.florisboard.util.BUNDLE_IS_EDITING_THEME_KEY
 import dev.patrickgold.florisboard.util.BUNDLE_THEME_KEY
@@ -57,6 +59,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
             onThemeClick.observe(this@MainActivity) { onThemeClick(it) }
             viewModel.nextActivity.observe(this@MainActivity, { showNexActivity(it) })
         }
+        binding.tryMessage.setOnClickListener { showPreviewTheme() }
         binding.bottomBar.onPageChange = viewModel.currentPage::set
         binding.mainScreens.isUserInputEnabled = false
         binding.mainScreens.offscreenPageLimit = 3
@@ -121,5 +124,11 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
             viewModel.onThemeApply(intent.getSerializableExtra(BUNDLE_THEME_KEY) as? KeyboardTheme ?: return)
         showTryKeyboardMessage()
         DialogDone().show(supportFragmentManager)
+    }
+
+    fun showPreviewTheme() {
+        Intent(this, ThemePreviewActivity::class.java)
+            .putExtra(BUNDLE_THEME_KEY, PrefsReporitory.keyboardTheme ?: return)
+            .let(::startActivity)
     }
 }

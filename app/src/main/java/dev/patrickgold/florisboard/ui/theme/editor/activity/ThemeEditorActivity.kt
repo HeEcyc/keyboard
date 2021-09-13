@@ -198,8 +198,6 @@ class ThemeEditorActivity :
 
         viewModel.setCurrentKeyboard(keyboardTheme)
 
-        Log.d("12345","${isKeyboardHasModifications}")
-
         if (isKeyboardHasModifications) viewModel.saveKeyboardImage(binding.keyboardPreview, keyboardTheme.id)
 
         onAttachTheme(keyboardTheme, isKeyboardHasModifications)

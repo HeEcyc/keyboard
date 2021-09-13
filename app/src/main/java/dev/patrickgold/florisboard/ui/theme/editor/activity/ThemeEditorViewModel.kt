@@ -2,7 +2,6 @@ package dev.patrickgold.florisboard.ui.theme.editor.activity
 
 import android.graphics.Bitmap
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.drawToBitmap
@@ -281,11 +280,10 @@ class ThemeEditorViewModel : BaseViewModel() {
 
 
     private fun removeThemeFile(keyboardId: Long) {
-        File(FlorisApplication.instance.cacheDir, "${keyboardId}.png").deleteOnExit()
+        File(FlorisApplication.instance.filesDir, "${keyboardId}.png").deleteOnExit()
     }
 
     private fun saveKeyboardPreviewFile(bitmap: Bitmap, keyboardId: Long) {
-        Log.d("12345", "save file")
         BufferedOutputStream(FileOutputStream(File(FlorisApplication.instance.filesDir, "${keyboardId}.png")))
             .use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
