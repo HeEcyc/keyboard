@@ -102,6 +102,16 @@
             app:layout_constraintStart_toStartOf="@id/keyboardPreview"
             app:layout_constraintTop_toTopOf="@id/keyboardPreview" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/keyboardPreview"
+            app:layout_constraintStart_toStartOf="@+id/keyboardPreview"
+            app:layout_constraintEnd_toEndOf="@+id/keyboardPreview"
+            app:layout_constraintDimensionRatio="4736:512"
+            android:translationY="2dp"
+            android:src="@drawable/toolbar"/>
+
         <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
             android:id="@+id/keyboardPreview"
             android:layout_width="match_parent"

@@ -42,6 +42,7 @@ import dev.patrickgold.florisboard.ime.text.key.KeyVariation
 import dev.patrickgold.florisboard.ime.text.keyboard.KeyboardMode
 import dev.patrickgold.florisboard.ime.theme.Theme
 import dev.patrickgold.florisboard.ime.theme.ThemeManager
+import dev.patrickgold.florisboard.repository.PrefsReporitory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -156,7 +157,8 @@ class SmartbarView : ConstraintLayout, KeyboardState.OnUpdateStateListener, Them
         }
 
         binding.quickActionToggle.setOnClickListener {
-            eventListener.get()?.onSmartbarQuickActionPressed(it.id)
+//            eventListener.get()?.onSmartbarQuickActionPressed(it.id)
+            florisboard?.launchSettings()
         }
 
         configureFeatureVisibility()
@@ -389,7 +391,7 @@ class SmartbarView : ConstraintLayout, KeyboardState.OnUpdateStateListener, Them
                 // Be whatever you want
                 florisboard?.uiBinding?.inputView?.desiredSmartbarHeight ?: resources.getDimension(R.dimen.smartbar_baseHeight)
             }
-        }
+        } * if (PrefsReporitory.Settings.tips) 1 else 0
 
         super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(height.roundToInt(), MeasureSpec.EXACTLY))
     }

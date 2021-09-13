@@ -103,6 +103,10 @@ class InputView : LinearLayout {
         }
         var baseHeight = calcInputViewHeight() * heightFactor
         var baseSmartbarHeight = 0.16129f * baseHeight
+        if (!PrefsReporitory.Settings.tips) {
+            baseHeight -= baseSmartbarHeight
+            baseSmartbarHeight = 0f
+        }
         var baseTextInputHeight = baseHeight - baseSmartbarHeight
         val tim = florisboard.textInputManager
         shouldGiveAdditionalSpace = prefs.keyboard.numberRow &&
