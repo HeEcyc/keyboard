@@ -48,7 +48,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     }
 
     val customThemeAdapter = createAdapter<Theme, ViewDataBinding> {
-        initItems = listOf(NewTheme)
+        //initItems = listOf(NewTheme)
         viewBinding = { inflater, viewGroup, viewType -> getViewBinding(inflater, viewGroup, viewType) }
         itemViewTypeProvider = ::getThemeViewType
         onItemClick = {
@@ -185,25 +185,27 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     }
 
     fun setupKeyboard(keyboardTheme: KeyboardTheme) {
-        clearSelectedItem()
-        keyboardTheme.isSelected
+
     }
 
     private fun clearSelectedItem() {
         assetsThemeAdapter.getData().firstOrNull { it.isSelected }?.let {
             it.isSelected = false
-            //assetsThemeAdapter.updateItem(it)
+            assetsThemeAdapter.updateItem(it)
             return
         }
         customThemeAdapter.getData()
             .filterIsInstance(KeyboardTheme::class.java)
             .firstOrNull { it.isSelected }?.let {
                 it.isSelected = false
-                //  customThemeAdapter.updateItem(it)
+                customThemeAdapter.updateItem(it)
             }
     }
 
     fun setSelectedItem(keyboardTheme: KeyboardTheme) {
-
+        clearSelectedItem()
+        keyboardTheme.isSelected = true
+        assetsThemeAdapter.updateItem(keyboardTheme)
+        customThemeAdapter.updateItem(keyboardTheme)
     }
 }

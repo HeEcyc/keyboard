@@ -12,36 +12,56 @@
             type="dev.patrickgold.florisboard.data.KeyboardTheme" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5sp"
+        app:cardElevation="0sp">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            color="@{item.backgroundColor}"
-            image="@{item.backgroundImagePath}"
-            android:layout_width="0sp"
-            android:layout_height="0sp"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="@id/keyboard"
-            app:layout_constraintEnd_toEndOf="@id/keyboard"
-            app:layout_constraintStart_toStartOf="@id/keyboard"
-            app:layout_constraintTop_toTopOf="@id/keyboard" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/keyboard"
-            previewTheme="@{item}"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:padding="2sp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="0sp"
+                android:src="@drawable/toolbar"
+                app:layout_constraintDimensionRatio="1:0.104"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                color="@{item.backgroundColor}"
+                image="@{item.backgroundImagePath}"
+                android:layout_width="0sp"
+                android:layout_height="0sp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/keyboard"
+                app:layout_constraintStart_toStartOf="@id/keyboard"
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/keyboard"
+                previewTheme="@{item}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_margin="5sp"
+                android:src="@drawable/ic_keyboard_selected"
+                android:visibility="@{item.isSelected  ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="20sp"
-            android:layout_height="20sp"
-            android:layout_margin="5sp"
-            android:src="@drawable/ic_keyboard_selected"
-            android:visibility="@{item.isSelected  ? View.VISIBLE : View.GONE}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@{item.isSelected ? @drawable/keyboard_border_blue : @drawable/keyboard_border_gray}" />
+    </androidx.cardview.widget.CardView>
 </layout>
