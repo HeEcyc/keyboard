@@ -50,13 +50,15 @@
         <dev.patrickgold.florisboard.common.FlorisViewFlipper
             android:id="@+id/main_view_flipper"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:measureAllChildren="false">
 
             <include android:id="@+id/text" layout="@layout/text_input_layout"/>
 
-            <include android:id="@+id/media" layout="@layout/media_input_layout"/>
+            <include android:id="@+id/media" layout="@layout/media_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
             <include android:id="@+id/clipboard" layout="@layout/clipboard_layout"/>
 

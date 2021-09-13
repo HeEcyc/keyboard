@@ -71,8 +71,8 @@ class MediaInputView : LinearLayout, FlorisBoard.EventListener,
         backspaceButton?.imageTintList = ColorStateList.valueOf(fgColor)
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val height = florisboard?.uiBinding?.inputView?.desiredMediaKeyboardViewHeight ?: 0.0f
-        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(height.roundToInt(), MeasureSpec.EXACTLY))
-    }
+//    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+//        val height = florisboard?.uiBinding?.inputView?.desiredMediaKeyboardViewHeight ?: 0.0f
+//        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(height.roundToInt(), MeasureSpec.EXACTLY))
+//    }
 }
