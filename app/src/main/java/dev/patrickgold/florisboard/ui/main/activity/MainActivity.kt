@@ -20,6 +20,7 @@ import dev.patrickgold.florisboard.ui.main.activity.custom.FragmentCustomTheme
 import dev.patrickgold.florisboard.ui.main.activity.settings.FragmentSettings
 import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorActivity
 import dev.patrickgold.florisboard.util.BUNDLE_THEME_KEY
+import dev.patrickgold.florisboard.util.IS_EDITING_THEME_KEY
 
 class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.layout.main_activity),
     DialogPermissions.OnPermissionAction {
@@ -55,9 +56,17 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     }
 
     private fun onThemeClick(keyboardTheme: KeyboardTheme) {
-        Intent(this@MainActivity, ThemeEditorActivity::class.java)
+        if (keyboardTheme.isSelected) Intent(this@MainActivity, ThemeEditorActivity::class.java)
             .putExtra(BUNDLE_THEME_KEY, keyboardTheme)
             .let(::startActivity)
+        else {
+            viewModel.setupKeyboard(keyboardTheme)
+            showTryKeyboardMessage()
+        }
+    }
+
+    private fun showTryKeyboardMessage() {
+
     }
 
     private fun showNexActivity(activityClass: Class<out BaseActivity<*, *>>?) {
@@ -89,7 +98,10 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        viewModel.handleKeyboardApplyResult(intent)
+        val keyboardTheme = intent.getSerializableExtra(BUNDLE_THEME_KEY) as? KeyboardTheme ?: return
+        if (intent.getBooleanExtra(IS_EDITING_THEME_KEY, false)) viewModel.handleKeyboardApplyResult(keyboardTheme)
+        showTryKeyboardMessage()
+        viewModel.setupKeyboard(keyboardTheme)
         DialogDone().show(supportFragmentManager)
     }
 }

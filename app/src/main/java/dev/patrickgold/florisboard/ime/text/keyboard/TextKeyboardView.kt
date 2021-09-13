@@ -73,6 +73,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     private var keyboardTheme: KeyboardTheme = KeyboardTheme()
     private var cachedState: KeyboardState = KeyboardState.new(maskOfInterest = KeyboardState.INTEREST_TEXT)
 
+    val mode: KeyboardMode? get() = computedKeyboard?.mode
+
     private var externalComputingEvaluator: ComputingEvaluator? = null
     private val internalComputingEvaluator = object : ComputingEvaluator {
         override fun evaluateCaps(): Boolean {
@@ -197,13 +199,27 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         externalComputingEvaluator = evaluator
     }
 
+    fun isShowingNubmerRow() = !isPreviewMode && PrefsReporitory.Settings.showNumberRow
+
     fun setComputedKeyboard(keyboard: TextKeyboard, keyboardTheme: KeyboardTheme? = null) {
         this.keyboardTheme = keyboardTheme ?: KeyboardTheme()
-//        this.keyboardTheme = keyboardTheme ?:
-//        if (isPreviewMode) keyboardTheme
-//        else PrefsReporitory.keyboardTheme ?: KeyboardTheme()
 
-        val renderViewDiff = keyboard.keyCount - childCount
+        computedKeyboard = if (isShowingNubmerRow() && keyboard.mode == KeyboardMode.CHARACTERS)
+            TextKeyboard(
+                Array(5) {
+                    if (it == 0) Array(10) { position ->
+                        val code = if (position == 9) 48
+                        else 49 + position
+                        TextKey(TextKeyData(code = code, label = code.toChar().toString()))
+                    }
+                    else keyboard.arrangement[it - 1]
+                },
+                keyboard.mode,
+                keyboard.extendedPopupMapping,
+                keyboard.extendedPopupMappingDefault
+            ) else keyboard
+
+        val renderViewDiff = computedKeyboard!!.keyCount - childCount
         if (renderViewDiff > 0) {
             // We have more keys than render views, add abs(diff) views
             for (n in 0 until abs(renderViewDiff)) {
@@ -214,8 +230,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             val n = abs(renderViewDiff)
             removeViews(childCount - n, n)
         }
-        computedKeyboard = keyboard
-        initGlideClassifier(keyboard)
+
+        initGlideClassifier(computedKeyboard!!)
         reDrawKeyboard()
     }
 
@@ -519,7 +535,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     private fun onTouchUpInternal(event: MotionEvent, pointer: TouchPointer) {
-        flogDebug(LogTopic.TEXT_KEYBOARD_VIEW) { "pointer=$pointer" }
         pointer.longPressJob?.cancel()
         pointer.longPressJob = null
 
@@ -583,8 +598,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val florisboard = florisboard ?: return false
         val pointer = pointerMap.findById(event.pointerId) ?: return false
         val initialKey = pointer.initialKey ?: return false
+
         val activeKey = pointer.activeKey
-        flogDebug(LogTopic.TEXT_KEYBOARD_VIEW)
 
         return when (initialKey.computedData.code) {
             KeyCode.DELETE -> handleDeleteSwipe(event)
@@ -770,16 +785,16 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         } else {
             (florisboard?.uiBinding?.inputView?.desiredTextKeyboardViewHeight ?: MeasureSpec.getSize(heightMeasureSpec)
                 .toFloat())
-        } * if (isPreviewMode) {
-            0.90f
-        } else {
-            1.00f
-        }.times(
-            if (id == R.id.main_keyboard_view)
-                PrefsReporitory.Settings.keyboardHeight.mainKeyboardSizePercent
-            else
-                1f
-        )
+        } * if (isPreviewMode) 0.90f
+        else if (isShowingNubmerRow() && computedKeyboard?.mode == KeyboardMode.CHARACTERS) 1.20f
+        else {
+            1f
+        }
+            .times(
+                if (id == R.id.main_keyboard_view)
+                    PrefsReporitory.Settings.keyboardHeight.mainKeyboardSizePercent
+                else 1f
+            )
 
         super.onMeasure(
             MeasureSpec.makeMeasureSpec(desiredWidth.roundToInt(), MeasureSpec.EXACTLY),
@@ -865,8 +880,12 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         keyboard.keys().withIndex().forEach { (n, key) ->
             getChildAt(n)?.let { rv ->
                 if (rv is TextKeyView) {
+
                     rv.key = if (isSpecialKey(key) && !isPreviewMode) getNewKey(key)
                     else key
+
+                    if (isShowingNubmerRow()) key.computedNumberHint = null
+
                     layoutRenderView(rv, key, isBorderless)
                     prepareKey(key, keyboardTheme, rv)
                     rv.invalidate()

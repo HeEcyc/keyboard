@@ -2,7 +2,7 @@ package dev.patrickgold.florisboard.background.view.keyboard.views
 
 import android.content.Context
 import android.util.AttributeSet
-import android.webkit.WebView
+import android.view.View
 import dev.patrickgold.florisboard.ime.core.FlorisBoard
 import kotlin.math.roundToInt
 
@@ -11,7 +11,7 @@ class KeyboardBackingView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
     defStyleRes: Int = 0
-) : WebView(context, attrs, defStyleAttr, defStyleRes) {
+) : View(context, attrs, defStyleAttr, defStyleRes) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val desiredWidth = MeasureSpec.getSize(widthMeasureSpec).toFloat()

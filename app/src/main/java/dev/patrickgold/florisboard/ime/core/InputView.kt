@@ -26,11 +26,14 @@ import android.os.Build
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.DisplayMetrics
+import android.util.Log
+import android.view.View
 import android.widget.LinearLayout
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.common.ViewUtils
 import dev.patrickgold.florisboard.ime.text.key.KeyVariation
 import dev.patrickgold.florisboard.ime.text.keyboard.KeyboardMode
+import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
 import dev.patrickgold.florisboard.repository.PrefsReporitory
 import dev.patrickgold.florisboard.util.enums.OneHandedMode
 import kotlin.math.roundToInt
@@ -103,7 +106,7 @@ class InputView : LinearLayout {
         var baseTextInputHeight = baseHeight - baseSmartbarHeight
         val tim = florisboard.textInputManager
         shouldGiveAdditionalSpace = prefs.keyboard.numberRow &&
-                !(tim.getActiveKeyboardMode() == KeyboardMode.NUMERIC ||
+            !(tim.getActiveKeyboardMode() == KeyboardMode.NUMERIC ||
                 tim.getActiveKeyboardMode() == KeyboardMode.PHONE ||
                 tim.getActiveKeyboardMode() == KeyboardMode.PHONE2)
         if (shouldGiveAdditionalSpace) {
@@ -112,7 +115,7 @@ class InputView : LinearLayout {
             baseTextInputHeight += additionalHeight
         }
         val smartbarDisabled = !prefs.smartbar.enabled ||
-                tim.activeState.keyVariation == KeyVariation.PASSWORD && prefs.keyboard.numberRow && !prefs.suggestion.api30InlineSuggestionsEnabled
+            tim.activeState.keyVariation == KeyVariation.PASSWORD && prefs.keyboard.numberRow && !prefs.suggestion.api30InlineSuggestionsEnabled
         if (smartbarDisabled) {
             baseHeight = baseTextInputHeight
             baseSmartbarHeight = 0.0f
@@ -121,6 +124,9 @@ class InputView : LinearLayout {
         desiredSmartbarHeight = baseSmartbarHeight
         desiredTextKeyboardViewHeight = baseTextInputHeight
         desiredMediaKeyboardViewHeight = baseHeight
+        findViewById<TextKeyboardView?>(R.id.main_keyboard_view)?.let {
+            if (it.isShowingNubmerRow() && it.mode == KeyboardMode.CHARACTERS) baseHeight *= 1.2f
+        }
         // Add bottom offset for curved screens here. As the desired heights have already been set,
         //  adding a value to the height now will result in a bottom padding (aka offset).
         baseHeight += ViewUtils.dp2px(
