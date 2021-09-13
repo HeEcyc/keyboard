@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+
+        <import type="android.view.View" />
 
         <variable
             name="item"
             type="dev.patrickgold.florisboard.data.KeyboardTheme" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -23,12 +27,20 @@
             app:layout_constraintStart_toStartOf="@id/keyboard"
             app:layout_constraintTop_toTopOf="@id/keyboard" />
 
-        <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/keyboard"
+            previewTheme="@{item}"
             android:layout_width="match_parent"
-            android:layout_height="0sp"
-            app:isPreviewKeyboard="true"
-            app:layout_constraintDimensionRatio="1:0.6"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_margin="5sp"
+            android:src="@drawable/ic_keyboard_selected"
+            android:visibility="@{item.isSelected  ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

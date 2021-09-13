@@ -1,14 +1,18 @@
 package dev.patrickgold.florisboard.ui.theme.editor.activity
 
+import android.graphics.Bitmap
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.drawToBitmap
 import androidx.databinding.ObservableField
 import androidx.databinding.ViewDataBinding
 import dev.patrickgold.florisboard.FlorisApplication
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.background.view.keyboard.repository.BackgroundViewRepository
 import dev.patrickgold.florisboard.data.KeyboardTheme
+import dev.patrickgold.florisboard.data.db.ThemeDataBase
 import dev.patrickgold.florisboard.databinding.ItemColorBinding
 import dev.patrickgold.florisboard.databinding.ItemColorNewBinding
 import dev.patrickgold.florisboard.databinding.ItemFontBinding
@@ -22,10 +26,11 @@ import dev.patrickgold.florisboard.ui.base.BaseViewModel
 import dev.patrickgold.florisboard.ui.base.createAdapter
 import dev.patrickgold.florisboard.ui.custom.HorizontalItemDecoration
 import dev.patrickgold.florisboard.util.SingleLiveData
+import java.io.BufferedOutputStream
 import java.io.File
+import java.io.FileOutputStream
 
 class ThemeEditorViewModel : BaseViewModel() {
-
 
     private val bgFolderNamePath = "images"
 
@@ -38,7 +43,6 @@ class ThemeEditorViewModel : BaseViewModel() {
     val currentKeyboardBackgorund = ObservableField<BackgroundAsset.BackgroundTheme?>()
 
     val colorPicker = SingleLiveData<ColorType>()
-    val onThemeSaved = SingleLiveData<KeyboardTheme>()
 
     val keyBGOpacity = ObservableField<Int>()
     val itemDecoration = HorizontalItemDecoration(40)
@@ -275,13 +279,24 @@ class ThemeEditorViewModel : BaseViewModel() {
 
     data class StrokeType(val strokeRes: Int, val strokeRadius: Int)
 
-    fun saveTheme(keyboardView: TextKeyboardView) {
-        val keyboardTheme = keyboardView.getKeyboardTheme()
-        keyboardTheme.apply {
-            backgroundImagePath = currentKeyboardBackgorund.get()?.uri
-            backgoundType = currentKeyboardBackgorund.get()?.backgroundTypeName
-            backgroundColor = currentBackgroundColor.get()
-        }
-        onThemeSaved.postValue(keyboardTheme)
+
+    private fun removeThemeFile(keyboardId: Long) {
+        File(FlorisApplication.instance.cacheDir, "${keyboardId}.png").deleteOnExit()
+    }
+
+    private fun saveKeyboardPreviewFile(bitmap: Bitmap, keyboardId: Long) {
+        Log.d("12345", "save file")
+        BufferedOutputStream(FileOutputStream(File(FlorisApplication.instance.filesDir, "${keyboardId}.png")))
+            .use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+    }
+
+    fun saveKeyboardImage(keyboardView: TextKeyboardView, keyboardId: Long?) {
+        keyboardId ?: return
+        removeThemeFile(keyboardId)
+        saveKeyboardPreviewFile(keyboardView.drawToBitmap(Bitmap.Config.ARGB_8888), keyboardId)
+    }
+
+    fun setCurrentKeyboard(keyboardTheme: KeyboardTheme) {
+        keyboardTheme.id = ThemeDataBase.dataBase.getThemesDao().insertTheme(keyboardTheme)
     }
 }

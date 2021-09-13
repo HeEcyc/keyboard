@@ -11,7 +11,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
         android:orientation="vertical">
 
         <androidx.viewpager2.widget.ViewPager2
@@ -26,11 +25,30 @@
             bind:layout_constraintBottom_toBottomOf="parent"
             bind:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tryMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_rounded_corner"
+            android:fontFamily="@font/roboto_500"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20sp"
+            android:paddingBottom="10dp"
+            android:text="@string/try_theme_now"
+            android:textColor="@color/blueDark"
+            android:textSize="14sp"
+            android:translationY="10sp"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toBottomOf="parent" />
+
         <dev.patrickgold.florisboard.ui.custom.CustomNavBar
             android:id="@+id/bottomBar"
             android:layout_width="match_parent"
             android:layout_height="100sp"
             bind:layout_constraintBottom_toBottomOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

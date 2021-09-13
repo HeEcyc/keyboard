@@ -18,7 +18,9 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.isseiaoki.simplecropview.CropImageView
 import com.makeramen.roundedimageview.RoundedImageView
+import dev.patrickgold.florisboard.data.KeyboardTheme
 import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel
+import java.io.File
 
 @BindingAdapter("itemDecoration")
 fun RecyclerView.itemDecoration(itemDecoration: RecyclerView.ItemDecoration) {
@@ -95,6 +97,14 @@ fun AppCompatImageView.setColor(color: String?) {
     color ?: return
     setImageResource(0)
     setBackgroundColor(Color.parseColor(color))
+}
+
+@BindingAdapter("previewTheme")
+fun AppCompatImageView.setColor(keyboardTheme: KeyboardTheme?) {
+    val res = File(context.filesDir, "${keyboardTheme?.id}.png")
+    Glide.with(this)
+        .load(res)
+        .into(this)
 }
 
 
