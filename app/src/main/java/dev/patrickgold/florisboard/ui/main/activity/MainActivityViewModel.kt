@@ -1,6 +1,5 @@
 package dev.patrickgold.florisboard.ui.main.activity
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ObservableBoolean
@@ -40,7 +39,6 @@ import dev.patrickgold.florisboard.ui.custom.ThemesItemDecoration
 import dev.patrickgold.florisboard.ui.glide.preferences.activity.GlideTypingPreferenceActivity
 import dev.patrickgold.florisboard.ui.language.selector.activity.LanguageSelectorActivity
 import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorActivity
-import dev.patrickgold.florisboard.util.BUNDLE_THEME_KEY
 import dev.patrickgold.florisboard.util.IS_EDITING_THEME_KEY
 import dev.patrickgold.florisboard.util.SingleLiveData
 import dev.patrickgold.florisboard.util.enums.KeyboardHeight
@@ -176,6 +174,8 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
                 ?.map { assets.open("${assetFolder}/$it").bufferedReader().use { theme -> theme.readText() } }
                 ?.map { gson.fromJson(it, KeyboardTheme::class.java) } ?: return@launch
 
+            themeList.forEach { it.isSelected = it == PrefsReporitory.keyboardTheme }
+
             withContext(Dispatchers.Main) { assetsThemeAdapter.reloadData(themeList) }
         }
     }
@@ -183,6 +183,8 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     fun loadSavedThemes() {
         viewModelScope.launch(Dispatchers.Main) {
             val themes = withContext(Dispatchers.IO) { ThemeDataBase.dataBase.getThemesDao().getTheme().reversed() }
+
+            themes.forEach { it.isSelected = it == PrefsReporitory.keyboardTheme }
             customThemeAdapter.addItems(themes)
         }
     }
@@ -211,12 +213,9 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         }
     }
 
-    fun handleKeyboardApplyResult(intent: Intent) {
-        val keyboardTheme = intent.getSerializableExtra(BUNDLE_THEME_KEY) as? KeyboardTheme ?: return
-
-        PrefsReporitory.keyboardTheme = keyboardTheme
-        if (intent.getBooleanExtra(IS_EDITING_THEME_KEY, false)) onThemeApply(keyboardTheme)
-        else if (keyboardTheme == KeyboardTheme() && !defaultKeyboardAttached()) onThemeApply(keyboardTheme)
+    fun handleKeyboardApplyResult(keyboardTheme: KeyboardTheme) {
+        if (keyboardTheme != KeyboardTheme() || defaultKeyboardAttached()) return
+        onThemeApply(keyboardTheme)
     }
 
     private fun defaultKeyboardAttached(): Boolean {
@@ -226,16 +225,20 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     }
 
     fun onThemeApply(keyboardTheme: KeyboardTheme) {
-
         keyboardTheme.id = ThemeDataBase.dataBase.getThemesDao().insertTheme(keyboardTheme)
         customThemeAdapter
             .getData()
-            .firstOrNull { it is KeyboardTheme && it.id == keyboardTheme.id }
+            .filterIsInstance(KeyboardTheme::class.java)
+            .firstOrNull { it.id == keyboardTheme.id }
             ?.let { currentTheme ->
-                currentTheme as KeyboardTheme
                 currentTheme.copyTheme(keyboardTheme)
                 customThemeAdapter.updateItem(currentTheme)
             } ?: customThemeAdapter.addItem(1, keyboardTheme)
+    }
+
+    fun setupKeyboard(keyboardTheme: KeyboardTheme) {
+        PrefsReporitory.keyboardTheme = keyboardTheme
+        keyboardTheme.isSelected
     }
 
 }

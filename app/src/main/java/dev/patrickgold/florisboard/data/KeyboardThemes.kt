@@ -1,6 +1,7 @@
 package dev.patrickgold.florisboard.data
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
@@ -24,6 +25,9 @@ data class KeyboardTheme(
     var buttonSecondaryColor: String = "#373C40",
     var opacity: Int = 100
 ) : Theme(), Serializable {
+
+    @Ignore
+    var isSelected: Boolean = false
 
     fun copyTheme(keyboardTheme: KeyboardTheme) {
         this.backgoundType = keyboardTheme.backgoundType
