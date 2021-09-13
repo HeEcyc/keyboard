@@ -18,8 +18,7 @@
         <dev.patrickgold.florisboard.ime.text.smartbar.SmartbarQuickActionButton
             android:id="@+id/quick_action_toggle"
             style="@style/SmartbarQuickAction.Toggle"
-            android:contentDescription="@string/smartbar__quick_action_toggle__alt"
-            android:src="@drawable/ic_keyboard_arrow_right"/>
+            android:src="@drawable/ic_settings"/>
 
         <dev.patrickgold.florisboard.ime.text.smartbar.SmartbarQuickActionButton
             android:id="@+id/back_button"

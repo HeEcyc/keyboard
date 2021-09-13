@@ -22,7 +22,7 @@
             app:summary="@string/pref__suggestion__api30_inline_suggestions_enabled__summary"/>
 
         <SwitchPreferenceCompat
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:dependency="smartbar__enabled"
             app:key="suggestion__enabled"
             app:iconSpaceReserved="false"
@@ -30,7 +30,7 @@
             app:summary="@string/pref__suggestion__enabled__summary"/>
 
         <ListPreference
-            android:defaultValue="dynamic_scrollable"
+            android:defaultValue="classic"
             app:dependency="suggestion__enabled"
             app:entries="@array/pref__suggestion__display_mode__entries"
             app:entryValues="@array/pref__suggestion__display_mode__values"
