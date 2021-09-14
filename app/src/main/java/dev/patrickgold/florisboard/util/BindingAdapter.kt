@@ -101,10 +101,11 @@ fun AppCompatImageView.setColor(color: String?) {
 
 @BindingAdapter("previewTheme")
 fun AppCompatImageView.setColor(keyboardTheme: KeyboardTheme?) {
-    val res = File(context.filesDir, "${keyboardTheme?.id}.png")
-    Glide.with(this)
-        .load(res)
-        .into(this)
+    with(Glide.with(this)) {
+        if (keyboardTheme?.previewImage != null)
+            load(Uri.parse("file:///android_asset/ime/preview/${keyboardTheme.previewImage}"))
+        else load(File(context.filesDir, "${keyboardTheme?.id}.png"))
+    }.into(this)
 }
 
 

@@ -2,7 +2,6 @@ package dev.patrickgold.florisboard.ui.theme.editor.activity
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -196,9 +195,11 @@ class ThemeEditorActivity :
 
         val isKeyboardHasModifications = isKeyboardHasModifications(keyboardTheme)
 
-        viewModel.setCurrentKeyboard(keyboardTheme)
+        if (isKeyboardHasModifications) {
+            viewModel.setCurrentKeyboard(keyboardTheme)
+            viewModel.saveKeyboardImage(binding.keyboardPreview, keyboardTheme.id)
+        }
 
-        if (isKeyboardHasModifications) viewModel.saveKeyboardImage(binding.keyboardPreview, keyboardTheme.id)
 
         onAttachTheme(keyboardTheme, isKeyboardHasModifications)
     }

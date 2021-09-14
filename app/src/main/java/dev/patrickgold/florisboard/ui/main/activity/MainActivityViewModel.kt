@@ -1,5 +1,6 @@
 package dev.patrickgold.florisboard.ui.main.activity
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ObservableBoolean
@@ -9,6 +10,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import dev.patrickgold.florisboard.FlorisApplication
 import dev.patrickgold.florisboard.R
@@ -48,12 +50,17 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     }
 
     val customThemeAdapter = createAdapter<Theme, ViewDataBinding> {
-        //initItems = listOf(NewTheme)
+        initItems = listOf(NewTheme)
         viewBinding = { inflater, viewGroup, viewType -> getViewBinding(inflater, viewGroup, viewType) }
         itemViewTypeProvider = ::getThemeViewType
         onItemClick = {
             if (it is NewTheme) showCreateThemeActivity()
             else onThemeClick.postValue(it as KeyboardTheme)
+        }
+        onBind = { _, binding ->
+            if (binding is ItemKeyboardNewBinding) Glide.with(binding.hiddenImage)
+                .load(Uri.parse("file:///android_asset/ime/preview/asset_1.png"))
+                .into(binding.hiddenImage)
         }
     }
 

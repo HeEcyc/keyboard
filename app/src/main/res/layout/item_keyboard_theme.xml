@@ -20,7 +20,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="2sp">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -34,12 +34,10 @@
             <androidx.appcompat.widget.AppCompatImageView
                 color="@{item.backgroundColor}"
                 image="@{item.backgroundImagePath}"
-                android:layout_width="0sp"
+                android:layout_width="match_parent"
                 android:layout_height="0sp"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/keyboard"
-                app:layout_constraintStart_toStartOf="@id/keyboard"
                 app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
             <androidx.appcompat.widget.AppCompatImageView
