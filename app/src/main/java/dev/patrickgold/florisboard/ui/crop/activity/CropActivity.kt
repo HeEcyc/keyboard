@@ -14,6 +14,8 @@ class CropActivity : BaseActivity<CropViewModel, CropActivityBinding>(R.layout.c
 
     override fun setupUI() {
         viewModel.imageUri.set(intent.getStringExtra(BUNDLE_CROPPED_IMAGE_KEY))
+        binding.cropView.setCustomRatio(100,45)
+
         viewModel.cropeedImageUri.observe(this, {
             setResult(RESULT_OK, intent.putExtra(BUNDLE_CROPPED_IMAGE_KEY, it))
             finish()

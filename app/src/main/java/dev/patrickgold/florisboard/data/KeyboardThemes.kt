@@ -1,5 +1,6 @@
 package dev.patrickgold.florisboard.data
 
+import android.util.Log
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -13,6 +14,7 @@ object NewTheme : Theme()
 data class KeyboardTheme(
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null,
+
     var backgoundType: String? = null,
     var backgroundImagePath: String? = null,
     var backgroundColor: String? = "#292E32",
@@ -26,7 +28,8 @@ data class KeyboardTheme(
     var opacity: Int = 100,
 ) : Theme(), Serializable {
 
-    @Ignore var previewImage: String? = null
+    @Ignore
+    var previewImage: String? = null
 
     @Ignore
     var isSelected: Boolean = false
@@ -67,8 +70,7 @@ data class KeyboardTheme(
     }
 
     override fun hashCode(): Int {
-        var result = id?.hashCode() ?: 0
-        result = 31 * result + (backgoundType?.hashCode() ?: 0)
+        var result = (backgoundType?.hashCode() ?: 0)
         result = 31 * result + (backgroundImagePath?.hashCode() ?: 0)
         result = 31 * result + (backgroundColor?.hashCode() ?: 0)
         result = 31 * result + (keyFont ?: 0)

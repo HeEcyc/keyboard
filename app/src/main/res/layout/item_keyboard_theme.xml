@@ -44,7 +44,8 @@
                 android:id="@+id/keyboard"
                 previewTheme="@{item}"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0sp"
+                app:layout_constraintDimensionRatio="1:0.55"
                 app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
             <androidx.appcompat.widget.AppCompatImageView

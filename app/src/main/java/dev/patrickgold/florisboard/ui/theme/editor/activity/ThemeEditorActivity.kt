@@ -201,6 +201,8 @@ class ThemeEditorActivity :
             viewModel.saveKeyboardImage(binding.keyboardPreview, keyboardTheme.id)
         }
 
+        viewModel.attachKeyboard(keyboardTheme)
+
         onAttachTheme(keyboardTheme, isKeyboardHasModifications)
 
     }

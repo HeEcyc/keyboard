@@ -14,6 +14,8 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.isseiaoki.simplecropview.CropImageView
@@ -89,6 +91,7 @@ fun AppCompatImageView.setImage(uri: String?) {
     uri ?: return
     Glide.with(this)
         .load(Uri.parse(uri))
+        .apply(RequestOptions().transform(CenterCrop()))
         .into(this)
 }
 
@@ -107,7 +110,6 @@ fun AppCompatImageView.setColor(keyboardTheme: KeyboardTheme?) {
         else load(File(context.filesDir, "${keyboardTheme?.id}.png"))
     }.into(this)
 }
-
 
 object Converter {
 

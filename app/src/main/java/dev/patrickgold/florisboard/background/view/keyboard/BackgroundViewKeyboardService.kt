@@ -3,6 +3,7 @@ package dev.patrickgold.florisboard.background.view.keyboard
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +48,9 @@ class BackgroundViewKeyboardService : FlorisBoard() {
             !keyboardTheme.backgoundType.isNullOrEmpty() -> BackgroundViewRepository.BackgroundView
                 .fromName(keyboardTheme.backgoundType)
             !keyboardTheme.backgroundImagePath.isNullOrEmpty() -> BackgroundViewRepository.BackgroundView
-                .ImageView(Uri.parse(keyboardTheme.backgroundImagePath))
+                .ImageView(Uri.parse(keyboardTheme.backgroundImagePath)).also {
+                    Log.d("12345", keyboardTheme.backgroundImagePath!!)
+                }
             else -> null
         }?.let { view -> attackBackground(view.getViewFactory().createView(themeContext), backgroundContainer) }
 
