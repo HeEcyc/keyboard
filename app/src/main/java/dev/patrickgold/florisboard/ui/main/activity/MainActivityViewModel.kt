@@ -1,5 +1,6 @@
 package dev.patrickgold.florisboard.ui.main.activity
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ObservableBoolean
@@ -9,6 +10,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import dev.patrickgold.florisboard.FlorisApplication
 import dev.patrickgold.florisboard.R
@@ -20,17 +22,6 @@ import dev.patrickgold.florisboard.data.Theme
 import dev.patrickgold.florisboard.data.db.ThemeDataBase
 import dev.patrickgold.florisboard.databinding.ItemKeyboardNewBinding
 import dev.patrickgold.florisboard.databinding.ItemKeyboardThemeBinding
-import dev.patrickgold.florisboard.ime.core.Subtype
-import dev.patrickgold.florisboard.ime.keyboard.ComputingEvaluator
-import dev.patrickgold.florisboard.ime.keyboard.DefaultComputingEvaluator
-import dev.patrickgold.florisboard.ime.keyboard.KeyData
-import dev.patrickgold.florisboard.ime.text.key.CurrencySet
-import dev.patrickgold.florisboard.ime.text.key.KeyCode
-import dev.patrickgold.florisboard.ime.text.keyboard.KeyboardMode
-import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyData
-import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardIconSet
-import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
-import dev.patrickgold.florisboard.ime.text.layout.LayoutManager
 import dev.patrickgold.florisboard.repository.PrefsReporitory
 import dev.patrickgold.florisboard.ui.base.BaseActivity
 import dev.patrickgold.florisboard.ui.base.BaseViewModel
@@ -39,7 +30,6 @@ import dev.patrickgold.florisboard.ui.custom.ThemesItemDecoration
 import dev.patrickgold.florisboard.ui.glide.preferences.activity.GlideTypingPreferenceActivity
 import dev.patrickgold.florisboard.ui.language.selector.activity.LanguageSelectorActivity
 import dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorActivity
-import dev.patrickgold.florisboard.util.IS_EDITING_THEME_KEY
 import dev.patrickgold.florisboard.util.SingleLiveData
 import dev.patrickgold.florisboard.util.enums.KeyboardHeight
 import dev.patrickgold.florisboard.util.enums.LanguageChange
@@ -57,46 +47,20 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     val keyboardItemDecoration = ThemesItemDecoration(2, 10)
     val assetsThemeAdapter = createAdapter<KeyboardTheme, ItemKeyboardThemeBinding>(R.layout.item_keyboard_theme) {
         onItemClick = onThemeClick::postValue
-        onBind = { theme, binding -> syncKeyboard(binding.keyboard, theme) }
-    }
-
-    private val keyboardIconSet = TextKeyboardIconSet.new(FlorisApplication.instance)
-    private val textComputingEvaluator = object : ComputingEvaluator by DefaultComputingEvaluator {
-        override fun evaluateVisible(data: KeyData): Boolean {
-            return data.code != KeyCode.SWITCH_TO_MEDIA_CONTEXT
-        }
-
-        override fun isSlot(data: KeyData): Boolean {
-            return CurrencySet.isCurrencySlot(data.code)
-        }
-
-        override fun getSlotData(data: KeyData): KeyData {
-            return TextKeyData(label = ".")
-        }
     }
 
     val customThemeAdapter = createAdapter<Theme, ViewDataBinding> {
         initItems = listOf(NewTheme)
         viewBinding = { inflater, viewGroup, viewType -> getViewBinding(inflater, viewGroup, viewType) }
         itemViewTypeProvider = ::getThemeViewType
-        onBind = { theme, binding ->
-            if (binding is ItemKeyboardThemeBinding)
-                syncKeyboard(binding.keyboard, theme as KeyboardTheme)
-        }
         onItemClick = {
             if (it is NewTheme) showCreateThemeActivity()
             else onThemeClick.postValue(it as KeyboardTheme)
         }
-    }
-
-    private fun syncKeyboard(textKeyboardView: TextKeyboardView, keyboardTheme: KeyboardTheme) {
-        textKeyboardView.setIconSet(keyboardIconSet)
-        textKeyboardView.setComputingEvaluator(textComputingEvaluator)
-        viewModelScope.launch {
-            textKeyboardView.setComputedKeyboard(
-                LayoutManager().computeKeyboardAsync(KeyboardMode.CHARACTERS, Subtype.DEFAULT).await(),
-                keyboardTheme
-            )
+        onBind = { _, binding ->
+            if (binding is ItemKeyboardNewBinding) Glide.with(binding.hiddenImage)
+                .load(Uri.parse("file:///android_asset/ime/preview/asset_1.png"))
+                .into(binding.hiddenImage)
         }
     }
 
@@ -213,32 +177,42 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         }
     }
 
-    fun handleKeyboardApplyResult(keyboardTheme: KeyboardTheme) {
-        if (keyboardTheme != KeyboardTheme() || defaultKeyboardAttached()) return
-        onThemeApply(keyboardTheme)
-    }
-
-    private fun defaultKeyboardAttached(): Boolean {
-        val defaultKeyboard = KeyboardTheme()
-        customThemeAdapter.getData().forEach { if (it == defaultKeyboard) return true }
-        return false
-    }
-
     fun onThemeApply(keyboardTheme: KeyboardTheme) {
-        keyboardTheme.id = ThemeDataBase.dataBase.getThemesDao().insertTheme(keyboardTheme)
+        clearSelectedItem()
+        keyboardTheme.isSelected = true
         customThemeAdapter
             .getData()
             .filterIsInstance(KeyboardTheme::class.java)
             .firstOrNull { it.id == keyboardTheme.id }
             ?.let { currentTheme ->
                 currentTheme.copyTheme(keyboardTheme)
+                currentTheme.isSelected = true
                 customThemeAdapter.updateItem(currentTheme)
             } ?: customThemeAdapter.addItem(1, keyboardTheme)
     }
 
     fun setupKeyboard(keyboardTheme: KeyboardTheme) {
         PrefsReporitory.keyboardTheme = keyboardTheme
-        keyboardTheme.isSelected
     }
 
+    private fun clearSelectedItem() {
+        assetsThemeAdapter.getData().firstOrNull { it.isSelected }?.let {
+            it.isSelected = false
+            assetsThemeAdapter.updateItem(it)
+            return
+        }
+        customThemeAdapter.getData()
+            .filterIsInstance(KeyboardTheme::class.java)
+            .firstOrNull { it.isSelected }?.let {
+                it.isSelected = false
+                customThemeAdapter.updateItem(it)
+            }
+    }
+
+    fun setSelectedItem(keyboardTheme: KeyboardTheme) {
+        clearSelectedItem()
+        keyboardTheme.isSelected = true
+        assetsThemeAdapter.updateItem(keyboardTheme)
+        customThemeAdapter.updateItem(keyboardTheme)
+    }
 }

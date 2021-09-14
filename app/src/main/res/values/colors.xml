@@ -22,5 +22,11 @@
     <color name="textGrayColor">#77797A</color>
     <color name="dividerColor">#EFEFEF</color>
     <color name="blueColor">#286FE8</color>
+
+    <color name="blueDark">#0D45AE</color>
+
+    <color name="grayStroke">#BDC0C6</color>
+
     <color name="smartbarBackgroundColor">#FF292E32</color>
+
 </resources>

@@ -31,8 +31,8 @@ import dev.patrickgold.florisboard.ui.base.BaseActivity
 import dev.patrickgold.florisboard.ui.crop.activity.CropActivity
 import dev.patrickgold.florisboard.ui.main.activity.MainActivity
 import dev.patrickgold.florisboard.util.BUNDLE_CROPPED_IMAGE_KEY
+import dev.patrickgold.florisboard.util.BUNDLE_IS_EDITING_THEME_KEY
 import dev.patrickgold.florisboard.util.BUNDLE_THEME_KEY
-import dev.patrickgold.florisboard.util.IS_EDITING_THEME_KEY
 import kotlinx.coroutines.launch
 
 class ThemeEditorActivity :
@@ -81,6 +81,7 @@ class ThemeEditorActivity :
     override fun setupUI() {
 
         binding.backButton.setOnClickListener { onBackPressed() }
+        binding.saveButton.setOnClickListener { setCurrentKeyboard() }
 
         if (!currentTheme.backgroundImagePath.isNullOrEmpty()) {
             viewModel.currentKeyboardBackgorund.set(
@@ -95,7 +96,6 @@ class ThemeEditorActivity :
 
         viewModel.colorPicker.observe(this) { showColorPicker(it) }
         viewModel.imagePicker.observe(this, { showImagePicker() })
-        viewModel.onThemeSaved.observe(this, { onAttachTheme(it) })
 
         binding.progressLayout.setProgress(currentTheme.opacity)
         binding.progressLayout.onProgress = { viewModel.keyBGOpacity.set(it) }
@@ -174,14 +174,33 @@ class ThemeEditorActivity :
         }
     }
 
-    fun onAttachTheme(keyboardTheme: KeyboardTheme) {
+    fun onAttachTheme(keyboardTheme: KeyboardTheme?, isThemeHasModifications: Boolean) {
         Intent(this, MainActivity::class.java)
             .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            .putExtra(BUNDLE_IS_EDITING_THEME_KEY, isThemeHasModifications)
             .putExtra(BUNDLE_THEME_KEY, keyboardTheme)
-            .putExtra(IS_EDITING_THEME_KEY, isKeyboardHasModifications(keyboardTheme))
             .let(::startActivity)
         finishAffinity()
     }
 
     private fun isKeyboardHasModifications(keyboardTheme: KeyboardTheme) = currentTheme != keyboardTheme
+
+    private fun setCurrentKeyboard() {
+        val keyboardTheme = binding.keyboardPreview.getKeyboardTheme()
+        keyboardTheme.apply {
+            backgroundImagePath = viewModel.currentKeyboardBackgorund.get()?.uri
+            backgoundType = viewModel.currentKeyboardBackgorund.get()?.backgroundTypeName
+            backgroundColor = viewModel.currentBackgroundColor.get()
+        }
+
+        val isKeyboardHasModifications = isKeyboardHasModifications(keyboardTheme)
+
+        if (isKeyboardHasModifications) {
+            viewModel.setCurrentKeyboard(keyboardTheme)
+            viewModel.saveKeyboardImage(binding.keyboardPreview, keyboardTheme.id)
+        }
+
+
+        onAttachTheme(keyboardTheme, isKeyboardHasModifications)
+    }
 }

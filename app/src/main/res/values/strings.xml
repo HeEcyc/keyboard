@@ -541,5 +541,7 @@
     <string name="keyboard_swipe">Keyboard swipe</string>
     <string name="show_number_row">Show Number row</string>
     <string name="glide_typing">Glide typing</string>
+    <string name="try_theme_now">Try theme now</string>
+    <string name="write_something_there">Write something there</string>
 
 </resources>
