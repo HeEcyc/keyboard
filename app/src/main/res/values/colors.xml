@@ -25,4 +25,5 @@
     <color name="blueDark">#0D45AE</color>
 
     <color name="grayStroke">#BDC0C6</color>
+    <color name="smartbarBackgroundColor">#FF292E32</color>
 </resources>
