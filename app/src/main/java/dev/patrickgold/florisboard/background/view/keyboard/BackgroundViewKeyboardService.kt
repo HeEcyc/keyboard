@@ -48,9 +48,7 @@ class BackgroundViewKeyboardService : FlorisBoard() {
             !keyboardTheme.backgoundType.isNullOrEmpty() -> BackgroundViewRepository.BackgroundView
                 .fromName(keyboardTheme.backgoundType)
             !keyboardTheme.backgroundImagePath.isNullOrEmpty() -> BackgroundViewRepository.BackgroundView
-                .ImageView(Uri.parse(keyboardTheme.backgroundImagePath)).also {
-                    Log.d("12345", keyboardTheme.backgroundImagePath!!)
-                }
+                .ImageView(Uri.parse(keyboardTheme.backgroundImagePath))
             else -> null
         }?.let { view -> attackBackground(view.getViewFactory().createView(themeContext), backgroundContainer) }
 

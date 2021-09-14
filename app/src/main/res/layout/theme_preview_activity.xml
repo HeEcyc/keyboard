@@ -11,6 +11,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,6 +47,7 @@
             android:gravity="top"
             android:hint="@string/write_something_there"
             android:padding="10dp"
+            android:textColor="@color/textColorMain"
             android:textColorHint="@color/grayStroke"
             android:textSize="14sp" />
     </androidx.appcompat.widget.LinearLayoutCompat>

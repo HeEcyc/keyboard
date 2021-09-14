@@ -38,7 +38,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">#F0F0F0</item>
         <item name="colorAccent">@color/blueColor</item>
-
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="colorSuccess">@color/colorSuccess</item>
         <item name="textColorSuccess">@color/textColorSuccess</item>
         <item name="colorWarning">@color/colorWarning</item>
@@ -49,8 +49,8 @@
         <!-- IMPORTANT: the following 2 colors MUST be references and not inline colors, or older
              versions of Android will not set the window background and thus causing weird
              rendering glitches!! -->
-<!--        <item name="android:windowBackground">@color/windowBackground</item>-->
-<!--        <item name="android:colorBackground">@color/windowBackground</item>-->
+        <!--        <item name="android:windowBackground">@color/windowBackground</item>-->
+        <!--        <item name="android:colorBackground">@color/windowBackground</item>-->
 
         <item name="android:navigationBarColor">@color/navigationBarColor</item>
         <item name="android:windowLightStatusBar">true</item>

@@ -3,7 +3,7 @@
 
     <data>
 
-        <import type="dev.patrickgold.florisboard.util.Converter"/>
+        <import type="dev.patrickgold.florisboard.util.Converter" />
 
         <variable
             name="viewModel"
@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,12 +106,12 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/keyboardPreview"
-            app:layout_constraintStart_toStartOf="@+id/keyboardPreview"
-            app:layout_constraintEnd_toEndOf="@+id/keyboardPreview"
-            app:layout_constraintDimensionRatio="4736:512"
+            android:src="@drawable/toolbar"
             android:translationY="2dp"
-            android:src="@drawable/toolbar"/>
+            app:layout_constraintBottom_toTopOf="@+id/keyboardPreview"
+            app:layout_constraintDimensionRatio="4736:512"
+            app:layout_constraintEnd_toEndOf="@+id/keyboardPreview"
+            app:layout_constraintStart_toStartOf="@+id/keyboardPreview" />
 
         <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
             android:id="@+id/keyboardPreview"
