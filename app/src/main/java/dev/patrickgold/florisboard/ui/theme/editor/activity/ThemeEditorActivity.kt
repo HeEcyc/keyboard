@@ -191,6 +191,7 @@ class ThemeEditorActivity :
             backgroundImagePath = viewModel.currentKeyboardBackgorund.get()?.uri
             backgoundType = viewModel.currentKeyboardBackgorund.get()?.backgroundTypeName
             backgroundColor = viewModel.currentBackgroundColor.get()
+            previewImage = null
         }
 
         val isKeyboardHasModifications = isKeyboardHasModifications(keyboardTheme)
@@ -200,7 +201,7 @@ class ThemeEditorActivity :
             viewModel.saveKeyboardImage(binding.keyboardPreview, keyboardTheme.id)
         }
 
-
         onAttachTheme(keyboardTheme, isKeyboardHasModifications)
+
     }
 }
