@@ -397,7 +397,7 @@ class SmartbarView : ConstraintLayout, KeyboardState.OnUpdateStateListener, Them
     }
 
     override fun onThemeUpdated(theme: Theme) {
-        setBackgroundColor(theme.getAttr(Theme.Attr.SMARTBAR_BACKGROUND).toSolidColor().color)
+//        setBackgroundColor(theme.getAttr(Theme.Attr.SMARTBAR_BACKGROUND).toSolidColor().color)
         invalidate()
     }
 

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/media_input"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <dev.patrickgold.florisboard.common.FlorisViewFlipper
@@ -56,17 +56,17 @@
                 android:icon="@drawable/ic_sentiment_satisfied"
                 android:contentDescription="@string/media__tab__emojis"/>
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/media__tab__emoticons_label"
-                android:contentDescription="@string/media__tab__emoticons"/>
+<!--            <com.google.android.material.tabs.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/media__tab__emoticons_label"-->
+<!--                android:contentDescription="@string/media__tab__emoticons"/>-->
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/media__tab__kaomoji_label"
-                android:contentDescription="@string/media__tab__kaomoji"/>
+<!--            <com.google.android.material.tabs.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/media__tab__kaomoji_label"-->
+<!--                android:contentDescription="@string/media__tab__kaomoji"/>-->
 
         </com.google.android.material.tabs.TabLayout>
 
