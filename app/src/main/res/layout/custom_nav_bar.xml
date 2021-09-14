@@ -8,10 +8,10 @@
         android:layout_height="100sp">
 
         <View
-            android:alpha="0.6"
             android:id="@+id/topShadow"
             android:layout_width="match_parent"
             android:layout_height="5sp"
+            android:alpha="0.6"
             android:background="@drawable/top_gradient_shadow"
             app:layout_constraintBottom_toTopOf="@+id/navBG" />
 
@@ -39,6 +39,7 @@
                 android:layout_width="40sp"
                 android:layout_height="40sp"
                 android:layout_centerInParent="true"
+                app:cardBackgroundColor="@android:color/white"
                 app:cardCornerRadius="6sp"
                 app:cardElevation="4dp" />
 
@@ -67,6 +68,7 @@
                 android:layout_height="40sp"
                 android:layout_centerInParent="true"
                 android:visibility="gone"
+                app:cardBackgroundColor="@android:color/white"
                 app:cardCornerRadius="6sp"
                 app:cardElevation="4dp" />
 
@@ -95,8 +97,8 @@
                 android:layout_width="40sp"
                 android:layout_height="40sp"
                 android:layout_centerInParent="true"
-                android:background="@android:color/holo_green_dark"
                 android:visibility="gone"
+                app:cardBackgroundColor="@android:color/white"
                 app:cardCornerRadius="6sp"
                 app:cardElevation="4dp" />
 

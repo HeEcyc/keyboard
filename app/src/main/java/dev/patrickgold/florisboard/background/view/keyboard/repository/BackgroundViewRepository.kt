@@ -71,6 +71,7 @@ object BackgroundViewRepository {
             override fun getViewFactory() = ViewFactory.from {
                 val view = dispatchBackgroundView(ParticlesView::class.java, it) as ParticlesView
                 view.setBackgroundColor(Color.BLACK)
+                view.dotColor = Color.WHITE
                 view
             }
         }

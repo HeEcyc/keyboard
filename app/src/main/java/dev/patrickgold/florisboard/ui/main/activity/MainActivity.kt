@@ -126,7 +126,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         DialogDone().show(supportFragmentManager)
     }
 
-    fun showPreviewTheme() {
+    private fun showPreviewTheme() {
         Intent(this, ThemePreviewActivity::class.java)
             .putExtra(BUNDLE_THEME_KEY, PrefsReporitory.keyboardTheme ?: return)
             .let(::startActivity)

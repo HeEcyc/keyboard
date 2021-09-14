@@ -20,6 +20,7 @@ import dev.patrickgold.florisboard.databinding.ItemKeyboardBackgroundNewBinding
 import dev.patrickgold.florisboard.databinding.ItemNoColorBinding
 import dev.patrickgold.florisboard.databinding.ItemStrokeBinding
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
+import dev.patrickgold.florisboard.repository.PrefsReporitory
 import dev.patrickgold.florisboard.ui.base.AppBaseAdapter
 import dev.patrickgold.florisboard.ui.base.BaseViewModel
 import dev.patrickgold.florisboard.ui.base.createAdapter
@@ -296,5 +297,9 @@ class ThemeEditorViewModel : BaseViewModel() {
 
     fun setCurrentKeyboard(keyboardTheme: KeyboardTheme) {
         keyboardTheme.id = ThemeDataBase.dataBase.getThemesDao().insertTheme(keyboardTheme)
+    }
+
+    fun attachKeyboard(keyboardTheme: KeyboardTheme) {
+        PrefsReporitory.keyboardTheme = keyboardTheme
     }
 }

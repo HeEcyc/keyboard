@@ -30,7 +30,7 @@ class CropViewModel : BaseViewModel() {
     }
 
     private fun saveBitmapToCacheFile(bitmap: Bitmap): String {
-        val tempImageFile = File(FlorisApplication.instance.cacheDir, getTempFileName())
+        val tempImageFile = File(FlorisApplication.instance.filesDir, getTempFileName())
         BufferedOutputStream(FileOutputStream(tempImageFile))
             .use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
         return Uri.fromFile(tempImageFile).toString()

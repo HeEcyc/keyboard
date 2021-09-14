@@ -3,6 +3,7 @@ package dev.patrickgold.florisboard.background.view.keyboard
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

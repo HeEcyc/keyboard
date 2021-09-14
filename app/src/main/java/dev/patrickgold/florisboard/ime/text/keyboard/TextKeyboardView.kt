@@ -50,6 +50,7 @@ import dev.patrickgold.florisboard.ime.text.gestures.SwipeGesture
 import dev.patrickgold.florisboard.ime.text.key.*
 import dev.patrickgold.florisboard.ime.theme.Theme
 import dev.patrickgold.florisboard.repository.PrefsReporitory
+import dev.patrickgold.florisboard.util.enums.LanguageChange
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -1044,6 +1045,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     fun onDrawComputedKey(canvas: Canvas, key: TextKey, renderView: TextKeyView) {
+        if ((key.computedData.code == 32) && (isPreviewMode || PrefsReporitory.Settings.languageChange == LanguageChange.SPECIAL_BUTTON))
+            return
         if (!key.isVisible) return
         val label = key.label
         if (label != null) {

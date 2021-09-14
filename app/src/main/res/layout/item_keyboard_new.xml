@@ -3,48 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="5sp"
-        app:cardElevation="0sp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2sp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="0sp"
-                app:layout_constraintDimensionRatio="1:0.104"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="0sp"
-                android:layout_height="0sp"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/hiddenImage"
-                app:layout_constraintStart_toStartOf="@id/hiddenImage"
-                app:layout_constraintTop_toBottomOf="@id/toolbar" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/hiddenImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/toolbar" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0sp"
             android:background="@drawable/bg_picker"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_new" />
-    </androidx.cardview.widget.CardView>
+            android:src="@drawable/ic_new"
+            app:layout_constraintDimensionRatio="1:0.654"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>
