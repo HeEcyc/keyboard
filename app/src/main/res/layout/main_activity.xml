@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="dev.patrickgold.florisboard.ui.main.activity.MainActivityViewModel" />
+            type="com.live.keyboard.ui.main.activity.MainActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,7 +44,7 @@
             bind:layout_constraintStart_toStartOf="parent"
             bind:layout_constraintTop_toBottomOf="parent" />
 
-        <dev.patrickgold.florisboard.ui.custom.CustomNavBar
+        <com.live.keyboard.ui.custom.CustomNavBar
             android:id="@+id/bottomBar"
             android:layout_width="match_parent"
             android:layout_height="100sp"

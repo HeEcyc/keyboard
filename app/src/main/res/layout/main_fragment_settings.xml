@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="dev.patrickgold.florisboard.ui.main.activity.MainActivityViewModel" />
+            type="com.live.keyboard.ui.main.activity.MainActivityViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

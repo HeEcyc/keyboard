@@ -3,7 +3,7 @@ plugins {
     kotlin("android") version "1.5.20"
     kotlin("kapt") version "1.5.20"
     kotlin("plugin.serialization") version "1.5.20"
-    id("com.google.gms.google-services")
+//    id("com.google.gms.google-services")
 }
 
 android {
@@ -26,7 +26,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "dev.patrickgold.florisboard"
+        applicationId = "com.live.keyboard"
         minSdk = 23
         targetSdk = 30
         versionCode = 53

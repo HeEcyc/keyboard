@@ -25,7 +25,7 @@ using namespace ime::spellcheck;
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_dev_patrickgold_florisboard_ime_spelling_SpellingDict_00024Companion_nativeInitialize(
+Java_com_live_keyboard_ime_spelling_SpellingDict_00024Companion_nativeInitialize(
         JNIEnv *env,
         jobject thiz,
         jobject base_path) {
@@ -42,7 +42,7 @@ Java_dev_patrickgold_florisboard_ime_spelling_SpellingDict_00024Companion_native
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_dev_patrickgold_florisboard_ime_spelling_SpellingDict_00024Companion_nativeDispose(
+Java_com_live_keyboard_ime_spelling_SpellingDict_00024Companion_nativeDispose(
         JNIEnv *env,
         jobject thiz,
         jlong native_ptr) {
@@ -53,7 +53,7 @@ Java_dev_patrickgold_florisboard_ime_spelling_SpellingDict_00024Companion_native
 
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_dev_patrickgold_florisboard_ime_spelling_SpellingDict_00024Companion_nativeSpell(
+Java_com_live_keyboard_ime_spelling_SpellingDict_00024Companion_nativeSpell(
         JNIEnv *env,
         jobject thiz,
         jlong native_ptr,
@@ -68,7 +68,7 @@ Java_dev_patrickgold_florisboard_ime_spelling_SpellingDict_00024Companion_native
 
 extern "C"
 JNIEXPORT jobjectArray JNICALL
-Java_dev_patrickgold_florisboard_ime_spelling_SpellingDict_00024Companion_nativeSuggest(
+Java_com_live_keyboard_ime_spelling_SpellingDict_00024Companion_nativeSuggest(
         JNIEnv *env,
         jobject thiz,
         jlong native_ptr,

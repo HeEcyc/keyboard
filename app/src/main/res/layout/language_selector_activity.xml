@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="dev.patrickgold.florisboard.ui.language.selector.activity.LanguageSelectorViewModel" />
+            type="com.live.keyboard.ui.language.selector.activity.LanguageSelectorViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"

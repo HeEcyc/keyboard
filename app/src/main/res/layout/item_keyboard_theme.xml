@@ -9,7 +9,7 @@
 
         <variable
             name="item"
-            type="dev.patrickgold.florisboard.data.KeyboardTheme" />
+            type="com.live.keyboard.data.KeyboardTheme" />
     </data>
 
     <androidx.cardview.widget.CardView

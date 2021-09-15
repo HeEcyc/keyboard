@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel.Color" />
+            type="com.live.keyboard.ui.theme.editor.activity.ThemeEditorViewModel.Color" />
 
     </data>
 

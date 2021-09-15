@@ -35,7 +35,7 @@
                     android:orientation="vertical"
                     android:theme="@style/PreferenceThemeOverlay">
 
-                    <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
+                    <com.live.keyboard.ime.text.keyboard.TextKeyboardView
                         android:id="@+id/keyboard_preview"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/textKeyboardView_baseHeight"
@@ -56,7 +56,7 @@
                             android:textColor="?android:textColorPrimary"
                             tools:text="GroupName"/>
 
-                        <ImageButton
+                        <androidx.appcompat.widget.AppCompatImageButton
                             android:id="@+id/theme_name_edit_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

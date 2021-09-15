@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="dev.patrickgold.florisboard.ui.glide.preferences.activity.GlideTypingPreferenceViewModel" />
+            type="com.live.keyboard.ui.glide.preferences.activity.GlideTypingPreferenceViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

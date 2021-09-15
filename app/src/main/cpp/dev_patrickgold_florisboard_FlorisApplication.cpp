@@ -24,7 +24,7 @@
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_dev_patrickgold_florisboard_FlorisApplication_00024Companion_nativeInitICUData(
+Java_com_live_keyboard_FlorisApplication_00024Companion_nativeInitICUData(
         JNIEnv *env,
         jobject thiz,
         jobject path) {

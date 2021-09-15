@@ -1,5 +1,5 @@
 {
-  "package": "dev.patrickgold.florisboard",
+  "package": "com.live.keyboard",
   "composers": [
     { "$": "appender" },
     { "$": "hangul-unicode" },

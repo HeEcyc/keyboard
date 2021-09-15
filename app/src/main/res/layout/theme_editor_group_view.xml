@@ -1,8 +1,8 @@
-<dev.patrickgold.florisboard.settings.components.ThemeAttrGroupView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.live.keyboard.settings.components.ThemeAttrGroupView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,7 +22,7 @@
             android:textColor="?colorAccent"
             tools:text="GroupName"/>
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/add_attr_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:tint="?colorAccent"
             android:contentDescription="@string/settings__theme_editor__add_attr_dialog_title"/>
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/edit_group_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,4 +44,4 @@
 
     </LinearLayout>
 
-</dev.patrickgold.florisboard.settings.components.ThemeAttrGroupView>
+</com.live.keyboard.settings.components.ThemeAttrGroupView>

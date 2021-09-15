@@ -23,7 +23,7 @@ using namespace ime::nlp;
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeInitialize(
+Java_com_live_keyboard_ime_nlp_SuggestionList_00024Companion_nativeInitialize(
         JNIEnv *env,
         jobject thiz,
         jint max_size) {
@@ -33,7 +33,7 @@ Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeIni
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeDispose(
+Java_com_live_keyboard_ime_nlp_SuggestionList_00024Companion_nativeDispose(
         JNIEnv *env,
         jobject thiz,
         jlong native_ptr) {
@@ -44,7 +44,7 @@ Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeDis
 
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeAdd(
+Java_com_live_keyboard_ime_nlp_SuggestionList_00024Companion_nativeAdd(
         JNIEnv *env,
         jobject thiz,
         jlong native_ptr,
@@ -59,7 +59,7 @@ Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeAdd
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeClear(
+Java_com_live_keyboard_ime_nlp_SuggestionList_00024Companion_nativeClear(
         JNIEnv *env,
         jobject thiz,
         jlong native_ptr) {
@@ -69,7 +69,7 @@ Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeCle
 
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeContains(
+Java_com_live_keyboard_ime_nlp_SuggestionList_00024Companion_nativeContains(
         JNIEnv *env,
         jobject thiz,
         jlong native_ptr,
@@ -83,7 +83,7 @@ Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeCon
 
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeGetOrNull(
+Java_com_live_keyboard_ime_nlp_SuggestionList_00024Companion_nativeGetOrNull(
         JNIEnv *env,
         jobject thiz,
         jlong native_ptr,
@@ -98,7 +98,7 @@ Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeGet
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeSize(
+Java_com_live_keyboard_ime_nlp_SuggestionList_00024Companion_nativeSize(
         JNIEnv *env,
         jobject thiz,
         jlong native_ptr) {
@@ -108,7 +108,7 @@ Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeSiz
 
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeGetIsPrimaryTokenAutoInsert(
+Java_com_live_keyboard_ime_nlp_SuggestionList_00024Companion_nativeGetIsPrimaryTokenAutoInsert(
         JNIEnv *env, jobject thiz, jlong native_ptr) {
     auto *suggestionList = reinterpret_cast<SuggestionList *>(native_ptr);
     return suggestionList->isPrimaryTokenAutoInsert;
@@ -116,7 +116,7 @@ Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeGet
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_dev_patrickgold_florisboard_ime_nlp_SuggestionList_00024Companion_nativeSetIsPrimaryTokenAutoInsert(
+Java_com_live_keyboard_ime_nlp_SuggestionList_00024Companion_nativeSetIsPrimaryTokenAutoInsert(
         JNIEnv *env, jobject thiz, jlong native_ptr, jboolean v) {
     auto *suggestionList = reinterpret_cast<SuggestionList *>(native_ptr);
     suggestionList->isPrimaryTokenAutoInsert = v;

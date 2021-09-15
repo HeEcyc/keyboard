@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<dev.patrickgold.florisboard.ime.text.smartbar.SmartbarView
+<com.live.keyboard.ime.text.smartbar.SmartbarView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     android:layoutDirection="locale"
     android:background="@color/smartbarBackgroundColor">
 
-    <dev.patrickgold.florisboard.common.FlorisViewFlipper
+    <com.live.keyboard.common.FlorisViewFlipper
         android:id="@+id/action_start_area"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-<!--        <dev.patrickgold.florisboard.ime.text.smartbar.SmartbarQuickActionButton-->
+<!--        <com.live.keyboard.ime.text.smartbar.SmartbarQuickActionButton-->
 <!--            android:id="@+id/quick_action_toggle"-->
 <!--            style="@style/SmartbarQuickAction.Toggle"-->
 <!--            android:src="@drawable/ic_settings"/>-->
@@ -28,15 +28,15 @@
             android:padding="@dimen/smartbar_button_padding"
             android:src="@drawable/ic_settings"/>
 
-        <dev.patrickgold.florisboard.ime.text.smartbar.SmartbarQuickActionButton
+        <com.live.keyboard.ime.text.smartbar.SmartbarQuickActionButton
             android:id="@+id/back_button"
             style="@style/SmartbarQuickAction"
             android:contentDescription="@string/smartbar__quick_action__exit_editing"
             android:src="@drawable/ic_arrow_back"/>
 
-    </dev.patrickgold.florisboard.common.FlorisViewFlipper>
+    </com.live.keyboard.common.FlorisViewFlipper>
 
-    <dev.patrickgold.florisboard.common.FlorisViewFlipper
+    <com.live.keyboard.common.FlorisViewFlipper
         android:id="@+id/main_area"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toStartOf="@id/action_end_area"
         app:layout_constraintTop_toTopOf="parent">
 
-        <dev.patrickgold.florisboard.ime.text.smartbar.CandidateView
+        <com.live.keyboard.ime.text.smartbar.CandidateView
             android:id="@+id/candidates"
             style="@style/SmartbarContainer"/>
 
@@ -65,38 +65,38 @@
             android:id="@+id/quick_actions"
             style="@style/SmartbarContainer">
 
-            <dev.patrickgold.florisboard.ime.text.smartbar.SmartbarQuickActionButton
+            <com.live.keyboard.ime.text.smartbar.SmartbarQuickActionButton
                 android:id="@+id/quick_action_undo"
                 style="@style/SmartbarQuickAction"
                 android:contentDescription="@string/smartbar__quick_action__undo"
                 android:src="@drawable/ic_undo"/>
 
-            <dev.patrickgold.florisboard.ime.text.smartbar.SmartbarQuickActionButton
+            <com.live.keyboard.ime.text.smartbar.SmartbarQuickActionButton
                 android:id="@+id/quick_action_redo"
                 style="@style/SmartbarQuickAction"
                 android:contentDescription="@string/smartbar__quick_action__redo"
                 android:src="@drawable/ic_redo"/>
 
-            <dev.patrickgold.florisboard.ime.text.smartbar.SmartbarQuickActionButton
+            <com.live.keyboard.ime.text.smartbar.SmartbarQuickActionButton
                 android:id="@+id/quick_action_switch_to_media_context"
                 style="@style/SmartbarQuickAction"
                 android:contentDescription="@string/smartbar__quick_action__switch_to_media_context"
                 android:src="@drawable/ic_sentiment_satisfied"/>
 
-            <dev.patrickgold.florisboard.ime.text.smartbar.SmartbarQuickActionButton
+            <com.live.keyboard.ime.text.smartbar.SmartbarQuickActionButton
                 android:id="@+id/quick_action_open_settings"
                 style="@style/SmartbarQuickAction"
                 android:contentDescription="@string/smartbar__quick_action__open_settings"
                 android:src="@drawable/ic_settings"/>
 
             <!-- TODO: find better icon for one-handed mode -->
-            <dev.patrickgold.florisboard.ime.text.smartbar.SmartbarQuickActionButton
+            <com.live.keyboard.ime.text.smartbar.SmartbarQuickActionButton
                 android:id="@+id/quick_action_one_handed_toggle"
                 style="@style/SmartbarQuickAction"
                 android:contentDescription="@string/smartbar__quick_action__one_handed_mode"
                 android:src="@drawable/ic_smartphone"/>
 
-            <dev.patrickgold.florisboard.ime.text.smartbar.SmartbarQuickActionButton
+            <com.live.keyboard.ime.text.smartbar.SmartbarQuickActionButton
                 android:id="@+id/quick_action_switch_to_editing_context"
                 style="@style/SmartbarQuickAction"
                 android:contentDescription="@string/smartbar__quick_action__switch_to_editing_context"
@@ -104,22 +104,22 @@
 
         </LinearLayout>
 
-        <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
+        <com.live.keyboard.ime.text.keyboard.TextKeyboardView
             android:id="@+id/clipboard_cursor_row"
             style="@style/SmartbarContainer"
             android:layoutDirection="ltr"
             app:isSmartbarKeyboard="true"/>
 
-        <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
+        <com.live.keyboard.ime.text.keyboard.TextKeyboardView
             android:id="@+id/number_row"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layoutDirection="ltr"
             app:isSmartbarKeyboard="true"/>
 
-    </dev.patrickgold.florisboard.common.FlorisViewFlipper>
+    </com.live.keyboard.common.FlorisViewFlipper>
 
-    <dev.patrickgold.florisboard.common.FlorisViewFlipper
+    <com.live.keyboard.common.FlorisViewFlipper
         android:id="@+id/action_end_area"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -127,12 +127,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <dev.patrickgold.florisboard.ime.text.smartbar.SmartbarQuickActionButton
+        <com.live.keyboard.ime.text.smartbar.SmartbarQuickActionButton
             android:id="@+id/private_mode_button"
             style="@style/SmartbarQuickAction.PrivateModeButton"
             android:contentDescription="@string/smartbar__quick_action__private_mode"
             android:src="@drawable/ic_security"/>
 
-    </dev.patrickgold.florisboard.common.FlorisViewFlipper>
+    </com.live.keyboard.common.FlorisViewFlipper>
 
-</dev.patrickgold.florisboard.ime.text.smartbar.SmartbarView>
+</com.live.keyboard.ime.text.smartbar.SmartbarView>

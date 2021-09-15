@@ -3,11 +3,11 @@
 
     <data>
 
-        <import type="dev.patrickgold.florisboard.util.Converter" />
+        <import type="com.live.keyboard.util.Converter" />
 
         <variable
             name="viewModel"
-            type="dev.patrickgold.florisboard.ui.theme.editor.activity.ThemeEditorViewModel" />
+            type="com.live.keyboard.ui.theme.editor.activity.ThemeEditorViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -113,7 +113,7 @@
             app:layout_constraintEnd_toEndOf="@+id/keyboardPreview"
             app:layout_constraintStart_toStartOf="@+id/keyboardPreview" />
 
-        <dev.patrickgold.florisboard.ime.text.keyboard.TextKeyboardView
+        <com.live.keyboard.ime.text.keyboard.TextKeyboardView
             android:id="@+id/keyboardPreview"
             android:layout_width="match_parent"
             android:layout_height="208sp"
@@ -234,7 +234,7 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <dev.patrickgold.florisboard.ui.custom.ThumbTextSeekBar
+            <com.live.keyboard.ui.custom.ThumbTextSeekBar
                 android:id="@+id/progressLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
