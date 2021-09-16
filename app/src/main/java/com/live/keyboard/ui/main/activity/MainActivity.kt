@@ -7,6 +7,7 @@ import android.provider.Settings
 import android.transition.ChangeBounds
 import android.transition.Transition
 import android.transition.TransitionManager
+import android.view.animation.LinearInterpolator
 import android.view.animation.OvershootInterpolator
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.contract.ActivityResultContracts
@@ -39,7 +40,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     }
 
     private val dialogPermissions = DialogPermissions(this)
-
+    private var isTryKeyboardMessageShowing = false
     private val inputManager by lazy { getSystemService(InputMethodManager::class.java) }
     private val settingsLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (isKeyboardActive() && !isKeyboardEnable()) Handler(Looper.getMainLooper())
@@ -60,7 +61,11 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
             nextActivity.observe(this@MainActivity, { showNexActivity(it) })
         }
         binding.tryMessage.setOnClickListener { showPreviewTheme() }
-        binding.bottomBar.onPageChange = viewModel.currentPage::set
+        binding.bottomBar.onPageChange = { page ->
+            if (page == 2 && isTryKeyboardMessageShowing) hideTryKeyboardMessage()
+            else if (isTryKeyboardMessageShowing) showTryKeyboardMessage()
+            viewModel.currentPage.set(page)
+        }
         binding.mainScreens.isUserInputEnabled = false
         binding.mainScreens.offscreenPageLimit = 3
     }
@@ -77,7 +82,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     }
 
     private fun showTryKeyboardMessage() {
-
+        isTryKeyboardMessageShowing = true
         ConstraintSet().apply {
             clone(binding.root as ConstraintLayout)
             clear(R.id.tryMessage, ConstraintSet.TOP)
@@ -87,6 +92,21 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         val transition: Transition = ChangeBounds()
         transition.interpolator = OvershootInterpolator(1.5f)
         transition.duration = 600
+
+        TransitionManager.beginDelayedTransition(binding.root as ConstraintLayout, transition)
+    }
+
+    private fun hideTryKeyboardMessage() {
+        isTryKeyboardMessageShowing = true
+        ConstraintSet().apply {
+            clone(binding.root as ConstraintLayout)
+            clear(R.id.tryMessage, ConstraintSet.BOTTOM)
+            connect(R.id.tryMessage, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+        }.applyTo(binding.root as ConstraintLayout)
+
+        val transition: Transition = ChangeBounds()
+        transition.interpolator = LinearInterpolator()
+        transition.duration = 100
 
         TransitionManager.beginDelayedTransition(binding.root as ConstraintLayout, transition)
     }

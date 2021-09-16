@@ -44,6 +44,7 @@ import com.live.keyboard.ime.text.smartbar.SmartbarView
 import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.res.AssetManager
 import com.live.keyboard.res.FlorisRef
+import com.live.keyboard.util.enums.LanguageChange
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -185,10 +186,11 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                     }
                     when (tempUtilityKeyAction) {
                         UtilityKeyAction.DISABLED,
-                        UtilityKeyAction.SWITCH_TO_EMOJIS -> false
+                        UtilityKeyAction.SWITCH_TO_EMOJIS -> true
                         UtilityKeyAction.SWITCH_LANGUAGE,
                         UtilityKeyAction.SWITCH_KEYBOARD_APP -> true
-                        UtilityKeyAction.DYNAMIC_SWITCH_LANGUAGE_EMOJIS -> florisboard.shouldShowLanguageSwitch()
+                        UtilityKeyAction.DYNAMIC_SWITCH_LANGUAGE_EMOJIS -> PrefsReporitory.Settings.languageChange ==
+                            LanguageChange.SPECIAL_BUTTON
                     }
                 }
                 else -> true
@@ -260,8 +262,6 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
      * Cancels all coroutines and cleans up.
      */
     override fun onDestroy() {
-        flogInfo(LogTopic.IMS_EVENTS)
-
         smartbarView?.setEventListener(null)
         smartbarView = null
 

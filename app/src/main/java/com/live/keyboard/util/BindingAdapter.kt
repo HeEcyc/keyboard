@@ -63,7 +63,7 @@ fun AppCompatImageView.setDrawableRes(drawableRes: Int) {
 
 @BindingAdapter("noAminatedCurretPage")
 fun ViewPager2.setPage(page: Int) {
-    setCurrentItem(page, false)
+    setCurrentItem(page, true)
 }
 
 @BindingAdapter("textRes")
