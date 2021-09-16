@@ -47,8 +47,6 @@
     <dimen name="smartbar_candidate_marginH">16dp</dimen>
     <dimen name="smartbar_divider_width">1dp</dimen>
 
-    <dimen name="fab_margin">16dp</dimen>
-
     <dimen name="suggestion_chip_bg_padding_start">13dp</dimen>
     <dimen name="suggestion_chip_bg_padding_top">0dp</dimen>
     <dimen name="suggestion_chip_bg_padding_end">13dp</dimen>

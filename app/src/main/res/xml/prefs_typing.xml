@@ -63,18 +63,6 @@
             app:title="@string/pref__suggestion__clipboard_content_enabled__label"
             app:summary="@string/pref__suggestion__clipboard_content_enabled__summary"/>
 
-        <com.live.keyboard.settings.components.DialogSeekBarPreference
-            app:allowDividerAbove="false"
-            android:defaultValue="60"
-            app:dependency="suggestion__clipboard_content_enabled"
-            app:key="suggestion__clipboard_content_timeout"
-            app:min="30"
-            app:max="150"
-            app:iconSpaceReserved="false"
-            app:title="@string/pref__suggestion__clipboard_content_timeout__label"
-            app:seekBarIncrement="5"
-            app:unit=" s"/>
-
     </PreferenceCategory>
 
     <PreferenceCategory

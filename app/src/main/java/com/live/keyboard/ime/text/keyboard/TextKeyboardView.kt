@@ -490,9 +490,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                     KeyCode.LANGUAGE_SWITCH -> {
                         delay((delayMillis * 2.0f).toLong())
                         pointer.shouldBlockNextUp = true
-                        florisboard!!.textInputManager.inputEventDispatcher.let { dispatcher ->
-                            dispatcher.send(InputKeyEvent.downUp(TextKeyData.SHOW_INPUT_METHOD_PICKER))
-                        }
+                        florisboard!!.textInputManager.inputEventDispatcher
+                            .send(InputKeyEvent.downUp(TextKeyData.SHOW_INPUT_METHOD_PICKER))
                     }
                     else -> {
                         delay(delayMillis)
@@ -1372,11 +1371,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
-        when (key) {
-
-        }
-    }
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {}
 
     fun setFont(font: Int?) {
         font ?: return

@@ -12,10 +12,7 @@
     <color name="colorError">#B00020</color><!-- Red 1000? -->
     <color name="textColorError">#FFFFFF</color><!-- White -->
 
-    <color name="cardViewBackgroundColor">#FFFFFF</color><!-- White -->
     <color name="navigationBarColor">#000000</color><!-- Black -->
-    <color name="toolbarForegroundColor">#000000</color><!-- Black -->
-    <color name="windowBackground">#FAFAFA</color><!-- Gray 50 -->
 
     <color name="textColorMain">#000000</color>
     <color name="textColorSecondaty">#A3A3A3</color>

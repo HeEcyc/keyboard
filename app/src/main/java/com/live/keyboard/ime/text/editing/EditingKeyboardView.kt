@@ -20,7 +20,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.live.keyboard.R
 import com.live.keyboard.ime.clip.FlorisClipboardManager
 import com.live.keyboard.ime.core.FlorisBoard
 import com.live.keyboard.ime.theme.Theme
@@ -50,11 +49,6 @@ class EditingKeyboardView : ConstraintLayout, FlorisBoard.EventListener,
         super.onAttachedToWindow()
         florisboard?.addEventListener(this)
         themeManager.registerOnThemeUpdatedListener(this)
-        selectKey = findViewById(R.id.select)
-        selectAllKey = findViewById(R.id.select_all)
-        cutKey = findViewById(R.id.clipboard_cut)
-        copyKey = findViewById(R.id.clipboard_copy)
-        pasteKey = findViewById(R.id.clipboard_paste)
 
         val clipboardManager = FlorisClipboardManager.getInstance()
         pasteKey?.isEnabled = clipboardManager.canBePasted(clipboardManager.primaryClip)

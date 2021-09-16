@@ -57,7 +57,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     override fun setupUI() {
         with(viewModel) {
             onThemeClick.observe(this@MainActivity) { onThemeClick(it) }
-            viewModel.nextActivity.observe(this@MainActivity, { showNexActivity(it) })
+            nextActivity.observe(this@MainActivity, { showNexActivity(it) })
         }
         binding.tryMessage.setOnClickListener { showPreviewTheme() }
         binding.bottomBar.onPageChange = viewModel.currentPage::set

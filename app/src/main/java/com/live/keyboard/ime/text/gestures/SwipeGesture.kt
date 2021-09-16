@@ -92,8 +92,6 @@ abstract class SwipeGesture {
          * Method which evaluates if a given [event] is a gesture.
          *
          * @param event The MotionEvent which should be checked for a gesture.
-         * @param alwaysTriggerOnMove Set to true if the moving detection algorithm should always
-         *  trigger, regardless of the distance from the previous event. Defaults to false.
          * @return True if the given [event] is a gesture, false otherwise.
          */
         fun onTouchEvent(event: MotionEvent) {

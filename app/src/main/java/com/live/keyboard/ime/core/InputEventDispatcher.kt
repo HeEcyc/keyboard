@@ -35,7 +35,7 @@ import kotlinx.coroutines.channels.Channel
 class InputEventDispatcher private constructor(
     channelCapacity: Int,
     private val mainDispatcher: CoroutineDispatcher,
-    private val defaultDispatcher: CoroutineDispatcher,
+    defaultDispatcher: CoroutineDispatcher,
     private val repeatableKeyCodes: IntArray
 ) : InputKeyEventSender {
     private val channel: Channel<InputKeyEvent> = Channel(channelCapacity)

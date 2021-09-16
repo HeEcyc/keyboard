@@ -76,13 +76,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.live.keyboard.settings.ThemeManagerActivity"
-            android:configChanges="orientation"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name="com.live.keyboard.ui.theme.editor.activity.ThemeEditorActivity"
             android:configChanges="orientation"
             android:exported="true"
@@ -119,47 +112,6 @@
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait" />
-
-        <!-- User Dictionary Manager Activity -->
-        <activity
-            android:name="com.live.keyboard.settings.UdmActivity"
-            android:icon="@mipmap/floris_app_icon"
-            android:label="@string/settings__title"
-            android:theme="@style/SettingsTheme" />
-
-        <!-- Theme Selector Activity -->
-
-        <!-- Theme Editor Activity -->
-        <activity
-            android:name="com.live.keyboard.settings.ThemeEditorActivity"
-            android:icon="@mipmap/floris_app_icon"
-            android:label="@string/settings__theme_editor__title"
-            android:theme="@style/SettingsTheme" />
-
-
-        <!-- Spelling Activity -->
-        <activity
-            android:name="com.live.keyboard.settings.spelling.SpellingActivity"
-            android:icon="@mipmap/floris_app_icon"
-            android:label="@string/settings__spelling__title_overview"
-            android:roundIcon="@mipmap/floris_app_icon_round"
-            android:theme="@style/SettingsTheme" />
-
-        <!-- About Activity -->
-        <activity
-            android:name="com.live.keyboard.settings.AboutActivity"
-            android:icon="@mipmap/floris_app_icon"
-            android:label="@string/about__title"
-            android:roundIcon="@mipmap/floris_app_icon_round"
-            android:theme="@style/SettingsTheme" />
-
-        <!-- Advanced Activity -->
-        <activity
-            android:name="com.live.keyboard.settings.AdvancedActivity"
-            android:icon="@mipmap/floris_app_icon"
-            android:label="@string/settings__advanced__title"
-            android:roundIcon="@mipmap/floris_app_icon_round"
-            android:theme="@style/SettingsTheme" />
 
         <provider
             android:name="com.live.keyboard.ime.clip.provider.FlorisContentProvider"

@@ -48,18 +48,6 @@ class EditingKeyView : AppCompatImageButton, ThemeManager.OnThemeUpdatedListener
     private val prefs get() = Preferences.default()
     private val themeManager: ThemeManager = ThemeManager.default()
     private val data: TextKeyData = when (id) {
-        R.id.arrow_down -> TextKeyData.ARROW_DOWN
-        R.id.arrow_left -> TextKeyData.ARROW_LEFT
-        R.id.arrow_right -> TextKeyData.ARROW_RIGHT
-        R.id.arrow_up -> TextKeyData.ARROW_UP
-        R.id.backspace -> TextKeyData.DELETE
-        R.id.clipboard_copy -> TextKeyData.CLIPBOARD_COPY
-        R.id.clipboard_cut -> TextKeyData.CLIPBOARD_CUT
-        R.id.clipboard_paste -> TextKeyData.CLIPBOARD_PASTE
-        R.id.move_start_of_line -> TextKeyData.MOVE_START_OF_LINE
-        R.id.move_end_of_line -> TextKeyData.MOVE_END_OF_LINE
-        R.id.select -> TextKeyData.CLIPBOARD_SELECT
-        R.id.select_all -> TextKeyData.CLIPBOARD_SELECT_ALL
         else -> TextKeyData.UNSPECIFIED
     }
     private var isKeyPressed: Boolean = false
