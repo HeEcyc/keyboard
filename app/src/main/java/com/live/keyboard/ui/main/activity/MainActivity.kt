@@ -15,6 +15,7 @@ import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.live.keyboard.R
 import com.live.keyboard.adapters.VPAdapter
 import com.live.keyboard.data.KeyboardTheme
@@ -30,6 +31,8 @@ import com.live.keyboard.ui.preview.theme.activity.ThemePreviewActivity
 import com.live.keyboard.ui.theme.editor.activity.ThemeEditorActivity
 import com.live.keyboard.util.BUNDLE_IS_EDITING_THEME_KEY
 import com.live.keyboard.util.BUNDLE_THEME_KEY
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.layout.main_activity),

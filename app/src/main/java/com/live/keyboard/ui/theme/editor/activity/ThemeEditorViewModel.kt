@@ -58,15 +58,15 @@ class ThemeEditorViewModel : BaseViewModel() {
         initItems = mutableListOf(
             BackgroundAsset.NewImage,
             BackgroundAsset.BackgroundTheme(
-                uriPathFromAsset("fluid.png"),
+                uriPathFromAsset("fluid.gif"),
                 BackgroundViewRepository.BackgroundView.FluidView.name()
             ),
             BackgroundAsset.BackgroundTheme(
-                uriPathFromAsset("particles.jpg"),
+                uriPathFromAsset("particles.gif"),
                 BackgroundViewRepository.BackgroundView.ParticleView.name()
             ),
             BackgroundAsset.BackgroundTheme(
-                uriPathFromAsset("flow.png"),
+                uriPathFromAsset("flow.gif"),
                 BackgroundViewRepository.BackgroundView.ParticleFlowView.name()
             ),
         ).apply { addAll(readAssetImages()) }
@@ -217,7 +217,6 @@ class ThemeEditorViewModel : BaseViewModel() {
     ).mapNotNull { it }
 
     private fun getStrockes() = listOf(
-        StrokeType(R.drawable.ic_no_border, -1),
         StrokeType(R.drawable.stroke_1, 0),
         StrokeType(R.drawable.stroke_2, 4),
         StrokeType(R.drawable.stroke_3, 10),
