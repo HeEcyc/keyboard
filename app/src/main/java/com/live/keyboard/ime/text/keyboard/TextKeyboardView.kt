@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
@@ -1452,15 +1453,23 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     fun isEnterKey(textKeyView: TextKeyView) = textKeyView.key?.computedData?.code == KeyCode.ENTER
 
     fun isAddictionKey(key: TextKey?): Boolean {
+
         if (key?.computedData?.code in listOf(
                 KeyCode.DELETE,
                 KeyCode.SHIFT,
+                KeyCode.VIEW_NUMERIC_ADVANCED,
+                KeyCode.VIEW_CHARACTERS,
+                KeyCode.VIEW_SYMBOLS2,
                 KeyCode.SHIFT_LOCK,
                 KeyCode.PHONE_PAUSE,
                 KeyCode.VIEW_SYMBOLS
             )
         ) return true
         if (isSpecialKey(key)) return true
+
+        if (computedKeyboard?.mode != KeyboardMode.CHARACTERS)
+            return key?.computedData?.code in listOf(46, 60, 62)
+
         return false
     }
 
