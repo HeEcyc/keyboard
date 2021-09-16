@@ -5,12 +5,17 @@ import com.google.gson.reflect.TypeToken
 import com.live.keyboard.FlorisApplication
 import com.live.keyboard.ime.nlp.SuggestionList
 import com.live.keyboard.ime.nlp.Word
+import com.live.keyboard.util.getFile
 
-class TypedDictionary(dictionaryPath: String) {
-    private var words: HashMap<String, Int> = loadDictionary(dictionaryPath)
+class TypedDictionary(dictionaryPath: String, readFromAssets: Boolean = true) {
+    private var words: HashMap<String, Int> = loadDictionary(dictionaryPath, readFromAssets)
 
-    fun loadDictionary(path: String) = FlorisApplication.instance.assets
-        .open(path)
+    fun loadDictionary(path: String, readFromAssets: Boolean) =
+        if (readFromAssets) {
+            FlorisApplication.instance.assets.open(path)
+        } else {
+            path.getFile().inputStream()
+        }
         .bufferedReader()
         .use { reader -> reader.readText() }
         .let(::mapJSONStringToHasMap)

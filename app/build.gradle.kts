@@ -3,7 +3,7 @@ plugins {
     kotlin("android") version "1.5.20"
     kotlin("kapt") version "1.5.20"
     kotlin("plugin.serialization") version "1.5.20"
-//    id("com.google.gms.google-services")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -85,7 +85,7 @@ android {
 
     buildTypes {
         named("debug").configure {
-            applicationIdSuffix = ".debug"
+//            applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
 
             isDebuggable = true
@@ -98,7 +98,7 @@ android {
 
         create("beta") // Needed because by default the "beta" BuildType does not exist
         named("beta").configure {
-            applicationIdSuffix = ".beta"
+//            applicationIdSuffix = ".beta"
             versionNameSuffix = "-beta10"
             proguardFiles.add(getDefaultProguardFile("proguard-android-optimize.txt"))
 
@@ -146,6 +146,8 @@ dependencies {
     implementation("androidx.room", "room-runtime", "2.2.6")
     implementation("com.google.code.gson", "gson", "2.8.8")
 
+    implementation("com.google.firebase:firebase-bom:28.4.1")
+    implementation("com.google.firebase:firebase-storage")
     implementation("com.google.firebase:firebase-storage-ktx:20.0.0")
 
     implementation("com.makeramen:roundedimageview:2.3.0")

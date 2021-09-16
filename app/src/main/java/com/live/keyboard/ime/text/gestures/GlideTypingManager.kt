@@ -8,6 +8,7 @@ import com.live.keyboard.ime.text.keyboard.TextKey
 import com.live.keyboard.res.AssetManager
 import com.live.keyboard.res.FlorisRef
 import com.live.keyboard.util.enums.Language
+import com.live.keyboard.util.getFile
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -74,9 +75,12 @@ class GlideTypingManager : GlideTypingGesture.Listener, CoroutineScope by MainSc
         launch(Dispatchers.Default) {
             if (wordDataCache.isEmpty()) {
                 // FIXME: get this info from dictionary.
-                val path = Language.from(subtype.locale.language).dictionaryJSONAsset
-                val data = AssetManager.default().loadTextAsset(FlorisRef.assets(path))
-                    .getOrThrow()
+                val language = Language.from(subtype.locale.language)
+                val path = language.dictionaryJSONFile
+                val data = if (language == Language.EN)
+                    AssetManager.default().loadTextAsset(FlorisRef.assets(path)).getOrThrow()
+                else
+                    language.dictionaryJSONFile.getFile().readText()
                 val json = JSONObject(data)
                 wordDataCache.putAll(json.keys().asSequence().map { Pair(it, json.getInt(it)) })
             }

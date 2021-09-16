@@ -10,12 +10,19 @@ import com.live.keyboard.ime.text.keyboard.TextKey
 import com.live.keyboard.res.AssetManager
 import com.live.keyboard.res.FlorisRef
 import com.live.keyboard.util.enums.Language
+import com.live.keyboard.util.getFile
 import org.json.JSONObject
 import java.text.Normalizer
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.collections.HashMap
-import kotlin.math.*
+import kotlin.math.PI
+import kotlin.math.abs
+import kotlin.math.exp
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 private fun TextKey.baseCode(): Int {
     return (data as? KeyData)?.code ?: KeyCode.UNSPECIFIED
@@ -102,10 +109,12 @@ class StatisticalGlideTypingClassifier : GlideTypingClassifier {
         }
 
         if (layoutSubtype?.locale?.language != subtype.locale.language) {
-            val path = Language.from(subtype.locale.language).dictionaryJSONAsset
-            val data =
-                AssetManager.default().loadTextAsset(FlorisRef.assets(path))
-                    .getOrThrow()
+            val language = Language.from(subtype.locale.language)
+            val path = language.dictionaryJSONFile
+            val data = if (language == Language.EN)
+                AssetManager.default().loadTextAsset(FlorisRef.assets(path)).getOrThrow()
+            else
+                language.dictionaryJSONFile.getFile().readText()
             val json = JSONObject(data)
             val words = HashMap<String, Int>().apply { putAll(json.keys().asSequence().map { Pair(it, json.getInt(it)) }) }
             this.words = words.keys

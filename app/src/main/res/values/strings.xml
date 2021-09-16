@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Pause</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Wait</string>
@@ -543,5 +543,9 @@
     <string name="glide_typing">Glide typing</string>
     <string name="try_theme_now">Try theme now</string>
     <string name="write_something_there">Write something there</string>
+
+    <string name="this_language_weighs_x_mb_do_you_want_to_download">This language weighs %1$d MB. Do you want to download?</string>
+    <string name="language_download_question_dialog_positive">DOWNLOAD</string>
+    <string name="language_download_question_dialog_negative" tools:ignore="ButtonCase">CANCEL</string>
 
 </resources>

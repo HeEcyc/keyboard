@@ -84,7 +84,8 @@ class DictionaryManager private constructor(
     }
 
     fun prepareDictionaries(subtype: Subtype) {
-        dictionaryCache = TypedDictionary(Language.from(subtype.locale.language).dictionaryJSONAsset)
+        val language = Language.from(subtype.locale.language)
+        dictionaryCache = TypedDictionary(language.dictionaryJSONFile, language == Language.EN)
     }
 
     fun queryUserDictionary(word: Word, locale: FlorisLocale, destSuggestionList: SuggestionList) {
