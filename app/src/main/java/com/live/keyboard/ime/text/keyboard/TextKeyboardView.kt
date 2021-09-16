@@ -1,24 +1,7 @@
-/*
- * Copyright (C) 2021 Patrick Goldinger
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.live.keyboard.ime.text.keyboard
 
 import android.animation.ValueAnimator
 import android.content.Context
-import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
@@ -33,8 +16,8 @@ import com.live.keyboard.common.Pointer
 import com.live.keyboard.common.PointerMap
 import com.live.keyboard.common.ViewUtils
 import com.live.keyboard.data.KeyboardTheme
-import com.live.keyboard.debug.*
-import com.live.keyboard.ime.core.*
+import com.live.keyboard.ime.core.InputKeyEvent
+import com.live.keyboard.ime.core.Subtype
 import com.live.keyboard.ime.keyboard.ComputingEvaluator
 import com.live.keyboard.ime.keyboard.DefaultComputingEvaluator
 import com.live.keyboard.ime.keyboard.ImeOptions
@@ -47,7 +30,10 @@ import com.live.keyboard.ime.text.gestures.GlideTypingGesture
 import com.live.keyboard.ime.text.gestures.GlideTypingManager
 import com.live.keyboard.ime.text.gestures.SwipeAction
 import com.live.keyboard.ime.text.gestures.SwipeGesture
-import com.live.keyboard.ime.text.key.*
+import com.live.keyboard.ime.text.key.KeyCode
+import com.live.keyboard.ime.text.key.KeyHintConfiguration
+import com.live.keyboard.ime.text.key.KeyType
+import com.live.keyboard.ime.text.key.KeyVariation
 import com.live.keyboard.ime.theme.Theme
 import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.util.enums.LanguageChange
@@ -64,8 +50,7 @@ import kotlin.math.sqrt
 
 
 @Suppress("UNUSED_PARAMETER")
-class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture.Listener, CoroutineScope,
-    SharedPreferences.OnSharedPreferenceChangeListener {
+class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture.Listener, CoroutineScope {
     override val coroutineContext: CoroutineContext = MainScope().coroutineContext
 
     private var computedKeyboard: TextKeyboard? = null
@@ -188,9 +173,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
 
         val popupLayerView = florisboard?.popupLayerView
-        if (popupLayerView == null) {
-            flogError(LogTopic.TEXT_KEYBOARD_VIEW) { "PopupLayerView is null, cannot show popups!" }
-        }
         popupManager = PopupManager(this, popupLayerView)
         swipeGestureDetector.isEnabled = !isSmartbarKeyboardView
         setWillNotDraw(false)
@@ -204,22 +186,21 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun setComputedKeyboard(keyboard: TextKeyboard, keyboardTheme: KeyboardTheme? = null) {
         this.keyboardTheme = keyboardTheme ?: KeyboardTheme()
+        val isShowingNumberRow = isShowingNubmerRow() && keyboard.mode == KeyboardMode.CHARACTERS
+        val arraySize = if (isShowingNumberRow) 5 else keyboard.arrangement.size
 
-        computedKeyboard = if (isShowingNubmerRow() && keyboard.mode == KeyboardMode.CHARACTERS)
-            TextKeyboard(
-                Array(5) {
-                    if (it == 0) Array(10) { position ->
-                        val code = if (position == 9) 48
-                        else 49 + position
-                        TextKey(TextKeyData(code = code, label = code.toChar().toString()))
-                    }
-                    else keyboard.arrangement[it - 1]
-                },
-                keyboard.mode,
-                keyboard.extendedPopupMapping,
-                keyboard.extendedPopupMappingDefault
-            ) else keyboard
-
+        computedKeyboard = TextKeyboard(
+            Array(arraySize) {
+                when (it) {
+                    0 -> handleFirstLine(isShowingNumberRow, keyboard)
+                    arraySize - 1 -> handleLastArray(keyboard.arrangement.last())
+                    else -> keyboard.arrangement[it - if (isShowingNumberRow) 1 else 0]
+                }
+            },
+            keyboard.mode,
+            keyboard.extendedPopupMapping,
+            keyboard.extendedPopupMappingDefault
+        )
         val renderViewDiff = computedKeyboard!!.keyCount - childCount
         if (renderViewDiff > 0) {
             // We have more keys than render views, add abs(diff) views
@@ -236,12 +217,33 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         reDrawKeyboard()
     }
 
+    private fun handleFirstLine(isShowingNumberRow: Boolean, keyboard: TextKeyboard) =
+        if (!isShowingNumberRow) keyboard.arrangement[0]
+        else Array(10) { position ->
+            val code = if (position == 9) 48
+            else 49 + position
+            TextKey(TextKeyData(code = code, label = code.toChar().toString()))
+        }
+
+
+    private fun handleLastArray(keysArray: Array<TextKey>): Array<TextKey> {
+        if (isPreviewMode) return keysArray
+        if (!PrefsReporitory.Settings.showEmoji && PrefsReporitory.Settings.languageChange == LanguageChange.SWIPE_THROUGH_SPACE)
+            return keysArray
+                .filter { it.computedData.code != KeyCode.SWITCH_TO_MEDIA_CONTEXT }
+                .toTypedArray()
+        else if (PrefsReporitory.Settings.showEmoji && PrefsReporitory.Settings.languageChange == LanguageChange.SPECIAL_BUTTON)
+            return keysArray
+                .filter { it.computedData.code != KeyCode.PHONE_PAUSE }
+                .toTypedArray()
+        return keysArray
+    }
+
     fun setIconSet(textKeyboardIconSet: TextKeyboardIconSet) {
         iconSet = textKeyboardIconSet
     }
 
     override fun onUpdateKeyboardState(newState: KeyboardState) {
-        flogInfo(LogTopic.TEXT_KEYBOARD_VIEW) { computedKeyboard?.mode?.toString() ?: "" }
         if (isMeasured) {
             if (cachedState.isDifferentTo(newState)) {
                 // Something within the defined interest has changed
@@ -484,14 +486,19 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                     }
                     KeyCode.SHIFT -> {
                         delay((delayMillis * 2.5f).toLong())
-                        florisboard!!.textInputManager.inputEventDispatcher.send(InputKeyEvent.downUp(TextKeyData.SHIFT_LOCK))
+                        florisboard!!.textInputManager.inputEventDispatcher.send(
+                            InputKeyEvent.downUp(
+                                TextKeyData.SHIFT_LOCK
+                            )
+                        )
                         florisboard!!.inputFeedbackManager.keyLongPress(key.computedData)
                     }
                     KeyCode.LANGUAGE_SWITCH -> {
                         delay((delayMillis * 2.0f).toLong())
                         pointer.shouldBlockNextUp = true
-                        florisboard!!.textInputManager.inputEventDispatcher
-                            .send(InputKeyEvent.downUp(TextKeyData.SHOW_INPUT_METHOD_PICKER))
+                        florisboard!!.textInputManager.inputEventDispatcher.let { dispatcher ->
+                            dispatcher.send(InputKeyEvent.downUp(TextKeyData.SHOW_INPUT_METHOD_PICKER))
+                        }
                     }
                     else -> {
                         delay(delayMillis)
@@ -511,8 +518,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     private fun onTouchMoveInternal(event: MotionEvent, pointer: TouchPointer) {
-        flogDebug(LogTopic.TEXT_KEYBOARD_VIEW) { "pointer=$pointer" }
-
         val initialKey = pointer.initialKey
         val activeKey = pointer.activeKey
         if (initialKey != null && activeKey != null) {
@@ -575,7 +580,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     private fun onTouchCancelInternal(event: MotionEvent, pointer: TouchPointer) {
-        flogDebug(LogTopic.TEXT_KEYBOARD_VIEW) { "pointer=$pointer" }
         val florisboard = florisboard ?: return
         pointer.longPressJob?.cancel()
         pointer.longPressJob = null
@@ -612,7 +616,9 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                     event.type == SwipeGesture.Type.TOUCH_UP -> {
                     activeKey?.let {
                         florisboard.textInputManager.inputEventDispatcher.send(
-                            InputKeyEvent.up(popupManager.getActiveKeyData(it, keyHintConfiguration) ?: it.computedData)
+                            InputKeyEvent.up(
+                                popupManager.getActiveKeyData(it, keyHintConfiguration) ?: it.computedData
+                            )
                         )
                     }
                     florisboard.textInputManager.inputEventDispatcher.send(InputKeyEvent.cancel(TextKeyData.SHIFT))
@@ -783,7 +789,9 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val desiredHeight = if (isSmartbarKeyboardView || isPreviewMode) {
             MeasureSpec.getSize(heightMeasureSpec).toFloat()
         } else {
-            (florisboard?.uiBinding?.inputView?.desiredTextKeyboardViewHeight ?: MeasureSpec.getSize(heightMeasureSpec)
+            (florisboard?.uiBinding?.inputView?.desiredTextKeyboardViewHeight ?: MeasureSpec.getSize(
+                heightMeasureSpec
+            )
                 .toFloat())
         } * if (isPreviewMode) 0.90f
         else if (isShowingNubmerRow() && computedKeyboard?.mode == KeyboardMode.CHARACTERS) 1.20f
@@ -803,13 +811,11 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        flogInfo(LogTopic.TEXT_KEYBOARD_VIEW) { computedKeyboard?.mode?.toString() ?: "" }
         computeDesiredDimensions()
         computeKeyboard()
     }
 
     private fun computeDesiredDimensions() {
-        flogInfo(LogTopic.TEXT_KEYBOARD_VIEW) { computedKeyboard?.mode?.toString() ?: "" }
         val keyboard = computedKeyboard ?: return
         desiredKey.touchBounds.let { bounds ->
             bounds.right = if (isSmartbarKeyboardView) {
@@ -877,15 +883,27 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
         keyboard.layout(this)
         val isBorderless = true
+
+        var numberCode = 49
+        var isNeedAddNumberPopup = isShowingNubmerRow()
+
         keyboard.keys().withIndex().forEach { (n, key) ->
             getChildAt(n)?.let { rv ->
                 if (rv is TextKeyView) {
-
-                    rv.key = if (isSpecialKey(key) && !isPreviewMode) getNewKey(key)
-                    else key
+                    rv.key = when {
+                        isPreviewMode -> key
+                        isSpecialKey(key) -> getNewSpecialKey(key)
+                        else -> key
+                    }
 
                     if (isShowingNubmerRow()) key.computedNumberHint = null
-
+                    else if (isNeedAddNumberPopup) key.computedNumberHint = TextKeyData(
+                        label = if (numberCode == 58) {
+                            isNeedAddNumberPopup = false
+                            48.toChar().toString()
+                        } else numberCode.toChar().toString(),
+                        code = if (numberCode == 58) 48 else numberCode++,
+                    )
                     layoutRenderView(rv, key, isBorderless)
                     prepareKey(key, keyboardTheme, rv)
                     rv.invalidate()
@@ -895,7 +913,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         handleTheme(keyboardTheme)
     }
 
-    private fun getNewKey(key: TextKey): TextKey {
+    private fun getNewSpecialKey(key: TextKey): TextKey {
 
         val currentSymbol = BottomRightCharacterRepository.SelectableCharacter.values()
             .firstOrNull { it.code == PrefsReporitory.Settings.specialSymbol } ?: return key
@@ -948,8 +966,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                     else -> labelPaintTextSize
                 }.times(
                     if (id == R.id.main_keyboard_view)
-                        PrefsReporitory.Settings.keyboardHeight.mainKeyboardLabelFontSizePercent
-                    else
+                        PrefsReporitory.Settings.keyboardHeight.mainKeyboardLabelFontSizePercent else
                         1f
                 )
             }
@@ -1371,8 +1388,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {}
-
     fun setFont(font: Int?) {
         font ?: return
         keyboardTheme.keyFont = font
@@ -1412,9 +1427,15 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     fun setButtonColor(buttonColor: String?) {
         buttonColor ?: return
         keyboardTheme.buttonColor = buttonColor
-        keyboardTheme.imeButtonColor = String.format("#%06X", 0xFFFFFF and getDarkerShade(buttonColor, 0.4f))
-        keyboardTheme.buttonSecondaryColor = String.format("#%06X", 0xFFFFFF and getDarkerShade(buttonColor, 0.2f))
-        setButtonColor(keyboardTheme.buttonColor, keyboardTheme.imeButtonColor, keyboardTheme.buttonSecondaryColor)
+        keyboardTheme.imeButtonColor =
+            String.format("#%06X", 0xFFFFFF and getDarkerShade(buttonColor, 0.4f))
+        keyboardTheme.buttonSecondaryColor =
+            String.format("#%06X", 0xFFFFFF and getDarkerShade(buttonColor, 0.2f))
+        setButtonColor(
+            keyboardTheme.buttonColor,
+            keyboardTheme.imeButtonColor,
+            keyboardTheme.buttonSecondaryColor
+        )
     }
 
     private fun setButtonColor(buttonColor: String, imeColor: String, secondaryKeyColor: String) {
