@@ -103,11 +103,9 @@ class LayoutManager {
         extendedPopupsCacheGuard.lock()
         val cached = extendedPopupsCache[ref.relativePath]
         if (cached != null) {
-            flogDebug(LogTopic.LAYOUT_MANAGER) { "Using cache for '$ref'" }
             extendedPopupsCacheGuard.unlock()
             return@async filterExtendedPopupsOnlyForSpecialKeys(cached.await())
         } else {
-            flogDebug(LogTopic.LAYOUT_MANAGER) { "Loading '$ref'" }
             val extendedPopups = async { assetManager.loadJsonAsset<PopupExtension>(ref) }
             extendedPopupsCache[ref.relativePath] = extendedPopups
             extendedPopupsCacheGuard.unlock()

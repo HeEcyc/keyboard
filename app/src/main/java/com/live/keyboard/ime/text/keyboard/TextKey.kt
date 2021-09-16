@@ -32,7 +32,7 @@ import com.live.keyboard.ime.text.key.KeyVariation
 class TextKey(override val data: AbstractKeyData) : Key(data) {
     var computedData: KeyData = TextKeyData.UNSPECIFIED
         private set
-    val computedPopups: MutablePopupSet<KeyData> = MutablePopupSet()
+    var computedPopups: MutablePopupSet<KeyData> = MutablePopupSet()
     var computedSymbolHint: KeyData? = null
     var computedNumberHint: KeyData? = null
 

@@ -47,7 +47,7 @@ open class PopupSet<T : AbstractKeyData>(
 @Suppress("UNCHECKED_CAST")
 class MutablePopupSet<T : AbstractKeyData>(
     override var main: T? = null,
-    override val relevant: ArrayList<T> = arrayListOf(),
+    override var relevant: ArrayList<T> = arrayListOf(),
     var symbolHint: T? = null,
     var numberHint: T? = null,
     private val symbolPopups: ArrayList<T> = arrayListOf(),

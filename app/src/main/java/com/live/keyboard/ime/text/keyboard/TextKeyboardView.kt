@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
@@ -26,6 +25,8 @@ import com.live.keyboard.ime.keyboard.KeyData
 import com.live.keyboard.ime.keyboard.Keyboard
 import com.live.keyboard.ime.keyboard.KeyboardState
 import com.live.keyboard.ime.keyboard.KeyboardView
+import com.live.keyboard.ime.popup.MutablePopupSet
+import com.live.keyboard.ime.popup.PopupExtension
 import com.live.keyboard.ime.popup.PopupManager
 import com.live.keyboard.ime.text.gestures.GlideTypingGesture
 import com.live.keyboard.ime.text.gestures.GlideTypingManager
@@ -37,6 +38,8 @@ import com.live.keyboard.ime.text.key.KeyType
 import com.live.keyboard.ime.text.key.KeyVariation
 import com.live.keyboard.ime.theme.Theme
 import com.live.keyboard.repository.PrefsReporitory
+import com.live.keyboard.res.AssetManager
+import com.live.keyboard.res.FlorisRef
 import com.live.keyboard.util.enums.LanguageChange
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -915,9 +918,28 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     private fun getNewSpecialKey(key: TextKey): TextKey {
+        val popupKeyData = listOf(
+            TextKeyData(code = 38,label = "&"),
+            TextKeyData(code = 37,label = "%"),
+            TextKeyData(code = 43,label = "+"),
+            TextKeyData(code = 34,label = "\\"),
+            TextKeyData(code = 45,label = "-"),
+            TextKeyData(code = 58,label = ":"),
+            TextKeyData(code = 39,label = "'"),
+            TextKeyData(code = 64,label = "@"),
+            TextKeyData(code = 59,label = ";"),
+            TextKeyData(code = 47,label = "/"),
+            TextKeyData(code = 40,label = "("),
+            TextKeyData(code = 41,label = ")"),
+            TextKeyData(code = 35,label = "#"),
+            TextKeyData(code = 33,label = "!"),
+            TextKeyData(code = 63,label = "?"),
+        )
 
         val currentSymbol = BottomRightCharacterRepository.SelectableCharacter.values()
             .firstOrNull { it.code == PrefsReporitory.Settings.specialSymbol } ?: return key
+
+        val dotPopupKey = key.computedPopups.relevant.firstOrNull { it.code == 46 }
 
         key.computedData.let {
             if (it is TextKeyData) {
@@ -926,9 +948,24 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             }
         }
 
-        key.label = currentSymbol.label
+        val newKeyList = popupKeyData.map {
+            if (it.code == currentSymbol.code) dotPopupKey ?: it
+            else it
+        }
+
+        key.computedPopups = MutablePopupSet(
+            key.computedData,
+            relevant = ArrayList(newKeyList)
+        )
 
         return key
+    }
+
+    fun readJsonFile() {
+
+        val ref = FlorisRef.assets("${PopupManager.POPUP_EXTENSION_PATH_REL}/en.json")
+
+        AssetManager.init(context).loadJsonAsset<PopupExtension>(ref)
     }
 
     private fun layoutRenderView(rv: TextKeyView, key: TextKey, isBorderless: Boolean) {
