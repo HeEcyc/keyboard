@@ -18,8 +18,8 @@ class LanguageSelectorActivity :
                 this,
                 language,
                 {
-                    loadingDialog = LoadingDialog()
-                    loadingDialog?.show(supportFragmentManager, null)
+//                    loadingDialog = LoadingDialog()
+//                    loadingDialog?.show(supportFragmentManager, null)
                     viewModel.downloadLanguage(language)
                 }
             ).show()

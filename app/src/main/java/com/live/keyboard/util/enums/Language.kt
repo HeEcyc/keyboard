@@ -16,6 +16,7 @@ enum class Language(val languageName: String, val weightMB: Int = 0) {
     var isSelected: Boolean by PrefsReporitory.Settings.Language
     val isDownloaded: Boolean get() = this == EN || dictionaryJSONFile.fileExists()
     val isDownloadedObservable by lazy { ObservableBoolean(isDownloaded) }
+    val isDownloading = ObservableBoolean(false)
 
     companion object {
 
