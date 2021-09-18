@@ -20,25 +20,15 @@ typealias L = Language
 object PrefsReporitory {
     private val sharedPreferences by lazy { FlorisApplication.instance.getSharedPreferences("prefs", MODE_PRIVATE) }
 
-    const val fontResKey = "font_res_key"
-    const val keyColorKey = "key_color_key"
-    const val isEnableGetsureKey = "is_enable_getsure_key"
-    const val keyboadThemeKey = "keyboard_theme_key"
+    private const val keyboadThemeKey = "keyboard_theme_key"
+    private const val showStartSettingsKey = "show_start_settings_key"
 
-    var fontFamilyRes: Int = -1
-        get() = sharedPreferences.getInt(fontResKey, -1)
+    var showStartSettings: Boolean = false
+        get() = sharedPreferences.getBoolean(showStartSettingsKey, false)
         set(value) {
-            sharedPreferences.edit().putInt(fontResKey, value).apply()
+            sharedPreferences.edit().putBoolean(showStartSettingsKey, value).apply()
             field = value
         }
-
-    var keyColor: Int = Color.BLACK
-        get() = sharedPreferences.getInt(keyColorKey, Color.BLACK)
-        set(value) {
-            sharedPreferences.edit().putInt(keyColorKey, value).apply()
-            field = value
-        }
-
 
     var keyboardTheme: KeyboardTheme? = null
         get() = Gson().fromJson(sharedPreferences.getString(keyboadThemeKey, null), KeyboardTheme::class.java)
@@ -138,7 +128,12 @@ object PrefsReporitory {
             }
 
         var languageChange: LanguageChange
-            get() = LanguageChange.valueOf(sharedPreferences.getString(languageChangeKey, LanguageChange.SPECIAL_BUTTON.name)!!)
+            get() = LanguageChange.valueOf(
+                sharedPreferences.getString(
+                    languageChangeKey,
+                    LanguageChange.SPECIAL_BUTTON.name
+                )!!
+            )
             set(value) {
                 if (value == LanguageChange.SWIPE_THROUGH_SPACE) GlideTyping.enableGestureCursorControl = false
                 sharedPreferences.edit().putString(languageChangeKey, value.name).apply()
