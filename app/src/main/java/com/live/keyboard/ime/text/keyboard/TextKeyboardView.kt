@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
@@ -232,11 +233,12 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     private fun handleLastArray(keysArray: Array<TextKey>): Array<TextKey> {
         if (isPreviewMode) return keysArray
-        if (!PrefsReporitory.Settings.showEmoji && PrefsReporitory.Settings.languageChange == LanguageChange.SWIPE_THROUGH_SPACE)
+        if (!PrefsReporitory.Settings.showEmoji) {
             return keysArray
                 .filter { it.computedData.code != KeyCode.SWITCH_TO_MEDIA_CONTEXT }
                 .toTypedArray()
-        else if (PrefsReporitory.Settings.showEmoji && PrefsReporitory.Settings.languageChange == LanguageChange.SPECIAL_BUTTON)
+        }
+        if (PrefsReporitory.Settings.showEmoji && PrefsReporitory.Settings.languageChange == LanguageChange.SPECIAL_BUTTON)
             return keysArray
                 .filter { it.computedData.code != KeyCode.PHONE_PAUSE }
                 .toTypedArray()
