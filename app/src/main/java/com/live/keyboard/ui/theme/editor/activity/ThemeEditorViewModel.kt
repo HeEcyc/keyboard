@@ -217,7 +217,6 @@ class ThemeEditorViewModel : BaseViewModel() {
     ).mapNotNull { it }
 
     private fun getStrockes() = listOf(
-        StrokeType(R.drawable.ic_no_border, -1),
         StrokeType(R.drawable.stroke_1, 0),
         StrokeType(R.drawable.stroke_2, 4),
         StrokeType(R.drawable.stroke_3, 10),

@@ -112,7 +112,7 @@ class ThemeEditorActivity :
                 LayoutManager().computeKeyboardAsync(
                     KeyboardMode.CHARACTERS,
                     Subtype.DEFAULT
-                ).await(), currentTheme.copy()
+                ).await(), currentTheme.copy().apply { id = currentTheme.id }
             )
         }
     }

@@ -1099,8 +1099,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     fun onDrawComputedKey(canvas: Canvas, key: TextKey, renderView: TextKeyView) {
-        if ((key.computedData.code == 32) && (isPreviewMode || PrefsReporitory.Settings.languageChange == LanguageChange.SPECIAL_BUTTON))
-            return
         if (!key.isVisible) return
         val label = key.label
         if (label != null) {

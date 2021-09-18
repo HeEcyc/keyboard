@@ -13,16 +13,27 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            imageUri="@{item.uri}"
+        <androidx.cardview.widget.CardView
             android:layout_width="0sp"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
+            app:cardCornerRadius="10sp"
+            app:cardElevation="0sp"
             app:layout_constraintDimensionRatio="2:1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:riv_border_color="@color/textColorSecondaty"
-            app:riv_border_width="3sp"
-            app:riv_corner_radius="10sp" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                image="@{item.uri}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_picker_stroke"
+                android:scaleType="centerCrop" />
+        </androidx.cardview.widget.CardView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

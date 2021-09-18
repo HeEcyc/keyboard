@@ -33,6 +33,7 @@ import com.live.keyboard.util.enums.KeyboardHeight
 import com.live.keyboard.util.enums.LanguageChange
 import com.live.keyboard.util.enums.OneHandedMode
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -174,16 +175,20 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
 
     fun onThemeApply(keyboardTheme: KeyboardTheme) {
         clearSelectedItem()
-        keyboardTheme.isSelected = true
-        customThemeAdapter
-            .getData()
-            .filterIsInstance(KeyboardTheme::class.java)
-            .firstOrNull { it.id == keyboardTheme.id }
-            ?.let { currentTheme ->
-                currentTheme.copyTheme(keyboardTheme)
-                currentTheme.isSelected = true
-                customThemeAdapter.updateItem(currentTheme)
-            } ?: customThemeAdapter.addItem(1, keyboardTheme)
+        viewModelScope.launch(Dispatchers.IO) {
+            delay(1000)
+            withContext(Dispatchers.Main) {
+                customThemeAdapter
+                    .getData()
+                    .filterIsInstance(KeyboardTheme::class.java)
+                    .firstOrNull { it.id == keyboardTheme.id }
+                    ?.let { currentTheme ->
+                        currentTheme.copyTheme(keyboardTheme)
+                        currentTheme.isSelected = true
+                        customThemeAdapter.updateItem(currentTheme)
+                    } ?: customThemeAdapter.addItem(1, keyboardTheme)
+            }
+        }
     }
 
     fun setupKeyboard(keyboardTheme: KeyboardTheme) {
