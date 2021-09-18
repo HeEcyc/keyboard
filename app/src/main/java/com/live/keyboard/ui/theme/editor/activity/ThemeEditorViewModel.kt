@@ -58,15 +58,15 @@ class ThemeEditorViewModel : BaseViewModel() {
         initItems = mutableListOf(
             BackgroundAsset.NewImage,
             BackgroundAsset.BackgroundTheme(
-                uriPathFromAsset("fluid.png"),
+                uriPathFromAsset("fluid.gif"),
                 BackgroundViewRepository.BackgroundView.FluidView.name()
             ),
             BackgroundAsset.BackgroundTheme(
-                uriPathFromAsset("particles.jpg"),
+                uriPathFromAsset("particles.gif"),
                 BackgroundViewRepository.BackgroundView.ParticleView.name()
             ),
             BackgroundAsset.BackgroundTheme(
-                uriPathFromAsset("flow.png"),
+                uriPathFromAsset("flow.gif"),
                 BackgroundViewRepository.BackgroundView.ParticleFlowView.name()
             ),
         ).apply { addAll(readAssetImages()) }

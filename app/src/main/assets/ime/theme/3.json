@@ -1,7 +1,8 @@
 {
-  "backgroundImagePath": "file:///android_asset/images/img_3.png",
+  "backgroundImagePath": "file:///android_asset/images/particles.gif",
   "buttonColor": "#8015A345",
   "imeButtonColor": "#0B582A",
   "buttonSecondaryColor": "#800B3918",
-  "previewImage": "asset_3.png"
+  "previewImage": "asset_3.png",
+  "backgoundType": "ParticleView"
 }

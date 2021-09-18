@@ -14,18 +14,6 @@ import com.nfaralli.particleflow.ParticlesSurfaceView
 
 object BackgroundViewRepository {
 
-    private var targetViewType: Class<out View>?
-        get() = ParticlesSurfaceView::class.java
-        set(value) {}
-
-    val newBackgroundViews = MutableLiveData<ViewFactory?>()
-
-    fun setNewBackgroundView(view: BackgroundView) = newBackgroundViews.postValue(view.getViewFactory())
-
-    fun dispatchBackgroundView(context: Context): View? = targetViewType?.let {
-        dispatchBackgroundView(it, context)
-    }
-
     fun dispatchBackgroundView(viewType: Class<out View>, context: Context): View = viewType
         .getConstructor(Context::class.java, AttributeSet::class.java)
         .newInstance(context, null)

@@ -129,7 +129,8 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
 
             val themeList = assets.list(assetFolder)
                 ?.map { assets.open("${assetFolder}/$it").bufferedReader().use { theme -> theme.readText() } }
-                ?.map { gson.fromJson(it, KeyboardTheme::class.java) } ?: return@launch
+                ?.map { gson.fromJson(it, KeyboardTheme::class.java) }
+                ?.sortedByDescending { it.backgroundImagePath?.endsWith(".gif") } ?: return@launch
 
             if (PrefsReporitory.keyboardTheme?.id == null) themeList.forEach {
                 it.isSelected = it.backgroundImagePath == PrefsReporitory.keyboardTheme?.backgroundImagePath
@@ -142,9 +143,8 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     fun loadSavedThemes() {
         viewModelScope.launch(Dispatchers.Main) {
             val themes = withContext(Dispatchers.IO) { ThemeDataBase.dataBase.getThemesDao().getTheme().reversed() }
-
             themes.forEach { it.isSelected = it.id == PrefsReporitory.keyboardTheme?.id }
-            customThemeAdapter.addItems(themes)
+            customThemeAdapter.addItems(themes.sortedBy { it.backgroundImagePath?.endsWith(".gif") })
         }
     }
 

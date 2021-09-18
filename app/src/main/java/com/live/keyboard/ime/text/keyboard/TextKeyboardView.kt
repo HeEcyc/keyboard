@@ -919,21 +919,21 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     private fun getNewSpecialKey(key: TextKey): TextKey {
         val popupKeyData = listOf(
-            TextKeyData(code = 38,label = "&"),
-            TextKeyData(code = 37,label = "%"),
-            TextKeyData(code = 43,label = "+"),
-            TextKeyData(code = 34,label = "\\"),
-            TextKeyData(code = 45,label = "-"),
-            TextKeyData(code = 58,label = ":"),
-            TextKeyData(code = 39,label = "'"),
-            TextKeyData(code = 64,label = "@"),
-            TextKeyData(code = 59,label = ";"),
-            TextKeyData(code = 47,label = "/"),
-            TextKeyData(code = 40,label = "("),
-            TextKeyData(code = 41,label = ")"),
-            TextKeyData(code = 35,label = "#"),
-            TextKeyData(code = 33,label = "!"),
-            TextKeyData(code = 63,label = "?"),
+            TextKeyData(code = 38, label = "&"),
+            TextKeyData(code = 37, label = "%"),
+            TextKeyData(code = 43, label = "+"),
+            TextKeyData(code = 34, label = "\\"),
+            TextKeyData(code = 45, label = "-"),
+            TextKeyData(code = 58, label = ":"),
+            TextKeyData(code = 39, label = "'"),
+            TextKeyData(code = 64, label = "@"),
+            TextKeyData(code = 59, label = ";"),
+            TextKeyData(code = 47, label = "/"),
+            TextKeyData(code = 40, label = "("),
+            TextKeyData(code = 41, label = ")"),
+            TextKeyData(code = 35, label = "#"),
+            TextKeyData(code = 33, label = "!"),
+            TextKeyData(code = 63, label = "?"),
         )
 
         val currentSymbol = BottomRightCharacterRepository.SelectableCharacter.values()
@@ -1240,7 +1240,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                             key.foregroundDrawableId = R.drawable.ic_space_bar
                         }
                         KeyboardMode.CHARACTERS -> {
-                            key.label = florisboard?.activeSubtype?.locale?.displayName()
+                            key.label = florisboard?.activeSubtype?.locale?.iso3Language?.uppercase()?.take(2)
                         }
                         else -> {
                         }
