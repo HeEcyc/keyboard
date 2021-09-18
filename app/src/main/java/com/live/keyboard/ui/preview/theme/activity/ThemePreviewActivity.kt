@@ -25,6 +25,14 @@ class ThemePreviewActivity :
         binding.editButton.setOnClickListener(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        currentFocus?.clearFocus()
+        getSystemService(InputMethodManager::class.java)
+            .toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0)
+        binding.exampleEditText.requestFocus()
+    }
+
     override fun provideViewModel() = viewModel
 
     override fun onClick(v: View) {
@@ -32,15 +40,12 @@ class ThemePreviewActivity :
             R.id.backButton -> onBackPressed()
             R.id.editButton -> editKeyboardTheme()
         }
-        binding.exampleEditText.requestFocus()
-        getSystemService(InputMethodManager::class.java)
-            .showSoftInput(binding.exampleEditText, InputMethodManager.SHOW_IMPLICIT)
     }
 
     override fun onPause() {
         super.onPause()
-        val imm: InputMethodManager = getSystemService(InputMethodManager::class.java)
-        if (imm.isActive) imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+        getSystemService(InputMethodManager::class.java)
+            .toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
     }
 
     private fun editKeyboardTheme() {

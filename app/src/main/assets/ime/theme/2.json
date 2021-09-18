@@ -1,7 +1,8 @@
 {
-  "backgroundImagePath": "file:///android_asset/images/img_2.png",
+  "backgroundImagePath": "file:///android_asset/images/fluid.gif",
   "buttonColor": "#33000000",
   "imeButtonColor": "#5F2762",
   "buttonSecondaryColor": "#33FF00A8",
-  "previewImage": "asset_2.png"
+  "previewImage": "asset_2.png",
+  "backgoundType": "FluidView"
 }
