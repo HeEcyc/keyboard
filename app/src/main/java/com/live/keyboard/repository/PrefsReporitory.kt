@@ -125,6 +125,7 @@ object PrefsReporitory {
                 if (keyboardHeight == KeyboardHeight.NORMAL && value != KeyboardHeight.NORMAL) oneHandedMode =
                     OneHandedMode.OFF
                 sharedPreferences.edit().putString(keyboardHeightKey, value.name).apply()
+                Preferences.default().keyboard.heightFactor = value.height
             }
 
         var languageChange: LanguageChange

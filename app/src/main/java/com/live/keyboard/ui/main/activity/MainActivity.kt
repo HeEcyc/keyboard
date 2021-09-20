@@ -16,12 +16,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.storage.FirebaseStorage
 import com.live.keyboard.R
 import com.live.keyboard.adapters.VPAdapter
 import com.live.keyboard.data.KeyboardTheme
 import com.live.keyboard.databinding.MainActivityBinding
 import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.ui.base.BaseActivity
+import com.live.keyboard.ui.dialogs.DialogChooser
 import com.live.keyboard.ui.dialogs.DialogDone
 import com.live.keyboard.ui.dialogs.DialogPermissions
 import com.live.keyboard.ui.main.activity.assets.FragmentAssets
@@ -31,8 +33,12 @@ import com.live.keyboard.ui.preview.theme.activity.ThemePreviewActivity
 import com.live.keyboard.ui.theme.editor.activity.ThemeEditorActivity
 import com.live.keyboard.util.BUNDLE_IS_EDITING_THEME_KEY
 import com.live.keyboard.util.BUNDLE_THEME_KEY
+import com.live.keyboard.util.enums.Language
+import com.live.keyboard.util.getFile
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.layout.main_activity),
@@ -71,7 +77,31 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         }
         binding.mainScreens.isUserInputEnabled = false
         binding.mainScreens.offscreenPageLimit = 3
+
+        selectInitialLanguage()
     }
+
+    private fun selectInitialLanguage() = DialogChooser(
+        R.string.select_your_language,
+        Language.values(),
+        Language.EN,
+        { l, _ -> l.languageName }
+    ) { language ->
+        language.isDownloading.set(true)
+        FirebaseStorage.getInstance().reference.child(language.dictionaryJSONFile).stream.addOnSuccessListener {
+            GlobalScope.launch(Dispatchers.IO) {
+                language.dictionaryJSONFile.getFile().apply { createNewFile() }.writeBytes(it.stream.readBytes())
+                it.stream.close()
+                withContext(Dispatchers.Main) {
+                    Language.values().forEach { it.isSelected = it == language }
+                    language.isDownloadedObservable.set(true)
+                }
+                language.isDownloading.set(false)
+            }
+        }.addOnFailureListener {
+            language.isDownloading.set(false)
+        }
+    }.show(this)
 
     private fun onThemeClick(keyboardTheme: KeyboardTheme) {
         if (keyboardTheme.isSelected) Intent(this@MainActivity, ThemeEditorActivity::class.java)

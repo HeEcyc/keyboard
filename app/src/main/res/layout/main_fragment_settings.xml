@@ -22,6 +22,7 @@
                 style="@style/NormalText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:text="@string/settings"
                 android:textColor="@color/textColorSecondaty"
                 android:textSize="38sp" />
@@ -30,12 +31,13 @@
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/main_magin_top"
+                android:paddingVertical="12dp"
                 android:drawableEnd="@drawable/ic_next"
                 android:onClick="@{() -> viewModel.showLanguageSettingsActivity()}"
                 android:text="@string/language"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:background="?selectableItemBackground"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/MediumText"
@@ -46,7 +48,8 @@
                 android:onClick="@{() -> viewModel.showGlideSettingsActivity()}"
                 android:text="@string/glide_typing"
                 android:textColor="@{viewModel.isEnableGlideTyping ? @color/textColorMain : @color/textColorSecondaty}"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:background="?selectableItemBackground"/>
 
             <View
                 android:layout_width="match_parent"
@@ -103,7 +106,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{(_) -> viewModel.onOneHandedModeClick()}"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="?selectableItemBackground">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/MediumText"
@@ -126,31 +130,34 @@
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/main_magin_top"
+                android:paddingVertical="12dp"
                 android:onClick="@{(_) -> viewModel.onKeyboardHeightClick()}"
                 android:text="@string/keyboard_height"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:background="?selectableItemBackground"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/main_magin_top"
+                android:paddingVertical="12dp"
                 android:onClick="@{(_) -> viewModel.onLanguageChangeClick()}"
                 android:text="@string/language_change"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:background="?selectableItemBackground"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/main_magin_top"
+                android:paddingVertical="12dp"
                 android:onClick="@{(_) -> viewModel.onSpecialSymbolsEditorClick()}"
                 android:text="@string/special_symbols_editor"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:background="?selectableItemBackground"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

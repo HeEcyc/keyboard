@@ -1,7 +1,6 @@
 package com.live.keyboard.ui.language.selector.activity
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.google.firebase.storage.FirebaseStorage
 import com.live.keyboard.R
 import com.live.keyboard.databinding.ItemLanguageBinding
@@ -12,6 +11,7 @@ import com.live.keyboard.util.enums.Language
 import com.live.keyboard.util.getFile
 import com.live.keyboard.util.toPx
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -47,8 +47,9 @@ class LanguageSelectorViewModel : BaseViewModel() {
     }
 
     fun downloadLanguage(language: Language) {
+        language.isDownloading.set(true)
         FirebaseStorage.getInstance().reference.child(language.dictionaryJSONFile).stream.addOnSuccessListener {
-            viewModelScope.launch(Dispatchers.IO) {
+            GlobalScope.launch(Dispatchers.IO) {
                 language.dictionaryJSONFile.getFile().apply { createNewFile() }.writeBytes(it.stream.readBytes())
                 it.stream.close()
                 withContext(Dispatchers.Main) {
@@ -56,9 +57,11 @@ class LanguageSelectorViewModel : BaseViewModel() {
                     language.isDownloadedObservable.set(true)
                 }
                 downloadingFinishedEvents.postValue(Unit)
+                language.isDownloading.set(false)
             }
         }.addOnFailureListener {
             downloadingFinishedEvents.postValue(Unit)
+            language.isDownloading.set(false)
         }
     }
 
