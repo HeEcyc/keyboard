@@ -3,6 +3,7 @@ package com.live.keyboard.data
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.live.keyboard.R
 import java.io.Serializable
 
 sealed class Theme : Serializable
@@ -17,7 +18,7 @@ data class KeyboardTheme(
     var backgoundType: String? = null,
     var backgroundImagePath: String? = null,
     var backgroundColor: String? = "#292E32",
-    var keyFont: Int? = null,
+    var keyFont: Int = R.font.roboto,
     var keyTextColor: String = "#FFFFFF",
     var strokeRadius: Int = 6,
     var strokeColor: String? = null,

@@ -5,6 +5,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.drawToBitmap
+import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.databinding.ViewDataBinding
 import com.live.keyboard.FlorisApplication
@@ -95,8 +96,20 @@ class ThemeEditorViewModel : BaseViewModel() {
     }
 
     val fontsAdapter = createAdapter<KeyboardFont, ItemFontBinding>(R.layout.item_font) {
-        initItems = getFontsList()
-        onItemClick = { currentFont.set(it.fontRes) }
+        onItemClick = {
+            unselectOtherFonts(it)
+            it.isSelected.set(true)
+            currentFont.set(it.fontRes)
+        }
+    }
+
+    private fun unselectOtherFonts(font: KeyboardFont) {
+        fontsAdapter.getData().forEach {
+            if (it !== font && it.isSelected.get()) {
+                it.isSelected.set(false)
+                return
+            }
+        }
     }
 
     val keyColorAdapter = createAdapter<ColorItem, ViewDataBinding> {
@@ -230,7 +243,9 @@ class ThemeEditorViewModel : BaseViewModel() {
         if (colorType == ColorType.BACKGROUND) currentKeyboardBackgorund.set(null)
     }
 
-    data class KeyboardFont(val name: String, val fontRes: Int, var isSelected: Boolean = false)
+    data class KeyboardFont(val name: String, val fontRes: Int) {
+        val isSelected = ObservableBoolean(false)
+    }
 
     sealed class BackgroundAsset {
 
@@ -300,5 +315,11 @@ class ThemeEditorViewModel : BaseViewModel() {
 
     fun attachKeyboard(keyboardTheme: KeyboardTheme) {
         PrefsReporitory.keyboardTheme = keyboardTheme
+    }
+
+    fun initFontAdapter(keyFont: Int) {
+        val fontList = getFontsList()
+        fontList.firstOrNull { it.fontRes == keyFont }?.isSelected?.set(true)
+        fontsAdapter.reloadData(fontList)
     }
 }

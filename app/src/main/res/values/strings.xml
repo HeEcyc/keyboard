@@ -333,4 +333,6 @@
     <string name="language_download_question_dialog_positive">DOWNLOAD</string>
     <string name="language_download_question_dialog_negative" tools:ignore="ButtonCase">CANCEL</string>
 
+    <string name="select_your_language">Select your language</string>
+
 </resources>

@@ -447,9 +447,9 @@ class Preferences(
         var fontSizeMultiplierLandscape: Int
             get() =  prefs.getPref(FONT_SIZE_MULTIPLIER_LANDSCAPE, 100)
             set(v) = prefs.setPref(FONT_SIZE_MULTIPLIER_LANDSCAPE, v)
-        var heightFactor: String = ""
+        var heightFactor: String
             get() = prefs.getPref(HEIGHT_FACTOR, "normal")
-            private set
+            set(v) = prefs.setPref(HEIGHT_FACTOR, v)
         var heightFactorCustom: Int
             get() =  prefs.getPref(HEIGHT_FACTOR_CUSTOM, 100)
             set(v) = prefs.setPref(HEIGHT_FACTOR_CUSTOM, v)

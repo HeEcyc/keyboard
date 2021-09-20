@@ -115,6 +115,8 @@ class ThemeEditorActivity :
                 ).await(), currentTheme.copy().apply { id = currentTheme.id }
             )
         }
+
+        viewModel.initFontAdapter(currentTheme.keyFont)
     }
 
     private fun showImagePicker() {
