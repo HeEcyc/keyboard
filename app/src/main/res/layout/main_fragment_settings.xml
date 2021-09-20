@@ -45,7 +45,7 @@
                 android:drawableEnd="@drawable/ic_next"
                 android:onClick="@{() -> viewModel.showGlideSettingsActivity()}"
                 android:text="@string/glide_typing"
-                android:textColor="@{viewModel.keyboardSwipe ? @color/textColorSecondaty : @color/textColorMain}"
+                android:textColor="@{viewModel.isEnableGlideTyping ? @color/textColorMain : @color/textColorSecondaty}"
                 android:textSize="16sp" />
 
             <View
