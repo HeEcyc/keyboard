@@ -17,11 +17,13 @@
             font="@{item.fontRes}"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:paddingHorizontal="5dp"
             android:gravity="center"
             android:text="@{item.name}"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@{item.isSelected ? @drawable/tab_stroke : null}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
