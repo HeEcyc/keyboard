@@ -15,7 +15,6 @@ import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.google.firebase.storage.FirebaseStorage
 import com.live.keyboard.R
 import com.live.keyboard.adapters.VPAdapter
@@ -79,6 +78,9 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         binding.mainScreens.offscreenPageLimit = 3
 
         selectInitialLanguage()
+//
+//        DialogGetsureSettings().show(supportFragmentManager)
+
     }
 
     private fun selectInitialLanguage() = DialogChooser(

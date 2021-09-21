@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12sp"
+            android:enabled="false"
+            android:text="Your text"
+            android:textColor="@color/textColorMain" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="12sp"
+                android:src="@drawable/toolbar"
+                android:translationY="2dp"
+                app:layout_constraintDimensionRatio="4736:512"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.live.keyboard.ime.text.keyboard.TextKeyboardView
+            android:id="@+id/keyboardPreview"
+            android:layout_width="match_parent"
+            android:layout_height="208sp"
+            android:layout_marginHorizontal="12sp"
+            app:isPreviewKeyboard="true"
+            app:layout_constraintBottom_toBottomOf="@id/barrier"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editCategoryTabs" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
