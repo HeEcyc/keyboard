@@ -189,8 +189,8 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                         UtilityKeyAction.SWITCH_TO_EMOJIS -> true
                         UtilityKeyAction.SWITCH_LANGUAGE,
                         UtilityKeyAction.SWITCH_KEYBOARD_APP -> true
-                        UtilityKeyAction.DYNAMIC_SWITCH_LANGUAGE_EMOJIS -> PrefsReporitory.Settings.languageChange ==
-                            LanguageChange.SPECIAL_BUTTON
+                        UtilityKeyAction.DYNAMIC_SWITCH_LANGUAGE_EMOJIS ->
+                            PrefsReporitory.Settings.languageChange == LanguageChange.SPECIAL_BUTTON
                     }
                 }
                 else -> true

@@ -249,18 +249,16 @@ class SmartbarView : ConstraintLayout, KeyboardState.OnUpdateStateListener, Them
                 mainAreaId = when {
                     cachedState.isQuickActionsVisible -> R.id.quick_actions
                     cachedState.isShowingInlineSuggestions -> R.id.inline_suggestions
-                    cachedState.keyVariation == KeyVariation.PASSWORD -> {
-                        if (!prefs.keyboard.numberRow) R.id.number_row else null
-                    }
+                    cachedState.keyVariation == KeyVariation.PASSWORD -> R.id.inline_suggestions
                     else -> when (cachedState.keyboardMode) {
                         KeyboardMode.EDITING -> null
                         KeyboardMode.NUMERIC,
                         KeyboardMode.PHONE,
-                        KeyboardMode.PHONE2 -> R.id.clipboard_cursor_row
+                        KeyboardMode.PHONE2 -> R.id.inline_suggestions
                         else -> when {
                             cachedState.isComposingEnabled && cachedState.isCursorMode
                                 && cachedState.isRichInputEditor -> R.id.candidates
-                            else -> R.id.clipboard_cursor_row
+                            else -> R.id.inline_suggestions
                         }
                     }
                 },
