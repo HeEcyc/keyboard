@@ -9,6 +9,7 @@ import com.live.keyboard.debug.flogDebug
 import com.live.keyboard.common.Pointer
 import com.live.keyboard.common.PointerMap
 import com.live.keyboard.common.ViewUtils
+import com.live.keyboard.repository.PrefsReporitory
 import kotlin.math.abs
 import kotlin.math.atan2
 
@@ -55,7 +56,7 @@ abstract class SwipeGesture {
     class Detector(private val context: Context, private val listener: Listener) {
         var isEnabled: Boolean = true
         private var pointerMap: PointerMap<GesturePointer> = PointerMap { GesturePointer() }
-        private var thresholdSpeed: Double = numericValue(context, VelocityThreshold.NORMAL)
+        private var thresholdSpeed: Double = PrefsReporitory.Settings.minimumSwipeSpeed.toDouble()//numericValue(context, VelocityThreshold.NORMAL)
         private var thresholdWidth: Double = numericValue(context, DistanceThreshold.NORMAL)
         private var unitWidth: Double = thresholdWidth / 4.0
         private val velocityTracker: VelocityTracker = VelocityTracker.obtain()
@@ -69,7 +70,7 @@ abstract class SwipeGesture {
         var velocityThreshold: VelocityThreshold = VelocityThreshold.NORMAL
             set(value) {
                 field = value
-                thresholdSpeed = numericValue(context, value)
+                thresholdSpeed = PrefsReporitory.Settings.minimumSwipeSpeed.toDouble()//numericValue(context, value)
             }
 
         /**

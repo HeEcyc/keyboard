@@ -309,6 +309,8 @@
     <string name="language_change_swipe_through_space">Swipe through Space</string>
     <string name="language_change_special_button">Special button</string>
 
+    <string name="minimum_swipe_speed">Minimum swipe speed</string>
+
     <string name="special_symbols_editor">Special symbols editor</string>
     <string name="special_symbols_editor_display_name_dot">Dot (.)</string>
     <string name="special_symbols_editor_display_name_question">Question (?)</string>

@@ -6,6 +6,7 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -38,6 +39,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
+
+    val selectSwipeSpeedEvents = MutableLiveData<Unit>()
 
     val onThemeClick = SingleLiveData<KeyboardTheme>()
     val nextActivity = SingleLiveData<Class<out BaseActivity<*, *>>>()
@@ -124,6 +127,8 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         BottomRightCharacterRepository.SelectableCharacter.from(BottomRightCharacterRepository.selectedBottomRightCharacterCode),
         { item, context -> context.getString(item.displayName) }
     ) { BottomRightCharacterRepository.selectedBottomRightCharacterCode = it.code }
+
+    fun onMinimumSwipeSpeedClick() = selectSwipeSpeedEvents.postValue(Unit)
 
 
     fun loadAssetsThemes() {

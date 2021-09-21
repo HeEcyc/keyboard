@@ -1,7 +1,6 @@
 package com.live.keyboard.repository
 
 import android.content.Context.MODE_PRIVATE
-import android.graphics.Color
 import com.google.gson.Gson
 import com.live.keyboard.FlorisApplication
 import com.live.keyboard.background.view.keyboard.repository.BottomRightCharacterRepository
@@ -46,6 +45,7 @@ object PrefsReporitory {
         private const val keyboardHeightKey = "keyboard_height"
         private const val languageChangeKey = "language_change"
         private const val specialSymbolKey = "special_symbol"
+        private const val minimumSwipeSpeedKey = "minimum_swipe_speed"
 
         object Language {
             private const val languageKey = "language_"
@@ -152,6 +152,10 @@ object PrefsReporitory {
                 BottomRightCharacterRepository.defaultBottomRightCharacter.first
             )
             set(value) = sharedPreferences.edit().putInt(specialSymbolKey, value).apply()
+
+        var minimumSwipeSpeed: Int
+            get() = sharedPreferences!!.getInt(minimumSwipeSpeedKey, 2500)
+            set(value) = sharedPreferences!!.edit().putInt(minimumSwipeSpeedKey, value).apply()
 
     }
 

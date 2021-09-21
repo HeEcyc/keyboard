@@ -159,6 +159,17 @@
                 android:textSize="16sp"
                 android:background="?selectableItemBackground"/>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/MediumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:onClick="@{(_) -> viewModel.onMinimumSwipeSpeedClick()}"
+                android:text="@string/minimum_swipe_speed"
+                android:textColor="@color/textColorMain"
+                android:textSize="16sp"
+                android:background="?selectableItemBackground"/>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.core.widget.NestedScrollView>
