@@ -16,6 +16,7 @@ import android.view.inputmethod.InputConnection
 import androidx.core.text.isDigitsOnly
 import androidx.core.view.inputmethod.InputConnectionCompat
 import androidx.core.view.inputmethod.InputContentInfoCompat
+import com.live.keyboard.background.view.keyboard.repository.UserDictionaryRepository
 import com.live.keyboard.common.FlorisLocale
 import com.live.keyboard.common.stringBuilder
 import com.live.keyboard.debug.LogTopic
@@ -31,6 +32,7 @@ import com.live.keyboard.ime.keyboard.KeyboardState
 import com.live.keyboard.ime.text.TextInputManager
 import com.live.keyboard.ime.text.composing.Composer
 import com.live.keyboard.util.debugSummarize
+import com.live.keyboard.util.isPasswordInputType
 
 class EditorInstance(private val ims: InputMethodService, private val activeState: KeyboardState) {
     companion object {
@@ -169,8 +171,9 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
 
     fun unbindInput() {
         flogInfo(LogTopic.EDITOR_INSTANCE) { "(no args)" }
+        val isPassword = editorInfo?.isPasswordInputType() ?: true
         isInputBindingActive = false
-        reset()
+        reset(isPassword)
     }
 
     fun composingEnabledChanged() {
@@ -750,9 +753,9 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
         return true
     }
 
-    fun reset() {
+    fun reset(isPassword: Boolean) {
         selection.apply { start = UNSET; end = UNSET }
-        cachedInput.reset()
+        cachedInput.reset(isPassword)
         lastReportedComposingBounds = Bounds(-1, -1)
     }
 
@@ -916,7 +919,7 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
 
         fun updateText(exText: ExtractedText?) {
             if (exText == null) {
-                reset()
+                reset(true)
                 return
             }
             val sel = exText.getSelectionBounds()
@@ -988,7 +991,8 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
             }
         }
 
-        fun reset() {
+        fun reset(isPassword: Boolean) {
+            if (!isPassword) UserDictionaryRepository.processText(rawText.toString())
             rawText.clear()
             offset = 0
 

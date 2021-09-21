@@ -3,25 +3,33 @@ package com.live.keyboard.ime.dictionary
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.live.keyboard.FlorisApplication
+import com.live.keyboard.data.db.ThemeDataBase
 import com.live.keyboard.ime.nlp.SuggestionList
 import com.live.keyboard.ime.nlp.Word
+import com.live.keyboard.util.enums.Language
 import com.live.keyboard.util.getFile
 
-class TypedDictionary(dictionaryPath: String, readFromAssets: Boolean = true) {
-    private var words: HashMap<String, Int> = loadDictionary(dictionaryPath, readFromAssets)
+class TypedDictionary(val language: Language, readFromAssets: Boolean = true) {
 
-    fun loadDictionary(path: String, readFromAssets: Boolean) =
+    val wordsFromJSON: HashMap<String, Int> = HashMap()
+    var words: HashMap<String, Int> = loadDictionary(language, readFromAssets)
+
+    fun loadDictionary(language: Language, readFromAssets: Boolean) =
         if (readFromAssets) {
-            FlorisApplication.instance.assets.open(path)
+            FlorisApplication.instance.assets.open(language.dictionaryJSONFile)
         } else {
-            path.getFile().inputStream()
+            language.dictionaryJSONFile.getFile().inputStream()
         }
         .bufferedReader()
         .use { reader -> reader.readText() }
-        .let(::mapJSONStringToHasMap)
+        .let { mapJSONStringToHasMap(it, language.name) }
 
-    private fun mapJSONStringToHasMap(json: String): HashMap<String, Int> = Gson()
-        .fromJson(json, object : TypeToken<HashMap<String, Int>>() {}.type)
+    private fun mapJSONStringToHasMap(json: String, languageCode: String): HashMap<String, Int> {
+        val map: HashMap<String, Int> = Gson().fromJson(json, object : TypeToken<HashMap<String, Int>>() {}.type)
+        wordsFromJSON.putAll(map)
+        map.putAll(ThemeDataBase.dataBase.getDictionaryDao().getFormattedEntriesForLanguage(languageCode).map { it.word to it.frequency })
+        return map
+    }
 
     fun isInit() = words.isNotEmpty()
 

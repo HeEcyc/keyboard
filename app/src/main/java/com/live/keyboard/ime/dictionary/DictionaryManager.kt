@@ -22,7 +22,7 @@ class DictionaryManager private constructor(
     private val applicationContext: WeakReference<Context> = WeakReference(context.applicationContext ?: context)
     private val prefs get() = Preferences.default()
 
-    private var dictionaryCache: TypedDictionary? = null
+    var dictionaryCache: TypedDictionary? = null
 
     private var florisUserDictionaryDatabase: FlorisUserDictionaryDatabase? = null
     private var systemUserDictionaryDatabase: SystemUserDictionaryDatabase? = null
@@ -69,7 +69,7 @@ class DictionaryManager private constructor(
 
     fun prepareDictionaries(subtype: Subtype) {
         val language = Language.from(subtype.locale.language)
-        dictionaryCache = TypedDictionary(language.dictionaryJSONFile, language == Language.EN)
+        dictionaryCache = TypedDictionary(language, language == Language.EN)
     }
 
     fun queryUserDictionary(word: Word, locale: FlorisLocale, destSuggestionList: SuggestionList) {

@@ -3,6 +3,7 @@ package com.live.keyboard.ime.text.gestures
 import android.util.SparseArray
 import androidx.collection.LruCache
 import androidx.core.util.set
+import com.live.keyboard.data.db.ThemeDataBase
 import com.live.keyboard.ime.core.Subtype
 import com.live.keyboard.ime.keyboard.KeyData
 import com.live.keyboard.ime.text.key.KeyCode
@@ -117,6 +118,7 @@ class StatisticalGlideTypingClassifier : GlideTypingClassifier {
                 language.dictionaryJSONFile.getFile().readText()
             val json = JSONObject(data)
             val words = HashMap<String, Int>().apply { putAll(json.keys().asSequence().map { Pair(it, json.getInt(it)) }) }
+            words.putAll(ThemeDataBase.dataBase.getDictionaryDao().getFormattedEntriesForLanguage(language.name).map { it.word to it.frequency })
             this.words = words.keys
             this.wordFrequencies = words
         }

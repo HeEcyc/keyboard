@@ -1,5 +1,7 @@
 package com.live.keyboard.util
 
+import android.text.InputType
+import android.view.inputmethod.EditorInfo
 import androidx.databinding.Observable
 import com.live.keyboard.FlorisApplication
 import java.io.File
@@ -15,3 +17,10 @@ fun Observable.addOnPropertyChangedCallback(
 fun String.getFile(): File = File(FlorisApplication.instance.filesDir, this)
 
 fun String.fileExists(): Boolean = getFile().exists()
+
+fun EditorInfo.isPasswordInputType(): Boolean {
+    val variation = inputType and (InputType.TYPE_MASK_CLASS or InputType.TYPE_MASK_VARIATION)
+    return (variation == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+        || (variation == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD)
+        || (variation == InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
+}

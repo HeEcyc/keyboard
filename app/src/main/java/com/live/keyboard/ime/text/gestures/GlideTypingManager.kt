@@ -1,5 +1,6 @@
 package com.live.keyboard.ime.text.gestures
 
+import com.live.keyboard.data.db.ThemeDataBase
 import com.live.keyboard.ime.core.FlorisBoard
 import com.live.keyboard.ime.core.Preferences
 import com.live.keyboard.ime.core.Subtype
@@ -83,6 +84,7 @@ class GlideTypingManager : GlideTypingGesture.Listener, CoroutineScope by MainSc
                     language.dictionaryJSONFile.getFile().readText()
                 val json = JSONObject(data)
                 wordDataCache.putAll(json.keys().asSequence().map { Pair(it, json.getInt(it)) })
+                wordDataCache.putAll(ThemeDataBase.dataBase.getDictionaryDao().getFormattedEntriesForLanguage(language.name).map { it.word to it.frequency })
             }
             glideTypingClassifier.setWordData(wordDataCache, subtype)
         }
