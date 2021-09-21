@@ -44,6 +44,7 @@ import com.live.keyboard.ime.text.smartbar.SmartbarView
 import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.res.AssetManager
 import com.live.keyboard.res.FlorisRef
+import com.live.keyboard.util.enums.Language
 import com.live.keyboard.util.enums.LanguageChange
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -165,37 +166,15 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
         override fun evaluateVisible(data: KeyData): Boolean {
             return when (data.code) {
                 KeyCode.SWITCH_TO_TEXT_CONTEXT,
-                KeyCode.SWITCH_TO_MEDIA_CONTEXT -> {
-                    val tempUtilityKeyAction = when {
-                        prefs.keyboard.utilityKeyEnabled -> prefs.keyboard.utilityKeyAction
-                        else -> UtilityKeyAction.DISABLED
-                    }
-                    when (tempUtilityKeyAction) {
-                        UtilityKeyAction.DISABLED,
-                        UtilityKeyAction.SWITCH_LANGUAGE,
-                        UtilityKeyAction.SWITCH_KEYBOARD_APP -> false
-                        UtilityKeyAction.SWITCH_TO_EMOJIS -> true
-                        UtilityKeyAction.DYNAMIC_SWITCH_LANGUAGE_EMOJIS -> !florisboard.shouldShowLanguageSwitch()
-                    }
-                }
-                KeyCode.SWITCH_TO_CLIPBOARD_CONTEXT -> prefs.clipboard.enableHistory
-                KeyCode.LANGUAGE_SWITCH -> {
-                    val tempUtilityKeyAction = when {
-                        prefs.keyboard.utilityKeyEnabled -> prefs.keyboard.utilityKeyAction
-                        else -> UtilityKeyAction.DISABLED
-                    }
-                    when (tempUtilityKeyAction) {
-                        UtilityKeyAction.DISABLED,
-                        UtilityKeyAction.SWITCH_TO_EMOJIS -> true
-                        UtilityKeyAction.SWITCH_LANGUAGE,
-                        UtilityKeyAction.SWITCH_KEYBOARD_APP -> true
-                        UtilityKeyAction.DYNAMIC_SWITCH_LANGUAGE_EMOJIS ->
-                            PrefsReporitory.Settings.languageChange == LanguageChange.SPECIAL_BUTTON
-                    }
-                }
+                KeyCode.PHONE_PAUSE -> !(PrefsReporitory.Settings.showEmoji && needToShowLanguageKey())
+                KeyCode.LANGUAGE_SWITCH -> needToShowLanguageKey()
+                KeyCode.SWITCH_TO_MEDIA_CONTEXT -> PrefsReporitory.Settings.showEmoji
                 else -> true
             }
         }
+
+        private fun needToShowLanguageKey() = PrefsReporitory.Settings.languageChange == LanguageChange.SPECIAL_BUTTON
+            && Language.values().count { it.isSelected } > 1
 
         override fun getActiveSubtype(): Subtype {
             return florisboard.activeSubtype

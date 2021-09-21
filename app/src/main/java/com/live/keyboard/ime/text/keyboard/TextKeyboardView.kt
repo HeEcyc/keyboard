@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
@@ -41,6 +40,7 @@ import com.live.keyboard.ime.theme.Theme
 import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.res.AssetManager
 import com.live.keyboard.res.FlorisRef
+import com.live.keyboard.util.enums.Language
 import com.live.keyboard.util.enums.LanguageChange
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -198,7 +198,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             Array(arraySize) {
                 when (it) {
                     0 -> handleFirstLine(isShowingNumberRow, keyboard)
-                    arraySize - 1 -> handleLastArray(keyboard.arrangement.last())
                     else -> keyboard.arrangement[it - if (isShowingNumberRow) 1 else 0]
                 }
             },
@@ -229,21 +228,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             else 49 + position
             TextKey(TextKeyData(code = code, label = code.toChar().toString()))
         }
-
-
-    private fun handleLastArray(keysArray: Array<TextKey>): Array<TextKey> {
-        if (isPreviewMode) return keysArray
-        if (!PrefsReporitory.Settings.showEmoji) {
-            return keysArray
-                .filter { it.computedData.code != KeyCode.SWITCH_TO_MEDIA_CONTEXT }
-                .toTypedArray()
-        }
-        if (PrefsReporitory.Settings.showEmoji && PrefsReporitory.Settings.languageChange == LanguageChange.SPECIAL_BUTTON)
-            return keysArray
-                .filter { it.computedData.code != KeyCode.PHONE_PAUSE }
-                .toTypedArray()
-        return keysArray
-    }
 
     fun setIconSet(textKeyboardIconSet: TextKeyboardIconSet) {
         iconSet = textKeyboardIconSet
