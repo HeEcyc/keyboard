@@ -73,6 +73,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     val keyboardSwipe = ObservableBoolean(PrefsReporitory.Settings.keyboardSwipe)
     val showNumberRow = ObservableBoolean(PrefsReporitory.Settings.showNumberRow)
     val oneHandedMode = ObservableInt(PrefsReporitory.Settings.oneHandedMode.displayName)
+    val isEnableGlideTyping = ObservableBoolean(PrefsReporitory.Settings.GlideTyping.enableGlideTyping)
 
     init {
         observe(showEmoji) { _, _ ->
@@ -82,8 +83,11 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
             PrefsReporitory.Settings.tips = tips.get()
         }
         observe(keyboardSwipe) { _, _ ->
-            PrefsReporitory.Settings.GlideTyping.enableGlideTyping = !keyboardSwipe.get()
             PrefsReporitory.Settings.keyboardSwipe = keyboardSwipe.get()
+            if (keyboardSwipe.get()) {
+                isEnableGlideTyping.set(false)
+                PrefsReporitory.Settings.GlideTyping.enableGlideTyping = false
+            }
         }
         observe(showNumberRow) { _, _ ->
             PrefsReporitory.Settings.showNumberRow = showNumberRow.get()
@@ -168,8 +172,9 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     }
 
     fun checkEnableKeyboardSwipe() {
-        if (PrefsReporitory.Settings.keyboardSwipe != keyboardSwipe.get()) {
-            keyboardSwipe.set(PrefsReporitory.Settings.keyboardSwipe)
+        if (PrefsReporitory.Settings.GlideTyping.enableGlideTyping) {
+            keyboardSwipe.set(false)
+            isEnableGlideTyping.set(true)
         }
     }
 

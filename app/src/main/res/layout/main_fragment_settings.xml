@@ -43,11 +43,11 @@
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="12dp"
+                android:layout_marginTop="@dimen/main_magin_top"
                 android:drawableEnd="@drawable/ic_next"
                 android:onClick="@{() -> viewModel.showGlideSettingsActivity()}"
                 android:text="@string/glide_typing"
-                android:textColor="@{viewModel.keyboardSwipe ? @color/textColorSecondaty : @color/textColorMain}"
+                android:textColor="@{viewModel.isEnableGlideTyping ? @color/textColorMain : @color/textColorSecondaty}"
                 android:textSize="16sp"
                 android:background="?selectableItemBackground"/>
 
