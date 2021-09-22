@@ -84,6 +84,20 @@
 
             </RadioGroup>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/save"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_marginHorizontal="32sp"
+                android:layout_marginBottom="20sp"
+                android:background="@drawable/button_blue_gradient"
+                android:fontFamily="@font/roboto_500"
+                android:gravity="center"
+                android:text="@string/save"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/permissinsPermissionText" />
+
             <com.live.keyboard.ui.custom.SwipeAnimationView
                 android:id="@+id/swipeAnitmationView"
                 android:layout_width="match_parent"

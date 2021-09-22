@@ -35,7 +35,6 @@ class SwipeAnimationView @JvmOverloads constructor(
         binding.previewEditText.setText(R.string.your_text)
         binding.previewEditText.requestFocus()
         binding.previewEditText.setSelection(binding.previewEditText.text?.length ?: 0)
-        binding.swipeHand.setImageResource(R.drawable.ic_swipe_left)
     }
 
     override fun startKeyboardAnimation() {
@@ -51,6 +50,7 @@ class SwipeAnimationView @JvmOverloads constructor(
     }
 
     private fun startLeftAnimation() {
+        binding.swipeHand.setImageResource(R.drawable.ic_swipe_left)
         setConstrain(0.2f)
         setTransition(swipeDuration) {
             binding.previewEditText.setText("")
@@ -59,6 +59,7 @@ class SwipeAnimationView @JvmOverloads constructor(
     }
 
     private fun starRightAnimation() {
+        binding.swipeHand.setImageResource(R.drawable.ic_swipe_right)
         setConstrain(0.8f)
         setTransition(swipeDuration) {
             binding.previewEditText.append(" ")
