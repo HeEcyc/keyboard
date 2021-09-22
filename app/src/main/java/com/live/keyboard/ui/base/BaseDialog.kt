@@ -32,7 +32,6 @@ abstract class BaseDialog<T : ViewDataBinding>(private val layout: Int) : Dialog
 
     fun show(fragmentManager: FragmentManager) {
         if (dialog?.isShowing != true) show(fragmentManager, this::class.java.simpleName)
-
     }
 
 }

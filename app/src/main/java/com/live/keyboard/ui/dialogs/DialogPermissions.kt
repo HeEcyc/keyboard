@@ -13,7 +13,10 @@ class DialogPermissions(private val onPermissionAction: OnPermissionAction) :
     private val focusListener = ViewTreeObserver.OnWindowFocusChangeListener { hasFocus ->
         if (hasFocus && onPermissionAction.hasAllPermissions()) {
             removeListener()
-            Handler(Looper.getMainLooper()).postDelayed({ dismiss() }, 200)
+            Handler(Looper.getMainLooper()).postDelayed({
+                onPermissionAction.onGrandAllPermissions()
+                dismiss()
+            }, 200)
         }
     }
 
@@ -34,5 +37,7 @@ class DialogPermissions(private val onPermissionAction: OnPermissionAction) :
         fun askPermissions()
 
         fun hasAllPermissions(): Boolean
+
+        fun onGrandAllPermissions()
     }
 }
