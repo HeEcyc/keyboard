@@ -78,9 +78,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         binding.mainScreens.isUserInputEnabled = false
         binding.mainScreens.offscreenPageLimit = 3
 
-        //selectInitialLanguage()
-//
-        DialogGetsureSettings().show(supportFragmentManager)
+        selectInitialLanguage()
 
     }
 
@@ -163,7 +161,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     override fun onResume() {
         super.onResume()
         viewModel.checkEnableKeyboardSwipe()
-    //    if (!isKeyboardEnable() || !isKeyboardActive()) dialogPermissions.show(supportFragmentManager)
+        if (!isKeyboardEnable() || !isKeyboardActive()) dialogPermissions.show(supportFragmentManager)
     }
 
     override fun askPermissions() {
