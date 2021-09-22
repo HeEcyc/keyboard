@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.children
 import com.live.keyboard.R
 import com.live.keyboard.background.view.keyboard.repository.BottomRightCharacterRepository
 import com.live.keyboard.common.Pointer
@@ -40,8 +41,6 @@ import com.live.keyboard.ime.theme.Theme
 import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.res.AssetManager
 import com.live.keyboard.res.FlorisRef
-import com.live.keyboard.util.enums.Language
-import com.live.keyboard.util.enums.LanguageChange
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -1501,4 +1500,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         gradientDrawable.bounds.set(key.visibleBounds)
         gradientDrawable.draw(canvas)
     }
+
+    fun findKeyView(label: String) = children
+        .filterIsInstance<TextKeyView>()
+        .firstOrNull { it.key?.label == label }
 }
