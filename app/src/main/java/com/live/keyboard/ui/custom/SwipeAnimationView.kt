@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
@@ -108,7 +109,7 @@ class SwipeAnimationView @JvmOverloads constructor(
     }
 
     private fun animateKeyboard() {
-        clearAnimation()
+        clearKeyboardAnimation()
         prepareKeyboardAnimation()
         startKeyboardAnimation()
     }
@@ -164,11 +165,19 @@ class SwipeAnimationView @JvmOverloads constructor(
 
     fun showKeyboardAnimation(animationType: AnimationType) {
         this.animationType = animationType
-        animator?.pause()
-        animationHandler.removeCallbacksAndMessages(null)
-        binding.swipeHand.clearAnimation()
+        clearKeyboardAnimation()
         animateKeyboard()
     }
 
+    private fun clearKeyboardAnimation() {
+        animator?.pause()
+        animationHandler.removeCallbacksAndMessages(null)
+        binding.swipeHand.clearAnimation()
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        clearKeyboardAnimation()
+    }
 }
 
