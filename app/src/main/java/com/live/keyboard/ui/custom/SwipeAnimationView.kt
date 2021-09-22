@@ -82,7 +82,7 @@ class SwipeAnimationView @JvmOverloads constructor(
     private fun prepareSwipeAnimation() {
         binding.swipeHand.x = (binding.keyboardConstrain.width / 2).toFloat()
         binding.swipeHand.y = (binding.keyboardConstrain.height / 2).toFloat()
-        binding.previewEditText.setText(R.string.your_text)
+        binding.previewEditText.setText(R.string.example_text)
         binding.previewEditText.setSelection(binding.previewEditText.text?.length ?: 0)
     }
 
