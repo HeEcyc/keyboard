@@ -19,6 +19,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14sp"
+                    android:layout_marginTop="18sp"
+                    android:fontFamily="@font/roboto_500"
+                    android:text="@string/make_your_choose"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColorMain"
+                    android:textSize="35sp"
+                    android:textStyle="italic|bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/closeDialogButton"
                     android:layout_width="40sp"
@@ -30,23 +44,10 @@
                     android:src="@drawable/ic_close"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="14sp"
-                    android:layout_marginTop="18sp"
-                    android:fontFamily="@font/roboto_500"
-                    android:text="@string/make_your_choose"
-                    android:textAllCaps="true"
-                    android:textColor="@color/textColorMain"
-                    android:textSize="35sp"
-                    android:textStyle="italic|bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <RadioGroup
+                android:id="@+id/getsureChooser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="14sp"

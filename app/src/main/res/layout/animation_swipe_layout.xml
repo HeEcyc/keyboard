@@ -15,6 +15,7 @@
                 android:id="@+id/previewEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/blueColor"
                 android:layout_marginHorizontal="12sp"
                 android:text="@string/your_text"
                 android:textColor="@color/textColorMain"
