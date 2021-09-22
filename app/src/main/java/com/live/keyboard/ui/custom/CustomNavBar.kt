@@ -100,4 +100,21 @@ class CustomNavBar @JvmOverloads constructor(
                 .valueOf(Color.WHITE)
         }
     }
+
+    fun setCurrentPage(positon: Int) {
+        val activeView = getActiveViewByPosition(positon)
+        if (activeView.id == currentActiveView.id) return
+
+        setViewNotActive()
+
+        currentActiveView = activeView
+
+        setViewActivte()
+    }
+
+    private fun getActiveViewByPosition(positon: Int) = when (positon) {
+        0 -> binding.pressetsButtonLayout
+        1 -> binding.customButtonLayout
+        else -> binding.settingsButtonLayout
+    }
 }

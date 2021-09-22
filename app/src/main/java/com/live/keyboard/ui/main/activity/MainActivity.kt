@@ -74,30 +74,38 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         binding.mainScreens.offscreenPageLimit = 3
 
         showSettingsFragment()
-
-        ifInitialLaunch()
     }
 
     private fun showSettingsFragment() {
         if (intent?.hasExtra(EXTRA_LAUNCH_SETTINGS) == true)
-            binding.mainScreens.post { binding.mainScreens.currentItem = 2 }
+            binding.mainScreens.post {
+                binding.bottomBar.setCurrentPage(2)
+                binding.mainScreens.currentItem = 2
+            }
     }
-
 
     private fun ifInitialLaunch() {
         if (!PrefsReporitory.isFirstLaunch) return
         PrefsReporitory.isFirstLaunch = false
-        DialogInitialSelectLanguage().apply {
-             onClosed = {
-                DialogGetsureSettings().apply {
-                    onClosed = {
-                        DialogInitialSelectDesign().apply {
-                            onSelected = {
-                                binding.mainScreens.currentItem = if (it == DialogInitialSelectDesign.Design.PRESET) 0 else 1
-                            }
-                        }.show(supportFragmentManager, null)
-                    }
-                }.show(supportFragmentManager, null)
+        showLanguageDialog()
+    }
+
+    private fun showLanguageDialog() {
+        DialogInitialSelectLanguage().apply { onClosed = { showGetsureDialog() } }
+            .show(supportFragmentManager, null)
+    }
+
+    private fun showGetsureDialog() {
+        DialogGetsureSettings().apply { onClosed = { showDesignDialog() } }
+            .show(supportFragmentManager, null)
+    }
+
+    private fun showDesignDialog() {
+        DialogInitialSelectDesign().apply {
+            onSelected = {
+                val currentPage = if (it == DialogInitialSelectDesign.Design.PRESET) 0 else 1
+                binding.mainScreens.currentItem = currentPage
+                binding.bottomBar.setCurrentPage(currentPage)
             }
         }.show(supportFragmentManager, null)
     }
@@ -169,6 +177,10 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     }
 
     override fun hasAllPermissions() = isKeyboardActive() && isKeyboardEnable()
+
+    override fun onGrandAllPermissions() {
+        ifInitialLaunch()
+    }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
