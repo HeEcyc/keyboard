@@ -7,37 +7,66 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12sp"
-            android:enabled="false"
-            android:text="Your text"
-            android:textColor="@color/textColorMain" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/previewEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blueColor"
+                android:layout_marginHorizontal="12sp"
+                android:text="@string/your_text"
+                android:textColor="@color/textColorMain"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/keyboardConstrain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#292E32">
+
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginHorizontal="12sp"
                 android:src="@drawable/toolbar"
                 android:translationY="2dp"
                 app:layout_constraintDimensionRatio="4736:512"
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.live.keyboard.ime.text.keyboard.TextKeyboardView
-            android:id="@+id/keyboardPreview"
-            android:layout_width="match_parent"
-            android:layout_height="208sp"
-            android:layout_marginHorizontal="12sp"
-            app:isPreviewKeyboard="true"
-            app:layout_constraintBottom_toBottomOf="@id/barrier"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editCategoryTabs" />
+            <com.live.keyboard.ime.text.keyboard.TextKeyboardView
+                android:id="@+id/keyboardPreview"
+                android:layout_width="match_parent"
+                android:layout_height="208sp"
+                android:background="#292E32"
+                app:isPreviewKeyboard="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/swipeHand"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:src="@drawable/ic_swipe_left"
+                android:tint="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

@@ -24,6 +24,7 @@ import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.ui.base.BaseActivity
 import com.live.keyboard.ui.dialogs.DialogChooser
 import com.live.keyboard.ui.dialogs.DialogDone
+import com.live.keyboard.ui.dialogs.DialogGetsureSettings
 import com.live.keyboard.ui.dialogs.DialogPermissions
 import com.live.keyboard.ui.main.activity.assets.FragmentAssets
 import com.live.keyboard.ui.main.activity.custom.FragmentCustomTheme
@@ -78,8 +79,6 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         binding.mainScreens.offscreenPageLimit = 3
 
         selectInitialLanguage()
-//
-//        DialogGetsureSettings().show(supportFragmentManager)
 
     }
 
