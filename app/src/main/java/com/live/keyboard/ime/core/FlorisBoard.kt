@@ -60,8 +60,9 @@ import com.live.keyboard.ime.text.keyboard.TextKeyData
 import com.live.keyboard.ime.theme.Theme
 import com.live.keyboard.ime.theme.ThemeManager
 import com.live.keyboard.repository.PrefsReporitory
-import com.live.keyboard.ui.splash.activity.SplashActivity
+import com.live.keyboard.ui.main.activity.MainActivity
 import com.live.keyboard.util.AppVersionUtils
+import com.live.keyboard.util.EXTRA_LAUNCH_SETTINGS
 import com.live.keyboard.util.debugSummarize
 import com.live.keyboard.util.enums.OneHandedMode
 import com.live.keyboard.util.findViewWithType
@@ -743,9 +744,9 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
 
     fun launchSettings() {
         requestHideSelf(0)
-        val i = Intent(this, SplashActivity::class.java)
+        val i = Intent(this, MainActivity::class.java).putExtra(EXTRA_LAUNCH_SETTINGS, true)
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or
-            Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED or
+//            Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED or
             Intent.FLAG_ACTIVITY_CLEAR_TOP
         applicationContext.startActivity(i)
     }

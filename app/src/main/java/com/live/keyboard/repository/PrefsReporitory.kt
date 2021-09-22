@@ -21,6 +21,7 @@ object PrefsReporitory {
 
     private const val keyboadThemeKey = "keyboard_theme_key"
     private const val showStartSettingsKey = "show_start_settings_key"
+    private const val isFirstLaunchKey = "is_first_launch_key"
 
     var showStartSettings: Boolean = false
         get() = sharedPreferences.getBoolean(showStartSettingsKey, false)
@@ -35,6 +36,10 @@ object PrefsReporitory {
             if (value != null) sharedPreferences.edit().putString(keyboadThemeKey, Gson().toJson(value)).apply()
             field = value
         }
+
+    var isFirstLaunch: Boolean
+        get() = sharedPreferences.getBoolean(isFirstLaunchKey, true)
+        set(value) = sharedPreferences.edit().putBoolean(isFirstLaunchKey, value).apply()
 
     object Settings {
         private const val showEmojiKey = "show_emoji"

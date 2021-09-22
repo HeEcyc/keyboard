@@ -15,16 +15,16 @@ import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
-import com.google.firebase.storage.FirebaseStorage
 import com.live.keyboard.R
 import com.live.keyboard.adapters.VPAdapter
 import com.live.keyboard.data.KeyboardTheme
 import com.live.keyboard.databinding.MainActivityBinding
 import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.ui.base.BaseActivity
-import com.live.keyboard.ui.dialogs.DialogChooser
 import com.live.keyboard.ui.dialogs.DialogDone
 import com.live.keyboard.ui.dialogs.DialogGetsureSettings
+import com.live.keyboard.ui.dialogs.DialogInitialSelectDesign
+import com.live.keyboard.ui.dialogs.DialogInitialSelectLanguage
 import com.live.keyboard.ui.dialogs.DialogPermissions
 import com.live.keyboard.ui.main.activity.assets.FragmentAssets
 import com.live.keyboard.ui.main.activity.custom.FragmentCustomTheme
@@ -33,12 +33,7 @@ import com.live.keyboard.ui.preview.theme.activity.ThemePreviewActivity
 import com.live.keyboard.ui.theme.editor.activity.ThemeEditorActivity
 import com.live.keyboard.util.BUNDLE_IS_EDITING_THEME_KEY
 import com.live.keyboard.util.BUNDLE_THEME_KEY
-import com.live.keyboard.util.enums.Language
-import com.live.keyboard.util.getFile
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.live.keyboard.util.EXTRA_LAUNCH_SETTINGS
 
 
 class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.layout.main_activity),
@@ -73,36 +68,39 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         binding.bottomBar.onPageChange = { page ->
             if (page == 2 && isTryKeyboardMessageShowing) hideTryKeyboardMessage()
             else if (isTryKeyboardMessageShowing) showTryKeyboardMessage()
-            viewModel.currentPage.set(page)
+            binding.mainScreens.currentItem = page
         }
         binding.mainScreens.isUserInputEnabled = false
         binding.mainScreens.offscreenPageLimit = 3
 
-        selectInitialLanguage()
+        showSettingsFragment()
 
+        ifInitialLaunch()
     }
 
-    private fun selectInitialLanguage() = DialogChooser(
-        R.string.select_your_language,
-        Language.values(),
-        Language.EN,
-        { l, _ -> l.languageName }
-    ) { language ->
-        language.isDownloading.set(true)
-        FirebaseStorage.getInstance().reference.child(language.dictionaryJSONFile).stream.addOnSuccessListener {
-            GlobalScope.launch(Dispatchers.IO) {
-                language.dictionaryJSONFile.getFile().apply { createNewFile() }.writeBytes(it.stream.readBytes())
-                it.stream.close()
-                withContext(Dispatchers.Main) {
-                    Language.values().forEach { it.isSelected = it == language }
-                    language.isDownloadedObservable.set(true)
-                }
-                language.isDownloading.set(false)
+    private fun showSettingsFragment() {
+        if (intent?.hasExtra(EXTRA_LAUNCH_SETTINGS) == true)
+            binding.mainScreens.post { binding.mainScreens.currentItem = 2 }
+    }
+
+
+    private fun ifInitialLaunch() {
+        if (!PrefsReporitory.isFirstLaunch) return
+        PrefsReporitory.isFirstLaunch = false
+        DialogInitialSelectLanguage().apply {
+             onClosed = {
+                DialogGetsureSettings().apply {
+                    onClosed = {
+                        DialogInitialSelectDesign().apply {
+                            onSelected = {
+                                binding.mainScreens.currentItem = if (it == DialogInitialSelectDesign.Design.PRESET) 0 else 1
+                            }
+                        }.show(supportFragmentManager, null)
+                    }
+                }.show(supportFragmentManager, null)
             }
-        }.addOnFailureListener {
-            language.isDownloading.set(false)
-        }
-    }.show(this)
+        }.show(supportFragmentManager, null)
+    }
 
     private fun onThemeClick(keyboardTheme: KeyboardTheme) {
         if (keyboardTheme.isSelected) Intent(this@MainActivity, ThemeEditorActivity::class.java)
