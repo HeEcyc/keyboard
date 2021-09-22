@@ -146,9 +146,6 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                     activeState.isSelectionMode && activeState.isRichInputEditor
                 }
                 KeyCode.CLIPBOARD_PASTE -> {
-                    // such gore. checks
-                    // 1. has a clipboard item
-                    // 2. the clipboard item has any of the supported mime types of the editor OR is plain text.
                     florisboard.florisClipboardManager?.canBePasted(
                         florisboard.florisClipboardManager?.primaryClip
                     ) == true
