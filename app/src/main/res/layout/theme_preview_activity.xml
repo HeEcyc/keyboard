@@ -32,7 +32,8 @@
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:padding="@dimen/top_button_padding"
-                android:src="@drawable/ic_edit"
+                android:src="@drawable/ic_menu_custom"
+                android:tint="#0D0D0D"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

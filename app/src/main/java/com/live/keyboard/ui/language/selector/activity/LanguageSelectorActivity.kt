@@ -9,7 +9,7 @@ class LanguageSelectorActivity :
     BaseActivity<LanguageSelectorViewModel, LanguageSelectorActivityBinding>(R.layout.language_selector_activity) {
     private val viewModel: LanguageSelectorViewModel by viewModels()
 
-    var loadingDialog: LoadingDialog? = null
+    private var loadingDialog: LoadingDialog? = null
 
     override fun setupUI() {
         binding.backButton.setOnClickListener { onBackPressed() }
