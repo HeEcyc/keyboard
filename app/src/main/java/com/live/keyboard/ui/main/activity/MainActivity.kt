@@ -180,9 +180,6 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
 
     override fun onGrandAllPermissions() {
         //ifInitialLaunch()
-        DialogGetsureSettings().apply {
-            onClosed = {}
-        }.show(supportFragmentManager)
     }
 
     override fun onNewIntent(intent: Intent) {

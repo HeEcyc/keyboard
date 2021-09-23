@@ -344,4 +344,7 @@
     <string name="presets_caps">PRESETS</string>
     <string name="custom_caps">CUSTOM</string>
 
+    <string name="glide_feature_description">Type by swiping your finger from key to key</string>
+    <string name="keyboard_swipe_feature_description">Swipe left to delete a word, swipe right to move the cursor</string>
+
 </resources>
