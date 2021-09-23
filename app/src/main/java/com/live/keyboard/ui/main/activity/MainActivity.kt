@@ -179,7 +179,10 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     override fun hasAllPermissions() = isKeyboardActive() && isKeyboardEnable()
 
     override fun onGrandAllPermissions() {
-        ifInitialLaunch()
+        //ifInitialLaunch()
+        DialogGetsureSettings().apply {
+            onClosed = {}
+        }.show(supportFragmentManager)
     }
 
     override fun onNewIntent(intent: Intent) {

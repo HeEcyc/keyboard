@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
@@ -1254,11 +1255,9 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     override fun dispatchDraw(canvas: Canvas?) {
         super.dispatchDraw(canvas)
-
-        if (prefs.glide.enabled && prefs.glide.showTrail && !isSmartbarKeyboardView) {
+        if ((prefs.glide.enabled && prefs.glide.showTrail && !isSmartbarKeyboardView) || isPreviewMode) {
             val targetDist = 3.0f
             val radius = 20.0f
-
             val radiusReductionFactor = 0.99f
             if (fadingGlideRadius > 0) {
                 drawGlideTrail(fadingGlide, targetDist, fadingGlideRadius, canvas, radiusReductionFactor)
@@ -1281,9 +1280,9 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         var prevX = gestureData.lastOrNull()?.first?.x ?: 0.0f
         var prevY = gestureData.lastOrNull()?.first?.y ?: 0.0f
         val time = System.currentTimeMillis()
-
+        val trailDuration = prefs.glide.trailDuration + if (isPreviewMode) 500 else 0
         outer@ for (i in gestureData.size - 1 downTo 1) {
-            if (time - gestureData[i - 1].second > prefs.glide.trailDuration) break
+            if (time - gestureData[i - 1].second > trailDuration) break
 
             val dx = prevX - gestureData[i - 1].first.x
             val dy = prevY - gestureData[i - 1].first.y
@@ -1315,7 +1314,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     override fun onGlideAddPoint(point: GlideTypingGesture.Detector.Position) {
-        if (prefs.glide.enabled) {
+        if (prefs.glide.enabled || isPreviewMode) {
             glideDataForDrawing.add(Pair(point, System.currentTimeMillis()))
             if (glideRefreshJob == null) {
                 glideRefreshJob = launch(Dispatchers.Main) {
@@ -1472,6 +1471,14 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         computedKeyboard?.keys()?.withIndex()?.forEach { (n, _) ->
             getChildAt(n)?.let { rv -> if (rv is TextKeyView) action.invoke(rv) }
         }
+    }
+
+    fun activeGliding() {
+        isGliding = true
+    }
+
+    fun deactiveGlideTyping() {
+        isGliding = false
     }
 
     private fun reDrawKeyboard() {

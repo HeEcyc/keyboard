@@ -57,11 +57,27 @@
                 android:visibility="@{item.isSelected  ? View.VISIBLE : View.GONE}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:background="@drawable/button_bg"
+                android:paddingStart="2sp"
+                android:paddingTop="9dp"
+                android:paddingBottom="11sp"
+                android:src="@drawable/ic_menu_custom"
+                android:tint="@color/blueColor"
+                android:visibility="@{item.isSelected  ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@{item.isSelected ? @drawable/keyboard_border_blue : @drawable/keyboard_border_gray}" />
+
     </androidx.cardview.widget.CardView>
 </layout>

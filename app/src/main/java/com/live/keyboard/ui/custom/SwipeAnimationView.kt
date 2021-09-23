@@ -6,7 +6,6 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
@@ -19,6 +18,7 @@ import com.live.keyboard.ime.core.Subtype
 import com.live.keyboard.ime.keyboard.ComputingEvaluator
 import com.live.keyboard.ime.keyboard.DefaultComputingEvaluator
 import com.live.keyboard.ime.keyboard.KeyData
+import com.live.keyboard.ime.text.gestures.GlideTypingGesture
 import com.live.keyboard.ime.text.key.CurrencySet
 import com.live.keyboard.ime.text.key.KeyCode
 import com.live.keyboard.ime.text.keyboard.KeyboardMode
@@ -81,6 +81,7 @@ class SwipeAnimationView @JvmOverloads constructor(
     }
 
     private fun prepareSwipeAnimation() {
+        binding.keyboardPreview.activeGliding()
         binding.swipeHand.x = (binding.keyboardConstrain.width / 2).toFloat()
         binding.swipeHand.y = (binding.keyboardConstrain.height / 2).toFloat()
         binding.previewEditText.setText(R.string.example_text)
@@ -120,6 +121,12 @@ class SwipeAnimationView @JvmOverloads constructor(
             val pvhY = PropertyValuesHolder.ofFloat(Y, (it.bottom + binding.toolbar.height / 2).toFloat())
             animator = ObjectAnimator.ofPropertyValuesHolder(binding.swipeHand, pvhX, pvhY).apply {
                 doOnEnd { moveToKey(keyIndex + 1) }
+                addUpdateListener {
+                    val glideXPosition = binding.swipeHand.x + binding.swipeHand.width / 2
+                    val glideYPosition = binding.swipeHand.y - binding.swipeHand.height
+                    binding.keyboardPreview
+                        .onGlideAddPoint(GlideTypingGesture.Detector.Position(glideXPosition, glideYPosition))
+                }
                 duration = 1000
                 start()
             }
@@ -150,6 +157,7 @@ class SwipeAnimationView @JvmOverloads constructor(
     }
 
     private fun prepareGetsureAnimation() {
+        binding.keyboardPreview.activeGliding()
         binding.swipeHand.setImageResource(R.drawable.ic_swipe_move)
         binding.previewEditText.setText("")
         binding.keyboardPreview.findKeyView(word[0].toString())?.let {

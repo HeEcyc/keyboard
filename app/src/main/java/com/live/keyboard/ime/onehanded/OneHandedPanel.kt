@@ -3,6 +3,7 @@ package com.live.keyboard.ime.onehanded
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Resources
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.ImageButton
@@ -79,11 +80,9 @@ class OneHandedPanel : LinearLayout, ThemeManager.OnThemeUpdatedListener {
     }
 
     override fun onThemeUpdated(theme: Theme) {
-        setBackgroundColor(theme.getAttr(Theme.Attr.ONE_HANDED_BACKGROUND).toSolidColor().color)
-        ColorStateList.valueOf(theme.getAttr(Theme.Attr.ONE_HANDED_FOREGROUND).toSolidColor().color).also {
-            closeBtn?.imageTintList = it
-            moveBtn?.imageTintList = it
-        }
+        setBackgroundColor(Color.parseColor("#292E32"))
+        closeBtn?.imageTintList = ColorStateList.valueOf(Color.WHITE)
+        moveBtn?.imageTintList = ColorStateList.valueOf(Color.WHITE)
         closeBtn?.invalidate()
         moveBtn?.invalidate()
         invalidate()
@@ -92,6 +91,6 @@ class OneHandedPanel : LinearLayout, ThemeManager.OnThemeUpdatedListener {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val width = (Resources.getSystem().displayMetrics.widthPixels) *
             ((100 - prefs.keyboard.oneHandedModeScaleFactor) / 100.0f)
-        super.onMeasure(MeasureSpec.makeMeasureSpec(width.toInt(),  MeasureSpec.EXACTLY), heightMeasureSpec)
+        super.onMeasure(MeasureSpec.makeMeasureSpec(width.toInt(), MeasureSpec.EXACTLY), heightMeasureSpec)
     }
 }
