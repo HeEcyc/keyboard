@@ -41,13 +41,9 @@ class ThemePreviewActivity :
         }
     }
 
-    override fun onPause() {
-        super.onPause()
+    private fun editKeyboardTheme() {
         getSystemService(InputMethodManager::class.java)
             .toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
-    }
-
-    private fun editKeyboardTheme() {
         Intent(this, ThemeEditorActivity::class.java)
             .putExtra(BUNDLE_THEME_KEY, currentTheme)
             .let(::startActivity)
