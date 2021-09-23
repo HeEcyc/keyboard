@@ -7,6 +7,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.animation.LinearInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 import androidx.databinding.DataBindingUtil
@@ -25,6 +27,7 @@ import com.live.keyboard.ime.text.keyboard.KeyboardMode
 import com.live.keyboard.ime.text.keyboard.TextKeyData
 import com.live.keyboard.ime.text.keyboard.TextKeyboardIconSet
 import com.live.keyboard.ime.text.layout.LayoutManager
+import kotlinx.coroutines.runBlocking
 
 
 class SwipeAnimationView @JvmOverloads constructor(
@@ -53,17 +56,18 @@ class SwipeAnimationView @JvmOverloads constructor(
         binding.previewEditText.requestFocus()
     }
 
-    suspend fun initKeyboard() {
-
+    fun initKeyboard() {
         binding.keyboardPreview.setIconSet(TextKeyboardIconSet.new(context))
         binding.keyboardPreview.setComputingEvaluator(getEvalutor())
         binding.keyboardPreview.sync()
-        binding.keyboardPreview.setComputedKeyboard(
-            LayoutManager().computeKeyboardAsync(
-                KeyboardMode.CHARACTERS,
-                Subtype.DEFAULT
-            ).await(), KeyboardTheme()
-        )
+        runBlocking {
+            binding.keyboardPreview.setComputedKeyboard(
+                LayoutManager().computeKeyboardAsync(
+                    KeyboardMode.CHARACTERS,
+                    Subtype.DEFAULT
+                ).await(), KeyboardTheme()
+            )
+        }
     }
 
     fun getEvalutor() = object : ComputingEvaluator by DefaultComputingEvaluator {
@@ -164,9 +168,9 @@ class SwipeAnimationView @JvmOverloads constructor(
         }
     }
 
-    enum class AnimationType {
-        GETSURE,
-        SWIPE
+    enum class AnimationType(val descriptionRes: Int) {
+        GETSURE(R.string.glide_feature_description),
+        SWIPE(R.string.keyboard_swipe_feature_description)
     }
 
     fun showKeyboardAnimation(animationType: AnimationType) {

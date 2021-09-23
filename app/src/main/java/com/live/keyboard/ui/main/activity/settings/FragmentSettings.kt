@@ -9,6 +9,8 @@ import com.live.keyboard.R
 import com.live.keyboard.databinding.MainFragmentSettingsBinding
 import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.ui.base.BaseFragment
+import com.live.keyboard.ui.custom.SwipeAnimationView
+import com.live.keyboard.ui.dialogs.DialogSwipeAnimationView
 import com.live.keyboard.ui.main.activity.MainActivityViewModel
 
 class FragmentSettings :
@@ -42,6 +44,12 @@ class FragmentSettings :
                     PrefsReporitory.Settings.minimumSwipeSpeed - 1000
             }
             swipeSpeedDialog?.show()
+        }
+        binding.buttonGlideHelp.setOnClickListener {
+            DialogSwipeAnimationView(requireContext(), SwipeAnimationView.AnimationType.GETSURE).show()
+        }
+        binding.buttonKeyboardSwipeHelp.setOnClickListener {
+            DialogSwipeAnimationView(requireContext(), SwipeAnimationView.AnimationType.SWIPE).show()
         }
     }
 
