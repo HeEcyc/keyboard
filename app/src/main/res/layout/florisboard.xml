@@ -17,12 +17,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="horizontal"
-        android:background="?inputView_bgColorFallback"
         android:baselineAligned="false">
 
         <com.live.keyboard.ime.onehanded.OneHandedPanel
             android:id="@+id/one_handed_ctrl_panel_start"
             android:layout_width="@dimen/one_handed_width"
+            android:background="@android:color/holo_red_dark"
             android:layout_height="match_parent"
             android:layout_weight="0"
             android:visibility="gone"
