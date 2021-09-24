@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.ParcelFileDescriptor
 import androidx.room.Room
 import com.live.keyboard.BuildConfig
-import com.live.keyboard.debug.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -96,7 +95,6 @@ class FlorisContentProvider : ContentProvider() {
         when (matcher.match(uri)){
             CLIPS_TABLE -> {
                 val id = FileStorage.cloneURI(Uri.parse(values?.getAsString("uri"))).getOrElse {
-                    flogError(LogTopic.CLIPBOARD) { it.toString() }
                     return uri.buildUpon().appendPath("0").build()
                 }
                 val mimes =  values?.getAsString("mimetypes")?.split(",")?.toTypedArray()

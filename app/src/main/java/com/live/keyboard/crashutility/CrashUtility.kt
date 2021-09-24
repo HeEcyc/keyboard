@@ -12,7 +12,6 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import com.live.keyboard.BuildConfig
 import com.live.keyboard.R
-import com.live.keyboard.debug.*
 import com.live.keyboard.ime.core.FlorisBoard
 import java.io.File
 import java.lang.ref.WeakReference
@@ -49,16 +48,10 @@ abstract class CrashUtility private constructor() {
          */
         fun install(context: Context?): Boolean {
             if (context == null) {
-                flogError(LogTopic.CRASH_UTILITY) {
-                    "Can't install crash handler with a null Context object, doing nothing!"
-                }
                 return false
             }
             val oldHandler = Thread.getDefaultUncaughtExceptionHandler()
             if (oldHandler is UncaughtExceptionHandler) {
-                flogInfo(LogTopic.CRASH_UTILITY) {
-                    "Crash handler is already installed, doing nothing!"
-                }
             } else {
                 val application = context.applicationContext
                 if (application != null && application is Application) {
@@ -70,18 +63,9 @@ abstract class CrashUtility private constructor() {
                                 application.filesDir.absolutePath
                             )
                         )
-                        flogInfo(LogTopic.CRASH_UTILITY) {
-                            "Successfully installed crash handler for this application!"
-                        }
                     } catch (e: SecurityException) {
-                        flogError(LogTopic.CRASH_UTILITY) {
-                            "Failed to install crash handler, probably due to missing runtime permission 'setDefaultUncaughtExceptionHandler':\n$e"
-                        }
                         return false
                     } catch (e: Exception) {
-                        flogError(LogTopic.CRASH_UTILITY) {
-                            "Failed to install crash handler due to an unspecified error:\n$e"
-                        }
                         return false
                     }
                     application.registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
@@ -114,19 +98,10 @@ abstract class CrashUtility private constructor() {
                                 )
                                 notificationManager.createNotificationChannel(notificationChannel)
                             }
-                            flogInfo(LogTopic.CRASH_UTILITY) {
-                                "Successfully created crash handler notification channel!"
-                            }
                         } catch (e: Exception) {
-                            flogError(LogTopic.CRASH_UTILITY) {
-                                "Failed to create crash handler notification channel due to an unspecified error:\n$e"
-                            }
                         }
                     }
                 } else {
-                    flogError(LogTopic.CRASH_UTILITY) {
-                        "Can't install crash handler with a null Application object, doing nothing!"
-                    }
                     return false
                 }
             }
@@ -164,9 +139,6 @@ abstract class CrashUtility private constructor() {
                 (ustDir.listFiles { pathname ->
                     pathname.name.endsWith(".$UNHANDLED_STACKTRACE_FILE_EXT")
                 })?.forEach { file ->
-                    flogInfo(LogTopic.CRASH_UTILITY) {
-                        "Reading unhandled stacktrace: ${file.name}"
-                    }
                     retList.add(Stacktrace(file.name, readFile(file)))
                     file.delete()
                 }
@@ -360,9 +332,6 @@ abstract class CrashUtility private constructor() {
         private val path: String
     ) : Thread.UncaughtExceptionHandler {
         override fun uncaughtException(thread: Thread?, throwable: Throwable?) {
-            flogInfo(LogTopic.CRASH_UTILITY) {
-                "Detected application crash, executing custom crash handler."
-            }
             throwable ?: return
             val timestamp = System.currentTimeMillis()
             val stacktrace = Log.getStackTraceString(throwable)

@@ -11,10 +11,6 @@ import com.appsflyer.AppsFlyerLib
 import com.live.keyboard.common.NativeStr
 import com.live.keyboard.common.toNativeStr
 import com.live.keyboard.crashutility.CrashUtility
-import com.live.keyboard.debug.Flog
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogError
-import com.live.keyboard.debug.flogInfo
 import com.live.keyboard.ime.core.Preferences
 import com.live.keyboard.ime.core.SubtypeManager
 import com.live.keyboard.ime.dictionary.DictionaryManager
@@ -51,13 +47,6 @@ class FlorisApplication : Application() {
         instance = this
         try {
             Timber.plant(Timber.DebugTree())
-            Flog.install(
-                applicationContext = this,
-                isFloggingEnabled = true,
-                flogTopics = LogTopic.ALL,
-                flogLevels = Flog.LEVEL_ALL,
-                flogOutputs = Flog.OUTPUT_CONSOLE
-            )
             initICU()
             val prefs = Preferences.initDefault(this)
             val assetManager = AssetManager.init(this)
@@ -92,14 +81,11 @@ class FlorisApplication : Application() {
             }
             val status = nativeInitICUData(dstDataFile.absolutePath.toNativeStr())
             return if (status != 0) {
-                flogError { "Native ICU data initializing failed with error code $status!" }
                 false
             } else {
-                flogInfo { "Successfully loaded ICU data!" }
                 true
             }
         } catch (e: Exception) {
-            flogError { e.toString() }
             return false
         }
     }

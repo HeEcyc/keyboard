@@ -7,9 +7,6 @@ import androidx.core.text.isDigitsOnly
 import com.live.keyboard.BuildConfig
 import com.live.keyboard.R
 import com.live.keyboard.databinding.FlorisboardBinding
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogError
-import com.live.keyboard.debug.flogInfo
 import com.live.keyboard.ime.clip.provider.ClipboardItem
 import com.live.keyboard.ime.core.EditorInstance
 import com.live.keyboard.ime.core.FlorisBoard
@@ -199,8 +196,6 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
      * background).
      */
     override fun onCreate() {
-        flogInfo(LogTopic.IMS_EVENTS)
-
         layoutManager = LayoutManager()
         textKeyboardIconSet = TextKeyboardIconSet.new(florisboard)
         inputEventDispatcher.keyEventReceiver = this
@@ -218,8 +213,6 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
     }
 
     override fun onInitializeInputUi(uiBinding: FlorisboardBinding) {
-        flogInfo(LogTopic.IMS_EVENTS)
-
         textInputKeyboardView = uiBinding.text.mainKeyboardView.also {
             it.setIconSet(textKeyboardIconSet)
             it.setComputingEvaluator(evaluator)
@@ -418,7 +411,6 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                 }
                 if (BuildConfig.DEBUG) {
                     val elapsed = (System.nanoTime() - startTime) / 1000.0
-                    flogInfo { "sugg fetch time: $elapsed us" }
                 }
             }
         }
@@ -927,7 +919,6 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                             activeEditorInstance.commitText(text)
                         }
                         else -> {
-                            flogError(LogTopic.KEY_EVENTS) { "Received unknown key: $data" }
                         }
                     }
                 }

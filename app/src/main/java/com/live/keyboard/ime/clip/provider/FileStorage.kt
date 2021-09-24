@@ -1,7 +1,6 @@
 package com.live.keyboard.ime.clip.provider
 
 import android.net.Uri
-import com.live.keyboard.debug.*
 import com.live.keyboard.ime.core.FlorisBoard
 import java.io.File
 import java.io.InputStream
@@ -53,7 +52,6 @@ object FileStorage {
      * Deletes the file corresponding to an id.
      */
     fun deleteById(id: Long) {
-        flogDebug(LogTopic.CLIPBOARD) { "Cleaning up $id" }
         val file = File(FlorisBoard.getInstance().filesDir, id.toString())
         file.delete()
     }

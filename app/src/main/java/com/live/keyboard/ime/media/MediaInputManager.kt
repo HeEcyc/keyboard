@@ -7,8 +7,6 @@ import android.widget.*
 import com.google.android.material.tabs.TabLayout
 import com.live.keyboard.R
 import com.live.keyboard.databinding.FlorisboardBinding
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogInfo
 import com.live.keyboard.ime.core.EditorInstance
 import com.live.keyboard.ime.core.FlorisBoard
 import com.live.keyboard.ime.core.InputKeyEvent
@@ -60,7 +58,6 @@ class MediaInputManager private constructor() : CoroutineScope by MainScope(),
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onInitializeInputUi(uiBinding: FlorisboardBinding) {
-        flogInfo(LogTopic.IMS_EVENTS)
 
         mediaViewFlipper = uiBinding.media.mediaInputViewFlipper
 
@@ -99,8 +96,6 @@ class MediaInputManager private constructor() : CoroutineScope by MainScope(),
      * Clean-up of resources and stopping all coroutines.
      */
     override fun onDestroy() {
-        flogInfo(LogTopic.IMS_EVENTS)
-
         cancel()
         instance = null
     }

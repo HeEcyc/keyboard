@@ -1,9 +1,6 @@
 package com.live.keyboard.ime.text.layout
 
 import com.live.keyboard.background.view.keyboard.repository.BottomRightCharacterRepository
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogDebug
-import com.live.keyboard.debug.flogWarning
 import com.live.keyboard.ime.core.Preferences
 import com.live.keyboard.ime.core.Subtype
 import com.live.keyboard.ime.keyboard.AbstractKeyData
@@ -61,11 +58,9 @@ class LayoutManager {
         layoutCacheGuard.lock()
         val cached = layoutCache[ref.relativePath]
         if (cached != null) {
-            flogDebug(LogTopic.LAYOUT_MANAGER) { "Using cache for '$ref'" }
             layoutCacheGuard.unlock()
             return@async cached.await()
         } else {
-            flogDebug(LogTopic.LAYOUT_MANAGER) { "Loading '$ref'" }
             val layout = async { assetManager.loadJsonAsset<Layout>(ref) }
             layoutCache[ref.relativePath] = layout
             layoutCacheGuard.unlock()
@@ -264,10 +259,8 @@ class LayoutManager {
             arrangement = array,
             mode = keyboardMode,
             extendedPopupMapping = extendedPopups.await().onFailure {
-                flogWarning(LogTopic.LAYOUT_MANAGER) { it.toString() }
             }.getOrNull()?.mapping,
             extendedPopupMappingDefault = extendedPopupsDefault.await().onFailure {
-                flogWarning(LogTopic.LAYOUT_MANAGER) { it.toString() }
             }.getOrNull()?.mapping
         )
     }

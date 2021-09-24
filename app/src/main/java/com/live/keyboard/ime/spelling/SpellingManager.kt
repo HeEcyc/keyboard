@@ -7,10 +7,6 @@ import android.view.textservice.SpellCheckerSession
 import android.view.textservice.SuggestionsInfo
 import android.view.textservice.TextServicesManager
 import com.live.keyboard.common.FlorisLocale
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogError
-import com.live.keyboard.debug.flogInfo
-import com.live.keyboard.debug.flogWarning
 import com.live.keyboard.res.AssetManager
 import com.live.keyboard.res.ExternalContentUtils
 import com.live.keyboard.res.FlorisRef
@@ -117,7 +113,6 @@ class SpellingManager private constructor(
             val pm = context.packageManager
             return session.spellChecker.loadLabel(pm).toString()
         } catch (e: Exception) {
-            flogWarning { e.toString() }
             return null
         }
     }
@@ -140,7 +135,6 @@ class SpellingManager private constructor(
                 it.dict
             },
             onFailure = {
-                flogError { it.toString() }
                 return null
             }
         )
@@ -157,7 +151,6 @@ class SpellingManager private constructor(
                 true
             },
             onFailure = { error ->
-                flogError(LogTopic.SPELL_EVENTS) { error.toString() }
                 false
             }
         )
@@ -197,7 +190,6 @@ class SpellingManager private constructor(
                     originalSourceId = sourceId
                     while (entries.hasMoreElements()) {
                         val entry = entries.nextElement()
-                        flogInfo { entry.name }
                         when (entry.name) {
                             "$fileNameBase.aff" -> {
                                 val name = entry.name.removePrefix("$FIREFOX_DICTIONARIES_FOLDER/").replace('/', '_')
@@ -261,7 +253,6 @@ class SpellingManager private constructor(
                     originalSourceId = sourceId
                     while (entries.hasMoreElements()) {
                         val entry = entries.nextElement()
-                        flogInfo { entry.name }
                         when {
                             entry.name == "$fileNameBase.aff" -> {
                                 val aff = File(tempDictDir, entry.name)

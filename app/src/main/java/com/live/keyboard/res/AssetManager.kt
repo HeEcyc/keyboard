@@ -5,8 +5,6 @@ import android.net.Uri
 import com.live.keyboard.common.resultErr
 import com.live.keyboard.common.resultErrStr
 import com.live.keyboard.common.resultOk
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogError
 import com.live.keyboard.ime.keyboard.AbstractKeyData
 import com.live.keyboard.ime.keyboard.CaseSelector
 import com.live.keyboard.ime.keyboard.KanaSelector
@@ -157,7 +155,6 @@ class AssetManager private constructor(val applicationContext: Context) {
                         assetResult.onSuccess { asset ->
                             retMap[fileRef] = asset
                         }.onFailure { error ->
-                            flogError(LogTopic.ASSET_MANAGER) { error.toString() }
                         }
                     }
                 }
@@ -174,7 +171,6 @@ class AssetManager private constructor(val applicationContext: Context) {
                                 assetResult.onSuccess { asset ->
                                     retMap[fileRef] = asset
                                 }.onFailure { error ->
-                                    flogError(LogTopic.ASSET_MANAGER) { error.toString() }
                                 }
                             }
                         }
@@ -307,7 +303,7 @@ class AssetManager private constructor(val applicationContext: Context) {
                                 flexFile.copy(configEntry, tempConfigFile)
                                 loadJsonAsset<C>(tempConfigFile).fold(
                                     onSuccess = { config -> retMap.put(ref.subRef(file.name), config) },
-                                    onFailure = { error -> flogError(LogTopic.ASSET_MANAGER) { error.toString() } }
+                                    onFailure = { error ->  }
                                 )
                             }
                         }

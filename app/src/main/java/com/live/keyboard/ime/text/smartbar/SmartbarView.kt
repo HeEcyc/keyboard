@@ -14,10 +14,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import com.live.keyboard.R
 import com.live.keyboard.databinding.SmartbarBinding
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogDebug
-import com.live.keyboard.debug.flogInfo
-import com.live.keyboard.debug.flogWarning
 import com.live.keyboard.ime.clip.provider.ClipboardItem
 import com.live.keyboard.ime.core.FlorisBoard
 import com.live.keyboard.ime.core.Preferences
@@ -216,7 +212,6 @@ class SmartbarView : ConstraintLayout, KeyboardState.OnUpdateStateListener, Them
     }
 
     override fun onUpdateKeyboardState(newState: KeyboardState) {
-        flogInfo(LogTopic.SMARTBAR)
         if (cachedState.isDifferentTo(newState)) {
             cachedState.reset(newState)
             updateUi()
@@ -321,14 +316,12 @@ class SmartbarView : ConstraintLayout, KeyboardState.OnUpdateStateListener, Them
                 val size = Size(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 try {
                     inlineSuggestion.inflate(context, size, context.mainExecutor) { suggestionView ->
-                        flogDebug { "New inline suggestion view ready" }
                         suggestionMap[i] = suggestionView
                         if (suggestionMap.size >= inlineSuggestions.size) {
                             updateInlineSuggestionStrip(suggestionMap.values)
                         }
                     }
                 } catch (e: Throwable) {
-                    flogWarning { "Failed to inflate inline suggestion: $e" }
                 }
             }
         }
@@ -342,7 +335,6 @@ class SmartbarView : ConstraintLayout, KeyboardState.OnUpdateStateListener, Them
      */
     @RequiresApi(Build.VERSION_CODES.R)
     private fun updateInlineSuggestionStrip(suggestionViews: Collection<InlineContentView?>) {
-        flogDebug { "Updating the inline suggestion strip with ${suggestionViews.size} items" }
         binding.inlineSuggestionsStrip.removeAllViews()
         val florisboard = florisboard ?: return
         if (suggestionViews.isEmpty()) {

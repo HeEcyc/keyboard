@@ -11,8 +11,6 @@ import com.live.keyboard.background.view.keyboard.repository.BackgroundViewRepos
 import com.live.keyboard.crashutility.CrashUtility
 import com.live.keyboard.data.KeyboardTheme
 import com.live.keyboard.databinding.FlorisboardBinding
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogInfo
 import com.live.keyboard.ime.core.FlorisBoard
 import com.live.keyboard.ime.popup.PopupLayerView
 import com.live.keyboard.repository.PrefsReporitory
@@ -21,7 +19,6 @@ class BackgroundViewKeyboardService : FlorisBoard() {
 
     @SuppressLint("InflateParams", "ClickableViewAccessibility")
     override fun onCreateInputView(): View {
-        flogInfo(LogTopic.IMS_EVENTS)
         CrashUtility.handleStagedButUnhandledExceptions()
         updateThemeContext(currentThemeResId)
         popupLayerView = PopupLayerView(themeContext)

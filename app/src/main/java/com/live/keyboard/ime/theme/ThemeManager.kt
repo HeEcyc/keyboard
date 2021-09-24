@@ -20,10 +20,6 @@ import androidx.autofill.inline.v1.InlineSuggestionUi
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import com.live.keyboard.R
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogDebug
-import com.live.keyboard.debug.flogError
-import com.live.keyboard.debug.flogInfo
 import com.live.keyboard.ime.core.Preferences
 import com.live.keyboard.res.AssetManager
 import com.live.keyboard.res.FlorisRef
@@ -95,7 +91,6 @@ class ThemeManager private constructor(
     fun update() {
         indexThemeRefs()
         val ref = evaluateActiveThemeRef()
-        flogDebug(LogTopic.THEME_MANAGER) { ref.toString() }
         activeTheme = AdaptiveThemeOverlay(
             this, if (ref.isInvalid) {
                 Theme.BASE_THEME
@@ -103,7 +98,6 @@ class ThemeManager private constructor(
                 loadTheme(ref).getOrDefault(Theme.BASE_THEME)
             }
         )
-        flogInfo(LogTopic.THEME_MANAGER) { activeTheme.label }
         notifyCallbackReceivers()
     }
 
@@ -166,7 +160,6 @@ class ThemeManager private constructor(
             remote = newRemote
         } catch (e: Exception) {
             remote = RemoteColors.DEFAULT
-            flogError(LogTopic.THEME_MANAGER) { e.toString() }
         }
         notifyCallbackReceivers()
     }
@@ -234,9 +227,6 @@ class ThemeManager private constructor(
     }
 
     private fun evaluateActiveThemeRef(): FlorisRef {
-        flogInfo(LogTopic.THEME_MANAGER) { prefs.theme.mode.toString() }
-        flogInfo(LogTopic.THEME_MANAGER) { prefs.theme.dayThemeRef }
-        flogInfo(LogTopic.THEME_MANAGER) { prefs.theme.nightThemeRef }
         return FlorisRef.from(
             when (prefs.theme.mode) {
                 ThemeMode.ALWAYS_DAY -> {
@@ -286,7 +276,6 @@ class ThemeManager private constructor(
                 }
             }
         }.onFailure {
-            flogError(LogTopic.THEME_MANAGER) { it.toString() }
         }
         assetManager.listAssets<ThemeMetaOnly>(
             FlorisRef.internal(THEME_PATH_REL)
@@ -299,7 +288,6 @@ class ThemeManager private constructor(
                 }
             }
         }.onFailure {
-            flogError(LogTopic.THEME_MANAGER) { it.toString() }
         }
     }
 

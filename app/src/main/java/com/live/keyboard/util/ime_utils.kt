@@ -3,7 +3,6 @@ package com.live.keyboard.util
 import android.content.Context
 import android.provider.Settings
 import com.live.keyboard.BuildConfig
-import com.live.keyboard.debug.flogInfo
 
 private const val IME_ID: String = "com.live.keyboard/.background.view.keyboard.BackgroundViewKeyboardService"
 private const val IME_ID_BETA: String =
@@ -16,7 +15,6 @@ fun checkIfImeIsEnabled(context: Context): Boolean {
         context.contentResolver,
         Settings.Secure.ENABLED_INPUT_METHODS
     ) ?: "(none)"
-    flogInfo { "List of active IMEs: $activeImeIds" }
     return when {
         BuildConfig.DEBUG -> {
             activeImeIds.split(":").contains(IME_ID_DEBUG)
@@ -35,7 +33,6 @@ fun checkIfImeIsSelected(context: Context): Boolean {
         context.contentResolver,
         Settings.Secure.DEFAULT_INPUT_METHOD
     ) ?: "(none)"
-    flogInfo { "Selected IME: $selectedImeId" }
     return when {
         BuildConfig.DEBUG -> {
             selectedImeId == IME_ID_DEBUG

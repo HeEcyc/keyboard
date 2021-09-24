@@ -40,9 +40,6 @@ import com.live.keyboard.R
 import com.live.keyboard.common.ViewUtils
 import com.live.keyboard.crashutility.CrashUtility
 import com.live.keyboard.databinding.FlorisboardBinding
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogError
-import com.live.keyboard.debug.flogInfo
 import com.live.keyboard.ime.clip.ClipboardInputManager
 import com.live.keyboard.ime.clip.FlorisClipboardManager
 import com.live.keyboard.ime.keyboard.InputFeedbackManager
@@ -202,7 +199,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
             //  and lead to a crash loop
             try {
                 // "Main" try..catch block
-                flogInfo(LogTopic.IMS_EVENTS)
                 serviceLifecycleDispatcher.onServicePreSuperOnCreate()
 
                 activeEditorInstance = EditorInstance(this, activeState)
@@ -237,7 +233,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
 
     @SuppressLint("InflateParams")
     override fun onCreateInputView(): View? {
-        flogInfo(LogTopic.IMS_EVENTS)
         CrashUtility.handleStagedButUnhandledExceptions()
 
         updateThemeContext(currentThemeResId)
@@ -257,8 +252,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     }
 
     fun initWindow() {
-        flogInfo(LogTopic.IMS_EVENTS)
-
         updateSoftInputWindowLayoutParameters()
         updateOneHandedPanelVisibility()
 
@@ -297,7 +290,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     }
 
     override fun onDestroy() {
-        flogInfo(LogTopic.IMS_EVENTS)
         serviceLifecycleDispatcher.onServicePreSuperOnDestroy()
 
         themeManager.unregisterOnThemeUpdatedListener(this)
@@ -358,8 +350,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     }
 
     override fun onStartInput(attribute: EditorInfo?, restarting: Boolean) {
-        flogInfo(LogTopic.IMS_EVENTS)
-
         super.onStartInput(attribute, restarting)
         responseState = if (responseState == ResponseState.RECEIVE_RESPONSE) {
             ResponseState.START_INPUT
@@ -370,9 +360,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     }
 
     override fun onStartInputView(info: EditorInfo?, restarting: Boolean) {
-        flogInfo(LogTopic.IMS_EVENTS) { "restarting=$restarting" }
-        flogInfo(LogTopic.IMS_EVENTS) { info?.debugSummarize() ?: "" }
-
         super.onStartInputView(info, restarting)
         if (info != null) {
             activeState.update(info)
@@ -387,8 +374,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     }
 
     override fun onFinishInputView(finishingInput: Boolean) {
-        flogInfo(LogTopic.IMS_EVENTS) { "finishingInput=$finishingInput" }
-
         if (!finishingInput) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 textInputManager.smartbarView?.clearInlineSuggestions()
@@ -402,8 +387,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     }
 
     override fun onFinishInput() {
-        flogInfo(LogTopic.IMS_EVENTS)
-
         activeEditorInstance.finishInput()
         super.onFinishInput()
     }
@@ -415,9 +398,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreateInlineSuggestionsRequest(uiExtras: Bundle): InlineSuggestionsRequest? {
         return if (prefs.smartbar.enabled && prefs.suggestion.api30InlineSuggestionsEnabled) {
-            flogInfo(LogTopic.IMS_EVENTS) {
-                "Creating inline suggestions request because Smartbar and inline suggestions are enabled."
-            }
             val stylesBundle = themeManager.createInlineSuggestionUiStyleBundle(themeContext)
             InlinePresentationSpec.Builder(
                 Size(
@@ -436,18 +416,12 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
                 }
             }
         } else {
-            flogInfo(LogTopic.IMS_EVENTS) {
-                "Ignoring inline suggestions request because Smartbar and/or inline suggestions are disabled."
-            }
             null
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onInlineSuggestionsResponse(response: InlineSuggestionsResponse): Boolean {
-        flogInfo(LogTopic.IMS_EVENTS) {
-            "Received inline suggestions response with ${response.inlineSuggestions.size} suggestion(s) provided."
-        }
         textInputManager.smartbarView?.clearInlineSuggestions()
         postPendingResponse(response)
         return true
@@ -519,10 +493,8 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     override fun onWindowHidden() {
         super.onWindowHidden()
         if (!isWindowShown) {
-            flogInfo(LogTopic.IMS_EVENTS) { "Ignoring (is already hidden)" }
             return
         } else {
-            flogInfo(LogTopic.IMS_EVENTS)
         }
         isWindowShown = false
 
@@ -533,7 +505,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        flogInfo(LogTopic.IMS_EVENTS)
         if (isInputViewShown) {
             updateOneHandedPanelVisibility()
         }
@@ -592,7 +563,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
 
         activeState.isSelectionMode = (newSelEnd - newSelStart) != 0
         if (internalBatchNestingLevel == 0) {
-            flogInfo(LogTopic.IMS_EVENTS) { "onUpdateSelection($oldSelStart, $oldSelEnd, $newSelStart, $newSelEnd, $candidatesStart, $candidatesEnd)" }
             activeEditorInstance.updateSelection(
                 oldSelStart, oldSelEnd,
                 newSelStart, newSelEnd,
@@ -600,7 +570,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
             )
             eventListeners.toList().forEach { it?.onUpdateSelection() }
         } else {
-            flogInfo(LogTopic.IMS_EVENTS) { "onUpdateSelection($oldSelStart, $oldSelEnd, $newSelStart, $newSelEnd, $candidatesStart, $candidatesEnd): caught due to internal batch level of $internalBatchNestingLevel!" }
             if (internalSelectionCache.selectionCatchCount++ == 0) {
                 internalSelectionCache.oldSelStart = oldSelStart
                 internalSelectionCache.oldSelEnd = oldSelEnd
@@ -769,7 +738,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
                 }
             }
         } catch (e: Exception) {
-            flogError { "Unable to switch to the previous IME" }
             imeManager?.showInputMethodPicker()
         }
     }
@@ -785,25 +753,21 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
                 }
             }
         } catch (e: Exception) {
-            flogError { "Unable to switch to the next IME" }
             imeManager?.showInputMethodPicker()
         }
     }
 
     fun switchToPrevSubtype() {
-        flogInfo(LogTopic.IMS_EVENTS)
         activeSubtype = subtypeManager.switchToPrevSubtype() ?: Subtype.DEFAULT
         onSubtypeChanged(activeSubtype, true)
     }
 
     fun switchToNextSubtype() {
-        flogInfo(LogTopic.IMS_EVENTS)
         activeSubtype = subtypeManager.switchToNextSubtype() ?: Subtype.DEFAULT
         onSubtypeChanged(activeSubtype, true)
     }
 
     private fun onSubtypeChanged(newSubtype: Subtype, doRefreshLayouts: Boolean) {
-        flogInfo(LogTopic.SUBTYPE_MANAGER) { "New subtype: $newSubtype" }
         textInputManager.onSubtypeChanged(newSubtype, doRefreshLayouts)
         mediaInputManager.onSubtypeChanged(newSubtype, doRefreshLayouts)
         clipInputManager.onSubtypeChanged(newSubtype, doRefreshLayouts)

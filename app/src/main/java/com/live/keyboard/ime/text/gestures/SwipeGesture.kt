@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import com.live.keyboard.R
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogDebug
 import com.live.keyboard.common.Pointer
 import com.live.keyboard.common.PointerMap
 import com.live.keyboard.common.ViewUtils
@@ -140,7 +138,6 @@ abstract class SwipeGesture {
                 velocityTracker.computeCurrentVelocity(1000)
                 val velocityX = ViewUtils.px2dp(velocityTracker.getXVelocity(pointer.id))
                 val velocityY = ViewUtils.px2dp(velocityTracker.getYVelocity(pointer.id))
-                flogDebug(LogTopic.GESTURES) { "Velocity: $velocityX $velocityY dp/s" }
                 pointerMap.removeById(pointer.id)
                 return if ((abs(absDiffX) > thresholdWidth || abs(absDiffY) > thresholdWidth) && (abs(velocityX) > thresholdSpeed || abs(velocityY) > thresholdSpeed)) {
                     val direction = detectDirection(absDiffX.toDouble(), absDiffY.toDouble())

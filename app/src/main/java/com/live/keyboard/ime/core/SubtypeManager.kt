@@ -2,7 +2,6 @@ package com.live.keyboard.ime.core
 
 import android.content.Context
 import com.live.keyboard.common.FlorisLocale
-import com.live.keyboard.debug.*
 import com.live.keyboard.res.AssetManager
 import com.live.keyboard.ime.text.key.CurrencySet
 import com.live.keyboard.res.FlorisRef
@@ -79,7 +78,6 @@ class SubtypeManager(
      */
     private fun loadImeConfig(path: String): FlorisBoard.ImeConfig {
         return assetManager.loadJsonAsset<FlorisBoard.ImeConfig>(FlorisRef.assets(path)).getOrElse {
-            flogError(LogTopic.SUBTYPE_MANAGER) { "Failed to retrieve IME config: $it" }
             FlorisBoard.ImeConfig(packageName)
         }
     }

@@ -19,10 +19,6 @@ import androidx.core.view.inputmethod.InputContentInfoCompat
 import com.live.keyboard.background.view.keyboard.repository.UserDictionaryRepository
 import com.live.keyboard.common.FlorisLocale
 import com.live.keyboard.common.stringBuilder
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogDebug
-import com.live.keyboard.debug.flogInfo
-import com.live.keyboard.debug.flogWarning
 import com.live.keyboard.ime.clip.FlorisClipboardManager
 import com.live.keyboard.ime.clip.provider.ClipboardItem
 import com.live.keyboard.ime.clip.provider.ItemType
@@ -90,7 +86,6 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
     }
 
     fun updateSelection(oldSel: Bounds, newSel: Bounds, candidates: Bounds) {
-        flogInfo(LogTopic.EDITOR_INSTANCE) { "oldSel=$oldSel newSel=$newSel candidates=$candidates" }
         if (oldSel == newSel) return
         selection.bounds = newSel
         lastReportedComposingBounds = candidates
@@ -119,9 +114,7 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
     }
 
     fun updateText(token: Int, exText: ExtractedText?) {
-        flogInfo(LogTopic.EDITOR_INSTANCE) { "exText=${exText?.debugSummarize()}" }
         if (extractedToken != token) {
-            flogWarning(LogTopic.EDITOR_INSTANCE) { "Received update text request with mismatching token, ignoring!" }
             return
         }
         cachedInput.updateText(exText)
@@ -132,12 +125,10 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
     }
 
     fun bindInput() {
-        flogInfo(LogTopic.EDITOR_INSTANCE) { "(no args)" }
         isInputBindingActive = true
     }
 
     fun startInput(ei: EditorInfo?) {
-        flogInfo(LogTopic.EDITOR_INSTANCE) { "info=${ei?.debugSummarize()}" }
         if (ei != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             contentMimeTypes = ei.contentMimeTypes
         }
@@ -156,21 +147,17 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
     }
 
     fun startInputView(ei: EditorInfo?) {
-        flogInfo(LogTopic.EDITOR_INSTANCE) { "info=${ei?.debugSummarize()}" }
     }
 
     fun finishInputView() {
-        flogInfo(LogTopic.EDITOR_INSTANCE) { "(no args)" }
     }
 
     fun finishInput() {
-        flogInfo(LogTopic.EDITOR_INSTANCE) { "(no args)" }
         val ic = inputConnection ?: return
         ic.requestCursorUpdates(CURSOR_UPDATE_DISABLED)
     }
 
     fun unbindInput() {
-        flogInfo(LogTopic.EDITOR_INSTANCE) { "(no args)" }
         val isPassword = editorInfo?.isPasswordInputType() ?: true
         isInputBindingActive = false
         reset(isPassword)
@@ -469,7 +456,6 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
     }
 
     fun selectionSetNWordsLeft(n: Int): Boolean {
-        flogDebug { "$n" }
         isPhantomSpaceActive = false
         wasPhantomSpaceActiveLastUpdate = false
         if (selection.start < 0) return false
@@ -521,18 +507,13 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
      * @return True on success, false if an error occurred or the input connection is invalid.
      */
     fun markComposingRegion(region: Region?): Boolean {
-        flogDebug(LogTopic.EDITOR_INSTANCE) { "Request to mark region: $region" }
         val ic = inputConnection ?: return false
         return if (region == null || !region.isValid || !activeState.isComposingEnabled) {
-            flogDebug(LogTopic.EDITOR_INSTANCE) { " Clearing composing text." }
             ic.finishComposingText()
         } else {
-            flogDebug(LogTopic.EDITOR_INSTANCE) { " Last reported composing region: $lastReportedComposingBounds" }
             return if (region.bounds == lastReportedComposingBounds) {
-                flogDebug(LogTopic.EDITOR_INSTANCE) { " Should mark region but is already, skipping." }
                 false
             } else {
-                flogDebug(LogTopic.EDITOR_INSTANCE) { " Marking composing text region." }
                 lastReportedComposingBounds = region.bounds
                 ic.setComposingRegion(region.start, region.end)
             }
@@ -924,7 +905,6 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
             }
             val sel = exText.getSelectionBounds()
             if (selection.bounds != sel) {
-                flogWarning { "Selection from extracted text mismatches from selection state, fixing!" }
                 selection.bounds = sel
             }
             if (exText.isPartialChange()) {
@@ -965,30 +945,6 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
             wordHistoryChangedListener?.onWordHistoryChanged(
                 currentWord, wordsBeforeCurrent, wordsAfterCurrent
             )
-
-            flogDebug(LogTopic.EDITOR_INSTANCE) {
-                stringBuilder {
-                    append("Words before current: ")
-                    wordsBeforeCurrent.forEach {
-                        append(it.toString())
-                        append(' ')
-                    }
-                }
-            }
-            flogDebug(LogTopic.EDITOR_INSTANCE) {
-                stringBuilder {
-                    append("Current word: $currentWord")
-                }
-            }
-            flogDebug(LogTopic.EDITOR_INSTANCE) {
-                stringBuilder {
-                    append("Words after current: ")
-                    wordsAfterCurrent.forEach {
-                        append(it.toString())
-                        append(' ')
-                    }
-                }
-            }
         }
 
         fun reset(isPassword: Boolean) {

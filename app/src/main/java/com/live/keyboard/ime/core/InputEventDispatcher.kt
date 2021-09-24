@@ -4,8 +4,6 @@ import android.os.SystemClock
 import android.util.SparseArray
 import androidx.core.util.forEach
 import androidx.core.util.set
-import com.live.keyboard.debug.LogTopic
-import com.live.keyboard.debug.flogDebug
 import com.live.keyboard.ime.keyboard.KeyData
 import com.live.keyboard.ime.text.key.KeyCode
 import kotlinx.coroutines.*
@@ -80,7 +78,6 @@ class InputEventDispatcher private constructor(
             for (ev in channel) {
                 if (!isActive) break
                 val startTime = System.nanoTime()
-                flogDebug(LogTopic.KEY_EVENTS) { ev.toString() }
                 when (ev.action) {
                     InputKeyEvent.Action.DOWN -> {
                         if (pressedKeys.indexOfKey(ev.data.code) >= 0) continue
@@ -137,7 +134,6 @@ class InputEventDispatcher private constructor(
                         }
                     }
                 }
-                flogDebug(LogTopic.KEY_EVENTS) { "Time elapsed: ${(System.nanoTime() - startTime) / 1_000_000}" }
             }
             pressedKeys.forEach { _, value -> value.repeatKeyPressJob?.cancel() }
             pressedKeys.clear()

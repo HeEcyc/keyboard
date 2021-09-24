@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.live.keyboard.BuildConfig
 import com.live.keyboard.R
 import com.live.keyboard.databinding.CrashDialogBinding
-import com.live.keyboard.debug.*
 import com.live.keyboard.ime.core.Preferences
 
 class CrashDialogActivity : AppCompatActivity() {
@@ -63,9 +62,6 @@ class CrashDialogActivity : AppCompatActivity() {
                     generateCollapsibleStacktrace(this, it)
                 }
             } else {
-                flogWarning(LogTopic.CRASH_UTILITY) {
-                    "Stacktrace file list is empty."
-                }
             }
         }
         binding.stacktrace.text = errorReport
