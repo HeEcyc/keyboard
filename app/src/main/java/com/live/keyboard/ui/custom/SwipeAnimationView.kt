@@ -56,18 +56,16 @@ class SwipeAnimationView @JvmOverloads constructor(
         binding.previewEditText.requestFocus()
     }
 
-    fun initKeyboard() {
+    suspend fun initKeyboard() {
         binding.keyboardPreview.setIconSet(TextKeyboardIconSet.new(context))
         binding.keyboardPreview.setComputingEvaluator(getEvalutor())
         binding.keyboardPreview.sync()
-        runBlocking {
-            binding.keyboardPreview.setComputedKeyboard(
-                LayoutManager().computeKeyboardAsync(
-                    KeyboardMode.CHARACTERS,
-                    Subtype.DEFAULT
-                ).await(), KeyboardTheme()
-            )
-        }
+        binding.keyboardPreview.setComputedKeyboard(
+            LayoutManager().computeKeyboardAsync(
+                KeyboardMode.CHARACTERS,
+                Subtype.DEFAULT
+            ).await(), KeyboardTheme()
+        )
     }
 
     fun getEvalutor() = object : ComputingEvaluator by DefaultComputingEvaluator {

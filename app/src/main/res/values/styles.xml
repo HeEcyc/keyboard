@@ -43,4 +43,9 @@
         <item name="trackTint">@color/track_color</item>
         <item name="android:fontFamily">@font/roboto_500</item>
     </style>
+
+
+    <style name="AlterDialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="windowMinWidthMajor">95%</item>
+    </style>
 </resources>
