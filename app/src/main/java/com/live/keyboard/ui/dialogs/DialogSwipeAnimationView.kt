@@ -1,32 +1,35 @@
 package com.live.keyboard.ui.dialogs
 
-import android.app.AlertDialog
-import android.content.Context
-import android.view.ViewGroup.LayoutParams
+import android.view.Gravity
+import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import com.live.keyboard.R
+import com.live.keyboard.databinding.DialogSwipeAnimationViewBinding
+import com.live.keyboard.ui.base.BaseDialog
 import com.live.keyboard.ui.custom.SwipeAnimationView
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class DialogSwipeAnimationView(context: Context, animationType: SwipeAnimationView.AnimationType) {
+class DialogSwipeAnimationView : BaseDialog<DialogSwipeAnimationViewBinding>(R.layout.dialog_swipe_animation_view) {
 
-    private val swipeAnimationView = SwipeAnimationView(context).apply {
-        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-    }
-    private val dialog = AlertDialog
-        .Builder(context, R.style.AlterDialog)
-        .setCancelable(true)
-        .setTitle(animationType.descriptionRes)
-        .setView(swipeAnimationView)
-        .create()
-        .apply {
-            setOnShowListener {
-                runBlocking {
-                    swipeAnimationView.initKeyboard()
-                    swipeAnimationView.showKeyboardAnimation(animationType)
-                }
-            }
+    var animationType = SwipeAnimationView.AnimationType.GETSURE
+
+    override fun setupUI() {
+        binding.title.setText(animationType.descriptionRes)
+        viewLifecycleOwner.lifecycleScope.launch {
+            binding.animationView.initKeyboard()
+            withContext(Dispatchers.Main) { binding.animationView.showKeyboardAnimation(animationType) }
         }
+    }
 
-    fun show() = dialog.show()
+    override fun onResume() {
+        super.onResume()
+        dialog?.window?.apply {
+            setGravity(Gravity.CENTER)
+            setBackgroundDrawableResource(android.R.color.transparent)
+            setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        }
+    }
 
 }
