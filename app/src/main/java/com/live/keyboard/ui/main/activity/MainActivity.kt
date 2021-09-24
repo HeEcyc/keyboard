@@ -179,7 +179,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     override fun hasAllPermissions() = isKeyboardActive() && isKeyboardEnable()
 
     override fun onGrandAllPermissions() {
-        //ifInitialLaunch()
+        ifInitialLaunch()
     }
 
     override fun onNewIntent(intent: Intent) {

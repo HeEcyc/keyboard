@@ -56,18 +56,16 @@ class SwipeAnimationView @JvmOverloads constructor(
         binding.previewEditText.requestFocus()
     }
 
-    fun initKeyboard() {
+    suspend fun initKeyboard() {
         binding.keyboardPreview.setIconSet(TextKeyboardIconSet.new(context))
         binding.keyboardPreview.setComputingEvaluator(getEvalutor())
         binding.keyboardPreview.sync()
-        runBlocking {
-            binding.keyboardPreview.setComputedKeyboard(
-                LayoutManager().computeKeyboardAsync(
-                    KeyboardMode.CHARACTERS,
-                    Subtype.DEFAULT
-                ).await(), KeyboardTheme()
-            )
-        }
+        binding.keyboardPreview.setComputedKeyboard(
+            LayoutManager().computeKeyboardAsync(
+                KeyboardMode.CHARACTERS,
+                Subtype.DEFAULT
+            ).await(), KeyboardTheme()
+        )
     }
 
     fun getEvalutor() = object : ComputingEvaluator by DefaultComputingEvaluator {
@@ -85,7 +83,7 @@ class SwipeAnimationView @JvmOverloads constructor(
     }
 
     private fun prepareSwipeAnimation() {
-        binding.keyboardPreview.activeGliding()
+        binding.keyboardPreview.deactiveGlideTyping()
         binding.swipeHand.x = (binding.keyboardConstrain.width / 2).toFloat()
         binding.swipeHand.y = (binding.keyboardConstrain.height / 2).toFloat()
         binding.previewEditText.setText(R.string.example_text)
@@ -126,8 +124,8 @@ class SwipeAnimationView @JvmOverloads constructor(
             animator = ObjectAnimator.ofPropertyValuesHolder(binding.swipeHand, pvhX, pvhY).apply {
                 doOnEnd { moveToKey(keyIndex + 1) }
                 addUpdateListener {
-                    val glideXPosition = binding.swipeHand.x + binding.swipeHand.width / 2
-                    val glideYPosition = binding.swipeHand.y - binding.swipeHand.height
+                    val glideXPosition = binding.swipeHand.x + (binding.swipeHand.width / 2.5).toInt()
+                    val glideYPosition = binding.swipeHand.y - binding.swipeHand.height / 2
                     binding.keyboardPreview
                         .onGlideAddPoint(GlideTypingGesture.Detector.Position(glideXPosition, glideYPosition))
                 }
@@ -138,7 +136,6 @@ class SwipeAnimationView @JvmOverloads constructor(
     }
 
     private fun startSwipeAnimation(multiply: Float) {
-        binding.swipeHand.setImageResource(if (multiply < 0.5f) R.drawable.ic_swipe_left else R.drawable.ic_swipe_right)
         val position = binding.keyboardPreview.width * multiply
         animator = ObjectAnimator.ofFloat(binding.swipeHand, "x", position).apply {
             doOnEnd { setMiddlePosition(multiply) }
@@ -162,7 +159,6 @@ class SwipeAnimationView @JvmOverloads constructor(
 
     private fun prepareGetsureAnimation() {
         binding.keyboardPreview.activeGliding()
-        binding.swipeHand.setImageResource(R.drawable.ic_swipe_move)
         binding.previewEditText.setText("")
         binding.keyboardPreview.findKeyView(word[0].toString())?.let {
             binding.swipeHand.x = it.left.toFloat()

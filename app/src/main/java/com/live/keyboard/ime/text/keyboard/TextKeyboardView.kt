@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
@@ -1262,6 +1261,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             if (fadingGlideRadius > 0) {
                 drawGlideTrail(fadingGlide, targetDist, fadingGlideRadius, canvas, radiusReductionFactor)
             }
+
             if (isGliding && glideDataForDrawing.isNotEmpty()) {
                 drawGlideTrail(glideDataForDrawing, targetDist, radius, canvas, radiusReductionFactor)
             }
@@ -1479,6 +1479,9 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     fun deactiveGlideTyping() {
         isGliding = false
+        glideRefreshJob?.cancel()
+        glideRefreshJob = null
+        invalidate()
     }
 
     private fun reDrawKeyboard() {
