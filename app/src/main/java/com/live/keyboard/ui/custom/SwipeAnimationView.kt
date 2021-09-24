@@ -125,7 +125,7 @@ class SwipeAnimationView @JvmOverloads constructor(
                 doOnEnd { moveToKey(keyIndex + 1) }
                 addUpdateListener {
                     val glideXPosition = binding.swipeHand.x + (binding.swipeHand.width / 2.5).toInt()
-                    val glideYPosition = binding.swipeHand.y - binding.swipeHand.height / 2
+                    val glideYPosition = binding.swipeHand.y - binding.swipeHand.height
                     binding.keyboardPreview
                         .onGlideAddPoint(GlideTypingGesture.Detector.Position(glideXPosition, glideYPosition))
                 }

@@ -57,8 +57,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/swipeHand"
-                android:layout_width="80sp"
-                android:layout_height="80sp"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
                 android:src="@drawable/ic_hand"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
