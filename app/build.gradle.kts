@@ -4,6 +4,7 @@ plugins {
     kotlin("kapt") version "1.5.20"
     kotlin("plugin.serialization") version "1.5.20"
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -149,6 +150,10 @@ dependencies {
     implementation("com.google.firebase:firebase-bom:28.4.1")
     implementation("com.google.firebase:firebase-storage")
     implementation("com.google.firebase:firebase-storage-ktx:20.0.0")
+    implementation("com.google.firebase:firebase-analytics-ktx:19.0.1")
+    implementation("com.google.firebase:firebase-messaging:22.0.0")
+
+    implementation("com.appsflyer:af-android-sdk:6.3.2")
 
     implementation("com.makeramen:roundedimageview:2.3.0")
     implementation("com.github.bumptech.glide:glide:4.12.0")

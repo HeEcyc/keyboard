@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import androidx.core.os.UserManagerCompat
+import com.appsflyer.AppsFlyerLib
 import com.live.keyboard.common.NativeStr
 import com.live.keyboard.common.toNativeStr
 import com.live.keyboard.crashutility.CrashUtility
@@ -33,6 +34,7 @@ class FlorisApplication : Application() {
         lateinit var instance: FlorisApplication
 
         private const val ICU_DATA_ASSET_PATH = "icu/icudt69l.dat"
+        private const val APPSFLYER_DEV_KEY: String = ""
 
         private external fun nativeInitICUData(path: NativeStr): Int
 
@@ -64,6 +66,8 @@ class FlorisApplication : Application() {
             DictionaryManager.init(this)
             ThemeManager.init(this, assetManager)
             prefs.initDefaultPreferences()
+            AppsFlyerLib.getInstance().init(APPSFLYER_DEV_KEY, null, this)
+            AppsFlyerLib.getInstance().start(this)
         } catch (e: Exception) {
             return
         }
