@@ -159,7 +159,7 @@ object PrefsReporitory {
             set(value) = sharedPreferences.edit().putInt(specialSymbolKey, value).apply()
 
         var minimumSwipeSpeed: Int
-            get() = sharedPreferences!!.getInt(minimumSwipeSpeedKey, 2500)
+            get() = sharedPreferences!!.getInt(minimumSwipeSpeedKey, 1750)
             set(value) = sharedPreferences!!.edit().putInt(minimumSwipeSpeedKey, value).apply()
 
     }
