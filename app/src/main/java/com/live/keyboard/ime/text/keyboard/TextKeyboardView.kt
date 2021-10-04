@@ -41,6 +41,7 @@ import com.live.keyboard.ime.theme.Theme
 import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.res.AssetManager
 import com.live.keyboard.res.FlorisRef
+import com.live.keyboard.util.enums.LanguageChange
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -871,10 +872,21 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
         keyboard.keys().withIndex().forEach { (n, key) ->
             getChildAt(n)?.let { rv ->
+                println("xyz ${key.computedData.code} ${key.computedData.label} ${key.computedData.groupId} ${key.computedData.type}")
                 if (rv is TextKeyView) {
                     rv.key = when {
                         isPreviewMode -> key
                         isSpecialKey(key) -> getNewSpecialKey(key)
+                        mustChangeLeftComaKey(key) -> key.apply {
+                            computedData = TextKeyData(
+                                key.computedData.type,
+                                46,
+                                ".",
+                                key.computedData.groupId,
+                                key.computedData.popup
+                            )
+                            label = "."
+                        }
                         else -> key
                     }
 
@@ -894,6 +906,10 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
         handleTheme(keyboardTheme)
     }
+
+    private fun mustChangeLeftComaKey(key: TextKey) = key.computedData.code == 44
+        && (PrefsReporitory.Settings.languageChange != LanguageChange.SPECIAL_BUTTON || !PrefsReporitory.Settings.showEmoji)
+        && BottomRightCharacterRepository.selectedBottomRightCharacterCode == 44
 
     private fun getNewSpecialKey(key: TextKey): TextKey {
         val popupKeyData = listOf(
