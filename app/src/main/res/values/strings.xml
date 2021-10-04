@@ -316,6 +316,7 @@
     <string name="special_symbols_editor_display_name_question">Question (?)</string>
     <string name="special_symbols_editor_display_name_exclamation">Exclamation (!)</string>
     <string name="special_symbols_editor_display_name_hash">Hash (#)</string>
+    <string name="special_symbols_editor_display_name_comma">Comma (,)</string>
     <string name="the_keyboard_has_installed">The keyboard has installed</string>
     <string name="languages">Languages</string>
     <string name="move_cursor_by_sliding_across_space_bar">Move cursor by sliding across space bar</string>

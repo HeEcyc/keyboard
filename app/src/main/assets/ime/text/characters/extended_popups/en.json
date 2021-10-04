@@ -76,7 +76,7 @@
         "relevant": [
           { "code":   38, "label": "&" },
           { "code":   37, "label": "%" },
-          { "code":   43, "label": "+" },
+          { "code":   44, "label": "," },
           { "code":   34, "label": "\"" },
           { "code":   45, "label": "-" },
           { "code":   58, "label": ":" },
