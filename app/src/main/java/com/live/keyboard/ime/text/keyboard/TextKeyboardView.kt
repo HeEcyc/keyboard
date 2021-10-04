@@ -67,6 +67,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
     private var externalComputingEvaluator: ComputingEvaluator? = null
     private val internalComputingEvaluator = object : ComputingEvaluator {
+
+
         override fun evaluateCaps(): Boolean {
             return externalComputingEvaluator?.evaluateCaps()
                 ?: DefaultComputingEvaluator.evaluateCaps()
@@ -860,6 +862,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             key.compute(internalComputingEvaluator)
             computeLabelsAndDrawables(key, keyHintConfiguration)
         }
+
         keyboard.layout(this)
         val isBorderless = true
 
@@ -914,8 +917,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val currentSymbol = BottomRightCharacterRepository.SelectableCharacter.values()
             .firstOrNull { it.code == PrefsReporitory.Settings.specialSymbol } ?: return key
 
-        val dotPopupKey = key.computedPopups.relevant.firstOrNull { it.code == 46 }
-
         key.computedData.let {
             if (it is TextKeyData) {
                 it.code = currentSymbol.code
@@ -924,7 +925,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
 
         val newKeyList = popupKeyData.map {
-            if (it.code == currentSymbol.code) dotPopupKey ?: it
+            if (it.code == currentSymbol.code)   TextKeyData(code = 46, label = ".")
             else it
         }
 
@@ -1462,7 +1463,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     private fun isSpecialKey(key: TextKey?) = key?.computedData?.code in
         BottomRightCharacterRepository.SelectableCharacter
             .values()
-            .map { it.code } && computedKeyboard?.mode == KeyboardMode.CHARACTERS
+            .map { it.code } && computedKeyboard?.mode == KeyboardMode.CHARACTERS && key?.computedData?.groupId == 2
 
     private fun getDarkerShade(color: String, factor: Float) =
         ColorUtils.blendARGB(Color.parseColor(color), Color.BLACK, factor)

@@ -160,7 +160,9 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
         override fun evaluateVisible(data: KeyData): Boolean {
             return when (data.code) {
                 KeyCode.SWITCH_TO_TEXT_CONTEXT,
-                KeyCode.PHONE_PAUSE -> !(PrefsReporitory.Settings.showEmoji && needToShowLanguageKey())
+                KeyCode.PHONE_PAUSE ->
+                    if (data.groupId == 2) true
+                    else !(PrefsReporitory.Settings.showEmoji && needToShowLanguageKey())
                 KeyCode.LANGUAGE_SWITCH -> needToShowLanguageKey()
                 KeyCode.SWITCH_TO_MEDIA_CONTEXT -> PrefsReporitory.Settings.showEmoji
                 else -> true
