@@ -896,7 +896,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val popupKeyData = listOf(
             TextKeyData(code = 38, label = "&"),
             TextKeyData(code = 37, label = "%"),
-            TextKeyData(code = 43, label = "+"),
+            TextKeyData(code = 44, label = ","),
             TextKeyData(code = 34, label = "\\"),
             TextKeyData(code = 45, label = "-"),
             TextKeyData(code = 58, label = ":"),

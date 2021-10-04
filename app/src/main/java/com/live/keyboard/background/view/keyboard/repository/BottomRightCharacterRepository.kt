@@ -17,7 +17,7 @@ object BottomRightCharacterRepository {
     val bottomRightCharacters = arrayOf(
         38 to "&",
         37 to "%",
-        43 to "+",
+        44 to ",",
         34 to "\"",
         45 to "-",
         58 to ":",
@@ -34,10 +34,13 @@ object BottomRightCharacterRepository {
 
     var selectedBottomRightCharacterCode: Int
         get() = PrefsReporitory.Settings.specialSymbol
-        set(value) { PrefsReporitory.Settings.specialSymbol = value }
+        set(value) {
+            PrefsReporitory.Settings.specialSymbol = value
+        }
 
     val selectedBottomRightCharacterLabel: String
-        get() = bottomRightCharacters.firstOrNull { it.first == selectedBottomRightCharacterCode }?.second ?: mainPopupRightBottomCharacter.second
+        get() = bottomRightCharacters.firstOrNull { it.first == selectedBottomRightCharacterCode }?.second
+            ?: mainPopupRightBottomCharacter.second
 
     val isDefaultBottomRightCharacter: Boolean
         get() = selectedBottomRightCharacterCode == defaultBottomRightCharacter.first
@@ -63,10 +66,11 @@ object BottomRightCharacterRepository {
     private fun Character.toTextKeyData() = TextKeyData(code = first, label = second)
 
     enum class SelectableCharacter(val code: Int, val label: String, val displayName: Int) {
-        DOT(46 , ".", R.string.special_symbols_editor_display_name_dot),
-        QUESTION(63 , "?", R.string.special_symbols_editor_display_name_question),
-        EXCLAMATION(33 , "!", R.string.special_symbols_editor_display_name_exclamation),
-        HASH(35 , "#", R.string.special_symbols_editor_display_name_hash);
+        DOT(46, ".", R.string.special_symbols_editor_display_name_dot),
+        QUESTION(63, "?", R.string.special_symbols_editor_display_name_question),
+        EXCLAMATION(33, "!", R.string.special_symbols_editor_display_name_exclamation),
+        HASH(35, "#", R.string.special_symbols_editor_display_name_hash),
+        COMA(44, ",", R.string.special_symbols_editor_display_name_comma);
 
         companion object {
             fun from(code: Int) = values().first { it.code == code }
