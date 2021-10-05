@@ -46,6 +46,7 @@ data class KeyboardTheme(
         this.imeButtonColor = keyboardTheme.imeButtonColor
         this.buttonSecondaryColor = keyboardTheme.buttonSecondaryColor
         this.opacity = keyboardTheme.opacity
+        this.isSelected = true
     }
 
     override fun equals(other: Any?): Boolean {

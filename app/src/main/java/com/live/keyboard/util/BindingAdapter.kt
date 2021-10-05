@@ -18,6 +18,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.bumptech.glide.signature.ObjectKey
 import com.isseiaoki.simplecropview.CropImageView
 import com.live.keyboard.data.KeyboardTheme
 import com.live.keyboard.ui.theme.editor.activity.ThemeEditorViewModel
@@ -108,6 +109,7 @@ fun AppCompatImageView.setColor(keyboardTheme: KeyboardTheme?) {
         if (keyboardTheme?.previewImage != null)
             load(Uri.parse("file:///android_asset/ime/preview/${keyboardTheme.previewImage}"))
         else load(File(context.filesDir, "${keyboardTheme?.id}.png"))
+            .signature(ObjectKey(File(context.filesDir, "${keyboardTheme?.id}.png").lastModified()))
     }.into(this)
 }
 

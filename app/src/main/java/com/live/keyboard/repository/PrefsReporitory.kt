@@ -1,8 +1,10 @@
 package com.live.keyboard.repository
 
 import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.live.keyboard.FlorisApplication
+import com.live.keyboard.background.view.keyboard.BackgroundViewKeyboardService
 import com.live.keyboard.background.view.keyboard.repository.BottomRightCharacterRepository
 import com.live.keyboard.data.KeyboardTheme
 import com.live.keyboard.ime.core.Preferences
@@ -12,14 +14,20 @@ import com.live.keyboard.util.enums.KeyboardHeight
 import com.live.keyboard.util.enums.Language
 import com.live.keyboard.util.enums.LanguageChange
 import com.live.keyboard.util.enums.OneHandedMode
+import java.util.prefs.PreferenceChangeListener
 import kotlin.reflect.KProperty
 
 typealias L = Language
 
 object PrefsReporitory {
+    fun subscribeToPrefsChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
+        sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+    }
+
     private val sharedPreferences by lazy { FlorisApplication.instance.getSharedPreferences("prefs", MODE_PRIVATE) }
 
-    private const val keyboadThemeKey = "keyboard_theme_key"
+    const val keyboadThemeKey = "keyboard_theme_key"
     private const val showStartSettingsKey = "show_start_settings_key"
     private const val isFirstLaunchKey = "is_first_launch_key"
 

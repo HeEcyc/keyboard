@@ -20,7 +20,6 @@ import com.live.keyboard.res.AssetManager
 import com.live.keyboard.res.FlorisRef
 import timber.log.Timber
 import java.io.File
-import kotlin.Exception
 
 @Suppress("unused")
 class FlorisApplication : Application() {

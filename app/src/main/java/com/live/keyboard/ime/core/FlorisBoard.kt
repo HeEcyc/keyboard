@@ -60,7 +60,6 @@ import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.ui.main.activity.MainActivity
 import com.live.keyboard.util.AppVersionUtils
 import com.live.keyboard.util.EXTRA_LAUNCH_SETTINGS
-import com.live.keyboard.util.debugSummarize
 import com.live.keyboard.util.enums.OneHandedMode
 import com.live.keyboard.util.findViewWithType
 import com.live.keyboard.util.refreshLayoutOf
@@ -109,7 +108,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
 
     private val prefs: Preferences get() = Preferences.default()
     val activeState: KeyboardState = KeyboardState.new()
-
+    protected val bgContainer get() = uiBinding!!.text.backgroundViewContainer
     var uiBinding: FlorisboardBinding? = null
         protected set
     private var extractEditLayout: WeakReference<ViewGroup?> = WeakReference(null)
@@ -460,7 +459,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         if (isWindowShown) return
 
         isWindowShown = true
-        attachBackground(uiBinding!!.text.backgroundViewContainer)
+        attachBackground()
         val newActiveSubtype = subtypeManager.getActiveSubtype() ?: Subtype.DEFAULT
         if (newActiveSubtype != activeSubtype) {
             activeSubtype = newActiveSubtype
@@ -486,7 +485,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         eventListeners.toList().forEach { it?.onWindowShown() }
     }
 
-    open fun attachBackground(backgroundContainer: FrameLayout) {
+    open fun attachBackground() {
 
     }
 

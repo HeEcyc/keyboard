@@ -152,6 +152,7 @@ dependencies {
     implementation("com.google.firebase:firebase-storage-ktx:20.0.0")
     implementation("com.google.firebase:firebase-analytics-ktx:19.0.1")
     implementation("com.google.firebase:firebase-messaging:22.0.0")
+    implementation("com.google.firebase:firebase-crashlytics:18.2.1")
 
     implementation("com.appsflyer:af-android-sdk:6.3.2")
 
