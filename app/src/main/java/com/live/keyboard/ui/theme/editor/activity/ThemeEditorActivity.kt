@@ -2,6 +2,7 @@ package com.live.keyboard.ui.theme.editor.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels

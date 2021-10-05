@@ -185,15 +185,16 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
 
     fun onThemeApply(keyboardTheme: KeyboardTheme) {
         clearSelectedItem()
-        keyboardTheme.isSelected = true
         viewModelScope.launch(Dispatchers.IO) {
             delay(1000)
             withContext(Dispatchers.Main) {
+                keyboardTheme.isSelected = true
                 customThemeAdapter
                     .getData()
                     .filterIsInstance(KeyboardTheme::class.java)
                     .firstOrNull { it.id == keyboardTheme.id }
                     ?.let { currentTheme ->
+                        currentTheme.isSelected = true
                         currentTheme.copyTheme(keyboardTheme)
                         customThemeAdapter.updateItem(currentTheme)
                     } ?: customThemeAdapter.addItem(1, keyboardTheme)
