@@ -95,6 +95,9 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         observe(showNumberRow) { _, _ ->
             PrefsReporitory.Settings.showNumberRow = showNumberRow.get()
         }
+        observe(PrefsReporitory.Settings.oneHandedModeObservable) { _, _ ->
+            oneHandedMode.set(PrefsReporitory.Settings.oneHandedMode.displayName)
+        }
     }
 
     fun onOneHandedModeClick() = showChooserWithCallback(
@@ -112,7 +115,10 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         KeyboardHeight.values(),
         PrefsReporitory.Settings.keyboardHeight,
         { item, context -> context.getString(item.displayName) }
-    ) { PrefsReporitory.Settings.keyboardHeight = it }
+    ) {
+        PrefsReporitory.Settings.keyboardHeight = it
+        oneHandedMode.set(PrefsReporitory.Settings.oneHandedMode.displayName)
+    }
 
     fun onLanguageChangeClick() = showChooserWithCallback(
         R.string.language_change,

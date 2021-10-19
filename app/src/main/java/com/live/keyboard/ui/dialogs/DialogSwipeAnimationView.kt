@@ -19,7 +19,10 @@ class DialogSwipeAnimationView : BaseDialog<DialogSwipeAnimationViewBinding>(R.l
         binding.title.setText(animationType.descriptionRes)
         viewLifecycleOwner.lifecycleScope.launch {
             binding.animationView.initKeyboard()
-            withContext(Dispatchers.Main) { binding.animationView.showKeyboardAnimation(animationType) }
+            withContext(Dispatchers.Main) {
+                binding.animationView.showKeyboardAnimation(animationType)
+                binding.closeButton.setOnClickListener { dismiss() }
+            }
         }
     }
 

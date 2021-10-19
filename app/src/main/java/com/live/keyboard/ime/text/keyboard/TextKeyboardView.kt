@@ -872,7 +872,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
 
         keyboard.keys().withIndex().forEach { (n, key) ->
             getChildAt(n)?.let { rv ->
-                println("xyz ${key.computedData.code} ${key.computedData.label} ${key.computedData.groupId} ${key.computedData.type}")
                 if (rv is TextKeyView) {
                     rv.key = when {
                         isPreviewMode -> key
@@ -908,7 +907,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     private fun mustChangeLeftComaKey(key: TextKey) = key.computedData.code == 44
-        && (PrefsReporitory.Settings.languageChange != LanguageChange.SPECIAL_BUTTON || !PrefsReporitory.Settings.showEmoji)
+        && key.computedData.groupId != 2
         && BottomRightCharacterRepository.selectedBottomRightCharacterCode == 44
 
     private fun getNewSpecialKey(key: TextKey): TextKey {
