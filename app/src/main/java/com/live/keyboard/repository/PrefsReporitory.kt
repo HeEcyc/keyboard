@@ -1,6 +1,7 @@
 package com.live.keyboard.repository
 
 import android.content.Context.MODE_PRIVATE
+import androidx.databinding.ObservableField
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.live.keyboard.FlorisApplication
@@ -130,7 +131,9 @@ object PrefsReporitory {
                 if (oneHandedMode == OneHandedMode.OFF && value != OneHandedMode.OFF) keyboardHeight =
                     KeyboardHeight.NORMAL
                 sharedPreferences.edit().putString(oneHandedModeKey, value.name).apply()
+                oneHandedModeObservable.set(oneHandedMode)
             }
+        val oneHandedModeObservable = ObservableField(oneHandedMode)
 
         var keyboardHeight: KeyboardHeight
             get() = KeyboardHeight.valueOf(sharedPreferences.getString(keyboardHeightKey, KeyboardHeight.NORMAL.name)!!)

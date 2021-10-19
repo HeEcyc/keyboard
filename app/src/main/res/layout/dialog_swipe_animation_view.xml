@@ -20,14 +20,27 @@
             app:layout_constraintWidth_percent="0.98"
             android:orientation="vertical"
             android:background="@android:color/white">
-            <TextView
-                android:id="@+id/title"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textSize="18sp"
-                android:textColor="@color/textColorMain"
-                android:fontFamily="@font/roboto_500"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/textColorMain"
+                    android:fontFamily="@font/roboto_500"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/closeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_gravity="end"
+                    android:src="@drawable/ic_close_initial_dialog"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
             <com.live.keyboard.ui.custom.SwipeAnimationView
                 android:id="@+id/animationView"
                 android:layout_width="match_parent"
