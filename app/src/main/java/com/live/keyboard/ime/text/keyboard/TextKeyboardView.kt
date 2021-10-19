@@ -41,6 +41,7 @@ import com.live.keyboard.ime.theme.Theme
 import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.res.AssetManager
 import com.live.keyboard.res.FlorisRef
+import com.live.keyboard.util.enums.Language
 import com.live.keyboard.util.enums.LanguageChange
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -1089,6 +1090,28 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         if (!key.isVisible) return
         val label = key.label
         if (label != null) {
+            if (key.computedData.code == KeyCode.SPACE && needToShowLanguageChangeArrows()) {
+                ResourcesCompat.getDrawable(resources, R.drawable.ic_language_change_arrow_left, null)?.apply {
+                    bounds = Rect(
+                        key.visibleBounds.left,
+                        with(key.visibleBounds) { top + (bottom - top) / 4 },
+                        with(key.visibleBounds) { left + (bottom - top) / 2 },
+                        with(key.visibleBounds) { bottom - (bottom - top) / 4 },
+                    )
+                    setTint(Color.parseColor(keyboardTheme.keyTextColor))
+                    draw(canvas)
+                }
+                ResourcesCompat.getDrawable(resources, R.drawable.ic_language_change_arrow_right, null)?.apply {
+                    bounds = Rect(
+                        with(key.visibleBounds) { right - (bottom - top) / 2},
+                        with(key.visibleBounds) { top + (bottom - top) / 4 },
+                        key.visibleBounds.right,
+                        with(key.visibleBounds) { bottom - (bottom - top) / 4 },
+                    )
+                    setTint(Color.parseColor(keyboardTheme.keyTextColor))
+                    draw(canvas)
+                }
+            }
             renderView.labelPaint.let {
                 it.typeface = ResourcesCompat.getFont(context, keyboardTheme.keyFont ?: R.font.roboto_400)
                 it.color = Color.parseColor(keyboardTheme.keyTextColor)
@@ -1129,6 +1152,11 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
             }
         }
     }
+
+    private fun needToShowLanguageChangeArrows() =
+        PrefsReporitory.Settings.languageChange == LanguageChange.SWIPE_THROUGH_SPACE
+            && Language.values().count { it.isSelected } > 1
+
 
     /**
      * Computes the labels and drawables needed to draw the key.
