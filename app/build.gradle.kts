@@ -30,8 +30,8 @@ android {
         applicationId = "com.live.keyboard"
         minSdk = 23
         targetSdk = 30
-        versionCode = 53
-        versionName = "0.3.13"
+        versionCode = 1
+        versionName = 1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
