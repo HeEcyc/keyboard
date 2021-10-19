@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.live.keyboard.ime.core.InputWindowView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.live.keyboard.ime.core.InputWindowView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/input_window_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
     android:gravity="bottom"
-    android:orientation="vertical"
+    android:hapticFeedbackEnabled="true"
     android:layoutDirection="ltr"
-    android:hapticFeedbackEnabled="true">
+    android:orientation="vertical">
 
     <com.live.keyboard.ime.core.InputView
         android:id="@+id/input_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <com.live.keyboard.ime.onehanded.OneHandedPanel
             android:id="@+id/one_handed_ctrl_panel_start"
@@ -28,21 +27,21 @@
             app:panelSide="start">
 
             <ImageButton
-                android:tag="one_handed_ctrl_close"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/one_handed_button_height"
                 android:layout_marginBottom="@dimen/one_handed_button_height"
-                android:src="@drawable/ic_zoom_out_map"
                 android:background="@drawable/button_transparent_bg_on_press"
-                android:contentDescription="@string/one_handed__close_btn_content_description"/>
+                android:contentDescription="@string/one_handed__close_btn_content_description"
+                android:src="@drawable/ic_zoom_out_map"
+                android:tag="one_handed_ctrl_close" />
 
             <ImageButton
-                android:tag="one_handed_ctrl_move"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/one_handed_button_height"
-                android:src="@drawable/ic_keyboard_arrow_left"
                 android:background="@drawable/button_transparent_bg_on_press"
-                android:contentDescription="@string/one_handed__move_start_btn_content_description"/>
+                android:contentDescription="@string/one_handed__move_start_btn_content_description"
+                android:src="@drawable/ic_keyboard_arrow_left"
+                android:tag="one_handed_ctrl_move" />
 
         </com.live.keyboard.ime.onehanded.OneHandedPanel>
 
@@ -53,13 +52,19 @@
             android:layout_weight="1"
             android:measureAllChildren="false">
 
-            <include android:id="@+id/text" layout="@layout/text_input_layout"/>
+            <include
+                android:id="@+id/text"
+                layout="@layout/text_input_layout" />
 
-            <include android:id="@+id/media" layout="@layout/media_input_layout"
+            <include
+                android:id="@+id/media"
+                layout="@layout/media_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
-            <include android:id="@+id/clipboard" layout="@layout/clipboard_layout"/>
+            <include
+                android:id="@+id/clipboard"
+                layout="@layout/clipboard_layout" />
 
         </com.live.keyboard.common.FlorisViewFlipper>
 
@@ -72,21 +77,21 @@
             app:panelSide="end">
 
             <ImageButton
-                android:tag="one_handed_ctrl_close"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/one_handed_button_height"
                 android:layout_marginBottom="@dimen/one_handed_button_height"
-                android:src="@drawable/ic_zoom_out_map"
                 android:background="@drawable/button_transparent_bg_on_press"
-                android:contentDescription="@string/one_handed__close_btn_content_description"/>
+                android:contentDescription="@string/one_handed__close_btn_content_description"
+                android:src="@drawable/ic_zoom_out_map"
+                android:tag="one_handed_ctrl_close" />
 
             <ImageButton
-                android:tag="one_handed_ctrl_move"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/one_handed_button_height"
-                android:src="@drawable/ic_keyboard_arrow_right"
                 android:background="@drawable/button_transparent_bg_on_press"
-                android:contentDescription="@string/one_handed__move_start_btn_content_description"/>
+                android:contentDescription="@string/one_handed__move_start_btn_content_description"
+                android:src="@drawable/ic_keyboard_arrow_right"
+                android:tag="one_handed_ctrl_move" />
 
         </com.live.keyboard.ime.onehanded.OneHandedPanel>
 

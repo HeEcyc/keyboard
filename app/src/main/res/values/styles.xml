@@ -48,4 +48,12 @@
     <style name="AlterDialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="windowMinWidthMajor">95%</item>
     </style>
+
+    <style name="DefaultAlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <!--        Title Color-->
+        <item name="android:colorPrimary">@color/textColorMain</item>
+        <item name="android:colorControlNormal">@color/blueColor</item>
+        <item name="android:colorControlActivated">@color/blueColor</item>
+        <item name="android:colorControlHighlight">@color/blueColor</item>
+    </style>
 </resources>

@@ -57,6 +57,7 @@ import com.live.keyboard.ime.text.keyboard.TextKeyData
 import com.live.keyboard.ime.theme.Theme
 import com.live.keyboard.ime.theme.ThemeManager
 import com.live.keyboard.repository.PrefsReporitory
+import com.live.keyboard.ui.dialogs.DialogChooser
 import com.live.keyboard.ui.main.activity.MainActivity
 import com.live.keyboard.util.AppVersionUtils
 import com.live.keyboard.util.EXTRA_LAUNCH_SETTINGS
@@ -703,11 +704,14 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     fun executeSwipeAction(swipeAction: SwipeAction) {
         when (swipeAction) {
             SwipeAction.HIDE_KEYBOARD -> requestHideSelf(0)
-            SwipeAction.SWITCH_TO_PREV_SUBTYPE -> switchToPrevSubtype()
-            SwipeAction.SWITCH_TO_NEXT_SUBTYPE -> switchToNextSubtype()
+            SwipeAction.SWITCH_TO_PREV_SUBTYPE, SwipeAction.SWITCH_TO_NEXT_SUBTYPE -> showDialog()
             SwipeAction.SWITCH_TO_PREV_KEYBOARD -> switchToPrevKeyboard()
             else -> textInputManager.executeSwipeAction(swipeAction)
         }
+    }
+
+    open fun showDialog() {
+
     }
 
     fun launchSettings() {
@@ -726,7 +730,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         return subtypeManager.subtypes.size > 1
     }
 
-    fun switchToPrevKeyboard() {
+    private fun switchToPrevKeyboard() {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 switchToPreviousInputMethod()
@@ -766,7 +770,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         onSubtypeChanged(activeSubtype, true)
     }
 
-    private fun onSubtypeChanged(newSubtype: Subtype, doRefreshLayouts: Boolean) {
+    fun onSubtypeChanged(newSubtype: Subtype, doRefreshLayouts: Boolean) {
         textInputManager.onSubtypeChanged(newSubtype, doRefreshLayouts)
         mediaInputManager.onSubtypeChanged(newSubtype, doRefreshLayouts)
         clipInputManager.onSubtypeChanged(newSubtype, doRefreshLayouts)
