@@ -5,11 +5,11 @@
 
     <!-- Add default system subtype so we can properly set the icon and label -->
     <subtype
-        android:label="@string/floris_app_name"
-        android:icon="@mipmap/floris_app_icon"
-        android:imeSubtypeMode="keyboard"
+        android:icon="@mipmap/ic_launcher"
         android:imeSubtypeExtraValue="AsciiCapable"
+        android:imeSubtypeMode="keyboard"
         android:isAsciiCapable="true"
-        android:overridesImplicitlyEnabledSubtype="true"/>
+        android:label="@string/app_name"
+        android:overridesImplicitlyEnabledSubtype="true" />
 
 </input-method>

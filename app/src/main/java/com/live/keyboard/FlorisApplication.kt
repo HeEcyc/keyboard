@@ -79,11 +79,7 @@ class FlorisApplication : Application() {
                 androidAssetManager.open(ICU_DATA_ASSET_PATH).use { it.copyTo(os) }
             }
             val status = nativeInitICUData(dstDataFile.absolutePath.toNativeStr())
-            return if (status != 0) {
-                false
-            } else {
-                true
-            }
+            return status == 0
         } catch (e: Exception) {
             return false
         }

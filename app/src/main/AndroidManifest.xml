@@ -11,9 +11,9 @@
     <application
         android:name="com.live.keyboard.FlorisApplication"
         android:allowBackup="false"
-        android:icon="@mipmap/floris_app_icon"
-        android:label="@string/floris_app_name"
-        android:roundIcon="@mipmap/floris_app_icon_round"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/SettingsTheme"
         tools:ignore="LockedOrientationActivity">
@@ -23,7 +23,7 @@
             android:name="com.live.keyboard.background.view.keyboard.BackgroundViewKeyboardService"
             android:directBootAware="true"
             android:exported="true"
-            android:label="@string/floris_app_name"
+            android:label="@string/app_name"
             android:permission="android.permission.BIND_INPUT_METHOD">
             <intent-filter>
                 <action android:name="android.view.InputMethod" />
@@ -37,7 +37,7 @@
         <service
             android:name="com.live.keyboard.FlorisSpellCheckerService"
             android:exported="true"
-            android:label="@string/floris_app_name"
+            android:label="@string/app_name"
             android:permission="android.permission.BIND_TEXT_SERVICE">
             <intent-filter>
                 <action android:name="android.service.textservice.SpellCheckerService" />

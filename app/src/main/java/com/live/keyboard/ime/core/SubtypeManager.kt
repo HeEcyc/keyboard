@@ -109,7 +109,12 @@ class SubtypeManager(
      * @return True if the subtype was added, false otherwise. A return value of false indicates
      *  that the subtype already exists.
      */
-    fun addSubtype(locale: FlorisLocale, composerName: String, currencySetName: String, layoutMap: SubtypeLayoutMap): Boolean {
+    fun addSubtype(
+        locale: FlorisLocale,
+        composerName: String,
+        currencySetName: String,
+        layoutMap: SubtypeLayoutMap
+    ): Boolean {
         return addSubtype(
             Subtype(
                 (locale.hashCode() + 31 * layoutMap.hashCode() + 31 * currencySetName.hashCode()),
@@ -276,11 +281,15 @@ class SubtypeManager(
         return newActiveSubtype
     }
 
+    fun setActiveSubtype(id: Int) {
+        prefs.localization.activeSubtypeId = id
+    }
+
     fun addSubtypeForLanguage(language: Language) = addSubtype(subtypeFor(language))
 
     fun removeSubtypeForLanguage(language: Language) = removeSubtype(subtypeFor(language))
 
     private fun subtypeFor(language: Language) =
-        imeConfig.defaultSubtypes.first { it.locale.language == language.name.lowercase()}.toSubtype()
+        imeConfig.defaultSubtypes.first { it.locale.language == language.name.lowercase() }.toSubtype()
 
 }
