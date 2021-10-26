@@ -3,20 +3,27 @@ package com.live.keyboard.background.view.keyboard
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.graphics.Rect
 import android.net.Uri
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import com.live.keyboard.R
+import androidx.core.view.children
 import com.live.keyboard.background.view.keyboard.repository.BackgroundViewRepository
 import com.live.keyboard.crashutility.CrashUtility
 import com.live.keyboard.data.KeyboardTheme
 import com.live.keyboard.databinding.FlorisboardBinding
 import com.live.keyboard.ime.core.FlorisBoard
+import com.live.keyboard.ime.core.Subtype
 import com.live.keyboard.ime.popup.PopupLayerView
+import com.live.keyboard.ime.text.gestures.SwipeGesture
+import com.live.keyboard.ime.text.key.KeyCode
+import com.live.keyboard.ime.text.keyboard.TextKeyView
 import com.live.keyboard.repository.PrefsReporitory
-import com.live.keyboard.ui.dialogs.DialogChooser
+import com.live.keyboard.ui.custom.SubtypeChangerView
 import com.live.keyboard.util.enums.Language
+import com.live.keyboard.util.enums.LanguageChange
 
 class BackgroundViewKeyboardService : FlorisBoard(), SharedPreferences.OnSharedPreferenceChangeListener {
     private val keyboardTheme get() = PrefsReporitory.keyboardTheme ?: KeyboardTheme()
@@ -70,6 +77,11 @@ class BackgroundViewKeyboardService : FlorisBoard(), SharedPreferences.OnSharedP
         bgContainer.addView(backgroundView)
     }
 
+    override fun onWindowHidden() {
+        super.onWindowHidden()
+        hideSubtypeChangerView()
+    }
+
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String) {
         if (p1 != PrefsReporitory.keyboadThemeKey) return
         when {
@@ -82,25 +94,48 @@ class BackgroundViewKeyboardService : FlorisBoard(), SharedPreferences.OnSharedP
         }
     }
 
-    override fun showDialog() {
-        if (Language.values().filter { it.isSelected }.size < 2) return
-        val token = uiBinding?.inputView?.windowToken ?: return
-        DialogChooser(R.string.app_name, getEnabledLanguages(), getCurrentLanguage(),
-            toStringWithContext = { it, _ -> it.languageName }
-        ) { language ->
-            subtypeManager.subtypes
-                .firstOrNull { it.locale.language.equals(language.name, true) }
-                ?.let {
-                    activeSubtype = it
-                    onSubtypeChanged(it, true)
-                    subtypeManager.setActiveSubtype(it.id)
-                }
-        }.show(this, token)
-    }
-
     fun getCurrentLanguage() = activeSubtype.locale.language.let(Language::from)
 
-    fun getEnabledLanguages() = Language.values()
-        .filter { it.isSelected }
-        .toTypedArray()
+    override fun showSubTypeChangerView() {
+        if (PrefsReporitory.Settings.languageChange == LanguageChange.SPECIAL_BUTTON) return
+        val subtypeChangerView = uiBinding?.text?.subtypeChangerView ?: return
+        val spaceView = uiBinding?.text?.mainKeyboardView?.findKeyViewByCode(KeyCode.SPACE) ?: return
+
+        subtypeChangerView.layoutParams.height = (spaceView.height * 1.1f).toInt()
+        subtypeChangerView.layoutParams.width = (spaceView.width * 1.2f).toInt()
+
+        subtypeChangerView.y = spaceView.y - spaceView.height - 20
+        subtypeChangerView.x = spaceView.x - ((subtypeChangerView.layoutParams.width - spaceView.width) / 2)
+
+        subtypeChangerView.showViewPager(getLanguanges(), activeSubtype)
+
+        if (subtypeChangerView.onPageSelected == null) {
+            subtypeChangerView.onPageSelected = { subtype ->
+                if (subtypeManager.getActiveSubtype()?.id != subtype.id) {
+                    activeSubtype = subtype
+                    onSubtypeChanged(subtype, true)
+                    subtypeManager.setActiveSubtype(subtype.id)
+                }
+            }
+        }
+        subtypeChangerView.visibility = View.VISIBLE
+    }
+
+    override fun onEvent(event: MotionEvent) {
+        val subtypeChangerView = uiBinding?.text?.subtypeChangerView ?: return
+        val spaceView = uiBinding?.text?.mainKeyboardView?.findKeyViewByCode(KeyCode.SPACE) ?: return
+        if (subtypeChangerView.visibility == View.VISIBLE) {
+
+            subtypeChangerView
+                .onEvent(event, spaceView.x + spaceView.width / 2)
+        }
+    }
+
+    private fun getLanguanges(): List<Subtype> {
+        return subtypeManager.subtypes
+    }
+
+    override fun hideSubtypeChangerView() {
+        uiBinding?.text?.subtypeChangerView?.hide()
+    }
 }

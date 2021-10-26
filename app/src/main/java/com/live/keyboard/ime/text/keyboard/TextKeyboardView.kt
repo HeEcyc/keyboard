@@ -290,6 +290,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     }
 
     override fun onTouchEventInternal(event: MotionEvent) {
+        florisboard?.onEvent(event)
+
         val dispatcher = florisboard?.textInputManager?.inputEventDispatcher ?: return
         swipeGestureDetector.onTouchEvent(event)
 
@@ -344,6 +346,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                 }
             }
             MotionEvent.ACTION_MOVE -> {
+
+
                 for (pointerIndex in 0 until event.pointerCount) {
                     val pointerId = event.getPointerId(pointerIndex)
                     val pointer = pointerMap.findById(pointerId)
@@ -360,6 +364,8 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                                 alwaysTriggerOnMove
                             ) || pointer.hasTriggeredGestureMove
                         ) {
+
+
                             pointer.longPressJob?.cancel()
                             pointer.longPressJob = null
                             pointer.hasTriggeredGestureMove = true
@@ -372,6 +378,11 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                                 }
                             }
                         } else {
+                            if (pointer.activeKey?.computedData?.code == KeyCode.SPACE
+                                && pointer.initialKey?.computedData?.code == KeyCode.SPACE
+                            ) {
+                                florisboard?.showSubTypeChangerView()
+                            }
                             onTouchMoveInternal(event, pointer)
                         }
                     }
@@ -404,6 +415,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                 }
             }
             MotionEvent.ACTION_UP -> {
+                florisboard?.hideSubtypeChangerView()
                 dispatcher.send(InputKeyEvent.up(TextKeyData.INTERNAL_BATCH_EDIT))
                 val pointerIndex = event.actionIndex
                 val pointerId = event.getPointerId(pointerIndex)
@@ -647,7 +659,6 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         val florisboard = florisboard ?: return false
         if (cachedState.isRawInputEditor) return false
         val pointer = pointerMap.findById(event.pointerId) ?: return false
-
         return when (event.type) {
             SwipeGesture.Type.TOUCH_MOVE -> when (prefs.gestures.deleteKeySwipeLeft) {
                 SwipeAction.DELETE_CHARACTERS_PRECISELY -> {
@@ -941,7 +952,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
         }
 
         val newKeyList = popupKeyData.map {
-            if (it.code == currentSymbol.code)   TextKeyData(code = 46, label = ".")
+            if (it.code == currentSymbol.code) TextKeyData(code = 46, label = ".")
             else it
         }
 
@@ -1103,7 +1114,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                 }
                 ResourcesCompat.getDrawable(resources, R.drawable.ic_language_change_arrow_right, null)?.apply {
                     bounds = Rect(
-                        with(key.visibleBounds) { right - (bottom - top) / 2},
+                        with(key.visibleBounds) { right - (bottom - top) / 2 },
                         with(key.visibleBounds) { top + (bottom - top) / 4 },
                         key.visibleBounds.right,
                         with(key.visibleBounds) { bottom - (bottom - top) / 4 },
@@ -1558,4 +1569,9 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
     fun findKeyView(label: String) = children
         .filterIsInstance<TextKeyView>()
         .firstOrNull { it.key?.label == label }
+
+    fun findKeyViewByCode(code: Int) = children
+        .filterIsInstance<TextKeyView>()
+        .firstOrNull { it.key?.computedData?.code == code }
+
 }

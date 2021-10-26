@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_sub_type_changer"
+        android:orientation="horizontal"
+        android:padding="3sp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/leftArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_language_change_arrow_left"
+            android:tint="@android:color/white" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:overScrollMode="never" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/rightArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_language_change_arrow_right"
+            android:tint="@android:color/white" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

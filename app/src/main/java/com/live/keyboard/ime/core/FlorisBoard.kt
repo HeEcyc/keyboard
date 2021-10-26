@@ -15,6 +15,7 @@ import android.util.Size
 import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
@@ -57,7 +58,6 @@ import com.live.keyboard.ime.text.keyboard.TextKeyData
 import com.live.keyboard.ime.theme.Theme
 import com.live.keyboard.ime.theme.ThemeManager
 import com.live.keyboard.repository.PrefsReporitory
-import com.live.keyboard.ui.dialogs.DialogChooser
 import com.live.keyboard.ui.main.activity.MainActivity
 import com.live.keyboard.util.AppVersionUtils
 import com.live.keyboard.util.EXTRA_LAUNCH_SETTINGS
@@ -760,12 +760,12 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         }
     }
 
-    fun switchToPrevSubtype() {
+    public fun switchToPrevSubtype() {
         activeSubtype = subtypeManager.switchToPrevSubtype() ?: Subtype.DEFAULT
         onSubtypeChanged(activeSubtype, true)
     }
 
-    fun switchToNextSubtype() {
+    public fun switchToNextSubtype() {
         activeSubtype = subtypeManager.switchToNextSubtype() ?: Subtype.DEFAULT
         onSubtypeChanged(activeSubtype, true)
     }
@@ -857,6 +857,19 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
      */
     fun removeEventListener(listener: EventListener): Boolean {
         return eventListeners.remove(listener)
+    }
+
+    open fun showSubTypeChangerView() {
+
+    }
+
+    open fun hideSubtypeChangerView() {
+
+    }
+
+
+    open fun onEvent(event: MotionEvent) {
+
     }
 
     interface EventListener {
