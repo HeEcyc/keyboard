@@ -856,7 +856,10 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
             KeyCode.KANA_HIRA -> handleKanaHira()
             KeyCode.KANA_KATA -> handleKanaKata()
             KeyCode.KANA_HALF_KATA -> handleKanaHalfKata()
-            KeyCode.SHOW_INPUT_METHOD_PICKER -> florisboard.imeManager?.showInputMethodPicker()
+            KeyCode.SHOW_INPUT_METHOD_PICKER -> {
+                if (PrefsReporitory.Settings.languageChange != LanguageChange.SWIPE_THROUGH_SPACE)
+                    florisboard.imeManager?.showInputMethodPicker()
+            }
             KeyCode.SPACE -> handleSpace(ev)
             KeyCode.SWITCH_TO_MEDIA_CONTEXT -> florisboard.setActiveInput(R.id.media_input)
             KeyCode.SWITCH_TO_CLIPBOARD_CONTEXT -> florisboard.setActiveInput(R.id.clip_input)

@@ -494,7 +494,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         super.onWindowHidden()
         if (!isWindowShown) {
             return
-        } else {
         }
         isWindowShown = false
 
@@ -760,12 +759,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         }
     }
 
-    public fun switchToPrevSubtype() {
-        activeSubtype = subtypeManager.switchToPrevSubtype() ?: Subtype.DEFAULT
-        onSubtypeChanged(activeSubtype, true)
-    }
-
-    public fun switchToNextSubtype() {
+    fun switchToNextSubtype() {
         activeSubtype = subtypeManager.switchToNextSubtype() ?: Subtype.DEFAULT
         onSubtypeChanged(activeSubtype, true)
     }

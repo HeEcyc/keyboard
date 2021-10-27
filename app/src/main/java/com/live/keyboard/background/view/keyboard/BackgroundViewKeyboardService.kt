@@ -3,13 +3,11 @@ package com.live.keyboard.background.view.keyboard
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.graphics.Color
-import android.graphics.Rect
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.children
 import com.live.keyboard.background.view.keyboard.repository.BackgroundViewRepository
 import com.live.keyboard.crashutility.CrashUtility
 import com.live.keyboard.data.KeyboardTheme
@@ -17,11 +15,8 @@ import com.live.keyboard.databinding.FlorisboardBinding
 import com.live.keyboard.ime.core.FlorisBoard
 import com.live.keyboard.ime.core.Subtype
 import com.live.keyboard.ime.popup.PopupLayerView
-import com.live.keyboard.ime.text.gestures.SwipeGesture
 import com.live.keyboard.ime.text.key.KeyCode
-import com.live.keyboard.ime.text.keyboard.TextKeyView
 import com.live.keyboard.repository.PrefsReporitory
-import com.live.keyboard.ui.custom.SubtypeChangerView
 import com.live.keyboard.util.enums.Language
 import com.live.keyboard.util.enums.LanguageChange
 
@@ -78,8 +73,8 @@ class BackgroundViewKeyboardService : FlorisBoard(), SharedPreferences.OnSharedP
     }
 
     override fun onWindowHidden() {
-        super.onWindowHidden()
         hideSubtypeChangerView()
+        super.onWindowHidden()
     }
 
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String) {
@@ -123,12 +118,8 @@ class BackgroundViewKeyboardService : FlorisBoard(), SharedPreferences.OnSharedP
 
     override fun onEvent(event: MotionEvent) {
         val subtypeChangerView = uiBinding?.text?.subtypeChangerView ?: return
-        val spaceView = uiBinding?.text?.mainKeyboardView?.findKeyViewByCode(KeyCode.SPACE) ?: return
-        if (subtypeChangerView.visibility == View.VISIBLE) {
-
-            subtypeChangerView
-                .onEvent(event, spaceView.x + spaceView.width / 2)
-        }
+        if (subtypeChangerView.visibility == View.VISIBLE) subtypeChangerView
+            .onEvent(event)
     }
 
     private fun getLanguanges(): List<Subtype> {
