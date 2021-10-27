@@ -102,10 +102,10 @@ class SubtypeChangerView @JvmOverloads constructor(
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
         if (positionOffset == 0.0f) currentPage = position
         val currentPosition = if (position == currentPage)
-            if (positionOffset > 0.8) position + 1
+            if (positionOffset > 0.7) position + 1
             else position
         else
-            if (positionOffset < 0.2) position
+            if (positionOffset < 0.3) position
             else position + 1
 
         currentSubtype = subtypes[currentPosition]
