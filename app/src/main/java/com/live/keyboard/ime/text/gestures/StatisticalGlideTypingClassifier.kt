@@ -13,6 +13,7 @@ import com.live.keyboard.res.FlorisRef
 import com.live.keyboard.util.enums.Language
 import com.live.keyboard.util.getFile
 import org.json.JSONObject
+import java.lang.Exception
 import java.text.Normalizer
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -116,9 +117,16 @@ class StatisticalGlideTypingClassifier : GlideTypingClassifier {
                 AssetManager.default().loadTextAsset(FlorisRef.assets(path)).getOrThrow()
             else
                 language.dictionaryJSONFile.getFile().readText()
-            val json = JSONObject(data)
-            val words = HashMap<String, Int>().apply { putAll(json.keys().asSequence().map { Pair(it, json.getInt(it)) }) }
-            words.putAll(ThemeDataBase.dataBase.getDictionaryDao().getFormattedEntriesForLanguage(language.name).map { it.word to it.frequency })
+            val json = try {
+                JSONObject(data)
+            } catch (e: Exception) {
+                return
+            }
+            val words =
+                HashMap<String, Int>().apply { putAll(json.keys().asSequence().map { Pair(it, json.getInt(it)) }) }
+            words.putAll(
+                ThemeDataBase.dataBase.getDictionaryDao().getFormattedEntriesForLanguage(language.name)
+                    .map { it.word to it.frequency })
             this.words = words.keys
             this.wordFrequencies = words
         }

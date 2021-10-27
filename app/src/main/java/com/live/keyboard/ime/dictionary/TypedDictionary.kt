@@ -8,6 +8,7 @@ import com.live.keyboard.ime.nlp.SuggestionList
 import com.live.keyboard.ime.nlp.Word
 import com.live.keyboard.util.enums.Language
 import com.live.keyboard.util.getFile
+import java.lang.Exception
 
 class TypedDictionary(val language: Language, readFromAssets: Boolean = true) {
 
@@ -20,14 +21,22 @@ class TypedDictionary(val language: Language, readFromAssets: Boolean = true) {
         } else {
             language.dictionaryJSONFile.getFile().inputStream()
         }
-        .bufferedReader()
-        .use { reader -> reader.readText() }
-        .let { mapJSONStringToHasMap(it, language.name) }
+            .bufferedReader()
+            .use { reader -> reader.readText() }
+            .let { mapJSONStringToHasMap(it, language.name) }
 
     private fun mapJSONStringToHasMap(json: String, languageCode: String): HashMap<String, Int> {
-        val map: HashMap<String, Int> = Gson().fromJson(json, object : TypeToken<HashMap<String, Int>>() {}.type)
-        wordsFromJSON.putAll(map)
-        map.putAll(ThemeDataBase.dataBase.getDictionaryDao().getFormattedEntriesForLanguage(languageCode).map { it.word to it.frequency })
+        val map = HashMap<String, Int>()
+        try {
+            map.putAll(Gson().fromJson(json, object : TypeToken<HashMap<String, Int>>() {}.type))
+            wordsFromJSON.putAll(map)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        map.putAll(ThemeDataBase.dataBase
+            .getDictionaryDao()
+            .getFormattedEntriesForLanguage(languageCode)
+            .map { it.word to it.frequency })
         return map
     }
 
