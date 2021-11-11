@@ -2,7 +2,6 @@ package com.live.keyboard.ui.theme.editor.activity
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -13,8 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import com.google.android.material.tabs.TabLayout
-import com.nguyenhoanglam.imagepicker.model.Config
-import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker
+import com.google.gson.Gson
 import com.live.keyboard.R
 import com.live.keyboard.data.KeyboardTheme
 import com.live.keyboard.databinding.ThemeEditorActivityAppBinding
@@ -34,7 +32,13 @@ import com.live.keyboard.ui.main.activity.MainActivity
 import com.live.keyboard.util.BUNDLE_CROPPED_IMAGE_KEY
 import com.live.keyboard.util.BUNDLE_IS_EDITING_THEME_KEY
 import com.live.keyboard.util.BUNDLE_THEME_KEY
+import com.nguyenhoanglam.imagepicker.model.Config
+import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
 
 class ThemeEditorActivity :
     BaseActivity<ThemeEditorViewModel, ThemeEditorActivityAppBinding>(R.layout.theme_editor_activity_app),
@@ -116,8 +120,27 @@ class ThemeEditorActivity :
                 ).await(), currentTheme.copy().apply { id = currentTheme.id }
             )
         }
-
         viewModel.initFontAdapter(currentTheme.keyFont)
+    }
+
+    private fun generateKeyBards() {
+        lifecycleScope.launch {
+            val gsom = Gson()
+            assets.list("ime/theme")?.forEach {
+                val i: InputStream = assets.open("ime/theme/$it")
+                val br = BufferedReader(InputStreamReader(i))
+                val todoItem: KeyboardTheme = gsom.fromJson(br, KeyboardTheme::class.java)
+
+                binding.keyboardPreview.setComputedKeyboard(
+                    LayoutManager().computeKeyboardAsync(
+                        KeyboardMode.CHARACTERS,
+                        Subtype.DEFAULT
+                    ).await(), todoItem
+                )
+
+                delay(2000)
+            }
+        }
     }
 
     private fun showImagePicker() {

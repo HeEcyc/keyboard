@@ -103,12 +103,11 @@ dependencies {
     implementation("androidx.room", "room-runtime", "2.2.6")
     implementation("com.google.code.gson", "gson", "2.8.8")
 
-    implementation("com.google.firebase:firebase-bom:28.4.1")
+    implementation("com.google.firebase:firebase-bom:29.0.0")
     implementation("com.google.firebase:firebase-storage")
     implementation("com.google.firebase:firebase-storage-ktx:20.0.0")
-    implementation("com.google.firebase:firebase-analytics-ktx:19.0.2")
-    implementation("com.google.firebase:firebase-messaging:22.0.0")
-    implementation("com.google.firebase:firebase-crashlytics:18.2.3")
+    implementation("com.google.firebase:firebase-analytics-ktx:20.0.0")
+    implementation("com.google.firebase:firebase-crashlytics:18.2.4")
 
     implementation("com.appsflyer:af-android-sdk:6.3.2")
 
@@ -120,18 +119,11 @@ dependencies {
     implementation(files("libs/crop_view.aar"))
 
     kapt("androidx.room", "room-compiler", "2.2.6")
-    implementation(project(":particles"))
     testImplementation(kotlin("test"))
     testImplementation("androidx.test", "core", "1.3.0")
     testImplementation("org.mockito", "mockito-inline", "3.7.7")
     testImplementation("org.robolectric", "robolectric", "4.5.1")
 
-
-
     androidTestImplementation("androidx.test.ext", "junit", "1.1.2")
     androidTestImplementation("androidx.test.espresso", "espresso-core", "3.3.0")
-
-    // BACKGROUND VIEWS
-
-    implementation("com.github.doctoror.particlesdrawable:library:1.0.9")
 }

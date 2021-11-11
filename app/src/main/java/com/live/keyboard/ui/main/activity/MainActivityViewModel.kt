@@ -46,7 +46,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     val nextActivity = SingleLiveData<Class<out BaseActivity<*, *>>>()
     val currentPage = ObservableField(0)
 
-    val keyboardItemDecoration = ThemesItemDecoration(2, 10)
+    val keyboardItemDecoration = ThemesItemDecoration(2, 25)
     val assetsThemeAdapter = createAdapter<KeyboardTheme, ItemKeyboardThemeBinding>(R.layout.item_keyboard_theme) {
         onItemClick = onThemeClick::postValue
     }
@@ -146,7 +146,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
             val themeList = assets.list(assetFolder)
                 ?.map { assets.open("${assetFolder}/$it").bufferedReader().use { theme -> theme.readText() } }
                 ?.map { gson.fromJson(it, KeyboardTheme::class.java) }
-                ?.sortedByDescending { it.backgroundImagePath?.endsWith(".gif") } ?: return@launch
+                ?.sortedBy { it.index } ?: return@launch
 
             if (PrefsReporitory.keyboardTheme?.id == null) themeList.forEach {
                 it.isSelected = it.backgroundImagePath == PrefsReporitory.keyboardTheme?.backgroundImagePath

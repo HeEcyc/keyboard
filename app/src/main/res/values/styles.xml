@@ -37,13 +37,11 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
-
-    <style name="MSwitch" parent="AppBaseTheme">
+    <style name="MSwitch" parent="SettingsTheme">
         <item name="thumbTint">@color/thumb_color</item>
         <item name="trackTint">@color/track_color</item>
         <item name="android:fontFamily">@font/roboto_500</item>
     </style>
-
 
     <style name="AlterDialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="windowMinWidthMajor">95%</item>

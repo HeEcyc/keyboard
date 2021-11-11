@@ -14,7 +14,7 @@ object NewTheme : Theme()
 data class KeyboardTheme(
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null,
-
+    @Ignore var index: Int? = null,
     var backgoundType: String? = null,
     var backgroundImagePath: String? = null,
     var backgroundColor: String? = "#292E32",

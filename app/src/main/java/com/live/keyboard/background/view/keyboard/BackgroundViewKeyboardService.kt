@@ -8,7 +8,8 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import com.live.keyboard.background.view.keyboard.repository.BackgroundViewRepository
+import androidx.appcompat.widget.AppCompatImageView
+import com.bumptech.glide.Glide
 import com.live.keyboard.crashutility.CrashUtility
 import com.live.keyboard.data.KeyboardTheme
 import com.live.keyboard.databinding.FlorisboardBinding
@@ -42,11 +43,8 @@ class BackgroundViewKeyboardService : FlorisBoard(), SharedPreferences.OnSharedP
 
     override fun attachBackground() {
         when {
-            !keyboardTheme.backgoundType.isNullOrEmpty() -> BackgroundViewRepository.BackgroundView
-                .fromName(keyboardTheme.backgoundType)
             !keyboardTheme.backgroundImagePath.isNullOrEmpty() ->
-                if (bgContainer.childCount == 0) BackgroundViewRepository.BackgroundView
-                    .ImageView(Uri.parse(keyboardTheme.backgroundImagePath))
+                if (bgContainer.childCount == 0) createImageView(keyboardTheme.backgroundImagePath!!)
                 else null
             else -> {
                 if (!keyboardTheme.backgroundColor.isNullOrEmpty()) {
@@ -55,20 +53,12 @@ class BackgroundViewKeyboardService : FlorisBoard(), SharedPreferences.OnSharedP
                 }
                 null
             }
-        }?.let { view ->
-            attackBackground(view.getViewFactory().createView(themeContext))
-            view
-        }
+        }?.let(::attackBackground)
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun attackBackground(backgroundView: View) {
         bgContainer.removeAllViews()
-        uiBinding!!.text.mainKeyboardView.setOnTouchListener { view, event ->
-            view.onTouchEvent(event)
-            backgroundView.onTouchEvent(event)
-            true
-        }
         bgContainer.addView(backgroundView)
     }
 
@@ -81,12 +71,18 @@ class BackgroundViewKeyboardService : FlorisBoard(), SharedPreferences.OnSharedP
         if (p1 != PrefsReporitory.keyboadThemeKey) return
         when {
             !keyboardTheme.backgoundType.isNullOrEmpty() -> null
-            !keyboardTheme.backgroundImagePath.isNullOrEmpty() -> BackgroundViewRepository.BackgroundView
-                .ImageView(Uri.parse(keyboardTheme.backgroundImagePath))
+            !keyboardTheme.backgroundImagePath.isNullOrEmpty() -> createImageView(keyboardTheme.backgroundImagePath!!)
             else -> null
-        }?.let { view ->
-            attackBackground(view.getViewFactory().createView(themeContext))
-        }
+        }?.let(::attackBackground)
+    }
+
+    fun createImageView(imagePath: String) = AppCompatImageView(themeContext).apply {
+        layoutParams =
+            ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
+        Glide.with(this)
+            .load(Uri.parse(imagePath))
+            .into(this)
     }
 
     fun getCurrentLanguage() = activeSubtype.locale.language.let(Language::from)

@@ -347,5 +347,7 @@
 
     <string name="glide_feature_description">Type by swiping your finger from key to key</string>
     <string name="keyboard_swipe_feature_description">Swipe left to delete a word, swipe right to move the cursor</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
 
 </resources>

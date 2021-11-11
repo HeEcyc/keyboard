@@ -2,6 +2,7 @@ package com.live.keyboard.ui.theme.editor.activity
 
 import android.graphics.Bitmap
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.drawToBitmap
@@ -10,7 +11,6 @@ import androidx.databinding.ObservableField
 import androidx.databinding.ViewDataBinding
 import com.live.keyboard.FlorisApplication
 import com.live.keyboard.R
-import com.live.keyboard.background.view.keyboard.repository.BackgroundViewRepository
 import com.live.keyboard.data.KeyboardTheme
 import com.live.keyboard.data.db.ThemeDataBase
 import com.live.keyboard.databinding.ItemColorBinding
@@ -56,21 +56,8 @@ class ThemeEditorViewModel : BaseViewModel() {
     }
 
     val backgroundAdapter = createAdapter<BackgroundAsset, ViewDataBinding> {
-        initItems = mutableListOf(
-            BackgroundAsset.NewImage,
-            BackgroundAsset.BackgroundTheme(
-                uriPathFromAsset("fluid.gif"),
-                BackgroundViewRepository.BackgroundView.FluidView.name()
-            ),
-            BackgroundAsset.BackgroundTheme(
-                uriPathFromAsset("particles.gif"),
-                BackgroundViewRepository.BackgroundView.ParticleView.name()
-            ),
-            BackgroundAsset.BackgroundTheme(
-                uriPathFromAsset("flow.gif"),
-                BackgroundViewRepository.BackgroundView.ParticleFlowView.name()
-            ),
-        ).apply { addAll(readAssetImages()) }
+        initItems = mutableListOf<BackgroundAsset>(BackgroundAsset.NewImage)
+            .apply { addAll(readAssetImages()) }
         onItemClick = { handleBgClick(it) }
         viewBinding = { inflater, viewGroup, viewType -> getBackgroundBinding(viewType, inflater, viewGroup) }
         itemViewTypeProvider = { getBGItemType(it) }
@@ -188,7 +175,7 @@ class ThemeEditorViewModel : BaseViewModel() {
     private fun readAssetImages(): List<BackgroundAsset> =
         FlorisApplication.instance.assets
             .list(bgFolderNamePath)
-            ?.filter { it.startsWith("img") }
+            ?.filter { it.startsWith("image") }
             ?.map { BackgroundAsset.BackgroundTheme(uriPathFromAsset(it)) }
             ?: listOf()
 
@@ -321,5 +308,15 @@ class ThemeEditorViewModel : BaseViewModel() {
         val fontList = getFontsList()
         fontList.firstOrNull { it.fontRes == keyFont }?.isSelected?.set(true)
         fontsAdapter.reloadData(fontList)
+    }
+
+    fun capture(keyboardPreview: TextKeyboardView, it: String) {
+        val index = it.substring(0, it.indexOf("."))
+        val bitmap = keyboardPreview.drawToBitmap(Bitmap.Config.ARGB_8888)
+        val file = File(FlorisApplication.instance.filesDir, "asset_$index.png")
+        BufferedOutputStream(FileOutputStream(file))
+            .use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+
+        Log.d("12345", file.absolutePath)
     }
 }
