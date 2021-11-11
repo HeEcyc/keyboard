@@ -25,7 +25,7 @@ class ThumbTextSeekBar @JvmOverloads constructor(
 
     private val textPaint = Paint().apply {
         textAlign = Paint.Align.CENTER
-        color = Color.WHITE
+        color = Color.BLACK
         textSize = context.dpToPx(18).toFloat()
     }
     var onProgress: ((Int) -> Unit)? = null
@@ -54,7 +54,7 @@ class ThumbTextSeekBar @JvmOverloads constructor(
         })
 
         seekBar.thumb = ShapeDrawable(OvalShape()).apply {
-            paint.color = Color.WHITE
+            paint.color = Color.BLACK
             intrinsicHeight = context.dpToPx(25)
             intrinsicWidth = context.dpToPx(25)
         }

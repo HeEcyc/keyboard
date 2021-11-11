@@ -10,10 +10,11 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="0sp"
-            android:background="@drawable/bg_picker"
-            android:scaleType="centerInside"
+            android:background="@drawable/bg_default_gradient_rounded"
+            android:padding="35sp"
             android:src="@drawable/ic_new"
-            app:layout_constraintDimensionRatio="1:0.654"
+            android:tint="@android:color/black"
+            app:layout_constraintDimensionRatio="1:0.675"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
