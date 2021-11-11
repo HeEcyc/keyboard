@@ -63,12 +63,11 @@ class DictionaryManager private constructor(
     }
 
     fun search(currentWord: Word, suggestions: MutableList<Word>) {
-        dictionaryCache?.search(currentWord, suggestions)
+
     }
 
     fun prepareDictionaries(subtype: Subtype) {
-        val language = Language.from(subtype.locale.language)
-        dictionaryCache = TypedDictionary(language, language == Language.EN)
+
     }
 
     fun queryUserDictionary(word: Word, locale: FlorisLocale, destSuggestionList: MutableList<Word>) {

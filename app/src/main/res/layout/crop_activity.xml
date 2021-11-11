@@ -11,7 +11,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@android:color/black"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:padding="@dimen/top_button_padding"
-                android:src="@drawable/ic_back"
+                android:src="@drawable/ic_back_gradient"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -50,7 +50,7 @@
             app:scv_crop_mode="free"
             app:scv_frame_color="@android:color/white"
             app:scv_guide_color="@android:color/white"
-            app:scv_handle_color="@android:color/white"
+            app:scv_handle_color="#CB75FF"
             app:scv_overlay_color="@android:color/transparent" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

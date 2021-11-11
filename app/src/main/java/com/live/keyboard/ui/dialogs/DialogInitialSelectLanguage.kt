@@ -7,18 +7,12 @@ import android.view.ViewGroup
 import androidx.databinding.ObservableBoolean
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.storage.FirebaseStorage
 import com.live.keyboard.R
 import com.live.keyboard.databinding.ItemLanguageInittialDialogBinding
 import com.live.keyboard.ui.base.createAdapter
 import com.live.keyboard.ui.custom.ItemDecorationWithEnds
 import com.live.keyboard.util.enums.Language
-import com.live.keyboard.util.getFile
 import com.live.keyboard.util.toPx
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class DialogInitialSelectLanguage : DialogFragment(R.layout.initial_select_language_dialog) {
 
@@ -49,34 +43,11 @@ class DialogInitialSelectLanguage : DialogFragment(R.layout.initial_select_langu
             findViewById<View>(R.id.closeButton).setOnClickListener { dismiss(); onClosed() }
             findViewById<View>(R.id.saveButton).setOnClickListener {
                 languages.forEach {
-                    if (it.isSelected.get()) downloadLanguage(it.language)
-                    else it.language.isSelected = false
+                    it.language .isSelected = it.isSelected.get()
                 }
                 onClosed()
                 dismiss()
             }
-        }
-    }
-
-    private fun downloadLanguage(language: Language) {
-        if (language == Language.EN) {
-            language.isSelected = true
-            return
-        }
-        language.isDownloading.set(true)
-        FirebaseStorage.getInstance().reference.child(language.dictionaryJSONFile).stream.addOnSuccessListener {
-            GlobalScope.launch(Dispatchers.IO) {
-                language.dictionaryJSONFile.getFile().apply { createNewFile() }.writeBytes(it.stream.readBytes())
-                it.stream.close()
-                withContext(Dispatchers.Main) {
-                    language.isDownloadedObservable.set(true)
-                }
-                language.isDownloading.set(false)
-                language.isSelected = true
-            }
-        }.addOnFailureListener {
-            language.isDownloading.set(false)
-            language.isSelected = false
         }
     }
 

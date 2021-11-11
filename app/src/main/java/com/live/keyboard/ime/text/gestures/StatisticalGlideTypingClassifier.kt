@@ -111,24 +111,7 @@ class StatisticalGlideTypingClassifier : GlideTypingClassifier {
         }
 
         if (layoutSubtype?.locale?.language != subtype.locale.language) {
-            val language = Language.from(subtype.locale.language)
-            val path = language.dictionaryJSONFile
-            val data = if (language == Language.EN)
-                AssetManager.default().loadTextAsset(FlorisRef.assets(path)).getOrThrow()
-            else
-                language.dictionaryJSONFile.getFile().readText()
-            val json = try {
-                JSONObject(data)
-            } catch (e: Exception) {
-                return
-            }
-            val words =
-                HashMap<String, Int>().apply { putAll(json.keys().asSequence().map { Pair(it, json.getInt(it)) }) }
-            words.putAll(
-                ThemeDataBase.dataBase.getDictionaryDao().getFormattedEntriesForLanguage(language.name)
-                    .map { it.word to it.frequency })
-            this.words = words.keys
-            this.wordFrequencies = words
+
         }
 
         // if only layout changed but not subtype

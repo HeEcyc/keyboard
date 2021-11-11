@@ -20,7 +20,7 @@
                 android:layout_width="0sp"
                 android:layout_height="0sp"
                 android:layout_marginTop="35sp"
-                android:src="@drawable/ic_permissions"
+                android:src="@drawable/phone_iphone"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,8 +35,9 @@
                 android:fontFamily="@font/roboto_400"
                 android:gravity="center"
                 android:text="@string/give_permissions_for_the_napplication_work_properly"
-                android:textColor="@color/textColorMain"
+                android:textColor="@android:color/black"
                 android:textSize="22sp"
+                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/permissionImage" />
 
             <androidx.appcompat.widget.AppCompatTextView

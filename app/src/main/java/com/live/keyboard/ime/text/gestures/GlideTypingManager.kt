@@ -76,15 +76,6 @@ class GlideTypingManager : GlideTypingGesture.Listener, CoroutineScope by MainSc
         launch(Dispatchers.Default) {
             if (wordDataCache.isEmpty()) {
                 // FIXME: get this info from dictionary.
-                val language = Language.from(subtype.locale.language)
-                val path = language.dictionaryJSONFile
-                val data = if (language == Language.EN)
-                    AssetManager.default().loadTextAsset(FlorisRef.assets(path)).getOrThrow()
-                else
-                    language.dictionaryJSONFile.getFile().readText()
-                val json = JSONObject(data)
-                wordDataCache.putAll(json.keys().asSequence().map { Pair(it, json.getInt(it)) })
-                wordDataCache.putAll(ThemeDataBase.dataBase.getDictionaryDao().getFormattedEntriesForLanguage(language.name).map { it.word to it.frequency })
             }
             glideTypingClassifier.setWordData(wordDataCache, subtype)
         }
