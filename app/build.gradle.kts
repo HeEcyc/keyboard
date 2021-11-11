@@ -44,33 +44,6 @@ android {
                 )
             }
         }
-
-        externalNativeBuild {
-            cmake {
-                cFlags("-fvisibility=hidden", "-DU_STATIC_IMPLEMENTATION=1")
-                cppFlags(
-                    "-fvisibility=hidden",
-                    "-std=c++17",
-                    "-fexceptions",
-                    "-ffunction-sections",
-                    "-fdata-sections",
-                    "-DU_DISABLE_RENAMING=1",
-                    "-DU_STATIC_IMPLEMENTATION=1"
-                )
-                arguments("-DANDROID_STL=c++_static")
-            }
-        }
-
-        sourceSets {
-            maybeCreate("main").apply {
-                assets {
-                    srcDirs("src/main/assets", "src/main/icu4c/prebuilt/assets")
-                }
-                jniLibs {
-                    srcDirs("src/main/icu4c/prebuilt/jniLibs")
-                }
-            }
-        }
     }
 
     buildFeatures {
@@ -78,11 +51,6 @@ android {
         dataBinding = true
     }
 
-    externalNativeBuild {
-        cmake {
-            path("src/main/cpp/CMakeLists.txt")
-        }
-    }
 
     buildTypes {
         named("debug").configure {

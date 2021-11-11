@@ -1,91 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root"
         android:layout_width="match_parent"
-        android:layout_height="100sp">
+        android:layout_height="wrap_content">
 
         <View
             android:id="@+id/topShadow"
             android:layout_width="match_parent"
             android:layout_height="5sp"
-            android:alpha="0.6"
-            android:background="@drawable/top_gradient_shadow"
+            android:alpha="0.8"
+            android:background="@drawable/nav_bar_shadow"
             app:layout_constraintBottom_toTopOf="@+id/navBG" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/navBG"
             android:layout_width="match_parent"
             android:layout_height="65sp"
-            android:background="@drawable/blue_gradient"
+            android:background="@android:color/black"
             android:clipChildren="false"
             android:clipToPadding="false"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <RelativeLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/pressetsButtonLayout"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/customButtonLayout"
             app:layout_constraintHorizontal_bias="0.45"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="40sp"
-                android:layout_height="40sp"
-                android:layout_centerInParent="true"
-                app:cardBackgroundColor="@android:color/white"
-                app:cardCornerRadius="6sp"
-                app:cardElevation="4dp" />
+            app:layout_constraintVertical_bias="0.6">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconPresets"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
                 android:layout_centerInParent="true"
-                android:elevation="10sp"
-                android:padding="8sp"
-                android:src="@drawable/ic_home"
-                android:tint="@color/blueColor" />
-        </RelativeLayout>
+                android:layout_gravity="center"
+                android:padding="10sp"
+                android:src="@drawable/ic_presets_active" />
 
-        <RelativeLayout
+            <com.live.keyboard.ui.custom.GradientText
+                android:id="@+id/pressetsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/presets"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                bind:setEnableShadow="@{false}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/customButtonLayout"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.6">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="40sp"
-                android:layout_height="40sp"
-                android:layout_centerInParent="true"
-                android:visibility="gone"
-                app:cardBackgroundColor="@android:color/white"
-                app:cardCornerRadius="6sp"
-                app:cardElevation="4dp" />
-
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconCustom"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
                 android:layout_centerInParent="true"
-                android:elevation="10sp"
-                android:padding="8sp"
-                android:src="@drawable/ic_menu_custom"
-                android:tint="@android:color/white" />
-        </RelativeLayout>
+                android:layout_gravity="center"
+                android:padding="6sp"
+                android:src="@drawable/ic_menu_custom" />
 
-        <RelativeLayout
+            <com.live.keyboard.ui.custom.GradientText
+                android:id="@+id/customText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/custom"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                bind:setEnableGradiend="@{false}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/settingsButtonLayout"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.55"
@@ -93,65 +98,23 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.6">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="40sp"
-                android:layout_height="40sp"
-                android:layout_centerInParent="true"
-                android:visibility="gone"
-                app:cardBackgroundColor="@android:color/white"
-                app:cardCornerRadius="6sp"
-                app:cardElevation="4dp" />
-
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconSettings"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
-                android:layout_centerInParent="true"
-                android:elevation="10sp"
+                android:layout_gravity="center"
                 android:padding="8sp"
-                android:src="@drawable/ic_settings"
-                android:tint="@android:color/white" />
-        </RelativeLayout>
+                android:src="@drawable/ic_settings" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/pressetsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/presets"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/customText"
-            app:layout_constraintHorizontal_bias="0.45"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/navBG"
-            app:layout_constraintVertical_bias="0.83" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/customText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/custom"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/navBG"
-            app:layout_constraintVertical_bias="0.83" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/settingsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/settings"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.55"
-            app:layout_constraintStart_toEndOf="@id/customText"
-            app:layout_constraintTop_toTopOf="@id/navBG"
-            app:layout_constraintVertical_bias="0.83" />
+            <com.live.keyboard.ui.custom.GradientText
+                android:id="@+id/settingsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                bind:setEnableGradiend="@{false}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <RelativeLayout
             android:id="@+id/presetsOverlay"

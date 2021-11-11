@@ -11,7 +11,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@android:color/black"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +24,7 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/top_button_padding"
                 android:src="@drawable/ic_back"
+                android:tint="#CB75FF"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -32,8 +33,7 @@
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:padding="@dimen/top_button_padding"
-                android:src="@drawable/ic_menu_custom"
-                android:tint="#0D0D0D"
+                android:src="@drawable/ic_menu_custom_active"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -43,14 +43,14 @@
             android:layout_width="match_parent"
             android:layout_height="300sp"
             android:layout_margin="16sp"
-            android:background="@drawable/keyboard_border_gray"
+            android:background="@drawable/keyboard_border_selected"
             android:fontFamily="@font/roboto_400"
             android:gravity="top"
             android:hint="@string/write_something_there"
             android:inputType="text"
             android:padding="10dp"
-            android:textColor="@color/textColorMain"
-            android:textColorHint="@color/grayStroke"
+            android:textColor="#CB75FF"
+            android:textColorHint="#CB75FF"
             android:textSize="14sp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

@@ -20,7 +20,7 @@
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_checked_blue"
+            android:src="@drawable/ic_checked"
             android:visibility="@{item.isSelected ? View.VISIBLE : View.INVISIBLE }"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toStartOf="parent" />
@@ -31,7 +31,7 @@
             android:fontFamily="@font/roboto_500"
             android:gravity="center"
             android:text="@{item.languageName}"
-            android:textColor="@{item.isSelected ? @color/blueColor : @color/textColorMain}"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/icon"
@@ -50,13 +50,13 @@
         <ProgressBar
             android:layout_width="0sp"
             android:layout_height="0sp"
-            app:layout_constraintTop_toTopOf="@id/iconDownload"
+            android:visibility="@{item.isDownloading ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/iconDownload"
-            app:layout_constraintStart_toStartOf="@id/iconDownload"
-            app:layout_constraintEnd_toEndOf="@id/iconDownload"
             app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@id/iconDownload"
             app:layout_constraintHeight_percent="0.5"
-            android:visibility="@{item.isDownloading ? View.VISIBLE : View.INVISIBLE}"/>
+            app:layout_constraintStart_toStartOf="@id/iconDownload"
+            app:layout_constraintTop_toTopOf="@id/iconDownload" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

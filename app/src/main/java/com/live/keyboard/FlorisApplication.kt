@@ -35,7 +35,7 @@ class FlorisApplication : Application() {
 
         init {
             try {
-                System.loadLibrary("florisboard-native")
+                //System.loadLibrary("florisboard-native")
             } catch (_: Exception) {
             }
         }
@@ -46,7 +46,7 @@ class FlorisApplication : Application() {
         instance = this
         try {
             Timber.plant(Timber.DebugTree())
-            initICU()
+         //   initICU()
             val prefs = Preferences.initDefault(this)
             val assetManager = AssetManager.init(this)
             SpellingManager.init(this, FlorisRef.assets("ime/spelling/config.json"))

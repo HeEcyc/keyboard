@@ -54,16 +54,15 @@ class DictionaryManager private constructor(
         subtype: Subtype,
         allowPossiblyOffensive: Boolean,
         maxSuggestionCount: Int,
-        block: (suggestions: SuggestionList) -> Unit
+        block: (suggestions: List<Word>) -> Unit
     ) {
-        val suggestions = SuggestionList.new(maxSuggestionCount)
+        val suggestions = mutableListOf<Word>()
         queryUserDictionary(currentWord, subtype.locale, suggestions)
         search(currentWord, suggestions)
         block(suggestions)
-        suggestions.dispose()
     }
 
-    fun search(currentWord: Word, suggestions: SuggestionList) {
+    fun search(currentWord: Word, suggestions: MutableList<Word>) {
         dictionaryCache?.search(currentWord, suggestions)
     }
 
@@ -72,7 +71,7 @@ class DictionaryManager private constructor(
         dictionaryCache = TypedDictionary(language, language == Language.EN)
     }
 
-    fun queryUserDictionary(word: Word, locale: FlorisLocale, destSuggestionList: SuggestionList) {
+    fun queryUserDictionary(word: Word, locale: FlorisLocale, destSuggestionList: MutableList<Word>) {
         val florisDao = florisUserDictionaryDao()
         val systemDao = systemUserDictionaryDao()
         if (florisDao == null && systemDao == null) {
@@ -81,24 +80,24 @@ class DictionaryManager private constructor(
         if (prefs.dictionary.enableFlorisUserDictionary) {
             florisDao?.query(word, locale)?.let {
                 for (entry in it) {
-                    destSuggestionList.add(entry.word, entry.freq)
+                    destSuggestionList.add(word)
                 }
             }
             florisDao?.queryShortcut(word, locale)?.let {
                 for (entry in it) {
-                    destSuggestionList.add(entry.word, entry.freq)
+                    destSuggestionList.add(word)
                 }
             }
         }
         if (prefs.dictionary.enableSystemUserDictionary) {
             systemDao?.query(word, locale)?.let {
                 for (entry in it) {
-                    destSuggestionList.add(entry.word, entry.freq)
+                    destSuggestionList.add(word)
                 }
             }
             systemDao?.queryShortcut(word, locale)?.let {
                 for (entry in it) {
-                    destSuggestionList.add(entry.word, entry.freq)
+                    destSuggestionList.add(word)
                 }
             }
         }

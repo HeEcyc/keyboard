@@ -30,7 +30,7 @@
                     android:layout_height="match_parent"
                     android:padding="@dimen/top_button_padding"
                     android:src="@drawable/ic_back"
-                    android:tint="@color/textColorSecondaty"
+                    android:tint="@color/dividerSecond"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="17sp"
                     android:text="@string/languages"
-                    android:textColor="@color/textColorMain"
+                    android:textColor="@android:color/black"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/backButton"
@@ -53,6 +53,7 @@
             itemDecoration="@{viewModel.itemDecoration}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/black"
             bind:adapter="@{viewModel.adapter}"
             bind:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -23,13 +23,14 @@ value class SpellingDict private constructor(
         const val README_FILE_NAME = "README.txt"
 
         fun new(path: String, meta: Meta): SpellingDict? {
-            val baseName = meta.affFile.removeSuffix(".aff")
-            val nativePtr = nativeInitialize("$path/$baseName".toNativeStr())
-            return if (nativePtr == NATIVE_NULLPTR) {
-                null
-            } else {
-                SpellingDict(nativePtr)
-            }
+//            val baseName = meta.affFile.removeSuffix(".aff")
+//            val nativePtr = nativeInitialize("$path/$baseName".toNativeStr())
+//            return if (nativePtr == NATIVE_NULLPTR) {
+//                null
+//            } else {
+//                SpellingDict(nativePtr)
+//            }
+            return null
         }
 
         external fun nativeInitialize(basePath: NativeStr): NativePtr

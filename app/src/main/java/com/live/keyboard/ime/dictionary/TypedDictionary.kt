@@ -4,11 +4,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.live.keyboard.FlorisApplication
 import com.live.keyboard.data.db.ThemeDataBase
-import com.live.keyboard.ime.nlp.SuggestionList
 import com.live.keyboard.ime.nlp.Word
 import com.live.keyboard.util.enums.Language
 import com.live.keyboard.util.getFile
-import java.lang.Exception
 
 class TypedDictionary(val language: Language, readFromAssets: Boolean = true) {
 
@@ -42,13 +40,18 @@ class TypedDictionary(val language: Language, readFromAssets: Boolean = true) {
 
     fun isInit() = words.isNotEmpty()
 
-    fun search(currentWord: Word, suggestions: SuggestionList) {
+    fun search(currentWord: Word, suggestions: MutableList<Word>) {
         if (!isInit()) return
+        val tempMap = mutableMapOf<Word, Int>()
+
         words.forEach {
             val dictionaryWord = it.key
             val freq = it.value
-            if (dictionaryWord.startsWith(currentWord, false))
-                suggestions.add(dictionaryWord, freq)
+            if (dictionaryWord.startsWith(currentWord, true)) {
+                tempMap[dictionaryWord] = freq
+            }
         }
+        tempMap.toList().sortedBy { (_, value) -> -value }.toMap()
+            .keys.toList().let(suggestions::addAll)
     }
 }

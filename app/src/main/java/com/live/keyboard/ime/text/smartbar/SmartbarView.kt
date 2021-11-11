@@ -21,6 +21,7 @@ import com.live.keyboard.ime.core.Subtype
 import com.live.keyboard.ime.keyboard.KeyboardState
 import com.live.keyboard.ime.keyboard.updateKeyboardState
 import com.live.keyboard.ime.nlp.SuggestionList
+import com.live.keyboard.ime.nlp.Word
 import com.live.keyboard.ime.text.key.KeyVariation
 import com.live.keyboard.ime.text.keyboard.KeyboardMode
 import com.live.keyboard.ime.theme.Theme
@@ -281,7 +282,7 @@ class SmartbarView : ConstraintLayout, KeyboardState.OnUpdateStateListener, Them
         }
     }
 
-    fun setCandidateSuggestionWords(suggestionInitDate: Long, suggestions: SuggestionList?) {
+    fun setCandidateSuggestionWords(suggestionInitDate: Long, suggestions: List<Word>?) {
         if (suggestionInitDate > lastSuggestionInitDate) {
             lastSuggestionInitDate = suggestionInitDate
             binding.candidates.updateCandidates(suggestions)

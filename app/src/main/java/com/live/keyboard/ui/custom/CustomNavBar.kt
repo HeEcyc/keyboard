@@ -1,21 +1,13 @@
 package com.live.keyboard.ui.custom
 
 import android.content.Context
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.view.animation.LinearInterpolator
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
 import androidx.databinding.DataBindingUtil
-import androidx.transition.ChangeBounds
-import androidx.transition.TransitionManager
 import com.live.keyboard.R
 import com.live.keyboard.databinding.CustomNavBarBinding
 
@@ -24,10 +16,6 @@ class CustomNavBar @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr), View.OnClickListener {
 
     var onPageChange: ((Int) -> Unit)? = null
-
-    private val activeIconColorTint: ColorStateList by lazy {
-        ColorStateList.valueOf(ContextCompat.getColor(context, R.color.blueColor))
-    }
 
     val binding: CustomNavBarBinding = DataBindingUtil.inflate(
         LayoutInflater.from(context),
@@ -42,22 +30,6 @@ class CustomNavBar @JvmOverloads constructor(
         binding.presetsOverlay.setOnClickListener(this)
         binding.customOverlay.setOnClickListener(this)
         binding.settingsOverlay.setOnClickListener(this)
-    }
-
-    private fun animateView(currentView: View, bias: Float) {
-        ConstraintSet().apply {
-            clone(binding.root)
-            setVerticalBias(currentView.id, bias)
-        }.let(::applyConstrainSet)
-    }
-
-    private fun applyConstrainSet(set: ConstraintSet) {
-        ChangeBounds().apply {
-            interpolator = LinearInterpolator()
-            this.duration = 100
-            TransitionManager.beginDelayedTransition(binding.root, this)
-        }
-        set.applyTo(binding.root)
     }
 
     override fun onClick(v: View) {
@@ -85,21 +57,45 @@ class CustomNavBar @JvmOverloads constructor(
     }
 
     private fun setViewActivte() {
-        animateView(currentActiveView, 0.35f)
         currentActiveView.forEach {
-            if (it is CardView) it.visibility = View.VISIBLE
-            if (it is AppCompatImageView) it.imageTintList = activeIconColorTint
+            if (it is AppCompatImageView) {
+                it.setImageResource(getActiveIcon(it))
+            }
+            if (it is GradientText) {
+                it.setEnableGradiend(true)
+                it.setEnableShadow(true)
+            }
+        }
+    }
+
+    private fun getActiveIcon(it: AppCompatImageView): Int {
+        return when (it.id) {
+            R.id.iconPresets -> R.drawable.ic_presets_active
+            R.id.iconCustom -> R.drawable.ic_menu_custom_active
+            else -> R.drawable.ic_settings_active
+        }
+    }
+
+    private fun getNotActiveIcon(it: AppCompatImageView): Int {
+        return when (it.id) {
+            R.id.iconPresets -> R.drawable.ic_home
+            R.id.iconCustom -> R.drawable.ic_menu_custom
+            else -> R.drawable.ic_settings
         }
     }
 
     private fun setViewNotActive() {
-        animateView(currentActiveView, 0.6f)
         currentActiveView.forEach {
-            if (it is CardView) it.visibility = View.GONE
-            if (it is AppCompatImageView) it.imageTintList = ColorStateList
-                .valueOf(Color.WHITE)
+            if (it is AppCompatImageView) {
+                it.setImageResource(getNotActiveIcon(it))
+            }
+            if (it is GradientText) {
+                it.setEnableGradiend(false)
+                it.setEnableShadow(false)
+            }
         }
     }
+
 
     fun setCurrentPage(positon: Int) {
         val activeView = getActiveViewByPosition(positon)

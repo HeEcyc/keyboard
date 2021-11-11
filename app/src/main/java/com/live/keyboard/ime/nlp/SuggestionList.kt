@@ -7,6 +7,7 @@ import com.live.keyboard.common.NativePtr
 value class SuggestionList private constructor(
     private val _nativePtr: NativePtr
 ) : Collection<String>, NativeInstanceWrapper {
+
     companion object {
         fun new(maxSize: Int): SuggestionList {
             val nativePtr = nativeInitialize(maxSize)

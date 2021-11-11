@@ -22,6 +22,7 @@ import com.live.keyboard.R
 import com.live.keyboard.ime.clip.FlorisClipboardManager
 import com.live.keyboard.ime.clip.provider.ClipboardItem
 import com.live.keyboard.ime.nlp.SuggestionList
+import com.live.keyboard.ime.nlp.Word
 import com.live.keyboard.ime.theme.Theme
 import com.live.keyboard.ime.theme.ThemeManager
 import com.live.keyboard.ime.theme.ThemeValue
@@ -99,7 +100,7 @@ class CandidateView : View, ThemeManager.OnThemeUpdatedListener {
         velocityTracker = null
     }
 
-    fun updateCandidates(newCandidates: SuggestionList?) {
+    fun updateCandidates(newCandidates: List<Word>?) {
         if (candidates.isEmpty() && (newCandidates == null || newCandidates.isEmpty())) {
             return // no need to recompute anything
         }

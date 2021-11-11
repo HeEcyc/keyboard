@@ -10,7 +10,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:overScrollMode="never">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -18,56 +19,58 @@
             android:orientation="vertical"
             android:padding="16sp">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.live.keyboard.ui.custom.GradientText
                 android:id="@+id/settingsButton"
                 style="@style/NormalText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:text="@string/settings"
-                android:textColor="@color/textColorSecondaty"
-                android:textSize="38sp" />
+                android:textSize="38sp"
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="12dp"
+                android:background="?selectableItemBackground"
                 android:drawableEnd="@drawable/ic_next"
                 android:onClick="@{() -> viewModel.showLanguageSettingsActivity()}"
+                android:paddingVertical="12dp"
                 android:text="@string/language"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:background="?selectableItemBackground"/>
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/main_magin_top">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/buttonGlideHelp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_help"/>
+                    android:src="@drawable/ic_help" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/MediumText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:background="?selectableItemBackground"
                     android:drawableEnd="@drawable/ic_next"
+                    android:drawablePadding="5dp"
                     android:onClick="@{() -> viewModel.showGlideSettingsActivity()}"
                     android:text="@string/glide_typing"
                     android:textColor="@{viewModel.isEnableGlideTyping ? @color/textColorMain : @color/textColorSecondaty}"
-                    android:textSize="16sp"
-                    android:background="?selectableItemBackground"
-                    android:drawablePadding="5dp"/>
+                    android:textSize="16sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
                 android:layout_marginVertical="@dimen/main_magin_top"
-                android:background="@color/dividerColor" />
+                android:background="#CB75FF" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 style="@style/MSwitch"
@@ -92,11 +95,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/main_magin_top">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/buttonKeyboardSwipeHelp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_help"/>
+                    android:src="@drawable/ic_help" />
+
                 <com.google.android.material.switchmaterial.SwitchMaterial
                     style="@style/MSwitch"
                     android:layout_width="match_parent"
@@ -122,14 +127,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
                 android:layout_marginVertical="@dimen/main_magin_top"
-                android:background="@color/dividerColor" />
+                android:background="#CB75FF" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
                 android:onClick="@{(_) -> viewModel.onOneHandedModeClick()}"
-                android:orientation="vertical"
-                android:background="?selectableItemBackground">
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/MediumText"
@@ -152,45 +157,45 @@
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="12dp"
+                android:background="?selectableItemBackground"
                 android:onClick="@{(_) -> viewModel.onKeyboardHeightClick()}"
+                android:paddingVertical="12dp"
                 android:text="@string/keyboard_height"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:background="?selectableItemBackground"/>
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="12dp"
+                android:background="?selectableItemBackground"
                 android:onClick="@{(_) -> viewModel.onLanguageChangeClick()}"
+                android:paddingVertical="12dp"
                 android:text="@string/language_change"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:background="?selectableItemBackground"/>
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="12dp"
+                android:background="?selectableItemBackground"
                 android:onClick="@{(_) -> viewModel.onSpecialSymbolsEditorClick()}"
+                android:paddingVertical="12dp"
                 android:text="@string/special_symbols_editor"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:background="?selectableItemBackground"/>
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/MediumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="12dp"
+                android:background="?selectableItemBackground"
                 android:onClick="@{(_) -> viewModel.onMinimumSwipeSpeedClick()}"
+                android:paddingVertical="12dp"
                 android:text="@string/minimum_swipe_speed"
                 android:textColor="@color/textColorMain"
-                android:textSize="16sp"
-                android:background="?selectableItemBackground"/>
+                android:textSize="16sp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
