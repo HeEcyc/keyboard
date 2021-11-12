@@ -9,14 +9,17 @@ object UserDictionaryRepository {
     private val digitsOnly = "[\\d]+".toRegex()
 
     fun processText(text: String) {
+
         val dictionary = DictionaryManager.default().dictionaryCache ?: return
+
         text.split(nonCharacterNonDigit)
             .asSequence()
             .filterNot { it.matches(digitsOnly) }
-            .filterNot { it.isBlank()}
-            .filterNot { it in dictionary.wordsFromJSON.keys }
+            .filterNot { it.isBlank() }
             .forEach {
-                ThemeDataBase.dataBase.getDictionaryDao().incrementFrequencyOrInsertNewEntry(it, dictionary.language.name)
+                ThemeDataBase.dataBase
+                    .getDictionaryDao()
+                    .incrementFrequencyOrInsertNewEntry(it, dictionary.language.name)
             }
     }
 

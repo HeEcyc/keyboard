@@ -27,7 +27,6 @@ import com.live.keyboard.ime.keyboard.InputAttributes
 import com.live.keyboard.ime.keyboard.KeyboardState
 import com.live.keyboard.ime.text.TextInputManager
 import com.live.keyboard.ime.text.composing.Composer
-import com.live.keyboard.util.debugSummarize
 import com.live.keyboard.util.isPasswordInputType
 
 class EditorInstance(private val ims: InputMethodService, private val activeState: KeyboardState) {
@@ -56,6 +55,7 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
 
     val inputBinding: InputBinding?
         get() = if (isInputBindingActive) ims.currentInputBinding else null
+
     val inputConnection: InputConnection?
         get() = if (isInputBindingActive) ims.currentInputConnection else null
     val editorInfo: EditorInfo?
@@ -85,7 +85,7 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
         )
     }
 
-    fun updateSelection(oldSel: Bounds, newSel: Bounds, candidates: Bounds) {
+    private fun updateSelection(oldSel: Bounds, newSel: Bounds, candidates: Bounds) {
         if (oldSel == newSel) return
         selection.bounds = newSel
         lastReportedComposingBounds = candidates
@@ -135,6 +135,8 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
         val ic = inputConnection ?: return
         ic.requestCursorUpdates(InputConnection.CURSOR_UPDATE_MONITOR)
         val exText = ExtractedTextRequest().let { req ->
+
+
             req.token = ++extractedToken
             req.flags = 0
             req.hintMaxLines = CAPACITY_LINES
@@ -147,9 +149,11 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
     }
 
     fun startInputView(ei: EditorInfo?) {
+
     }
 
     fun finishInputView() {
+
     }
 
     fun finishInput() {
@@ -432,6 +436,7 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
         }
         val currentWord = cachedInput.currentWord
         val wordsBeforeCurrent = cachedInput.wordsBeforeCurrent
+
         if (currentWord != null && currentWord.isValid) {
             for (word in wordsBeforeCurrent) {
                 if (selection.start < word.start) {
@@ -815,7 +820,9 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
         /** Returns the bounds for this regions. */
         var bounds: Bounds
             get() = Bounds(start, end)
-            set(v) { start = v.start; end = v.end }
+            set(v) {
+                start = v.start; end = v.end
+            }
 
         /** Returns true if the region's start and end markers are valid, false otherwise. */
         val isValid: Boolean
@@ -840,16 +847,21 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
                 val eiText = cachedInput.rawText
                 val eiStart = (start - cachedInput.offset).coerceIn(0, eiText.length)
                 val eiEnd = (end - cachedInput.offset).coerceIn(0, eiText.length)
-                return if (!isValid || eiEnd - eiStart <= 0) { "" } else { eiText.substring(eiStart, eiEnd) }
+                return if (!isValid || eiEnd - eiStart <= 0) {
+                    ""
+                } else {
+                    eiText.substring(eiStart, eiEnd)
+                }
             }
 
-        val icText: String get() = when {
-            !isValid -> ""
-            else -> when (val ic = inputConnection) {
-                null -> ""
-                else -> ic.getSelectedText(0).toString()
+        val icText: String
+            get() = when {
+                !isValid -> ""
+                else -> when (val ic = inputConnection) {
+                    null -> ""
+                    else -> ic.getSelectedText(0).toString()
+                }
             }
-        }
 
         /**
          * Updates this region's [start] and [end] values.
@@ -898,6 +910,8 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
         var currentWord: Region? = null
             private set
 
+        var tempList: String = ""
+
         fun updateText(exText: ExtractedText?) {
             if (exText == null) {
                 reset(true)
@@ -917,15 +931,26 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
         }
 
         fun reevaluateWords() {
+
             wordsBeforeCurrent.clear()
             wordsAfterCurrent.clear()
             currentWord = null
 
+            if (rawText.isBlank()) {
+                //    if (tempList.length > 2) Log.d("12345", "clear $tempList")
+            } else {
+                tempList = rawText.toString()
+            }
             if (selection.isValid) {
                 val cursor = selection.end.coerceAtLeast(0)
                 val detectStart = (cursor - CACHED_N_CHARS_BEFORE_CURSOR - offset).coerceAtLeast(0)
                 val detectEnd = (cursor + CACHED_N_CHARS_AFTER_CURSOR - offset).coerceAtMost(rawText.length - 1)
-                for (wordRange in TextProcessor.detectWords(rawText, detectStart, detectEnd, FlorisLocale.ENGLISH)) {
+                for (wordRange in TextProcessor.detectWords(
+                    rawText,
+                    detectStart,
+                    detectEnd,
+                    FlorisLocale.ENGLISH
+                )) {
                     val wordStart = wordRange.first + offset + detectStart
                     val wordEnd = wordRange.last + 1 + offset + detectStart
                     if (cursor in wordStart..wordEnd) {
@@ -948,12 +973,21 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
         }
 
         fun reset(isPassword: Boolean) {
-            if (!isPassword) UserDictionaryRepository.processText(rawText.toString())
+
+            if (!isPassword) UserDictionaryRepository
+                .processText(rawText.toString())
+
             rawText.clear()
+
             offset = 0
+            FlorisBoard.getInstanceOrNull()
+                ?.subtypeManager
+                ?.getActiveSubtype()
+                ?.locale?.language
 
             wordsBeforeCurrent.clear()
             wordsAfterCurrent.clear()
+
             currentWord = null
         }
     }
@@ -964,5 +998,26 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
             wordsBeforeCurrent: List<Region>,
             wordsAfterCurrent: List<Region>
         )
+    }
+
+    data class ProcessedWord(val word: String) {
+        var isProcessed = false
+        var locale: String = ""
+
+        override fun hashCode(): Int {
+            return locale.hashCode() + word.hashCode()
+        }
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as ProcessedWord
+
+            if (word != other.word) return false
+            if (locale != other.locale) return false
+
+            return true
+        }
     }
 }
