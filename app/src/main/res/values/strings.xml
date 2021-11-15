@@ -290,8 +290,8 @@
     <string name="buttons">Buttons</string>
     <string name="backgrounds">Backgrounds</string>
     <string name="opacity">Opacity</string>
-    <string name="strokes">Strokes</string>
-    <string name="set_appclication_as_your_default_nphone_app_this_is_necessary_for_ncorrect_work_application">Set appclication as your default\nphone app. This is necessary for\ncorrect work application</string>
+    <string name="strokes">Stroke</string>
+    <string name="set_appclication_as_your_default_nphone_app_this_is_necessary_for_ncorrect_work_application">Set appclication as your default phone app. This is necessary for correct work application</string>
     <string name="give_permissions_for_the_napplication_work_properly">Give permissions for the\napplication work properly</string>
     <string name="allow">Allow</string>
 

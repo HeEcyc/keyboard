@@ -26,14 +26,12 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tryMessage"
-            android:layout_width="200sp"
+            android:layout_width="210sp"
             android:layout_height="85sp"
             android:background="@drawable/bg_text_message"
             android:fontFamily="@font/roboto_500"
             android:gravity="center"
-            android:paddingStart="20dp"
             android:paddingTop="10dp"
-            android:paddingEnd="20sp"
             android:paddingBottom="10dp"
             android:text="@string/try_theme_now"
             android:textColor="@android:color/white"
