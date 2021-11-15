@@ -41,41 +41,35 @@
                 android:textColor="@color/textColorMain"
                 android:textSize="16sp" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/main_magin_top">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/buttonGlideHelp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_help" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/MediumText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:background="?selectableItemBackground"
-                    android:drawableEnd="@drawable/ic_next"
-                    android:drawablePadding="5dp"
-                    android:onClick="@{() -> viewModel.showGlideSettingsActivity()}"
-                    android:text="@string/glide_typing"
-                    android:textColor="@{viewModel.isEnableGlideTyping ? @color/textColorMain : @color/textColorSecondaty}"
-                    android:textSize="16sp" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
-                android:layout_marginVertical="@dimen/main_magin_top"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="@dimen/main_magin_top"
                 android:background="#CB75FF" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 style="@style/MSwitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="@={viewModel.enableGestureCursorControl}"
+                android:text="@string/enable_gesture_cursor_control"
+                android:textColor="@color/textColorMain"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/NormalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/move_cursor_by_sliding_across_space_bar"
+                android:textColor="@color/textColorSecondaty"
+                android:textSize="14sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                style="@style/MSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/main_magin_top"
                 android:checked="@={viewModel.showEmoji}"
                 android:text="@string/show_emoji"
                 android:textColor="@color/textColorMain"

@@ -70,13 +70,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.keyboard.neon_keyboard.ui.glide.preferences.activity.GlideTypingPreferenceActivity"
-            android:configChanges="orientation"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name="com.keyboard.neon_keyboard.ui.language.selector.activity.LanguageSelectorActivity"
             android:configChanges="orientation"
             android:exported="true"

@@ -45,7 +45,7 @@ class NeonApplication : Application() {
         instance = this
         try {
             Timber.plant(Timber.DebugTree())
-         //   initICU()
+            //   initICU()
             val prefs = Preferences.initDefault(this)
             val assetManager = AssetManager.init(this)
             SpellingManager.init(this, FlorisRef.assets("ime/spelling/config.json"))
@@ -59,28 +59,8 @@ class NeonApplication : Application() {
             return
         }
 
-        /*Register a receiver so user config can be applied once device protracted storage is available*/
         if (!UserManagerCompat.isUserUnlocked(this) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             registerReceiver(BootComplete(), IntentFilter(Intent.ACTION_USER_UNLOCKED))
-        }
-    }
-
-    fun initICU(): Boolean {
-        try {
-            val context = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                createDeviceProtectedStorageContext()
-            } else {
-                this
-            }
-            val androidAssetManager = context.assets ?: return false
-            val dstDataFile = File(context.cacheDir, "icudt.dat")
-            dstDataFile.outputStream().use { os ->
-                androidAssetManager.open(ICU_DATA_ASSET_PATH).use { it.copyTo(os) }
-            }
-            val status = nativeInitICUData(dstDataFile.absolutePath.toNativeStr())
-            return status == 0
-        } catch (e: Exception) {
-            return false
         }
     }
 

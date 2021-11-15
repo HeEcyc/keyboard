@@ -1,2 +1,2 @@
-Passwords: LiveKeyboard
-Alias: LiveKeyboard
+Passwords: key_neon
+Alias: key_neon

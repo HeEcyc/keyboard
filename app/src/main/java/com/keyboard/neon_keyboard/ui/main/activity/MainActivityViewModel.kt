@@ -26,7 +26,6 @@ import com.keyboard.neon_keyboard.ui.base.BaseActivity
 import com.keyboard.neon_keyboard.ui.base.BaseViewModel
 import com.keyboard.neon_keyboard.ui.base.createAdapter
 import com.keyboard.neon_keyboard.ui.custom.ThemesItemDecoration
-import com.keyboard.neon_keyboard.ui.glide.preferences.activity.GlideTypingPreferenceActivity
 import com.keyboard.neon_keyboard.ui.language.selector.activity.LanguageSelectorActivity
 import com.keyboard.neon_keyboard.ui.theme.editor.activity.ThemeEditorActivity
 import com.keyboard.neon_keyboard.util.SingleLiveData
@@ -45,6 +44,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
     val onThemeClick = SingleLiveData<KeyboardTheme>()
     val nextActivity = SingleLiveData<Class<out BaseActivity<*, *>>>()
     val currentPage = ObservableField(0)
+    val enableGestureCursorControl = ObservableBoolean(PrefsReporitory.Settings.GlideTyping.enableGestureCursorControl)
 
     val keyboardItemDecoration = ThemesItemDecoration(2, 25)
     val assetsThemeAdapter = createAdapter<KeyboardTheme, ItemKeyboardThemeBinding>(R.layout.item_keyboard_theme) {
@@ -84,6 +84,9 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         }
         observe(tips) { _, _ ->
             PrefsReporitory.Settings.tips = tips.get()
+        }
+        observe(enableGestureCursorControl) { _, _ ->
+            PrefsReporitory.Settings.GlideTyping.enableGestureCursorControl = enableGestureCursorControl.get()
         }
         observe(keyboardSwipe) { _, _ ->
             PrefsReporitory.Settings.keyboardSwipe = keyboardSwipe.get()
@@ -125,7 +128,10 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         LanguageChange.values(),
         PrefsReporitory.Settings.languageChange,
         { item, context -> context.getString(item.displayName) }
-    ) { PrefsReporitory.Settings.languageChange = it }
+    ) {
+        if (it == LanguageChange.SWIPE_THROUGH_SPACE) enableGestureCursorControl.set(false)
+        PrefsReporitory.Settings.languageChange = it
+    }
 
     fun onSpecialSymbolsEditorClick() = showChooserWithCallback(
         R.string.special_symbols_editor,
@@ -160,7 +166,7 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
         viewModelScope.launch(Dispatchers.Main) {
             val themes = withContext(Dispatchers.IO) { ThemeDataBase.dataBase.getThemesDao().getTheme().reversed() }
             themes.forEach { it.isSelected = it.id == PrefsReporitory.keyboardTheme?.id }
-            customThemeAdapter.addItems(themes.sortedBy { it.backgroundImagePath?.endsWith(".gif") })
+            customThemeAdapter.addItems(themes)
         }
     }
 
@@ -172,10 +178,6 @@ class MainActivityViewModel(val adapter: VPAdapter) : BaseViewModel() {
 
     fun showLanguageSettingsActivity() {
         nextActivity.postValue(LanguageSelectorActivity::class.java)
-    }
-
-    fun showGlideSettingsActivity() {
-        nextActivity.postValue(GlideTypingPreferenceActivity::class.java)
     }
 
     private fun showCreateThemeActivity() {
