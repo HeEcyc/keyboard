@@ -912,7 +912,6 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                     }
                     else -> when (data.type) {
                         KeyType.CHARACTER, KeyType.NUMERIC -> {
-                            Log.d("12345", "${data.code}")
                             val text = data.asString(isForDisplay = false)
                             if (isGlidePostEffect && (TextProcessor.isWord(
                                     text,

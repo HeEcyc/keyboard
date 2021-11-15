@@ -34,5 +34,4 @@ class DialogSwipeAnimationView : BaseDialog<DialogSwipeAnimationViewBinding>(R.l
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }
     }
-
 }

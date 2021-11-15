@@ -45,9 +45,6 @@ class FragmentSettings :
             }
             swipeSpeedDialog?.show()
         }
-        binding.buttonGlideHelp.setOnClickListener {
-            DialogSwipeAnimationView().apply { animationType = SwipeAnimationView.AnimationType.GETSURE }.show(parentFragmentManager)
-        }
         binding.buttonKeyboardSwipeHelp.setOnClickListener {
             DialogSwipeAnimationView().apply { animationType = SwipeAnimationView.AnimationType.SWIPE }.show(parentFragmentManager)
         }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.inputmethodservice.InputMethodService
 import android.os.Build
 import android.os.SystemClock
+import android.util.Log
 import android.view.InputDevice
 import android.view.KeyCharacterMap
 import android.view.KeyEvent
@@ -58,6 +59,7 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
 
     val inputConnection: InputConnection?
         get() = if (isInputBindingActive) ims.currentInputConnection else null
+
     val editorInfo: EditorInfo?
         get() = if (isInputBindingActive && ims.currentInputStarted) ims.currentInputEditorInfo else null
 

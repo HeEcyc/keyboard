@@ -28,7 +28,7 @@ class DialogPermissions(private val onPermissionAction: OnPermissionAction) :
         binding.permissionsButton.setOnClickListener { onPermissionAction.askPermissions() }
     }
 
-    fun removeListener() {
+    private fun removeListener() {
         view?.viewTreeObserver?.removeOnWindowFocusChangeListener(focusListener)
     }
 

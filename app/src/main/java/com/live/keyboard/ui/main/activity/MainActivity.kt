@@ -22,7 +22,6 @@ import com.live.keyboard.databinding.MainActivityBinding
 import com.live.keyboard.repository.PrefsReporitory
 import com.live.keyboard.ui.base.BaseActivity
 import com.live.keyboard.ui.dialogs.DialogDone
-import com.live.keyboard.ui.dialogs.DialogGetsureSettings
 import com.live.keyboard.ui.dialogs.DialogInitialSelectDesign
 import com.live.keyboard.ui.dialogs.DialogInitialSelectLanguage
 import com.live.keyboard.ui.dialogs.DialogPermissions
@@ -91,12 +90,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     }
 
     private fun showLanguageDialog() {
-        DialogInitialSelectLanguage().apply { onClosed = { showGetsureDialog() } }
-            .show(supportFragmentManager, null)
-    }
-
-    private fun showGetsureDialog() {
-        DialogGetsureSettings().apply { onClosed = { showDesignDialog() } }
+        DialogInitialSelectLanguage().apply { onClosed = { showDesignDialog() } }
             .show(supportFragmentManager, null)
     }
 
@@ -155,11 +149,11 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         startActivity(Intent(this, activityClass))
     }
 
-    fun isKeyboardActive() = inputManager
+    private fun isKeyboardActive() = inputManager
         .enabledInputMethodList
         .firstOrNull { it.packageName == packageName } != null
 
-    fun isKeyboardEnable() = inputManager
+    private fun isKeyboardEnable() = inputManager
         .enabledInputMethodList
         .firstOrNull { it.packageName == packageName }
         ?.id == Settings.Secure.getString(contentResolver, "default_input_method")
