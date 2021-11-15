@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
-import com.keyboard.neon_keyboard.crashutility.CrashUtility
 import com.keyboard.neon_keyboard.data.KeyboardTheme
 import com.keyboard.neon_keyboard.databinding.FlorisboardBinding
 import com.keyboard.neon_keyboard.ime.core.FlorisBoard
@@ -27,7 +26,6 @@ class BackgroundViewKeyboardService : FlorisBoard(), SharedPreferences.OnSharedP
     @SuppressLint("InflateParams", "ClickableViewAccessibility")
     override fun onCreateInputView(): View {
         PrefsReporitory.subscribeToPrefsChangeListener(this)
-        CrashUtility.handleStagedButUnhandledExceptions()
         updateThemeContext(currentThemeResId)
         popupLayerView = PopupLayerView(themeContext)
         window?.window?.findViewById<View>(android.R.id.content)?.let { content ->

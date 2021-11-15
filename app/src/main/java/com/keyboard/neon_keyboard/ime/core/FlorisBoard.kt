@@ -39,7 +39,6 @@ import androidx.lifecycle.ServiceLifecycleDispatcher
 import androidx.lifecycle.coroutineScope
 import com.keyboard.neon_keyboard.R
 import com.keyboard.neon_keyboard.common.ViewUtils
-import com.keyboard.neon_keyboard.crashutility.CrashUtility
 import com.keyboard.neon_keyboard.databinding.FlorisboardBinding
 import com.keyboard.neon_keyboard.ime.clip.ClipboardInputManager
 import com.keyboard.neon_keyboard.ime.clip.FlorisClipboardManager
@@ -161,7 +160,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
             mediaInputManager = MediaInputManager.getInstance()
             clipInputManager = ClipboardInputManager.getInstance()
         } catch (e: Exception) {
-            CrashUtility.stageException(e)
+
         }
     }
 
@@ -220,20 +219,18 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
                 }
             } catch (e: Exception) {
                 super.onCreate() // MUST CALL even if exception thrown or crash loop is imminent
-                CrashUtility.stageException(e)
                 return
             }
             // Code executed here indicates no crashes occurred, so we execute the onCreate() event as normal
             super.onCreate()
             eventListeners.toList().forEach { it?.onCreate() }
         } catch (e: Exception) {
-            CrashUtility.stageException(e)
+
         }
     }
 
     @SuppressLint("InflateParams")
     override fun onCreateInputView(): View? {
-        CrashUtility.handleStagedButUnhandledExceptions()
 
         updateThemeContext(currentThemeResId)
 

@@ -10,7 +10,6 @@ import androidx.core.os.UserManagerCompat
 import com.appsflyer.AppsFlyerLib
 import com.keyboard.neon_keyboard.common.NativeStr
 import com.keyboard.neon_keyboard.common.toNativeStr
-import com.keyboard.neon_keyboard.crashutility.CrashUtility
 import com.keyboard.neon_keyboard.ime.core.Preferences
 import com.keyboard.neon_keyboard.ime.core.SubtypeManager
 import com.keyboard.neon_keyboard.ime.dictionary.DictionaryManager
@@ -86,7 +85,6 @@ class NeonApplication : Application() {
     }
 
     fun init() {
-        CrashUtility.install(this)
         val prefs = Preferences.initDefault(this)
         val assetManager = AssetManager.init(this)
         SubtypeManager.init(this)
