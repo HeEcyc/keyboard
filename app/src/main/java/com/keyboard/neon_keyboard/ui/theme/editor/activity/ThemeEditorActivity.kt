@@ -200,7 +200,7 @@ class ThemeEditorActivity :
         }
     }
 
-    fun onAttachTheme(keyboardTheme: KeyboardTheme?, isThemeHasModifications: Boolean) {
+    private fun onAttachTheme(keyboardTheme: KeyboardTheme?, isThemeHasModifications: Boolean) {
         Intent(this, MainActivity::class.java)
             .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             .putExtra(BUNDLE_IS_EDITING_THEME_KEY, isThemeHasModifications)

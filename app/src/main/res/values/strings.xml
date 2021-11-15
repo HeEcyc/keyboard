@@ -1,138 +1,138 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Neon Keyboard</string>
-    <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Pause</string>
-    <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Wait</string>
+    <string name="app_name" translatable="false">Neon Keyboard</string>
+    <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout" translatable="false">Pause</string>
+    <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout" translatable="false">Wait</string>
 
     <!-- One-handed strings -->
-    <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button">Close one-handed mode.</string>
-    <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button">Move keyboard to the left.</string>
+    <string name="one_handed__close_btn_content_description" comment="Content description for the one-handed close button" translatable="false">Close one-handed mode.</string>
+    <string name="one_handed__move_start_btn_content_description" comment="Content description for the one-handed move to left button" translatable="false">Move keyboard to the left.</string>
 
     <!-- Private mode info dialog strings -->
-    <string name="private_mode_dialog__title" comment="Title of the private mode dialog">Private mode</string>
+    <string name="private_mode_dialog__title" comment="Title of the private mode dialog" translatable="false">Private mode</string>
     <!--
         <string name="private_mode_dialog__text" comment="Text of the private mode dialog">The icon you just clicked at indicates that FlorisBoard works in the private mode. This means that all features which require to process and temporarily save your input stop working. This applies at minimum to the following features (if they\'ve been turned on previously):\n\n - Next word algorithm adjustments\n\n - Clipboard paste suggestions\n\n - Clipboard history\n\nFlorisBoard enters this mode either if an app requests it or if it was specifically enabled in the advanced settings.</string>
     -->
 
     <!-- Media strings -->
-    <string name="media__tab__emojis" comment="Tab description for emojis in the media UI">Emojis</string>
+    <string name="media__tab__emojis" comment="Tab description for emojis in the media UI" translatable="false">Emojis</string>
 
     <!-- Emoji strings -->
-    <string name="emoji__category__smileys_emotion" comment="Emoji category name">Smileys &amp; Emotions</string>
-    <string name="emoji__category__people_body" comment="Emoji category name">People &amp; Body</string>
-    <string name="emoji__category__animals_nature" comment="Emoji category name">Animals &amp; Nature</string>
-    <string name="emoji__category__food_drink" comment="Emoji category name">Food &amp; Drink</string>
-    <string name="emoji__category__travel_places" comment="Emoji category name">Travel &amp; Places</string>
-    <string name="emoji__category__activities" comment="Emoji category name">Activities</string>
-    <string name="emoji__category__objects" comment="Emoji category name">Objects</string>
-    <string name="emoji__category__symbols" comment="Emoji category name">Symbols</string>
-    <string name="emoji__category__flags" comment="Emoji category name">Flags</string>
+    <string name="emoji__category__smileys_emotion" comment="Emoji category name" translatable="false">Smileys &amp; Emotions</string>
+    <string name="emoji__category__people_body" comment="Emoji category name" translatable="false">People &amp; Body</string>
+    <string name="emoji__category__animals_nature" comment="Emoji category name" translatable="false">Animals &amp; Nature</string>
+    <string name="emoji__category__food_drink" comment="Emoji category name" translatable="false">Food &amp; Drink</string>
+    <string name="emoji__category__travel_places" comment="Emoji category name" translatable="false">Travel &amp; Places</string>
+    <string name="emoji__category__activities" comment="Emoji category name" translatable="false">Activities</string>
+    <string name="emoji__category__objects" comment="Emoji category name" translatable="false">Objects</string>
+    <string name="emoji__category__symbols" comment="Emoji category name" translatable="false">Symbols</string>
+    <string name="emoji__category__flags" comment="Emoji category name" translatable="false">Flags</string>
 
     <!-- Smartbar strings -->
-    <string name="smartbar__quick_action__exit_editing" comment="Content-description for the exit editing layout button in Smartbar">Exit text editing panel.</string>
-    <string name="smartbar__quick_action__one_handed_mode" comment="Content-description for the one-handed quick action in Smartbar">Toggle the state of the one-handed mode.</string>
-    <string name="smartbar__quick_action__open_settings" comment="Content-description for the settings quick action in Smartbar">Open settings.</string>
-    <string name="smartbar__quick_action__switch_to_editing_context" comment="Content-description for the editing quick action in Smartbar">Switch to text editing panel.</string>
-    <string name="smartbar__quick_action__switch_to_media_context" comment="Content-description for the media quick action in Smartbar">Switch to media input view.</string>
-    <string name="smartbar__quick_action__undo" comment="Content-description for the undo quick action in Smartbar">Undo button to reverse the last action</string>
-    <string name="smartbar__quick_action__redo" comment="Content-description for the redo quick action in Smartbar">Redo button to reverse the last Undo</string>
-    <string name="smartbar__quick_action__private_mode" comment="Content-description for the private mode button in Smartbar">If visible, indicates that private mode is active. When clicked, shows info about the private mode.</string>
+    <string name="smartbar__quick_action__exit_editing" comment="Content-description for the exit editing layout button in Smartbar" translatable="false">Exit text editing panel.</string>
+    <string name="smartbar__quick_action__one_handed_mode" comment="Content-description for the one-handed quick action in Smartbar" translatable="false">Toggle the state of the one-handed mode.</string>
+    <string name="smartbar__quick_action__open_settings" comment="Content-description for the settings quick action in Smartbar" translatable="false">Open settings.</string>
+    <string name="smartbar__quick_action__switch_to_editing_context" comment="Content-description for the editing quick action in Smartbar" translatable="false">Switch to text editing panel.</string>
+    <string name="smartbar__quick_action__switch_to_media_context" comment="Content-description for the media quick action in Smartbar" translatable="false">Switch to media input view.</string>
+    <string name="smartbar__quick_action__undo" comment="Content-description for the undo quick action in Smartbar" translatable="false">Undo button to reverse the last action</string>
+    <string name="smartbar__quick_action__redo" comment="Content-description for the redo quick action in Smartbar" translatable="false">Redo button to reverse the last Undo</string>
+    <string name="smartbar__quick_action__private_mode" comment="Content-description for the private mode button in Smartbar" translatable="false">If visible, indicates that private mode is active. When clicked, shows info about the private mode.</string>
 
     <!-- Settings UI strings -->
-    <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">System default</string>
+    <string name="settings__system_default" comment="General string which is used when a preference has the system default value set" translatable="false">System default</string>
 
-    <string name="pref__theme__mode__label" comment="Label of the theme mode preference">Theme mode</string>
-    <string name="pref__theme__mode__always_day" comment="Preference value for theme mode">Always day</string>
-    <string name="pref__theme__mode__always_night" comment="Preference value for theme mode">Always night</string>
-    <string name="pref__theme__mode__follow_system" comment="Preference value for theme mode">Follow system</string>
-    <string name="pref__theme__mode__follow_time" comment="Preference value for theme mode">Follow time</string>
-    <string name="pref__theme__day" comment="Label of the day group (day means light theme)">Day theme</string>
-    <string name="pref__theme__night" comment="Label of the night group (night means dark theme)">Night theme</string>
-    <string name="pref__theme__any_theme_adapt_to_app__label" comment="Label of the theme adapt to app preference">Adapt colors to app</string>
-    <string name="pref__theme__any_theme_adapt_to_app__summary" comment="Summary of the theme adapt to app preference">Theme colors adapt to those in the current app, if the target app supports this.</string>
+    <string name="pref__theme__mode__label" comment="Label of the theme mode preference" translatable="false">Theme mode</string>
+    <string name="pref__theme__mode__always_day" comment="Preference value for theme mode" translatable="false">Always day</string>
+    <string name="pref__theme__mode__always_night" comment="Preference value for theme mode" translatable="false">Always night</string>
+    <string name="pref__theme__mode__follow_system" comment="Preference value for theme mode" translatable="false">Follow system</string>
+    <string name="pref__theme__mode__follow_time" comment="Preference value for theme mode" translatable="false">Follow time</string>
+    <string name="pref__theme__day" comment="Label of the day group (day means light theme)" translatable="false">Day theme</string>
+    <string name="pref__theme__night" comment="Label of the night group (night means dark theme)" translatable="false">Night theme</string>
+    <string name="pref__theme__any_theme_adapt_to_app__label" comment="Label of the theme adapt to app preference" translatable="false">Adapt colors to app</string>
+    <string name="pref__theme__any_theme_adapt_to_app__summary" comment="Summary of the theme adapt to app preference" translatable="false">Theme colors adapt to those in the current app, if the target app supports this.</string>
 
-    <string name="settings__theme_editor__value_type_reference" comment="Theme value type">Reference</string>
-    <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type">Solid color</string>
-    <string name="settings__theme_editor__value_type_on_off" comment="Theme value type">Switch</string>
-    <string name="settings__theme_editor__value_type_other" comment="Theme value type">Other</string>
+    <string name="settings__theme_editor__value_type_reference" comment="Theme value type" translatable="false">Reference</string>
+    <string name="settings__theme_editor__value_type_solid_color" comment="Theme value type" translatable="false">Solid color</string>
+    <string name="settings__theme_editor__value_type_on_off" comment="Theme value type" translatable="false">Switch</string>
+    <string name="settings__theme_editor__value_type_other" comment="Theme value type" translatable="false">Other</string>
 
-    <string name="settings__theme__group_window" comment="Theme group label">Window &amp; System</string>
-    <string name="settings__theme__group_keyboard" comment="Theme group label">Keyboard</string>
-    <string name="settings__theme__group_key" comment="Theme group label">Key</string>
-    <string name="settings__theme__group_key_specific" comment="Theme group label (%s is specific modifier)">Key (%s)</string>
-    <string name="settings__theme__group_media" comment="Theme group label">Media context</string>
-    <string name="settings__theme__group_oneHanded" comment="Theme group label">One-handed</string>
-    <string name="settings__theme__group_popup" comment="Theme group label">Popup</string>
-    <string name="settings__theme__group_privateMode" comment="Theme group label">Private mode</string>
-    <string name="settings__theme__group_smartbar" comment="Theme group label">Smartbar</string>
-    <string name="settings__theme__group_smartbarButton" comment="Theme group label">Smartbar button</string>
-    <string name="settings__theme__group_extractEditLayout" comment="Theme group label">Landscape fullscreen layout</string>
-    <string name="settings__theme__group_extractActionButton" comment="Theme group label">Landscape fullscreen action button</string>
-    <string name="settings__theme__group_glideTrail" comment="Theme group label">Glide trail</string>
-    <string name="settings__theme__group_custom" comment="Theme group label (%s is custom group name)">Custom group (%s)</string>
+    <string name="settings__theme__group_window" comment="Theme group label" translatable="false">Window &amp; System</string>
+    <string name="settings__theme__group_keyboard" comment="Theme group label" translatable="false">Keyboard</string>
+    <string name="settings__theme__group_key" comment="Theme group label" translatable="false">Key</string>
+    <string name="settings__theme__group_key_specific" comment="Theme group label (%s is specific modifier)" translatable="false">Key (%s)</string>
+    <string name="settings__theme__group_media" comment="Theme group label" translatable="false">Media context</string>
+    <string name="settings__theme__group_oneHanded" comment="Theme group label" translatable="false">One-handed</string>
+    <string name="settings__theme__group_popup" comment="Theme group label" translatable="false">Popup</string>
+    <string name="settings__theme__group_privateMode" comment="Theme group label" translatable="false">Private mode</string>
+    <string name="settings__theme__group_smartbar" comment="Theme group label" translatable="false">Smartbar</string>
+    <string name="settings__theme__group_smartbarButton" comment="Theme group label" translatable="false">Smartbar button</string>
+    <string name="settings__theme__group_extractEditLayout" comment="Theme group label" translatable="false">Landscape fullscreen layout</string>
+    <string name="settings__theme__group_extractActionButton" comment="Theme group label" translatable="false">Landscape fullscreen action button</string>
+    <string name="settings__theme__group_glideTrail" comment="Theme group label" translatable="false">Glide trail</string>
+    <string name="settings__theme__group_custom" comment="Theme group label (%s is custom group name)" translatable="false">Custom group (%s)</string>
 
-    <string name="settings__theme__attr_background" comment="Theme attribute label">Background color</string>
-    <string name="settings__theme__attr_backgroundActive" comment="Theme attribute label">Background color (active)</string>
-    <string name="settings__theme__attr_backgroundPressed" comment="Theme attribute label">Background color (pressed)</string>
-    <string name="settings__theme__attr_foreground" comment="Theme attribute label">Foreground color</string>
-    <string name="settings__theme__attr_foregroundAlt" comment="Theme attribute label">Foreground color (alternative)</string>
-    <string name="settings__theme__attr_foregroundPressed" comment="Theme attribute label">Foreground color (pressed)</string>
-    <string name="settings__theme__attr_showBorder" comment="Theme attribute label">Show border</string>
-    <string name="settings__theme__attr_colorPrimary" comment="Theme attribute label">Primary color</string>
-    <string name="settings__theme__attr_colorPrimaryDark" comment="Theme attribute label">Primary color (dark)</string>
-    <string name="settings__theme__attr_colorAccent" comment="Theme attribute label">Accent color</string>
-    <string name="settings__theme__attr_navBarColor" comment="Theme attribute label">Navigation bar color</string>
-    <string name="settings__theme__attr_navBarLight" comment="Theme attribute label">Navigation bar dark foreground</string>
-    <string name="settings__theme__attr_semiTransparentColor" comment="Theme attribute label">Semi transparent color</string>
-    <string name="settings__theme__attr_textColor" comment="Theme attribute label">Text color</string>
-    <string name="settings__theme__attr_custom" comment="Theme attribute label (%s is custom attribute name)">Custom attribute (%s)</string>
+    <string name="settings__theme__attr_background" comment="Theme attribute label" translatable="false">Background color</string>
+    <string name="settings__theme__attr_backgroundActive" comment="Theme attribute label" translatable="false">Background color (active)</string>
+    <string name="settings__theme__attr_backgroundPressed" comment="Theme attribute label" translatable="false">Background color (pressed)</string>
+    <string name="settings__theme__attr_foreground" comment="Theme attribute label" translatable="false">Foreground color</string>
+    <string name="settings__theme__attr_foregroundAlt" comment="Theme attribute label" translatable="false">Foreground color (alternative)</string>
+    <string name="settings__theme__attr_foregroundPressed" comment="Theme attribute label" translatable="false">Foreground color (pressed)</string>
+    <string name="settings__theme__attr_showBorder" comment="Theme attribute label" translatable="false">Show border</string>
+    <string name="settings__theme__attr_colorPrimary" comment="Theme attribute label" translatable="false">Primary color</string>
+    <string name="settings__theme__attr_colorPrimaryDark" comment="Theme attribute label" translatable="false">Primary color (dark)</string>
+    <string name="settings__theme__attr_colorAccent" comment="Theme attribute label" translatable="false">Accent color</string>
+    <string name="settings__theme__attr_navBarColor" comment="Theme attribute label" translatable="false">Navigation bar color</string>
+    <string name="settings__theme__attr_navBarLight" comment="Theme attribute label" translatable="false">Navigation bar dark foreground</string>
+    <string name="settings__theme__attr_semiTransparentColor" comment="Theme attribute label" translatable="false">Semi transparent color</string>
+    <string name="settings__theme__attr_textColor" comment="Theme attribute label" translatable="false">Text color</string>
+    <string name="settings__theme__attr_custom" comment="Theme attribute label (%s is custom attribute name)" translatable="false">Custom attribute (%s)</string>
 
-    <string name="settings__input_feedback__title" comment="Title of Input Feedback preferences fragment">Sounds &amp; Vibration</string>
+    <string name="settings__input_feedback__title" comment="Title of Input Feedback preferences fragment" translatable="false">Sounds &amp; Vibration</string>
 
-    <string name="pref__keyboard__group_keys__label" comment="Preference group title">Keys</string>
-    <string name="pref__keyboard__number_row__label" comment="Preference title">Number row</string>
-    <string name="pref__keyboard__number_row__summary" comment="Preference summary">Show number row on top of character layout</string>
-    <string name="pref__keyboard__hinted_number_row_mode__label" comment="Preference title">Hinted number row</string>
-    <string name="pref__keyboard__hinted_symbols_mode__label" comment="Preference title">Hinted symbols</string>
-    <string name="pref__keyboard__hint_mode__disabled" comment="Preference value">Disabled</string>
-    <string name="pref__keyboard__hint_mode__enabled_hint_priority" comment="Preference value">Enabled (Hint is prioritized)</string>
-    <string name="pref__keyboard__hint_mode__enabled_accent_priority" comment="Preference value">Enabled (Accent is prioritized)</string>
-    <string name="pref__keyboard__hint_mode__enabled_smart_priority" comment="Preference value">Enabled (Smart prioritization)</string>
-    <string name="pref__keyboard__utility_key_enabled__label" comment="Preference title">Show utility key</string>
-    <string name="pref__keyboard__utility_key_enabled__summary" comment="Preference summary">Shows a configurable utility key next to space bar</string>
-    <string name="pref__keyboard__utility_key_action__label" comment="Preference title">Utility key action</string>
-    <string name="pref__keyboard__utility_key_action__switch_to_emojis" comment="Preference value">Switch to emojis</string>
-    <string name="pref__keyboard__utility_key_action__switch_language" comment="Preference value">Switch language</string>
-    <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">Switch keyboard app</string>
-    <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">Dynamic: Switch to emojis / Switch language</string>
-    <string name="pref__keyboard__merge_hint_popups_enabled__label">Also show symbol popups</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">Add the symbol popups to the default layout</string>
-    <string name="pref__keyboard__group_layout__label" comment="Preference group title">Layout</string>
-    <string name="pref__keyboard__one_handed_mode__label" comment="Preference title">One-handed mode</string>
-    <string name="pref__keyboard__one_handed_mode__off" comment="Preference value">Off</string>
-    <string name="pref__keyboard__one_handed_mode__right" comment="Preference value">Right-handed mode</string>
-    <string name="pref__keyboard__one_handed_mode__left" comment="Preference value">Left-handed mode</string>
-    <string name="pref__keyboard__landscape_input_ui_mode__label" comment="Preference value">Landscape fullscreen input</string>
-    <string name="pref__keyboard__landscape_input_ui_mode__never_show" comment="Preference value">Never show</string>
-    <string name="pref__keyboard__landscape_input_ui_mode__always_show" comment="Preference value">Always show</string>
-    <string name="pref__keyboard__landscape_input_ui_mode__dynamically_show" comment="Preference value">Dynamically show</string>
-    <string name="pref__keyboard__height_factor__label" comment="Preference title">Keyboard height</string>
-    <string name="pref__keyboard__height_factor__extra_short" comment="Preference value">Extra-short</string>
-    <string name="pref__keyboard__height_factor__short" comment="Preference value">Short</string>
-    <string name="pref__keyboard__height_factor__mid_short" comment="Preference value">Mid-short</string>
-    <string name="pref__keyboard__height_factor__normal" comment="Preference value">Normal</string>
-    <string name="pref__keyboard__height_factor__mid_tall" comment="Preference value">Mid-tall</string>
-    <string name="pref__keyboard__height_factor__tall" comment="Preference value">Tall</string>
-    <string name="pref__keyboard__height_factor__extra_tall" comment="Preference value">Extra-tall</string>
-    <string name="pref__keyboard__height_factor__custom" comment="Preference value">Custom</string>
-    <string name="pref__keyboard__group_keypress__label" comment="Preference group title">Key press</string>
-    <string name="pref__keyboard__popup_visible__label" comment="Preference title">PopUp Visibility</string>
-    <string name="pref__keyboard__popup_visible__summary" comment="Preference summary">Show popup when you press a key</string>
-    <string name="pref__keyboard__space_bar_switches_to_characters__label" comment="Preference title">Space bar switches back to character layout</string>
-    <string name="pref__keyboard__space_bar_switches_to_characters__summary" comment="Preference summary">Pressing space bar automatically switches back to characters when in symbols or numeric</string>
+    <string name="pref__keyboard__group_keys__label" comment="Preference group title" translatable="false">Keys</string>
+    <string name="pref__keyboard__number_row__label" comment="Preference title" translatable="false">Number row</string>
+    <string name="pref__keyboard__number_row__summary" comment="Preference summary" translatable="false">Show number row on top of character layout</string>
+    <string name="pref__keyboard__hinted_number_row_mode__label" comment="Preference title" translatable="false">Hinted number row</string>
+    <string name="pref__keyboard__hinted_symbols_mode__label" comment="Preference title" translatable="false">Hinted symbols</string>
+    <string name="pref__keyboard__hint_mode__disabled" comment="Preference value" translatable="false">Disabled</string>
+    <string name="pref__keyboard__hint_mode__enabled_hint_priority" comment="Preference value" translatable="false">Enabled (Hint is prioritized)</string>
+    <string name="pref__keyboard__hint_mode__enabled_accent_priority" comment="Preference value" translatable="false">Enabled (Accent is prioritized)</string>
+    <string name="pref__keyboard__hint_mode__enabled_smart_priority" comment="Preference value" translatable="false">Enabled (Smart prioritization)</string>
+    <string name="pref__keyboard__utility_key_enabled__label" comment="Preference title" translatable="false">Show utility key</string>
+    <string name="pref__keyboard__utility_key_enabled__summary" comment="Preference summary" translatable="false">Shows a configurable utility key next to space bar</string>
+    <string name="pref__keyboard__utility_key_action__label" comment="Preference title" translatable="false">Utility key action</string>
+    <string name="pref__keyboard__utility_key_action__switch_to_emojis" comment="Preference value" translatable="false">Switch to emojis</string>
+    <string name="pref__keyboard__utility_key_action__switch_language" comment="Preference value" translatable="false">Switch language</string>
+    <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value" translatable="false">Switch keyboard app</string>
+    <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value" translatable="false">Dynamic: Switch to emojis / Switch language</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__label" translatable="false">Also show symbol popups</string>
+    <string name="pref__keyboard_merge_hint_popups_enabled__summary" translatable="false">Add the symbol popups to the default layout</string>
+    <string name="pref__keyboard__group_layout__label" comment="Preference group title" translatable="false">Layout</string>
+    <string name="pref__keyboard__one_handed_mode__label" comment="Preference title" translatable="false">One-handed mode</string>
+    <string name="pref__keyboard__one_handed_mode__off" comment="Preference value " translatable="false">Off</string>
+    <string name="pref__keyboard__one_handed_mode__right" comment="Preference value" translatable="false">Right-handed mode</string>
+    <string name="pref__keyboard__one_handed_mode__left" comment="Preference value" translatable="false">Left-handed mode</string>
+    <string name="pref__keyboard__landscape_input_ui_mode__label" comment="Preference value" translatable="false">Landscape fullscreen input</string>
+    <string name="pref__keyboard__landscape_input_ui_mode__never_show" comment="Preference value" translatable="false">Never show</string>
+    <string name="pref__keyboard__landscape_input_ui_mode__always_show" comment="Preference value" translatable="false">Always show</string>
+    <string name="pref__keyboard__landscape_input_ui_mode__dynamically_show" comment="Preference value" translatable="false">Dynamically show</string>
+    <string name="pref__keyboard__height_factor__label" comment="Preference title" translatable="false">Keyboard height</string>
+    <string name="pref__keyboard__height_factor__extra_short" comment="Preference value" translatable="false">Extra-short</string>
+    <string name="pref__keyboard__height_factor__short" comment="Preference value" translatable="false">Short</string>
+    <string name="pref__keyboard__height_factor__mid_short" comment="Preference value" translatable="false">Mid-short</string>
+    <string name="pref__keyboard__height_factor__normal" comment="Preference value" translatable="false">Normal</string>
+    <string name="pref__keyboard__height_factor__mid_tall" comment="Preference value" translatable="false">Mid-tall</string>
+    <string name="pref__keyboard__height_factor__tall" comment="Preference value" translatable="false">Tall</string>
+    <string name="pref__keyboard__height_factor__extra_tall" comment="Preference value" translatable="false">Extra-tall</string>
+    <string name="pref__keyboard__height_factor__custom" comment="Preference value" translatable="false">Custom</string>
+    <string name="pref__keyboard__group_keypress__label" comment="Preference group title" translatable="false">Key press</string>
+    <string name="pref__keyboard__popup_visible__label" comment="Preference title" translatable="false">PopUp Visibility</string>
+    <string name="pref__keyboard__popup_visible__summary" comment="Preference summary" translatable="false">Show popup when you press a key</string>
+    <string name="pref__keyboard__space_bar_switches_to_characters__label" comment="Preference title" translatable="false">Space bar switches back to character layout</string>
+    <string name="pref__keyboard__space_bar_switches_to_characters__summary" comment="Preference summary" translatable="false">Pressing space bar automatically switches back to characters when in symbols or numeric</string>
 
-    <string name="pref__smartbar__enabled__label" comment="Preference title">Enable Smartbar</string>
-    <string name="pref__smartbar__enabled__summary" comment="Preference summary">Will show on top of the keyboard</string>
-    <string name="pref__suggestion__title" comment="Preference group title">Suggestions</string>
+    <string name="pref__smartbar__enabled__label" comment="Preference title" translatable="false">Enable Smartbar</string>
+    <string name="pref__smartbar__enabled__summary" comment="Preference summary" translatable="false">Will show on top of the keyboard</string>
+    <string name="pref__suggestion__title" comment="Preference group title" translatable="false">Suggestions</string>
     <string name="pref__suggestion__api30_inline_suggestions_enabled__label" comment="Preference title" translatable="false">Inline suggestions</string>
     <string name="pref__suggestion__api30_inline_suggestions_enabled__summary" comment="Preference summary" translatable="false">Show inline suggestions provided by autofill services (password managers, ...)</string>
     <string name="pref__suggestion__enabled__label" comment="Preference title" translatable="false">[EXPERIMENTAL] Display suggestions while you type</string>
@@ -147,140 +147,140 @@
     <string name="pref__suggestion__display_mode__classic" comment="Preference value" translatable="false">Classic (3 columns)</string>
     <string name="pref__suggestion__display_mode__dynamic" comment="Preference value" translatable="false">Dynamic width</string>
     <string name="pref__suggestion__display_mode__dynamic_scrollable" comment="Preference value" translatable="false">Dynamic width &amp; scrollable</string>
-    <string name="pref__dictionary__title" comment="Preference group title">Dictionary</string>
-    <string name="pref__dictionary__enable_system_user_dictionary__label" comment="Preference title">Enable system user dictionary</string>
-    <string name="pref__dictionary__enable_system_user_dictionary__summary" comment="Preference summary">Suggest words stored in the system user dictionary</string>
-    <string name="pref__dictionary__manage_system_user_dictionary__label" comment="Preference title">Manage system user dictionary</string>
-    <string name="pref__dictionary__manage_system_user_dictionary__summary" comment="Preference summary">Add, view, and remove entries for the system user dictionary</string>
-    <string name="pref__dictionary__enable_internal_user_dictionary__label" comment="Preference title">Enable internal user dictionary</string>
-    <string name="pref__dictionary__enable_internal_user_dictionary__summary" comment="Preference summary">Suggest words stored in the internal user dictionary</string>
-    <string name="pref__dictionary__manage_floris_user_dictionary__label" comment="Preference title">Manage internal user dictionary</string>
-    <string name="pref__dictionary__manage_floris_user_dictionary__summary" comment="Preference summary">Add, view, and remove entries for the internal user dictionary</string>
-    <string name="pref__correction__title" comment="Preference group title">Corrections</string>
-    <string name="pref__correction__manage_spell_checker__label" comment="Preference title">Spell checker</string>
-    <string name="pref__correction__manage_spell_checker__summary" comment="Preference summary">Manage and configure the spell checker service</string>
-    <string name="pref__correction__auto_capitalization__label" comment="Preference title">Auto-capitalization</string>
-    <string name="pref__correction__auto_capitalization__summary" comment="Preference summary">Capitalize words based on the current input context</string>
-    <string name="pref__correction__remember_caps_lock_state__label" comment="Preference title">Remember caps lock state</string>
-    <string name="pref__correction__remember_caps_lock_state__summary" comment="Preference summary">Caps lock will stay on when moving to another text field</string>
-    <string name="pref__correction__double_space_period__label" comment="Preference title">Double-space period</string>
-    <string name="pref__correction__double_space_period__summary" comment="Preference summary">Tapping twice on spacebar inserts a period followed by a space</string>
+    <string name="pref__dictionary__title" comment="Preference group title" translatable="false">Dictionary</string>
+    <string name="pref__dictionary__enable_system_user_dictionary__label" comment="Preference title" translatable="false">Enable system user dictionary</string>
+    <string name="pref__dictionary__enable_system_user_dictionary__summary" comment="Preference summary" translatable="false">Suggest words stored in the system user dictionary</string>
+    <string name="pref__dictionary__manage_system_user_dictionary__label" comment="Preference title" translatable="false">Manage system user dictionary</string>
+    <string name="pref__dictionary__manage_system_user_dictionary__summary" comment="Preference summary" translatable="false">Add, view, and remove entries for the system user dictionary</string>
+    <string name="pref__dictionary__enable_internal_user_dictionary__label" comment="Preference title" translatable="false">Enable internal user dictionary</string>
+    <string name="pref__dictionary__enable_internal_user_dictionary__summary" comment="Preference summary" translatable="false">Suggest words stored in the internal user dictionary</string>
+    <string name="pref__dictionary__manage_floris_user_dictionary__label" comment="Preference title" translatable="false">Manage internal user dictionary</string>
+    <string name="pref__dictionary__manage_floris_user_dictionary__summary" comment="Preference summary" translatable="false">Add, view, and remove entries for the internal user dictionary</string>
+    <string name="pref__correction__title" comment="Preference group title" translatable="false">Corrections</string>
+    <string name="pref__correction__manage_spell_checker__label" comment="Preference title" translatable="false">Spell checker</string>
+    <string name="pref__correction__manage_spell_checker__summary" comment="Preference summary" translatable="false">Manage and configure the spell checker service</string>
+    <string name="pref__correction__auto_capitalization__label" comment="Preference title" translatable="false">Auto-capitalization</string>
+    <string name="pref__correction__auto_capitalization__summary" comment="Preference summary" translatable="false">Capitalize words based on the current input context</string>
+    <string name="pref__correction__remember_caps_lock_state__label" comment="Preference title" translatable="false">Remember caps lock state</string>
+    <string name="pref__correction__remember_caps_lock_state__summary" comment="Preference summary" translatable="false">Caps lock will stay on when moving to another text field</string>
+    <string name="pref__correction__double_space_period__label" comment="Preference title" translatable="false">Double-space period</string>
+    <string name="pref__correction__double_space_period__summary" comment="Preference summary" translatable="false">Tapping twice on spacebar inserts a period followed by a space</string>
 
-    <string name="pref__glide__title" comment="Preference group title">Glide typing</string>
-    <string name="pref__glide__enabled__label" comment="Preference title">Enable glide typing</string>
-    <string name="pref__glide__enabled__summary" comment="Preference summary">Type in a word by sliding your finger through its letters</string>
-    <string name="pref__glide__show_trail__label" comment="Preference title">Show glide trail</string>
-    <string name="pref__glide__show_trail__summary" comment="Preference summary">Will disappear after each word</string>
-    <string name="pref__gestures__general_title" comment="Preference group title">General gestures</string>
-    <string name="pref__gestures__space_bar_title" comment="Preference group title">Space bar gestures</string>
-    <string name="pref__gestures__other_title" comment="Preference group title">Other gestures / Gesture thresholds</string>
-    <string name="pref__gestures__swipe_action__no_action" comment="Preference value for swipe action">No action</string>
-    <string name="pref__gestures__swipe_action__cycle_to_previous_keyboard_mode" comment="Preference value for swipe action">Cycle to previous keyboard mode</string>
-    <string name="pref__gestures__swipe_action__cycle_to_next_keyboard_mode" comment="Preference value for swipe action">Cycle to next keyboard mode</string>
-    <string name="pref__gestures__swipe_action__delete_characters_precisely" comment="Preference value for swipe action">Delete characters precisely</string>
-    <string name="pref__gestures__swipe_action__delete_word" comment="Preference value for swipe action">Delete current word</string>
-    <string name="pref__gestures__swipe_action__delete_words_precisely" comment="Preference value for swipe action">Delete words precisely</string>
-    <string name="pref__gestures__swipe_action__hide_keyboard" comment="Preference value for swipe action">Hide keyboard</string>
-    <string name="pref__gestures__swipe_action__insert_space" comment="Preference value for swipe action">Insert space</string>
-    <string name="pref__gestures__swipe_action__move_cursor_up" comment="Preference value for swipe action">Move cursor up</string>
-    <string name="pref__gestures__swipe_action__move_cursor_down" comment="Preference value for swipe action">Move cursor down</string>
-    <string name="pref__gestures__swipe_action__move_cursor_left" comment="Preference value for swipe action">Move cursor left</string>
-    <string name="pref__gestures__swipe_action__move_cursor_right" comment="Preference value for swipe action">Move cursor right</string>
-    <string name="pref__gestures__swipe_action__move_cursor_start_of_line" comment="Preference value for swipe action">Move cursor to start of line</string>
-    <string name="pref__gestures__swipe_action__move_cursor_end_of_line" comment="Preference value for swipe action">Move cursor to end of line</string>
-    <string name="pref__gestures__swipe_action__move_cursor_start_of_page" comment="Preference value for swipe action">Move cursor to start of page</string>
-    <string name="pref__gestures__swipe_action__move_cursor_end_of_page" comment="Preference value for swipe action">Move cursor to end of page</string>
-    <string name="pref__gestures__swipe_action__switch_to_clipboard_context" comment="Preference value for swipe action">Open clipboard manager/history</string>
-    <string name="pref__gestures__swipe_action__shift" comment="Preference value for swipe action">Shift</string>
-    <string name="pref__gestures__swipe_action__redo" comment="Preference value for swipe action">Redo</string>
-    <string name="pref__gestures__swipe_action__undo" comment="Preference value for swipe action">Undo</string>
-    <string name="pref__gestures__swipe_action__show_input_method_picker" comment="Preference value for swipe action">Show input method picker</string>
-    <string name="pref__gestures__swipe_action__switch_to_prev_keyboard" comment="Preference value for swipe action">Switch to previous keyboard</string>
-    <string name="pref__gestures__swipe_action__switch_to_prev_subtype" comment="Preference value for swipe action">Switch to previous subtype</string>
-    <string name="pref__gestures__swipe_action__switch_to_next_subtype" comment="Preference value for swipe action">Switch to next subtype</string>
-    <string name="pref__gestures__swipe_up__label" comment="Preference title">Swipe up</string>
-    <string name="pref__gestures__swipe_down__label" comment="Preference title">Swipe down</string>
-    <string name="pref__gestures__swipe_left__label" comment="Preference title">Swipe left</string>
-    <string name="pref__gestures__swipe_right__label" comment="Preference title">Swipe right</string>
-    <string name="pref__gestures__space_bar_swipe_up__label" comment="Preference title">Space bar swipe up</string>
-    <string name="pref__gestures__space_bar_swipe_left__label" comment="Preference title">Space bar swipe left</string>
-    <string name="pref__gestures__space_bar_swipe_right__label" comment="Preference title">Space bar swipe right</string>
-    <string name="pref__gestures__space_bar_long_press__label" comment="Preference title">Space bar long press</string>
-    <string name="pref__gestures__delete_key_swipe_left__label" comment="Preference title">Delete key swipe left</string>
-    <string name="pref__gestures__swipe_velocity_threshold__label" comment="Preference title">Swipe velocity threshold</string>
-    <string name="pref__gestures__swipe_velocity_threshold__very_slow" comment="Preference value for swipe velocity threshold">Very slow</string>
-    <string name="pref__gestures__swipe_velocity_threshold__slow" comment="Preference value for swipe velocity threshold">Slow</string>
-    <string name="pref__gestures__swipe_velocity_threshold__normal" comment="Preference value for swipe velocity threshold">Normal</string>
-    <string name="pref__gestures__swipe_velocity_threshold__fast" comment="Preference value for swipe velocity threshold">Fast</string>
-    <string name="pref__gestures__swipe_velocity_threshold__very_fast" comment="Preference value for swipe velocity threshold">Very fast</string>
-    <string name="pref__gestures__swipe_distance_threshold__label" comment="Preference title">Swipe distance threshold</string>
-    <string name="pref__gestures__swipe_distance_threshold__very_short" comment="Preference value for swipe distance threshold">Very short</string>
-    <string name="pref__gestures__swipe_distance_threshold__short" comment="Preference value for swipe distance threshold">Short</string>
-    <string name="pref__gestures__swipe_distance_threshold__normal" comment="Preference value for swipe distance threshold">Normal</string>
-    <string name="pref__gestures__swipe_distance_threshold__long" comment="Preference value for swipe distance threshold">Long</string>
-    <string name="pref__gestures__swipe_distance_threshold__very_long" comment="Preference value for swipe distance threshold">Very long</string>
+    <string name="pref__glide__title" comment="Preference group title" translatable="false">Glide typing</string>
+    <string name="pref__glide__enabled__label" comment="Preference title" translatable="false">Enable glide typing</string>
+    <string name="pref__glide__enabled__summary" comment="Preference summary" translatable="false">Type in a word by sliding your finger through its letters</string>
+    <string name="pref__glide__show_trail__label" comment="Preference title" translatable="false">Show glide trail</string>
+    <string name="pref__glide__show_trail__summary" comment="Preference summary" translatable="false">Will disappear after each word</string>
+    <string name="pref__gestures__general_title" comment="Preference group title" translatable="false">General gestures</string>
+    <string name="pref__gestures__space_bar_title" comment="Preference group title" translatable="false">Space bar gestures</string>
+    <string name="pref__gestures__other_title" comment="Preference group title" translatable="false">Other gestures / Gesture thresholds</string>
+    <string name="pref__gestures__swipe_action__no_action" comment="Preference value for swipe action" translatable="false">No action</string>
+    <string name="pref__gestures__swipe_action__cycle_to_previous_keyboard_mode" comment="Preference value for swipe action" translatable="false">Cycle to previous keyboard mode</string>
+    <string name="pref__gestures__swipe_action__cycle_to_next_keyboard_mode" comment="Preference value for swipe action" translatable="false">Cycle to next keyboard mode</string>
+    <string name="pref__gestures__swipe_action__delete_characters_precisely" comment="Preference value for swipe action" translatable="false">Delete characters precisely</string>
+    <string name="pref__gestures__swipe_action__delete_word" comment="Preference value for swipe action" translatable="false">Delete current word</string>
+    <string name="pref__gestures__swipe_action__delete_words_precisely" comment="Preference value for swipe action" translatable="false">Delete words precisely</string>
+    <string name="pref__gestures__swipe_action__hide_keyboard" comment="Preference value for swipe action" translatable="false">Hide keyboard</string>
+    <string name="pref__gestures__swipe_action__insert_space" comment="Preference value for swipe action" translatable="false">Insert space</string>
+    <string name="pref__gestures__swipe_action__move_cursor_up" comment="Preference value for swipe action" translatable="false">Move cursor up</string>
+    <string name="pref__gestures__swipe_action__move_cursor_down" comment="Preference value for swipe action" translatable="false">Move cursor down</string>
+    <string name="pref__gestures__swipe_action__move_cursor_left" comment="Preference value for swipe action" translatable="false">Move cursor left</string>
+    <string name="pref__gestures__swipe_action__move_cursor_right" comment="Preference value for swipe action" translatable="false">Move cursor right</string>
+    <string name="pref__gestures__swipe_action__move_cursor_start_of_line" comment="Preference value for swipe action" translatable="false">Move cursor to start of line</string>
+    <string name="pref__gestures__swipe_action__move_cursor_end_of_line" comment="Preference value for swipe action" translatable="false">Move cursor to end of line</string>
+    <string name="pref__gestures__swipe_action__move_cursor_start_of_page" comment="Preference value for swipe action" translatable="false">Move cursor to start of page</string>
+    <string name="pref__gestures__swipe_action__move_cursor_end_of_page" comment="Preference value for swipe action" translatable="false">Move cursor to end of page</string>
+    <string name="pref__gestures__swipe_action__switch_to_clipboard_context" comment="Preference value for swipe action" translatable="false">Open clipboard manager/history</string>
+    <string name="pref__gestures__swipe_action__shift" comment="Preference value for swipe action" translatable="false">Shift</string>
+    <string name="pref__gestures__swipe_action__redo" comment="Preference value for swipe action" translatable="false">Redo</string>
+    <string name="pref__gestures__swipe_action__undo" comment="Preference value for swipe action" translatable="false">Undo</string>
+    <string name="pref__gestures__swipe_action__show_input_method_picker" comment="Preference value for swipe action" translatable="false">Show input method picker</string>
+    <string name="pref__gestures__swipe_action__switch_to_prev_keyboard" comment="Preference value for swipe action" translatable="false">Switch to previous keyboard</string>
+    <string name="pref__gestures__swipe_action__switch_to_prev_subtype" comment="Preference value for swipe action" translatable="false">Switch to previous subtype</string>
+    <string name="pref__gestures__swipe_action__switch_to_next_subtype" comment="Preference value for swipe action" translatable="false">Switch to next subtype</string>
+    <string name="pref__gestures__swipe_up__label" comment="Preference title" translatable="false">Swipe up</string>
+    <string name="pref__gestures__swipe_down__label" comment="Preference title" translatable="false">Swipe down</string>
+    <string name="pref__gestures__swipe_left__label" comment="Preference title" translatable="false">Swipe left</string>
+    <string name="pref__gestures__swipe_right__label" comment="Preference title" translatable="false">Swipe right</string>
+    <string name="pref__gestures__space_bar_swipe_up__label" comment="Preference title" translatable="false">Space bar swipe up</string>
+    <string name="pref__gestures__space_bar_swipe_left__label" comment="Preference title" translatable="false">Space bar swipe left</string>
+    <string name="pref__gestures__space_bar_swipe_right__label" comment="Preference title" translatable="false">Space bar swipe right</string>
+    <string name="pref__gestures__space_bar_long_press__label" comment="Preference title" translatable="false">Space bar long press</string>
+    <string name="pref__gestures__delete_key_swipe_left__label" comment="Preference title" translatable="false">Delete key swipe left</string>
+    <string name="pref__gestures__swipe_velocity_threshold__label" comment="Preference title" translatable="false">Swipe velocity threshold</string>
+    <string name="pref__gestures__swipe_velocity_threshold__very_slow" comment="Preference value for swipe velocity threshold" translatable="false">Very slow</string>
+    <string name="pref__gestures__swipe_velocity_threshold__slow" comment="Preference value for swipe velocity threshold" translatable="false">Slow</string>
+    <string name="pref__gestures__swipe_velocity_threshold__normal" comment="Preference value for swipe velocity threshold" translatable="false">Normal</string>
+    <string name="pref__gestures__swipe_velocity_threshold__fast" comment="Preference value for swipe velocity threshold" translatable="false">Fast</string>
+    <string name="pref__gestures__swipe_velocity_threshold__very_fast" comment="Preference value for swipe velocity threshold" translatable="false">Very fast</string>
+    <string name="pref__gestures__swipe_distance_threshold__label" comment="Preference title" translatable="false">Swipe distance threshold</string>
+    <string name="pref__gestures__swipe_distance_threshold__very_short" comment="Preference value for swipe distance threshold" translatable="false">Very short</string>
+    <string name="pref__gestures__swipe_distance_threshold__short" comment="Preference value for swipe distance threshold" translatable="false">Short</string>
+    <string name="pref__gestures__swipe_distance_threshold__normal" comment="Preference value for swipe distance threshold" translatable="false">Normal</string>
+    <string name="pref__gestures__swipe_distance_threshold__long" comment="Preference value for swipe distance threshold" translatable="false">Long</string>
+    <string name="pref__gestures__swipe_distance_threshold__very_long" comment="Preference value for swipe distance threshold" translatable="false">Very long</string>
 
-    <string name="pref__advanced__settings_theme__label" comment="Label of Settings theme preference in Advanced">Settings theme</string>
-    <string name="pref__advanced__settings_theme__light" comment="Possible value of Settings theme preference in Advanced">Light</string>
-    <string name="pref__advanced__settings_theme__dark" comment="Possible value of Settings theme preference in Advanced">Dark</string>
-    <string name="pref__advanced__show_app_icon__label" comment="Label of Show app icon preference in Advanced">Show app icon in launcher</string>
-    <string name="pref__advanced__force_private_mode__label" comment="Label of Force private mode preference in Advanced">Force private mode</string>
-    <string name="pref__advanced__force_private_mode__summary" comment="Summary of Force private mode preference in Advanced">Will disable any features which have to temporarily work with your input data</string>
-    <string name="pref__devtools__enabled__label" comment="Label of Enable developer tools in Advanced">Enable developer tools</string>
-    <string name="pref__devtools__enabled__summary" comment="Summary of Enable developer tools in Advanced">Tools specifically designed for debugging and troubleshooting</string>
-    <string name="pref__devtools__show_heap_memory_stats__label" comment="Label of Show heap memory stats in Advanced">Show heap memory stats</string>
-    <string name="pref__devtools__show_heap_memory_stats__summary" comment="Summary of Show heap memory stats in Advanced">Overlays the heap memory usage and max size in the top-right corner</string>
-    <string name="pref__devtools__clear_udm_internal_database__label" comment="Label of Clear internal user dictionary database in Advanced">Clear internal user dictionary database</string>
-    <string name="pref__devtools__clear_udm_internal_database__summary" comment="Summary of Clear internal user dictionary database in Advanced">Clears all words from the dictionary database table</string>
+    <string name="pref__advanced__settings_theme__label" comment="Label of Settings theme preference in Advanced" translatable="false">Settings theme</string>
+    <string name="pref__advanced__settings_theme__light" comment="Possible value of Settings theme preference in Advanced" translatable="false">Light</string>
+    <string name="pref__advanced__settings_theme__dark" comment="Possible value of Settings theme preference in Advanced" translatable="false">Dark</string>
+    <string name="pref__advanced__show_app_icon__label" comment="Label of Show app icon preference in Advanced" translatable="false">Show app icon in launcher</string>
+    <string name="pref__advanced__force_private_mode__label" comment="Label of Force private mode preference in Advanced" translatable="false">Force private mode</string>
+    <string name="pref__advanced__force_private_mode__summary" comment="Summary of Force private mode preference in Advanced" translatable="false">Will disable any features which have to temporarily work with your input data</string>
+    <string name="pref__devtools__enabled__label" comment="Label of Enable developer tools in Advanced" translatable="false">Enable developer tools</string>
+    <string name="pref__devtools__enabled__summary" comment="Summary of Enable developer tools in Advanced" translatable="false">Tools specifically designed for debugging and troubleshooting</string>
+    <string name="pref__devtools__show_heap_memory_stats__label" comment="Label of Show heap memory stats in Advanced" translatable="false">Show heap memory stats</string>
+    <string name="pref__devtools__show_heap_memory_stats__summary" comment="Summary of Show heap memory stats in Advanced" translatable="false">Overlays the heap memory usage and max size in the top-right corner</string>
+    <string name="pref__devtools__clear_udm_internal_database__label" comment="Label of Clear internal user dictionary database in Advanced" translatable="false">Clear internal user dictionary database</string>
+    <string name="pref__devtools__clear_udm_internal_database__summary" comment="Summary of Clear internal user dictionary database in Advanced" translatable="false">Clears all words from the dictionary database table</string>
 
-    <string name="settings__spelling__use_floris_subtypes" comment="String for the subtype in the system settings">Use keyboard subtypes</string>
+    <string name="settings__spelling__use_floris_subtypes" comment="String for the subtype in the system settings" translatable="false">Use keyboard subtypes</string>
 
     <!-- About UI strings -->
 
     <!-- Assets strings -->
-    <string name="assets__error__details">Details</string>
-    <string name="assets__error__snackbar_message">Something went wrong</string>
+    <string name="assets__error__details" translatable="false">Details</string>
+    <string name="assets__error__snackbar_message" translatable="false">Something went wrong</string>
 
     <!-- Setup UI strings -->
 
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__description" comment="Description of crash dialog">Sorry for the inconvenience, but FlorisBoard has crashed due to an unexpected error.</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">If you wish to report this error, first check out the issue tracker on GitHub if your crash has not already been reported.\nIf it hasn\'t, copy the generated crash log and open a new issue. Use the \"%s\" template and fill out the description, the steps to reproduce, and paste the generated crash log at the end. This helps in making FlorisBoard better and more stable for everyone. Thank you!</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog" translatable="false">Sorry for the inconvenience, but FlorisBoard has crashed due to an unexpected error.</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR." translatable="false">If you wish to report this error, first check out the issue tracker on GitHub if your crash has not already been reported.\nIf it hasn\'t, copy the generated crash log and open a new issue. Use the \"%s\" template and fill out the description, the steps to reproduce, and paste the generated crash log at the end. This helps in making FlorisBoard better and more stable for everyone. Thank you!</string>
     <string name="crash_dialog__bug_report_template" comment="Name of the template to use in the GitHub issue tracker (is always in English)" translatable="false">Crash report</string>
-    <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Copy to system clipboard</string>
-    <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Copied to system clipboard</string>
-    <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">Cannot copy to system clipboard: Clipboard manager instance not found</string>
-    <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">Open issue tracker (github.com)</string>
-    <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Close</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">FlorisBoard error reports</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">FlorisBoard has stopped working…</string>
-    <string name="crash_once_notification__body" comment="Body of the notification for a single crash">Tap to view error details</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">FlorisBoard seems to stop working repeatedly…</string>
-    <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Falling back to previous keyboard to stop infinite crash loop. Tap to view error details</string>
+    <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog" translatable="false">Copy to system clipboard</string>
+    <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog" translatable="false">Copied to system clipboard</string>
+    <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog" translatable="false">Cannot copy to system clipboard: Clipboard manager instance not found</string>
+    <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog" translatable="false">Open issue tracker (github.com)</string>
+    <string name="crash_dialog__close" comment="Label of Close button in crash dialog" translatable="false">Close</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel" translatable="false">FlorisBoard error reports</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash" translatable="false">FlorisBoard has stopped working…</string>
+    <string name="crash_once_notification__body" comment="Body of the notification for a single crash" translatable="false">Tap to view error details</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes" translatable="false">FlorisBoard seems to stop working repeatedly…</string>
+    <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes" translatable="false">Falling back to previous keyboard to stop infinite crash loop. Tap to view error details</string>
 
     <!-- clipboard strings -->
-    <string name="clip__context_header">Clipboard history</string>
-    <string name="clip__clear_history">Clear history</string>
-    <string name="clip__unpin_item">Unpin item</string>
-    <string name="clip__pin_item">Pin item</string>
-    <string name="clip__delete_item">Delete</string>
-    <string name="clip__paste_item">Paste</string>
-    <string name="clip__back_to_text_input">Back to text input</string>
-    <string name="clip__cant_paste">This app doesn\'t allow pasting this content.</string>
-    <string name="pref__clipboard__clipboard_category__label">Clipboard</string>
-    <string name="pref__clipboard__use_internal_clipboard___label">Use internal clipboard</string>
-    <string name="pref__clipboard__use_internal_clipboard_title__summary">Use an internal clipboard instead of the system clipboard</string>
-    <string name="pref__clipboard__sync_from_system_clipboard__label">Sync from system clipboard</string>
-    <string name="pref__clipboard__keyboard_sync_from_system_clipboard__summary">System clipboard updates also update Floris clipboard</string>
-    <string name="pref__clipboard__sync_to_system_clipboard__label">Sync to system clipboard</string>
-    <string name="pref__clipboard__sync_to_system_clipboard__summary">Floris clipboard updates also update system clipboard</string>
-    <string name="pref__clipboard__enable_clipboard_history__label">Enable clipboard history</string>
-    <string name="pref__clipboard__enable_clipboard_history__summary">Retain clipboard items</string>
-    <string name="pref__clipboard__clean_up_old_clipboard_items__label">Clean up old items</string>
-    <string name="pref__clipboard__limit_history_size__label">Limit history size</string>
+    <string name="clip__context_header" translatable="false">Clipboard history</string>
+    <string name="clip__clear_history" translatable="false">Clear history</string>
+    <string name="clip__unpin_item" translatable="false">Unpin item</string>
+    <string name="clip__pin_item" translatable="false">Pin item</string>
+    <string name="clip__delete_item" translatable="false">Delete</string>
+    <string name="clip__paste_item" translatable="false">Paste</string>
+    <string name="clip__back_to_text_input" translatable="false">Back to text input</string>
+    <string name="clip__cant_paste" translatable="false">This app doesn\'t allow pasting this content.</string>
+    <string name="pref__clipboard__clipboard_category__label" translatable="false">Clipboard</string>
+    <string name="pref__clipboard__use_internal_clipboard___label" translatable="false">Use internal clipboard</string>
+    <string name="pref__clipboard__use_internal_clipboard_title__summary" translatable="false">Use an internal clipboard instead of the system clipboard</string>
+    <string name="pref__clipboard__sync_from_system_clipboard__label" translatable="false">Sync from system clipboard</string>
+    <string name="pref__clipboard__keyboard_sync_from_system_clipboard__summary" translatable="false">System clipboard updates also update Floris clipboard</string>
+    <string name="pref__clipboard__sync_to_system_clipboard__label" translatable="false">Sync to system clipboard</string>
+    <string name="pref__clipboard__sync_to_system_clipboard__summary" translatable="false">Floris clipboard updates also update system clipboard</string>
+    <string name="pref__clipboard__enable_clipboard_history__label" translatable="false">Enable clipboard history</string>
+    <string name="pref__clipboard__enable_clipboard_history__summary" translatable="false">Retain clipboard items</string>
+    <string name="pref__clipboard__clean_up_old_clipboard_items__label" translatable="false">Clean up old items</string>
+    <string name="pref__clipboard__limit_history_size__label" translatable="false">Limit history size</string>
 
     <!-- glide strings -->
-    <string name="pref__glide__show_preview">Show preview while glide typing</string>
+    <string name="pref__glide__show_preview" translatable="false">Show preview while glide typing</string>
 
     <string name="settings">Settings</string>
     <string name="language">Language</string>
@@ -332,7 +332,6 @@
     <string name="try_theme_now">Try theme now</string>
     <string name="write_something_there">Write something there</string>
 
-    <string name="this_language_weighs_x_mb_do_you_want_to_download">This language weighs %1$d MB. Do you want to download?</string>
     <string name="language_download_question_dialog_positive">DOWNLOAD</string>
     <string name="language_download_question_dialog_negative" tools:ignore="ButtonCase">CANCEL</string>
 
