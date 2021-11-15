@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.live.keyboard.ui.preview.theme.activity.ThemePreviewViewModel" />
+            type="com.keyboard.neon_keyboard.ui.preview.theme.activity.ThemePreviewViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"

@@ -48,7 +48,7 @@
                 android:fontFamily="@font/roboto_400"
                 android:gravity="center"
                 android:text="@string/the_keyboard_has_installed"
-                android:textColor="@color/textColorMain"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

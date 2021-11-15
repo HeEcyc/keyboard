@@ -1,0 +1,19 @@
+package com.keyboard.neon_keyboard.ui.main.activity.assets
+
+import androidx.fragment.app.activityViewModels
+import com.keyboard.neon_keyboard.R
+import com.keyboard.neon_keyboard.databinding.MainFragmentAssetsBinding
+import com.keyboard.neon_keyboard.ui.base.BaseFragment
+import com.keyboard.neon_keyboard.ui.main.activity.MainActivityViewModel
+
+class FragmentAssets :
+    BaseFragment<MainActivityViewModel, MainFragmentAssetsBinding>(R.layout.main_fragment_assets) {
+
+    private val viewModel: MainActivityViewModel by activityViewModels()
+
+    override fun provideViewModel() = viewModel
+
+    override fun setupUI() {
+        viewModel.loadAssetsThemes()
+    }
+}

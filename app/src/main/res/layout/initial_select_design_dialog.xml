@@ -61,8 +61,8 @@
                 android:id="@+id/buttonPresets"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/presets_button_bg"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_presets"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.534"
@@ -74,30 +74,24 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
                 android:fontFamily="@font/roboto_500"
                 android:gravity="center"
                 android:text="@string/presets_caps"
                 android:textColor="@android:color/white"
+                android:textSize="20sp"
                 android:textStyle="italic|bold"
-                app:autoSizeMaxTextSize="24sp"
-                app:autoSizeMinTextSize="1sp"
-                app:autoSizeTextType="uniform"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.0759"
-                app:layout_constraintHorizontal_bias="0.16666"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.68555"
-                app:layout_constraintWidth_percent="0.298" />
+                app:layout_constraintEnd_toEndOf="@id/buttonPresets"
+                app:layout_constraintStart_toStartOf="@id/buttonPresets"
+                app:layout_constraintTop_toTopOf="@id/buttonPresets" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/buttonCustom"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/custom_button_bg"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_custom"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.534"
@@ -109,23 +103,17 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
                 android:fontFamily="@font/roboto_500"
                 android:gravity="center"
                 android:text="@string/custom_caps"
                 android:textColor="@android:color/white"
+                android:textSize="20sp"
                 android:textStyle="italic|bold"
-                app:autoSizeMaxTextSize="24sp"
-                app:autoSizeMinTextSize="1sp"
-                app:autoSizeTextType="uniform"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.0759"
-                app:layout_constraintHorizontal_bias="0.8245"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.68555"
-                app:layout_constraintWidth_percent="0.2836" />
+                app:layout_constraintEnd_toEndOf="@id/buttonCustom"
+                app:layout_constraintStart_toStartOf="@id/buttonCustom"
+                app:layout_constraintTop_toTopOf="@id/buttonCustom" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

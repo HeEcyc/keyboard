@@ -12,11 +12,11 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_margin">@dimen/smartbar_button_margin</item>
-        <item name="android:background">@drawable/shape_oval</item>
-        <item name="android:backgroundTint">#FFFFFF</item>
+        <item name="android:background">@android:color/transparent</item>
+
         <item name="android:padding">@dimen/smartbar_button_padding</item>
         <item name="android:scaleType">fitCenter</item>
-        <item name="android:tint">#000000</item>
+        <item name="android:tint">#50ffffff</item>
     </style>
 
     <style name="SmartbarQuickAction.PrivateModeButton">

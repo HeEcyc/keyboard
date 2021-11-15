@@ -3,7 +3,7 @@
     <data>
         <variable
             name="type"
-            type="com.live.keyboard.ui.custom.SwipeAnimationView.AnimationType" />
+            type="com.keyboard.neon_keyboard.ui.custom.SwipeAnimationView.AnimationType" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     android:layout_gravity="end"
                     android:src="@drawable/ic_close_initial_dialog"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
-            <com.live.keyboard.ui.custom.SwipeAnimationView
+            <com.keyboard.neon_keyboard.ui.custom.SwipeAnimationView
                 android:id="@+id/animationView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

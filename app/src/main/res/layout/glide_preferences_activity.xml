@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.live.keyboard.ui.glide.preferences.activity.GlideTypingPreferenceViewModel" />
+            type="com.keyboard.neon_keyboard.ui.glide.preferences.activity.GlideTypingPreferenceViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

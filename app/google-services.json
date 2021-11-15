@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:69821543337:android:ab265dce86f9038b280ab8",
+        "android_client_info": {
+          "package_name": "com.keyboard.neon_keyboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "69821543337-53ria3uj8bha19tfu1003u1t55i6jrsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA8Oco9iS38HPoEivvOXVmuuSjBKHP6MY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "69821543337-53ria3uj8bha19tfu1003u1t55i6jrsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:69821543337:android:12343b28295ddcb0280ab8",
         "android_client_info": {
           "package_name": "com.live.keyboard"
