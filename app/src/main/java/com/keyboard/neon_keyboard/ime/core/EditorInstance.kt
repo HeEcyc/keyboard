@@ -136,8 +136,6 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
         val ic = inputConnection ?: return
         ic.requestCursorUpdates(InputConnection.CURSOR_UPDATE_MONITOR)
         val exText = ExtractedTextRequest().let { req ->
-
-
             req.token = ++extractedToken
             req.flags = 0
             req.hintMaxLines = CAPACITY_LINES
@@ -150,9 +148,8 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
     }
 
     fun startInputView(ei: EditorInfo?) {
-        TextInputManager.getInstance().enableShift()
-        //sendDownKeyEvent(SystemClock.uptimeMillis(), , 0)
-        //sendUpKeyEvent(SystemClock.uptimeMillis(), KeyEvent.KEYCODE_SHIFT_LEFT, 0)
+        if (cachedInput.rawText.isEmpty())
+            TextInputManager.getInstance().enableShift()
     }
 
     fun finishInputView() {

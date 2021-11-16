@@ -959,9 +959,9 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
     }
 
     fun enableShift() {
-
         if (activeEditorInstance.editorInfo?.isPasswordInputType() == true) return
-        inputEventDispatcher.send(InputKeyEvent.downUp(TextKeyData.SHIFT, 2))
+        inputEventDispatcher.send(InputKeyEvent.downUp(TextKeyData.SHIFT, 1))
 
+        Log.d("12345", "enter")
     }
 }

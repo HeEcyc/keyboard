@@ -27,8 +27,6 @@ class ThemePreviewActivity :
 
     override fun onResume() {
         super.onResume()
-        getSystemService(InputMethodManager::class.java)
-            .toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0)
         binding.exampleEditText.requestFocus()
     }
 
