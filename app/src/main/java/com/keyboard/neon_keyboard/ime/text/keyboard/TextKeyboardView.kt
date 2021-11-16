@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
@@ -636,7 +637,7 @@ class TextKeyboardView : KeyboardView, SwipeGesture.Listener, GlideTypingGesture
                                 SwipeGesture.Direction.UP -> prefs.gestures.swipeUp
                                 SwipeGesture.Direction.DOWN -> prefs.gestures.swipeDown
                                 SwipeGesture.Direction.LEFT -> prefs.gestures.swipeLeft
-                                SwipeGesture.Direction.RIGHT -> prefs.gestures.swipeRight
+                                SwipeGesture.Direction.RIGHT -> SwipeAction.INSERT_SPACE
                                 else -> SwipeAction.NO_ACTION
                             }
                             if (swipeAction != SwipeAction.NO_ACTION) {

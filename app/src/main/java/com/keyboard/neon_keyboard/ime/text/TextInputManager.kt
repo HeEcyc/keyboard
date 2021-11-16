@@ -1,5 +1,6 @@
 package com.keyboard.neon_keyboard.ime.text
 
+import android.util.Log
 import android.view.KeyEvent
 import android.widget.Toast
 import androidx.core.text.isDigitsOnly
@@ -42,6 +43,7 @@ import com.keyboard.neon_keyboard.res.AssetManager
 import com.keyboard.neon_keyboard.res.FlorisRef
 import com.keyboard.neon_keyboard.util.enums.Language
 import com.keyboard.neon_keyboard.util.enums.LanguageChange
+import com.keyboard.neon_keyboard.util.isPasswordInputType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -451,7 +453,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
                 else -> TextKeyData.VIEW_CHARACTERS
             }
             SwipeAction.DELETE_WORD -> if (PrefsReporitory.Settings.keyboardSwipe) TextKeyData.DELETE_WORD else null
-            SwipeAction.INSERT_SPACE -> TextKeyData.SPACE
+            SwipeAction.INSERT_SPACE -> if (PrefsReporitory.Settings.keyboardSwipe) TextKeyData.SPACE else null
             SwipeAction.MOVE_CURSOR_DOWN -> TextKeyData.ARROW_DOWN
             SwipeAction.MOVE_CURSOR_UP -> TextKeyData.ARROW_UP
             SwipeAction.MOVE_CURSOR_LEFT -> TextKeyData.ARROW_LEFT
@@ -467,6 +469,9 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
             SwipeAction.SHOW_INPUT_METHOD_PICKER -> TextKeyData.SHOW_INPUT_METHOD_PICKER
             else -> null
         }
+
+        Log.d("12345", keyData?.label ?: "Emptu")
+
         if (keyData != null) {
             inputEventDispatcher.send(InputKeyEvent.downUp(keyData))
         }
@@ -577,7 +582,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
     /**
      * Handles a [KeyCode.SHIFT] down event.
      */
-    private fun handleShiftDown(ev: InputKeyEvent) {
+    fun handleShiftDown(ev: InputKeyEvent) {
         if (ev.isConsecutiveEventOf(inputEventDispatcher.lastKeyEventDown, prefs.keyboard.longPressDelay.toLong())) {
             newCapsState = true
             activeState.caps = true
@@ -594,7 +599,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
     /**
      * Handles a [KeyCode.SHIFT] up event.
      */
-    private fun handleShiftUp() {
+    fun handleShiftUp() {
         activeState.caps = newCapsState
         smartbarView?.updateCandidateSuggestionCapsState()
         florisboard.dispatchCurrentStateToInputUi()
@@ -951,5 +956,12 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
             activeState.caps -> word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(florisboard.activeSubtype.locale.base) else it.toString() }
             else -> word
         }
+    }
+
+    fun enableShift() {
+
+        if (activeEditorInstance.editorInfo?.isPasswordInputType() == true) return
+        inputEventDispatcher.send(InputKeyEvent.downUp(TextKeyData.SHIFT, 2))
+
     }
 }

@@ -17,7 +17,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12sp"
                 android:backgroundTint="@color/blueColor"
-                android:textColor="@color/textColorMain"
+                android:textColor="@android:color/black"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View

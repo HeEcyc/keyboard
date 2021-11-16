@@ -150,7 +150,9 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
     }
 
     fun startInputView(ei: EditorInfo?) {
-
+        TextInputManager.getInstance().enableShift()
+        //sendDownKeyEvent(SystemClock.uptimeMillis(), , 0)
+        //sendUpKeyEvent(SystemClock.uptimeMillis(), KeyEvent.KEYCODE_SHIFT_LEFT, 0)
     }
 
     fun finishInputView() {
@@ -929,6 +931,7 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
                 rawText.replace(0, rawText.length, exText.getTextStr())
                 offset = exText.startOffset.coerceAtLeast(0)
             }
+
         }
 
         fun reevaluateWords() {
@@ -999,26 +1002,5 @@ class EditorInstance(private val ims: InputMethodService, private val activeStat
             wordsBeforeCurrent: List<Region>,
             wordsAfterCurrent: List<Region>
         )
-    }
-
-    data class ProcessedWord(val word: String) {
-        var isProcessed = false
-        var locale: String = ""
-
-        override fun hashCode(): Int {
-            return locale.hashCode() + word.hashCode()
-        }
-
-        override fun equals(other: Any?): Boolean {
-            if (this === other) return true
-            if (javaClass != other?.javaClass) return false
-
-            other as ProcessedWord
-
-            if (word != other.word) return false
-            if (locale != other.locale) return false
-
-            return true
-        }
     }
 }

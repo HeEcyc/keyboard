@@ -84,8 +84,8 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
     }
 
     private fun ifInitialLaunch() {
-//        if (!PrefsReporitory.isFirstLaunch) return
-//        PrefsReporitory.isFirstLaunch = false
+        if (!PrefsReporitory.isFirstLaunch) return
+        PrefsReporitory.isFirstLaunch = false
         showLanguageDialog()
     }
 

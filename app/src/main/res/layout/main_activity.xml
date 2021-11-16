@@ -26,7 +26,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tryMessage"
-            android:layout_width="210sp"
+            android:layout_width="230sp"
             android:layout_height="85sp"
             android:background="@drawable/bg_text_message"
             android:fontFamily="@font/roboto_500"
