@@ -76,7 +76,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
         private set
     val keyboards = TextKeyboardCache()
     var textInputKeyboardView: TextKeyboardView? = null
-    lateinit var textKeyboardIconSet: TextKeyboardIconSet
+    var textKeyboardIconSet: TextKeyboardIconSet = TextKeyboardIconSet.new(FlorisBoard.getInstance())
         private set
     private val dictionaryManager: DictionaryManager get() = DictionaryManager.default()
     val inputEventDispatcher: InputEventDispatcher = InputEventDispatcher.new(
