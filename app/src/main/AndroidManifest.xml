@@ -2,25 +2,25 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.live.keyboard">
+    package="com.keyboard.neon_keyboard">
 
     <!-- Permission needed to vibrate if the user has key press vibration enabled -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name="com.live.keyboard.FlorisApplication"
+        android:name="com.keyboard.neon_keyboard.NeonApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/SettingsTheme"
         tools:ignore="LockedOrientationActivity">
 
         <!-- IME service -->
         <service
-            android:name="com.live.keyboard.background.view.keyboard.BackgroundViewKeyboardService"
+            android:name="com.keyboard.neon_keyboard.background.view.keyboard.BackgroundViewKeyboardService"
             android:directBootAware="true"
             android:exported="true"
             android:label="@string/app_name"
@@ -35,7 +35,7 @@
 
         <!-- Spellchecker service -->
         <service
-            android:name="com.live.keyboard.FlorisSpellCheckerService"
+            android:name="com.keyboard.neon_keyboard.NeonSpellCheckerService"
             android:exported="true"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_TEXT_SERVICE">
@@ -48,7 +48,7 @@
         </service>
 
         <activity
-            android:name="com.live.keyboard.ui.preview.theme.activity.ThemePreviewActivity"
+            android:name="com.keyboard.neon_keyboard.ui.preview.theme.activity.ThemePreviewActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
@@ -56,35 +56,28 @@
             android:windowSoftInputMode="stateVisible|adjustResize" />
 
         <activity
-            android:name="com.live.keyboard.ui.crop.activity.CropActivity"
+            android:name="com.keyboard.neon_keyboard.ui.crop.activity.CropActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.live.keyboard.ui.theme.editor.activity.ThemeEditorActivity"
+            android:name="com.keyboard.neon_keyboard.ui.theme.editor.activity.ThemeEditorActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.live.keyboard.ui.glide.preferences.activity.GlideTypingPreferenceActivity"
+            android:name="com.keyboard.neon_keyboard.ui.language.selector.activity.LanguageSelectorActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.live.keyboard.ui.language.selector.activity.LanguageSelectorActivity"
-            android:configChanges="orientation"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.live.keyboard.ui.splash.activity.SplashActivity"
+            android:name="com.keyboard.neon_keyboard.ui.splash.activity.SplashActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -95,13 +88,13 @@
         </activity>
 
         <activity
-            android:name="com.live.keyboard.ui.main.activity.MainActivity"
+            android:name="com.keyboard.neon_keyboard.ui.main.activity.MainActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait" />
 
         <provider
-            android:name="com.live.keyboard.ime.clip.provider.FlorisContentProvider"
+            android:name="com.keyboard.neon_keyboard.ime.clip.provider.FlorisContentProvider"
             android:authorities="${applicationId}.provider.clip"
             android:exported="false"
             android:grantUriPermissions="true" />

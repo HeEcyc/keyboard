@@ -27,7 +27,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.live.keyboard"
+        applicationId = "com.keyboard.neon_keyboard"
         minSdk = 23
         targetSdk = 30
         versionCode = 1

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.live.keyboard.ime.media.MediaInputView
+<com.keyboard.neon_keyboard.ime.media.MediaInputView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/media_input"
@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.live.keyboard.common.FlorisViewFlipper
+    <com.keyboard.neon_keyboard.common.FlorisViewFlipper
         android:id="@+id/media_input_view_flipper"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -90,4 +90,4 @@
 
     </LinearLayout>
 
-</com.live.keyboard.ime.media.MediaInputView>
+</com.keyboard.neon_keyboard.ime.media.MediaInputView>
