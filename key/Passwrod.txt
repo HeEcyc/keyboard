@@ -1,2 +1,2 @@
-Passwords: key_neon
-Alias: key_neon
+Passwords: NeonKeyboard
+Alias: NeonKeyboard
