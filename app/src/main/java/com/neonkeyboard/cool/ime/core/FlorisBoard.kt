@@ -192,6 +192,9 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     }
 
     override fun onCreate() {
+        textInputManager = TextInputManager.getInstance()
+        mediaInputManager = MediaInputManager.getInstance()
+        clipInputManager = ClipboardInputManager.getInstance()
         // MUST WRAP all code within Service onCreate() in try..catch to prevent any crash loops
         try {
             // Additional try..catch wrapper as the event listeners chain or the super.onCreate() method could crash

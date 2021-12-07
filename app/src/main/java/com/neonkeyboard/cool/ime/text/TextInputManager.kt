@@ -73,7 +73,7 @@ class TextInputManager private constructor() : CoroutineScope by MainScope(), In
     private val activeEditorInstance: EditorInstance
         get() = florisboard.activeEditorInstance
 
-    lateinit var layoutManager: LayoutManager
+    var layoutManager: LayoutManager = LayoutManager()
         private set
     val keyboards = TextKeyboardCache()
     var textInputKeyboardView: TextKeyboardView? = null
