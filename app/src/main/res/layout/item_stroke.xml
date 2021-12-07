@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="com.keyboard.neon_keyboard.ui.theme.editor.activity.ThemeEditorViewModel.StrokeType" />
+            type="com.neonkeyboard.cool.ui.theme.editor.activity.ThemeEditorViewModel.StrokeType" />
 
     </data>
 

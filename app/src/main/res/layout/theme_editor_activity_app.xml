@@ -3,11 +3,11 @@
 
     <data>
 
-        <import type="com.keyboard.neon_keyboard.util.Converter" />
+        <import type="com.neonkeyboard.cool.util.Converter" />
 
         <variable
             name="viewModel"
-            type="com.keyboard.neon_keyboard.ui.theme.editor.activity.ThemeEditorViewModel" />
+            type="com.neonkeyboard.cool.ui.theme.editor.activity.ThemeEditorViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -118,7 +118,7 @@
             app:layout_constraintEnd_toEndOf="@+id/keyboardPreview"
             app:layout_constraintStart_toStartOf="@+id/keyboardPreview" />
 
-        <com.keyboard.neon_keyboard.ime.text.keyboard.TextKeyboardView
+        <com.neonkeyboard.cool.ime.text.keyboard.TextKeyboardView
             android:id="@+id/keyboardPreview"
             android:layout_width="match_parent"
             android:layout_height="208sp"
@@ -238,7 +238,7 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <com.keyboard.neon_keyboard.ui.custom.ThumbTextSeekBar
+            <com.neonkeyboard.cool.ui.custom.ThumbTextSeekBar
                 android:id="@+id/progressLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

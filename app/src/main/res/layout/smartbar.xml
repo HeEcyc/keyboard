@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.keyboard.neon_keyboard.ime.text.smartbar.SmartbarView
+<com.neonkeyboard.cool.ime.text.smartbar.SmartbarView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     android:layoutDirection="locale"
     android:background="@color/smartbarBackgroundColor">
 
-    <com.keyboard.neon_keyboard.common.FlorisViewFlipper
+    <com.neonkeyboard.cool.common.FlorisViewFlipper
         android:id="@+id/action_start_area"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -21,15 +21,15 @@
 <!--            style="@style/SmartbarQuickAction.Toggle"-->
 <!--            android:src="@drawable/ic_settings"/>-->
 
-        <com.keyboard.neon_keyboard.ime.text.smartbar.SmartbarQuickActionButton
+        <com.neonkeyboard.cool.ime.text.smartbar.SmartbarQuickActionButton
             android:id="@+id/back_button"
             style="@style/SmartbarQuickAction"
             android:contentDescription="@string/smartbar__quick_action__exit_editing"
             android:src="@drawable/ic_arrow_back"/>
 
-    </com.keyboard.neon_keyboard.common.FlorisViewFlipper>
+    </com.neonkeyboard.cool.common.FlorisViewFlipper>
 
-    <com.keyboard.neon_keyboard.common.FlorisViewFlipper
+    <com.neonkeyboard.cool.common.FlorisViewFlipper
         android:id="@+id/main_area"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toStartOf="@id/action_end_area"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.keyboard.neon_keyboard.ime.text.smartbar.CandidateView
+        <com.neonkeyboard.cool.ime.text.smartbar.CandidateView
             android:id="@+id/candidates"
             style="@style/SmartbarContainer"/>
 
@@ -58,54 +58,54 @@
             android:id="@+id/quick_actions"
             style="@style/SmartbarContainer">
 
-            <com.keyboard.neon_keyboard.ime.text.smartbar.SmartbarQuickActionButton
+            <com.neonkeyboard.cool.ime.text.smartbar.SmartbarQuickActionButton
                 android:id="@+id/quick_action_undo"
                 style="@style/SmartbarQuickAction"
                 android:contentDescription="@string/smartbar__quick_action__undo"
                 android:src="@drawable/ic_undo"/>
 
-            <com.keyboard.neon_keyboard.ime.text.smartbar.SmartbarQuickActionButton
+            <com.neonkeyboard.cool.ime.text.smartbar.SmartbarQuickActionButton
                 android:id="@+id/quick_action_redo"
                 style="@style/SmartbarQuickAction"
                 android:contentDescription="@string/smartbar__quick_action__redo"
                 android:src="@drawable/ic_redo"/>
 
-            <com.keyboard.neon_keyboard.ime.text.smartbar.SmartbarQuickActionButton
+            <com.neonkeyboard.cool.ime.text.smartbar.SmartbarQuickActionButton
                 android:id="@+id/quick_action_switch_to_media_context"
                 style="@style/SmartbarQuickAction"
                 android:contentDescription="@string/smartbar__quick_action__switch_to_media_context"
                 android:src="@drawable/ic_smiles"/>
 
-            <com.keyboard.neon_keyboard.ime.text.smartbar.SmartbarQuickActionButton
+            <com.neonkeyboard.cool.ime.text.smartbar.SmartbarQuickActionButton
                 android:id="@+id/quick_action_open_settings"
                 style="@style/SmartbarQuickAction"
                 android:contentDescription="@string/smartbar__quick_action__open_settings"
                 android:src="@drawable/ic_settings"/>
 
             <!-- TODO: find better icon for one-handed mode -->
-            <com.keyboard.neon_keyboard.ime.text.smartbar.SmartbarQuickActionButton
+            <com.neonkeyboard.cool.ime.text.smartbar.SmartbarQuickActionButton
                 android:id="@+id/quick_action_one_handed_toggle"
                 style="@style/SmartbarQuickAction"
                 android:contentDescription="@string/smartbar__quick_action__one_handed_mode"
                 android:src="@drawable/ic_smartphone"/>
         </LinearLayout>
 
-        <com.keyboard.neon_keyboard.ime.text.keyboard.TextKeyboardView
+        <com.neonkeyboard.cool.ime.text.keyboard.TextKeyboardView
             android:id="@+id/clipboard_cursor_row"
             style="@style/SmartbarContainer"
             android:layoutDirection="ltr"
             app:isSmartbarKeyboard="true"/>
 
-        <com.keyboard.neon_keyboard.ime.text.keyboard.TextKeyboardView
+        <com.neonkeyboard.cool.ime.text.keyboard.TextKeyboardView
             android:id="@+id/number_row"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layoutDirection="ltr"
             app:isSmartbarKeyboard="true"/>
 
-    </com.keyboard.neon_keyboard.common.FlorisViewFlipper>
+    </com.neonkeyboard.cool.common.FlorisViewFlipper>
 
-    <com.keyboard.neon_keyboard.common.FlorisViewFlipper
+    <com.neonkeyboard.cool.common.FlorisViewFlipper
         android:id="@+id/action_end_area"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -113,12 +113,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.keyboard.neon_keyboard.ime.text.smartbar.SmartbarQuickActionButton
+        <com.neonkeyboard.cool.ime.text.smartbar.SmartbarQuickActionButton
             android:id="@+id/private_mode_button"
             style="@style/SmartbarQuickAction.PrivateModeButton"
             android:contentDescription="@string/smartbar__quick_action__private_mode"
             android:src="@drawable/ic_security"/>
 
-    </com.keyboard.neon_keyboard.common.FlorisViewFlipper>
+    </com.neonkeyboard.cool.common.FlorisViewFlipper>
 
-</com.keyboard.neon_keyboard.ime.text.smartbar.SmartbarView>
+</com.neonkeyboard.cool.ime.text.smartbar.SmartbarView>

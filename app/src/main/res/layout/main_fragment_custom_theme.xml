@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.keyboard.neon_keyboard.ui.main.activity.MainActivityViewModel" />
+            type="com.neonkeyboard.cool.ui.main.activity.MainActivityViewModel" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -9,7 +9,7 @@
 
         <variable
             name="item"
-            type="com.keyboard.neon_keyboard.data.KeyboardTheme" />
+            type="com.neonkeyboard.cool.data.KeyboardTheme" />
     </data>
 
     <androidx.cardview.widget.CardView
