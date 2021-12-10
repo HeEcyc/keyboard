@@ -30,10 +30,13 @@ class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.la
     }
 
     private fun askOverlayPermission() {
-        overlayPermissionLauncher.launch(
-            Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
-                .setData(Uri.fromParts("package", packageName, null))
-        )
+        if (!Settings.canDrawOverlays(this))
+            overlayPermissionLauncher.launch(
+                Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+                    .setData(Uri.fromParts("package", packageName, null))
+            )
+        else
+            showMainActivity()
     }
 
     private fun showMainActivity() {
