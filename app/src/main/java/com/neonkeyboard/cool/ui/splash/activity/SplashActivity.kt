@@ -9,7 +9,6 @@ import com.neonkeyboard.cool.R
 import com.neonkeyboard.cool.databinding.SplashActivityBinding
 import com.neonkeyboard.cool.ui.base.BaseActivity
 import com.neonkeyboard.cool.ui.main.activity.MainActivity
-import com.neonkeyboard.cool.util.notification.AlarmBroadcast
 
 class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.layout.splash_activity) {
 
@@ -17,8 +16,8 @@ class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.la
 
     private val overlayPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (!Settings.canDrawOverlays(this))
-                AlarmBroadcast.startAlarm(this)
+            if (!Settings.canDrawOverlays(this)) {}
+//                AlarmBroadcast.startAlarm(this)
             showMainActivity()
         }
 
