@@ -25,7 +25,8 @@ class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.la
     override fun provideViewModel() = viewModel
 
     override fun setupUI() {
-        askOverlayPermission()
+//        askOverlayPermission()
+        showMainActivity()
     }
 
     private fun askOverlayPermission() {
