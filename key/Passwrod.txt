@@ -1,2 +1,0 @@
-Passwords: NeonKeyboard
-Alias: NeonKeyboard
