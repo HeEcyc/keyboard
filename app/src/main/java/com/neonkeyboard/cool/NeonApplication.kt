@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import androidx.core.os.UserManagerCompat
-import com.appsflyer.AppsFlyerLib
 import com.neonkeyboard.cool.common.NativeStr
 import com.neonkeyboard.cool.ime.core.Preferences
 import com.neonkeyboard.cool.ime.core.SubtypeManager
@@ -26,7 +25,6 @@ class NeonApplication : Application() {
         lateinit var instance: NeonApplication
 
         private const val ICU_DATA_ASSET_PATH = "icu/icudt69l.dat"
-        private const val APPSFLYER_DEV_KEY: String = ""
 
         private external fun nativeInitICUData(path: NativeStr): Int
 
@@ -51,8 +49,6 @@ class NeonApplication : Application() {
             DictionaryManager.init(this)
             ThemeManager.init(this, assetManager)
             prefs.initDefaultPreferences()
-            AppsFlyerLib.getInstance().init(APPSFLYER_DEV_KEY, null, this)
-            AppsFlyerLib.getInstance().start(this)
         } catch (e: Exception) {
             return
         }

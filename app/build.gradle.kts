@@ -107,8 +107,6 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx:20.0.0")
     implementation("com.google.firebase:firebase-crashlytics:18.2.4")
 
-    implementation("com.appsflyer:af-android-sdk:6.3.2")
-
     implementation("com.makeramen:roundedimageview:2.3.0")
     implementation("com.github.bumptech.glide:glide:4.12.0")
 
