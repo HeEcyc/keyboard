@@ -2,7 +2,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.neonkeyboard.cool">
+    package="com.ioskey.iosboard">
 
     <!-- Permission needed to vibrate if the user has key press vibration enabled -->
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
-        android:name="com.neonkeyboard.cool.NeonApplication"
+        android:name="com.ioskey.iosboard.NeonApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,7 +22,7 @@
 
         <!-- IME service -->
         <service
-            android:name="com.neonkeyboard.cool.background.view.keyboard.BackgroundViewKeyboardService"
+            android:name="com.ioskey.iosboard.background.view.keyboard.BackgroundViewKeyboardService"
             android:directBootAware="true"
             android:exported="true"
             android:label="@string/app_name"
@@ -37,7 +37,7 @@
 
         <!-- Spellchecker service -->
         <service
-            android:name="com.neonkeyboard.cool.NeonSpellCheckerService"
+            android:name="com.ioskey.iosboard.NeonSpellCheckerService"
             android:exported="true"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_TEXT_SERVICE">
@@ -50,7 +50,7 @@
         </service>
 
         <activity
-            android:name="com.neonkeyboard.cool.ui.preview.theme.activity.ThemePreviewActivity"
+            android:name="com.ioskey.iosboard.ui.preview.theme.activity.ThemePreviewActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
@@ -58,21 +58,21 @@
             android:windowSoftInputMode="stateVisible|adjustResize" />
 
         <activity
-            android:name="com.neonkeyboard.cool.ui.crop.activity.CropActivity"
+            android:name="com.ioskey.iosboard.ui.crop.activity.CropActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.neonkeyboard.cool.ui.theme.editor.activity.ThemeEditorActivity"
+            android:name="com.ioskey.iosboard.ui.theme.editor.activity.ThemeEditorActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.neonkeyboard.cool.ui.language.selector.activity.LanguageSelectorActivity"
+            android:name="com.ioskey.iosboard.ui.language.selector.activity.LanguageSelectorActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
@@ -122,7 +122,7 @@
 
 
         <activity
-            android:name="com.neonkeyboard.cool.ui.splash.activity.SplashActivity"
+            android:name="com.ioskey.iosboard.ui.splash.activity.SplashActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -134,13 +134,13 @@
         </activity>
 
         <activity
-            android:name="com.neonkeyboard.cool.ui.main.activity.MainActivity"
+            android:name="com.ioskey.iosboard.ui.main.activity.MainActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait" />
 
         <provider
-            android:name="com.neonkeyboard.cool.ime.clip.provider.FlorisContentProvider"
+            android:name="com.ioskey.iosboard.ime.clip.provider.FlorisContentProvider"
             android:authorities="${applicationId}.provider.clip"
             android:exported="false"
             android:grantUriPermissions="true" />

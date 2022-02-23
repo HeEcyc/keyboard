@@ -5,7 +5,7 @@
 
         <variable
             name="type"
-            type="com.neonkeyboard.cool.ui.custom.SwipeAnimationView.AnimationType" />
+            type="com.ioskey.iosboard.ui.custom.SwipeAnimationView.AnimationType" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -47,7 +47,7 @@
                     android:src="@drawable/ic_close_initial_dialog" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <com.neonkeyboard.cool.ui.custom.SwipeAnimationView
+            <com.ioskey.iosboard.ui.custom.SwipeAnimationView
                 android:id="@+id/animationView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

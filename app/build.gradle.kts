@@ -27,7 +27,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.neonkeyboard.cool"
+        applicationId = "com.ioskey.iosboard"
         minSdk = 23
         targetSdk = 30
         versionCode = 1

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.neonkeyboard.cool.ime.clip.ClipboardHistoryView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ioskey.iosboard.ime.clip.ClipboardHistoryView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/clip_input"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -60,4 +60,4 @@
             />
     </LinearLayout>
 
-</com.neonkeyboard.cool.ime.clip.ClipboardHistoryView>
+</com.ioskey.iosboard.ime.clip.ClipboardHistoryView>

@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.neonkeyboard.cool.ui.language.selector.activity.LanguageSelectorViewModel" />
+            type="com.ioskey.iosboard.ui.language.selector.activity.LanguageSelectorViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"

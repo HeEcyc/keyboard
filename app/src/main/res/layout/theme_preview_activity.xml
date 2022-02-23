@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.neonkeyboard.cool.ui.preview.theme.activity.ThemePreviewViewModel" />
+            type="com.ioskey.iosboard.ui.preview.theme.activity.ThemePreviewViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"

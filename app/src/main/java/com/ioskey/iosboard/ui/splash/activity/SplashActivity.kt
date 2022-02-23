@@ -1,14 +1,14 @@
-package com.neonkeyboard.cool.ui.splash.activity
+package com.ioskey.iosboard.ui.splash.activity
 
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.neonkeyboard.cool.R
-import com.neonkeyboard.cool.databinding.SplashActivityBinding
-import com.neonkeyboard.cool.ui.base.BaseActivity
-import com.neonkeyboard.cool.ui.main.activity.MainActivity
+import com.ioskey.iosboard.R
+import com.ioskey.iosboard.databinding.SplashActivityBinding
+import com.ioskey.iosboard.ui.base.BaseActivity
+import com.ioskey.iosboard.ui.main.activity.MainActivity
 
 class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.layout.splash_activity) {
 
