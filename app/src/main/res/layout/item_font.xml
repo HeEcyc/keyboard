@@ -2,28 +2,66 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="item"
             type="com.ioskey.iosboard.ui.theme.editor.activity.ThemeEditorViewModel.KeyboardFont" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            font="@{item.fontRes}"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="5dp"
-            android:gravity="center"
-            android:text="@{item.name}"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="@{item.isSelected ? @drawable/tab_stroke : null}"/>
+            app:layout_constraintHeight_percent="0.369"
+            android:background="@{item.isSelected ? @drawable/tab_bg_selected : null}">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="@{item.isSelected ? View.VISIBLE : View.GONE}">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintDimensionRatio="24:34"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                font="@{item.fontRes}"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{item.name}"
+                textColorInt="@{item.isSelected ? 0xFFFFFFFF : 0xFF0A0A0B}"
+                isBold="@{item.isSelected}"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMaxTextSize="14sp"
+                app:autoSizeMinTextSize="1sp"
+                android:lines="1" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="@{item.isSelected ? View.VISIBLE : View.GONE}">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintDimensionRatio="24:34"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

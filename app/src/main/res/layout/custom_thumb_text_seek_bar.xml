@@ -13,8 +13,8 @@
             android:layout_marginTop="31sp"
             android:max="100"
             android:progress="20"
-            android:progressBackgroundTint="@android:color/black"
-            android:progressTint="@android:color/black" />
+            android:progressBackgroundTint="#C7C7CC"
+            android:progressTint="#C7C7CC" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

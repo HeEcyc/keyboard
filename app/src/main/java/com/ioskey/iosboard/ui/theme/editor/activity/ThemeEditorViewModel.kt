@@ -193,7 +193,7 @@ class ThemeEditorViewModel : BaseViewModel() {
     private fun getColors(noColorItem: NoColor? = null) = listOf(
         noColorItem,
         NewColor,
-        Color("#000000", stockeColor = "#736D60").apply { isSelected = true },
+        Color("#000000"/*, stockeColor = "#736D60"*/).apply { isSelected = true },
         Color("#FFFEF9", isDarkBorder = true),
         Color("#C4C4C4"),
         Color("#626262"),
@@ -251,8 +251,8 @@ class ThemeEditorViewModel : BaseViewModel() {
 
         var isSelected = false
 
-        fun getBorderColor() = if (isDarkBorder) "#7D7D7D"
-        else "#FFFFFF"
+        fun getBorderColor() = "#BDC0C6"//if (isDarkBorder) "#7D7D7D"
+        //else "#FFFFFF"
     }
 
     object NewColor : ColorItem()

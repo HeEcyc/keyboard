@@ -14,7 +14,7 @@ class HorizontalItemDecoration(private val space: Int) : RecyclerView.ItemDecora
     ) {
         if (parent.getChildAdapterPosition(view) == 0) outRect.left = space
         outRect.right = space
-        outRect.top = space
-        outRect.bottom = space
+//        outRect.top = space
+//        outRect.bottom = space
     }
 }

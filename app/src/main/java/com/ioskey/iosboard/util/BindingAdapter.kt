@@ -2,6 +2,7 @@ package com.ioskey.iosboard.util
 
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
@@ -105,11 +106,12 @@ fun AppCompatImageView.setColor(color: String?) {
 
 @BindingAdapter("previewTheme")
 fun AppCompatImageView.setColor(keyboardTheme: KeyboardTheme?) {
+    keyboardTheme ?: return
     with(Glide.with(this)) {
-        if (keyboardTheme?.previewImage != null)
+        if (keyboardTheme.previewImage != null)
             load(Uri.parse("file:///android_asset/ime/preview/${keyboardTheme.previewImage}"))
-        else load(File(context.filesDir, "${keyboardTheme?.id}.png"))
-            .signature(ObjectKey(File(context.filesDir, "${keyboardTheme?.id}.png").lastModified()))
+        else load(File(context.filesDir, "${keyboardTheme.id}.png"))
+            .signature(ObjectKey(File(context.filesDir, "${keyboardTheme.id}.png").lastModified()))
     }.into(this)
 }
 
@@ -117,4 +119,14 @@ object Converter {
 
     @JvmStatic
     fun previewUri(backgroundView: ThemeEditorViewModel.BackgroundAsset.BackgroundTheme?) = backgroundView?.uri
+}
+
+@BindingAdapter("textColorInt")
+fun setTextColorInt(tv: TextView, c: Int) {
+    tv.setTextColor(c)
+}
+
+@BindingAdapter("isBold")
+fun setIsBold(tv: TextView, b: Boolean) {
+    tv.setTypeface(tv.typeface, if (b) Typeface.BOLD else Typeface.NORMAL)
 }
