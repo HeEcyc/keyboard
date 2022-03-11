@@ -20,5 +20,6 @@ class CropActivity : BaseActivity<CropViewModel, CropActivityBinding>(R.layout.c
             setResult(RESULT_OK, intent.putExtra(BUNDLE_CROPPED_IMAGE_KEY, it))
             finish()
         })
+        binding.backButton.setOnClickListener { onBackPressed() }
     }
 }
