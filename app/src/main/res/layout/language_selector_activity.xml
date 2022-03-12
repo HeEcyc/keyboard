@@ -3,7 +3,6 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.ioskey.iosboard.ui.language.selector.activity.LanguageSelectorViewModel" />
@@ -12,49 +11,100 @@
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="#FAFAFA"
         android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="@android:color/white">
-
+            android:layout_height="wrap_content"
+            android:background="#EBF8F8F8">
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="379:56"
+                app:layout_constraintWidth_percent="0.92214">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/backButton"
-                    android:layout_width="0sp"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/top_button_padding"
-                    android:src="@drawable/ic_back"
-                    android:tint="@color/dividerSecond"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintHeight_percent="0.42857"
+                    android:src="@drawable/ic_back"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/MediumText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="17sp"
-                    android:text="@string/languages"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/backButton"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintDimensionRatio="299:22"
+                    app:layout_constraintHeight_percent="0.392857"
+                    android:gravity="center"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMaxTextSize="17sp"
+                    app:autoSizeMinTextSize="1sp"
+                    android:textColor="#0A0A0B"
+                    android:fontFamily="@font/sf_pro_display_medium"
+                    android:lines="1"
+                    android:text="@string/languages"/>
 
-        </com.google.android.material.appbar.AppBarLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0A0A0B"
+            android:alpha="0.2">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="411:0.5"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFF4">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="411:42"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0A0A0B"
+            android:alpha="0.2">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="411:0.5"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            itemDecoration="@{viewModel.itemDecoration}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/black"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             bind:adapter="@{viewModel.adapter}"
             bind:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 </layout>
