@@ -26,6 +26,7 @@ class DialogPermissions(private val onPermissionAction: OnPermissionAction) :
         isCancelable = false
         view?.viewTreeObserver?.addOnWindowFocusChangeListener(focusListener)
         binding.permissionsButton.setOnClickListener { onPermissionAction.askPermissions() }
+        binding.buttonClose.setOnClickListener { dismiss() }
     }
 
     private fun removeListener() {

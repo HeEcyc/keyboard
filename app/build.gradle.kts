@@ -101,6 +101,7 @@ dependencies {
     implementation("com.jakewharton.timber", "timber", "4.7.1")
     implementation("com.nambimobile.widgets", "expandable-fab", "1.0.2")
     implementation("androidx.room", "room-runtime", "2.2.6")
+    implementation("com.airbnb.android:lottie:3.7.0")
     implementation("com.google.code.gson", "gson", "2.8.8")
 
     implementation("com.google.firebase:firebase-bom:29.0.0")

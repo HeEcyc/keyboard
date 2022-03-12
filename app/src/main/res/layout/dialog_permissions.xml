@@ -1,71 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <import type="com.ioskey.iosboard.ui.custom.ScalableCardView.ScaleType"/>
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dialog_rounded_corner"
-            android:paddingBottom="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.85">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="411:707">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/permissionImage"
-                android:layout_width="0sp"
-                android:layout_height="0sp"
-                android:layout_marginTop="35sp"
-                android:src="@drawable/phone_iphone"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+            <com.ioskey.iosboard.ui.custom.ScalableCardView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.7" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="270:234"
+                app:layout_constraintWidth_percent="0.6569343"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                scaleType="@{ScaleType.BY_HEIGHT}"
+                scalableCornerRadius="@{0.116f}">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="#EBF8F8F8">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/permissinsTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="37sp"
-                android:fontFamily="@font/roboto_400"
-                android:gravity="center"
-                android:text="@string/give_permissions_for_the_napplication_work_properly"
-                android:textColor="@android:color/black"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/permissionImage" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="183.62">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/permissinsPermissionText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14sp"
-                android:fontFamily="@font/roboto_400"
-                android:gravity="center"
-                android:text="@string/set_appclication_as_your_default_nphone_app_this_is_necessary_for_ncorrect_work_application"
-                android:textColor="@color/textGrayColor"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/permissinsTitle" />
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.5"
+                            app:layout_constraintVertical_bias="0.125"
+                            app:lottie_autoPlay="true"
+                            app:lottie_rawRes="@raw/lottie_check_mark"
+                            app:lottie_loop="true"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/permissionsButton"
-                android:layout_width="match_parent"
-                android:layout_height="60sp"
-                android:layout_marginHorizontal="32sp"
-                android:layout_marginTop="50sp"
-                android:layout_marginBottom="40sp"
-                android:background="@drawable/button_blue_gradient"
-                android:fontFamily="@font/roboto_500"
-                android:gravity="center"
-                android:text="@string/allow"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@id/permissinsPermissionText" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintDimensionRatio="207:50"
+                            app:layout_constraintHeight_percent="0.2723"
+                            app:layout_constraintVertical_bias="0.8609"
+                            android:gravity="center"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMaxTextSize="17sp"
+                            app:autoSizeMinTextSize="1sp"
+                            android:textColor="#000000"
+                            android:fontFamily="@font/sf_pro_text_bold"
+                            android:text="@string/give_permissions_for_the_napplication_work_properly"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/buttonClose"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.087"
+                            app:layout_constraintVertical_bias="0.047727"
+                            app:layout_constraintHorizontal_bias="0.9685"
+                            android:src="@drawable/ic_close_permission_dialog"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.12"
+                        android:background="#260A0A0B"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/permissionsButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="49.26">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintDimensionRatio="102:24.63"
+                            app:layout_constraintHeight_percent="0.5"
+                            android:gravity="center"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMaxTextSize="17sp"
+                            app:autoSizeMinTextSize="1sp"
+                            android:textColor="#027AFF"
+                            android:fontFamily="@font/sf_pro_text_regular"
+                            android:text="@string/allow"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </com.ioskey.iosboard.ui.custom.ScalableCardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
