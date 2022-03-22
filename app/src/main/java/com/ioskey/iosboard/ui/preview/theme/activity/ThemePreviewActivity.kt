@@ -23,6 +23,7 @@ class ThemePreviewActivity :
     override fun setupUI() {
         binding.backButton.setOnClickListener(this)
         binding.editButton.setOnClickListener(this)
+        binding.buttonSelect.setOnClickListener(this)
     }
 
     override fun onResume() {
@@ -36,6 +37,7 @@ class ThemePreviewActivity :
         when (v.id) {
             R.id.backButton -> onBackPressed()
             R.id.editButton -> editKeyboardTheme()
+            R.id.buttonSelect -> { viewModel.selectTheme(); onBackPressed() }
         }
     }
 

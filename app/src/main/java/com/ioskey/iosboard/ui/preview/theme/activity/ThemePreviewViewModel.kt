@@ -2,6 +2,7 @@ package com.ioskey.iosboard.ui.preview.theme.activity
 
 import androidx.databinding.ObservableField
 import com.ioskey.iosboard.data.KeyboardTheme
+import com.ioskey.iosboard.repository.PrefsReporitory
 import com.ioskey.iosboard.ui.base.BaseViewModel
 
 class ThemePreviewViewModel : BaseViewModel() {
@@ -15,4 +16,9 @@ class ThemePreviewViewModel : BaseViewModel() {
         theme.set(keyboardTheme)
         backgroundImage.set(keyboardTheme.backgroundImagePath)
     }
+
+    fun selectTheme() {
+        PrefsReporitory.keyboardTheme = theme.get()
+    }
+
 }

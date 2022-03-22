@@ -349,4 +349,10 @@
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
 
+<!--  ios keyboard  -->
+
+    <string name="edit_theme">Edit theme</string>
+    <string name="apply">Apply</string>
+    <string name="select">Select</string>
+
 </resources>
