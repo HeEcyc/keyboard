@@ -10,6 +10,8 @@ import com.ioskey.iosboard.databinding.SplashActivityBinding
 import com.ioskey.iosboard.ui.base.BaseActivity
 import com.ioskey.iosboard.ui.main.activity.MainActivity
 
+// todo open settings activity on special intent key
+
 class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.layout.splash_activity) {
 
     private val viewModel: SplashViewModel by viewModels()

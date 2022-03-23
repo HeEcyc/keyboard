@@ -1,5 +1,6 @@
 package com.ioskey.iosboard.data
 
+import androidx.databinding.ObservableBoolean
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -33,6 +34,9 @@ data class KeyboardTheme(
 
     @Ignore
     var isSelected: Boolean = false
+
+    @Ignore
+    val isSelectedObservable = ObservableBoolean(false)
 
     fun copyTheme(keyboardTheme: KeyboardTheme) {
         this.backgoundType = keyboardTheme.backgoundType

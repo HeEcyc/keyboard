@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ioskey.iosboard.R
 import com.ioskey.iosboard.databinding.ItemLanguageInittialDialogBinding
 import com.ioskey.iosboard.ui.base.createAdapter
-import com.ioskey.iosboard.ui.custom.ItemDecorationWithEnds
+import com.ioskey.iosboard.ui.custom.ItemDecorationWithEndsLegacy
 import com.ioskey.iosboard.util.enums.Language
 import com.ioskey.iosboard.util.toPx
 
@@ -33,7 +33,7 @@ class DialogInitialSelectLanguage : DialogFragment(R.layout.initial_select_langu
                         it.isSelected.set(!it.isSelected.get())
                     }
                 }
-                addItemDecoration(ItemDecorationWithEnds(
+                addItemDecoration(ItemDecorationWithEndsLegacy(
                     topFirst = 9.toPx(),
                     bottomFirst = 9.toPx(),
                     bottom = 9.toPx(),

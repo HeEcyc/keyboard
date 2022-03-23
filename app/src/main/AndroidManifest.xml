@@ -85,6 +85,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.home.activity.HomeActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
 <!--        <activity-alias-->
 <!--            android:name="Launcher"-->
 <!--            android:enabled="true"-->

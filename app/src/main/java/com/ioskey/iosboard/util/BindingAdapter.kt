@@ -130,3 +130,8 @@ fun setTextColorInt(tv: TextView, c: Int) {
 fun setIsBold(tv: TextView, b: Boolean) {
     tv.setTypeface(tv.typeface, if (b) Typeface.BOLD else Typeface.NORMAL)
 }
+
+@BindingAdapter("adapter")
+fun setRecyclerViewAdapter(rv: RecyclerView, rva: RecyclerView.Adapter<*>) {
+    rv.adapter = rva
+}

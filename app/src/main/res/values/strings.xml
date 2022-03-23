@@ -354,5 +354,8 @@
     <string name="edit_theme">Edit theme</string>
     <string name="apply">Apply</string>
     <string name="select">Select</string>
+    <string name="popular">Popular</string>
+    <string name="other">Other</string>
+    <string name="try_theme">Try theme</string>
 
 </resources>

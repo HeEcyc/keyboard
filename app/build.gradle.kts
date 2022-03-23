@@ -103,6 +103,7 @@ dependencies {
     implementation("androidx.room", "room-runtime", "2.2.6")
     implementation("com.airbnb.android:lottie:3.7.0")
     implementation("com.google.code.gson", "gson", "2.8.8")
+    implementation("io.github.florent37:shapeofview:1.4.7")
 
     implementation("com.google.firebase:firebase-bom:29.0.0")
     implementation("com.google.firebase:firebase-analytics-ktx:20.0.0")

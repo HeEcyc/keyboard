@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="item_keyboard_stroke">#BDC0C6</drawable>
+    <drawable name="item_keyboard_stroke_selected">#286FE8</drawable>
+</resources>
