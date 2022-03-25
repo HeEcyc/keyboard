@@ -28,7 +28,7 @@ import com.ioskey.iosboard.ime.text.keyboard.TextKeyboardIconSet
 import com.ioskey.iosboard.ime.text.layout.LayoutManager
 import com.ioskey.iosboard.ui.base.BaseActivity
 import com.ioskey.iosboard.ui.crop.activity.CropActivity
-import com.ioskey.iosboard.ui.main.activity.MainActivity
+import com.ioskey.iosboard.ui.home.activity.HomeActivity
 import com.ioskey.iosboard.util.BUNDLE_CROPPED_IMAGE_KEY
 import com.ioskey.iosboard.util.BUNDLE_IS_EDITING_THEME_KEY
 import com.ioskey.iosboard.util.BUNDLE_THEME_KEY
@@ -201,7 +201,7 @@ class ThemeEditorActivity :
     }
 
     private fun onAttachTheme(keyboardTheme: KeyboardTheme?, isThemeHasModifications: Boolean) {
-        Intent(this, MainActivity::class.java)
+        Intent(this, HomeActivity::class.java)
             .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             .putExtra(BUNDLE_IS_EDITING_THEME_KEY, isThemeHasModifications)
             .putExtra(BUNDLE_THEME_KEY, keyboardTheme)
