@@ -8,9 +8,9 @@ import androidx.activity.viewModels
 import com.ioskey.iosboard.R
 import com.ioskey.iosboard.databinding.SplashActivityBinding
 import com.ioskey.iosboard.ui.base.BaseActivity
-import com.ioskey.iosboard.ui.main.activity.MainActivity
-
-// todo open settings activity on special intent key
+import com.ioskey.iosboard.ui.home.activity.HomeActivity
+import com.ioskey.iosboard.ui.settings.activity.SettingsActivity
+import com.ioskey.iosboard.util.EXTRA_LAUNCH_SETTINGS
 
 class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.layout.splash_activity) {
 
@@ -20,7 +20,7 @@ class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.la
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (!Settings.canDrawOverlays(this)) {}
 //                AlarmBroadcast.startAlarm(this)
-            showMainActivity()
+            showctivity()
         }
 
 
@@ -28,7 +28,7 @@ class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.la
 
     override fun setupUI() {
 //        askOverlayPermission()
-        showMainActivity()
+        showctivity()
     }
 
     private fun askOverlayPermission() {
@@ -38,12 +38,14 @@ class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.la
                     .setData(Uri.fromParts("package", packageName, null))
             )
         else
-            showMainActivity()
+            showctivity()
     }
 
-    private fun showMainActivity() {
-        Intent(this, MainActivity::class.java)
-            .let(::startActivity)
+    private fun showctivity() {
+        if (intent?.hasExtra(EXTRA_LAUNCH_SETTINGS) == true)
+            Intent(this, SettingsActivity::class.java).let(::startActivity)
+        else
+            Intent(this, HomeActivity::class.java).let(::startActivity)
         finish()
     }
 }

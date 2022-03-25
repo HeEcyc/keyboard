@@ -57,7 +57,7 @@ import com.ioskey.iosboard.ime.text.keyboard.TextKeyData
 import com.ioskey.iosboard.ime.theme.Theme
 import com.ioskey.iosboard.ime.theme.ThemeManager
 import com.ioskey.iosboard.repository.PrefsReporitory
-import com.ioskey.iosboard.ui.main.activity.MainActivity
+import com.ioskey.iosboard.ui.splash.activity.SplashActivity
 import com.ioskey.iosboard.util.AppVersionUtils
 import com.ioskey.iosboard.util.EXTRA_LAUNCH_SETTINGS
 import com.ioskey.iosboard.util.enums.OneHandedMode
@@ -715,7 +715,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
 
     fun launchSettings() {
         requestHideSelf(0)
-        val i = Intent(this, MainActivity::class.java).putExtra(EXTRA_LAUNCH_SETTINGS, true)
+        val i = Intent(this, SplashActivity::class.java).putExtra(EXTRA_LAUNCH_SETTINGS, true)
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or
 //            Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED or
             Intent.FLAG_ACTIVITY_CLEAR_TOP

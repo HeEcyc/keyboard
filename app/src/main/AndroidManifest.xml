@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="false"
         android:theme="@style/SettingsTheme"
-        tools:ignore="LockedOrientationActivity">
+        tools:ignore="LockedOrientationActivity"
+        tools:replace="android:supportsRtl">
 
         <!-- IME service -->
         <service
@@ -87,6 +88,12 @@
 
         <activity
             android:name=".ui.home.activity.HomeActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.settings.activity.SettingsActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"

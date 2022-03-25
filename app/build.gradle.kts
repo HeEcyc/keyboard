@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application") version "7.0.1"
-    kotlin("android") version "1.5.20"
-    kotlin("kapt") version "1.5.20"
-    kotlin("plugin.serialization") version "1.5.20"
+    id("com.android.application")// version "7.0.1"
+    kotlin("android")// version "1.5.20"
+    kotlin("kapt")// version "1.5.20"
+    kotlin("plugin.serialization")// version "1.5.20"
 //    id("com.google.gms.google-services") todo
 //    id("com.google.firebase.crashlytics")
 }
@@ -104,6 +104,7 @@ dependencies {
     implementation("com.airbnb.android:lottie:3.7.0")
     implementation("com.google.code.gson", "gson", "2.8.8")
     implementation("io.github.florent37:shapeofview:1.4.7")
+    implementation(project(":iosSwitch"))
 
     implementation("com.google.firebase:firebase-bom:29.0.0")
     implementation("com.google.firebase:firebase-analytics-ktx:20.0.0")

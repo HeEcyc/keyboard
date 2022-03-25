@@ -50,7 +50,7 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="@{item != null ? View.VISIBLE : View.GONE}">
+                            android:visibility="@{!(item instanceof NewTheme) ? View.VISIBLE : View.GONE}">
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/toolbar"

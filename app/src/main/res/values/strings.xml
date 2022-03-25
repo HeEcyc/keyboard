@@ -357,5 +357,8 @@
     <string name="popular">Popular</string>
     <string name="other">Other</string>
     <string name="try_theme">Try theme</string>
+    <string name="keyboard_languages">Keyboard languages</string>
+    <string name="more">More</string>
+    <string name="main">Main</string>
 
 </resources>

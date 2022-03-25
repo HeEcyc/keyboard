@@ -1,11 +1,13 @@
 rootProject.name = "NeonKeyboard"
 
-include(":app")
-
 pluginManagement {
     repositories {
-        gradlePluginPortal()
+        jcenter()
+
+        mavenCentral()
         google()
+        maven{url("https://jitpack.io")}
+        maven{url("https://maven.google.com")}
     }
 
     // allows the plugins syntax to be used with the android gradle plugin
@@ -15,4 +17,5 @@ pluginManagement {
         }
     }
 }
+include(":app")
 include(":particles")

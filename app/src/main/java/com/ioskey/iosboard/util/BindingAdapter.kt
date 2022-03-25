@@ -24,6 +24,7 @@ import com.isseiaoki.simplecropview.CropImageView
 import com.ioskey.iosboard.data.KeyboardTheme
 import com.ioskey.iosboard.ui.theme.editor.activity.ThemeEditorViewModel
 import com.makeramen.roundedimageview.RoundedImageView
+import vn.luongvo.widget.iosswitchview.SwitchView
 import java.io.File
 
 @BindingAdapter("itemDecoration")
@@ -134,4 +135,14 @@ fun setIsBold(tv: TextView, b: Boolean) {
 @BindingAdapter("adapter")
 fun setRecyclerViewAdapter(rv: RecyclerView, rva: RecyclerView.Adapter<*>) {
     rv.adapter = rva
+}
+
+@BindingAdapter("checked")
+fun setChecked(sv: SwitchView, b: Boolean) {
+    sv.toggle(b)
+}
+
+@BindingAdapter("textId")
+fun setTextId(tv: TextView, t: Int) {
+    tv.setText(t)
 }

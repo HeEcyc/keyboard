@@ -44,7 +44,7 @@ class OptionsActivity : BaseActivity<OptionsViewModel, OptionsActivityBinding>(R
             putExtra(EXTRAS_SELECTED_OPTION, selectedOption)
         }
 
-        fun getResult(intent: Intent) = intent.getSerializableExtra(EXTRAS_RESULT)!!
+        fun getResult(intent: Intent?): Serializable? = intent?.getSerializableExtra(EXTRAS_RESULT)
     }
 
     private val adapter by lazy {
@@ -55,6 +55,7 @@ class OptionsActivity : BaseActivity<OptionsViewModel, OptionsActivityBinding>(R
     }
 
     override fun setupUI() {
+        setResult(selectedOption)
         binding.title.text = title
         binding.recyclerView.adapter = adapter
         binding.buttonBack.setOnClickListener { onBackPressed() }
@@ -62,15 +63,15 @@ class OptionsActivity : BaseActivity<OptionsViewModel, OptionsActivityBinding>(R
 
     private fun onOptionClick(option: Option) {
         if (option.isSelected.get()) return
+        setResult(option.option)
         adapter.getData().firstOrNull { it.isSelected.get() }?.isSelected?.set(false)
         option.isSelected.set(true)
     }
 
     override fun provideViewModel() = viewModel
 
-    override fun onBackPressed() {
-        setResult(RESULT_OK, Intent().putExtra(EXTRAS_RESULT, adapter.getData().first { it.isSelected.get() }.option))
-        super.onBackPressed()
+    private fun setResult(value: Serializable) {
+        setResult(RESULT_OK, Intent().putExtra(EXTRAS_RESULT, value))
     }
 
     class Option(val option: Serializable, val title: String, isSelected: Boolean) {

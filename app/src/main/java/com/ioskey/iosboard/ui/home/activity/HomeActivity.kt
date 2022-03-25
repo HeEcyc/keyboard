@@ -18,9 +18,9 @@ import com.ioskey.iosboard.databinding.A0HomeActivityBinding
 import com.ioskey.iosboard.repository.PrefsReporitory
 import com.ioskey.iosboard.ui.base.BaseActivity
 import com.ioskey.iosboard.ui.custom.ItemDecorationWithEnds
-import com.ioskey.iosboard.ui.dialogs.DialogDone
 import com.ioskey.iosboard.ui.dialogs.DialogPermissions
 import com.ioskey.iosboard.ui.preview.theme.activity.ThemePreviewActivity
+import com.ioskey.iosboard.ui.settings.activity.SettingsActivity
 import com.ioskey.iosboard.ui.theme.editor.activity.ThemeEditorActivity
 import com.ioskey.iosboard.util.BUNDLE_IS_EDITING_THEME_KEY
 import com.ioskey.iosboard.util.BUNDLE_THEME_KEY
@@ -83,7 +83,7 @@ class HomeActivity : BaseActivity<HomeViewModel, A0HomeActivityBinding>(R.layout
             )
         }
         binding.buttonSettings.setOnClickListener {
-            // todo settings activity
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
     }
 
@@ -143,7 +143,6 @@ class HomeActivity : BaseActivity<HomeViewModel, A0HomeActivityBinding>(R.layout
         super.onNewIntent(intent)
         if (intent.getBooleanExtra(BUNDLE_IS_EDITING_THEME_KEY, false))
             viewModel.onThemeApply(intent.getSerializableExtra(BUNDLE_THEME_KEY) as? KeyboardTheme ?: return)
-        DialogDone().show(supportFragmentManager)
     }
 
     override fun askPermissions() {
