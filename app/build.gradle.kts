@@ -3,8 +3,8 @@ plugins {
     kotlin("android")// version "1.5.20"
     kotlin("kapt")// version "1.5.20"
     kotlin("plugin.serialization")// version "1.5.20"
-//    id("com.google.gms.google-services") todo
-//    id("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -106,9 +106,9 @@ dependencies {
     implementation("io.github.florent37:shapeofview:1.4.7")
     implementation(project(":iosSwitch"))
 
-    implementation("com.google.firebase:firebase-bom:29.0.0")
-    implementation("com.google.firebase:firebase-analytics-ktx:20.0.0")
-    implementation("com.google.firebase:firebase-crashlytics:18.2.4")
+    implementation("com.google.firebase:firebase-bom:29.2.1")
+    implementation("com.google.firebase:firebase-analytics-ktx:20.1.1")
+    implementation("com.google.firebase:firebase-crashlytics:18.2.9")
 
     implementation("com.makeramen:roundedimageview:2.3.0")
     implementation("com.github.bumptech.glide:glide:4.12.0")
