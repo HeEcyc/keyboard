@@ -175,12 +175,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.ioskey.iosboard.ui.main.activity.MainActivity"
-            android:configChanges="orientation"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-
         <provider
             android:name="com.ioskey.iosboard.ime.clip.provider.FlorisContentProvider"
             android:authorities="${applicationId}.provider.clip"
