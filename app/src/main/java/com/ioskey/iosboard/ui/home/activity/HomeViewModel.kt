@@ -11,7 +11,7 @@ import com.ioskey.iosboard.data.KeyboardTheme
 import com.ioskey.iosboard.data.NewTheme
 import com.ioskey.iosboard.data.Theme
 import com.ioskey.iosboard.data.db.ThemeDataBase
-import com.ioskey.iosboard.databinding.A0ItemThemeBinding
+import com.ioskey.iosboard.databinding.ItemThemeHomeBinding
 import com.ioskey.iosboard.repository.PrefsReporitory
 import com.ioskey.iosboard.ui.base.AppBaseAdapter
 import com.ioskey.iosboard.ui.base.BaseViewModel
@@ -30,15 +30,15 @@ class HomeViewModel : BaseViewModel() {
     val selectedTheme = ObservableField<KeyboardTheme>(themesPopular.first())
     val isSelectedThemePreset = ObservableBoolean(true)
 
-    val adapterCustom = AppBaseAdapter.Builder<Theme, A0ItemThemeBinding>(R.layout.a0_item_theme).apply {
+    val adapterCustom = AppBaseAdapter.Builder<Theme, ItemThemeHomeBinding>(R.layout.item_theme_home).apply {
         onItemClick = ::onThemeClick
         initItems = listOf(NewTheme)
     }.build()
-    val adapterPopular = AppBaseAdapter.Builder<Theme, A0ItemThemeBinding>(R.layout.a0_item_theme).apply {
+    val adapterPopular = AppBaseAdapter.Builder<Theme, ItemThemeHomeBinding>(R.layout.item_theme_home).apply {
         onItemClick = ::onThemeClick
         initItems = themesPopular
     }.build()
-    val adapterOther = AppBaseAdapter.Builder<Theme, A0ItemThemeBinding>(R.layout.a0_item_theme).apply {
+    val adapterOther = AppBaseAdapter.Builder<Theme, ItemThemeHomeBinding>(R.layout.item_theme_home).apply {
         onItemClick = ::onThemeClick
         initItems = themesOther
     }.build()

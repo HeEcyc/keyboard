@@ -14,11 +14,12 @@ import androidx.activity.viewModels
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.ioskey.iosboard.R
 import com.ioskey.iosboard.data.KeyboardTheme
-import com.ioskey.iosboard.databinding.A0HomeActivityBinding
+import com.ioskey.iosboard.databinding.HomeActivityBinding
 import com.ioskey.iosboard.repository.PrefsReporitory
 import com.ioskey.iosboard.ui.base.BaseActivity
 import com.ioskey.iosboard.ui.custom.ItemDecorationWithEnds
 import com.ioskey.iosboard.ui.dialogs.DialogPermissions
+import com.ioskey.iosboard.ui.guid.activity.first.GuidLanguageActivity
 import com.ioskey.iosboard.ui.preview.theme.activity.ThemePreviewActivity
 import com.ioskey.iosboard.ui.settings.activity.SettingsActivity
 import com.ioskey.iosboard.ui.theme.editor.activity.ThemeEditorActivity
@@ -26,7 +27,7 @@ import com.ioskey.iosboard.util.BUNDLE_IS_EDITING_THEME_KEY
 import com.ioskey.iosboard.util.BUNDLE_THEME_KEY
 import io.github.florent37.shapeofview.shapes.RoundRectView
 
-class HomeActivity : BaseActivity<HomeViewModel, A0HomeActivityBinding>(R.layout.a0_home_activity),
+class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.home_activity),
     DialogPermissions.OnPermissionAction {
 
     val viewModel: HomeViewModel by viewModels { HomeViewModel.Factory() }
@@ -173,16 +174,11 @@ class HomeActivity : BaseActivity<HomeViewModel, A0HomeActivityBinding>(R.layout
     private fun ifInitialLaunch() {
         if (!PrefsReporitory.isFirstLaunch) return
         PrefsReporitory.isFirstLaunch = false
-        showLanguageDialog()
+        showGuid()
     }
 
-    private fun showLanguageDialog() {
-        // show activities instead of dialogs
-        //DialogInitialSelectLanguage().apply { onClosed = {
-            // todo show settings dialog
-                // todo show theme dialog
-        //} }
-        //    .show(supportFragmentManager, null)
+    private fun showGuid() {
+        startActivity(Intent(this, GuidLanguageActivity::class.java))
     }
 
 }

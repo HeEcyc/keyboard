@@ -360,5 +360,7 @@
     <string name="keyboard_languages">Keyboard languages</string>
     <string name="more">More</string>
     <string name="main">Main</string>
+    <string name="exit">Exit</string>
+    <string name="set">Set</string>
 
 </resources>
