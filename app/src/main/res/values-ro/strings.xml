@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Neon Keyboard</string>
     <string name="settings">Setări</string>
     <string name="language">Limba</string>
     <string name="custom">Personalizat</string>
@@ -59,4 +58,15 @@
     <string name="keyboard_swipe_feature_description">Glisați spre stânga pentru a șterge un cuvânt, glisați spre dreapta pentru a muta cursorul</string>
     <string name="cancel">Anulare</string>
     <string name="ok">Bine</string>
+    <string name="edit_theme">Editați tema</string>
+    <string name="apply">aplica</string>
+    <string name="select">Selectați</string>
+    <string name="popular">Popular</string>
+    <string name="other">Alte</string>
+    <string name="try_theme">Încearcă tema</string>
+    <string name="keyboard_languages">Limbi de tastatură</string>
+    <string name="more">Mai mult</string>
+    <string name="main">Principal</string>
+    <string name="exit">Ieșire</string>
+    <string name="set">A stabilit</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Neon Keyboard</string>
     <string name="settings">Настройки</string>
     <string name="language">Языки</string>
     <string name="custom">Настроить</string>
@@ -59,4 +58,15 @@
     <string name="keyboard_swipe_feature_description">Проведите пальцем влево, чтобы удалить слово, проведите пальцем вправо, чтобы добавить пробел</string>
     <string name="cancel">Отмена</string>
     <string name="ok">Ok</string>
+    <string name="edit_theme">Редактировать</string>
+    <string name="apply">Применить</string>
+    <string name="select">Выбрать</string>
+    <string name="popular">Популярное</string>
+    <string name="other">Другое</string>
+    <string name="try_theme">Попробовать тему</string>
+    <string name="keyboard_languages">Языки</string>
+    <string name="more">Ещё</string>
+    <string name="main">Главное</string>
+    <string name="exit">Выйти</string>
+    <string name="set">Применить</string>
 </resources>

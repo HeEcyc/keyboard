@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Neon Keyboard</string>
     <string name="settings">Ayarlar</string>
     <string name="language">Dilim</string>
     <string name="custom">Gelenek</string>
@@ -59,4 +58,15 @@
     <string name="keyboard_swipe_feature_description">Bir kelimeyi silmek için sola kaydırın, imleci hareket ettirmek için sağa kaydırın</string>
     <string name="cancel">İptal</string>
     <string name="ok">Tamam</string>
+    <string name="edit_theme">Temayı düzenle</string>
+    <string name="apply">Uygulamak</string>
+    <string name="select">Seçme</string>
+    <string name="popular">Popüler</string>
+    <string name="other">Diğer</string>
+    <string name="try_theme">temayı dene</string>
+    <string name="keyboard_languages">Klavye dilleri</string>
+    <string name="more">Daha</string>
+    <string name="main">Ana</string>
+    <string name="exit">çıkış</string>
+    <string name="set">Ayarlamak</string>
 </resources>

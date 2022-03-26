@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Neon Keyboard</string>
     <string name="settings">إعدادات</string>
     <string name="language">لغة</string>
     <string name="custom">مخصص</string>
@@ -59,4 +58,15 @@
     <string name="keyboard_swipe_feature_description">اسحب لليسار لحذف كلمة ، واسحب لليمين لتحريك المؤشر</string>
     <string name="cancel">يلغي</string>
     <string name="ok">نعم</string>
+    <string name="edit_theme">تحرير المظهر</string>
+    <string name="apply">تطبيق</string>
+    <string name="select">يختار</string>
+    <string name="popular">جمع</string>
+    <string name="other">آخر</string>
+    <string name="try_theme">جرب المظهر</string>
+    <string name="keyboard_languages">لغات لوحة المفاتيح</string>
+    <string name="more">أكثر</string>
+    <string name="main">رئيسي</string>
+    <string name="exit">مخرج</string>
+    <string name="set">تعيين</string>
 </resources>

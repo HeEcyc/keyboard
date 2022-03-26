@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Neon Keyboard</string>
     <string name="settings">Mga setting</string>
     <string name="language">Wika</string>
     <string name="custom">Custom</string>
@@ -59,4 +58,15 @@
     <string name="keyboard_swipe_feature_description">Mag-swipe pakaliwa para magtanggal ng salita, mag-swipe pakanan para ilipat ang cursor</string>
     <string name="cancel">Kanselahin</string>
     <string name="ok">Ok</string>
+    <string name="edit_theme">I-edit ang tema</string>
+    <string name="apply">Mag-apply</string>
+    <string name="select">Pumili</string>
+    <string name="popular">Sikat</string>
+    <string name="other">Iba pa</string>
+    <string name="try_theme">Subukan ang tema</string>
+    <string name="keyboard_languages">Mga wika sa keyboard</string>
+    <string name="more">Higit pa</string>
+    <string name="main">Pangunahin</string>
+    <string name="exit">Lumabas</string>
+    <string name="set">Itakda</string>
 </resources>

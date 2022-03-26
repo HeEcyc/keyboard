@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Neon Keyboard</string>
     <string name="settings">ការកំណត់</string>
     <string name="language">ភាសា</string>
     <string name="custom">ផ្ទាល់ខ្លួន</string>
@@ -59,4 +58,15 @@
     <string name="keyboard_swipe_feature_description">អូសទៅឆ្វេងដើម្បីលុបពាក្យ អូសទៅស្តាំដើម្បីផ្លាស់ទីទស្សន៍ទ្រនិច</string>
     <string name="cancel">បោះបង់</string>
     <string name="ok">យល់ព្រម</string>
+    <string name="edit_theme">កែសម្រួលប្រធានបទ</string>
+    <string name="apply">អនុវត្ត</string>
+    <string name="select">ជ្រើសរើស</string>
+    <string name="popular">ពេញនិយម</string>
+    <string name="other">ផ្សេងទៀត</string>
+    <string name="try_theme">សាកល្បងប្រធានបទ</string>
+    <string name="keyboard_languages">ភាសាក្តារចុច</string>
+    <string name="more">ច្រើនទៀត</string>
+    <string name="main">មេ</string>
+    <string name="exit">ចេញ</string>
+    <string name="set">កំណត់</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Neon Keyboard</string>
     <string name="settings">Tetapan</string>
     <string name="language">Bahasa</string>
     <string name="custom">Adat</string>
@@ -59,4 +58,15 @@
     <string name="keyboard_swipe_feature_description">Leret ke kiri untuk memadamkan perkataan, leret ke kanan untuk menggerakkan kursor</string>
     <string name="cancel">Batal</string>
     <string name="ok">Okey</string>
+    <string name="edit_theme">Edit tema</string>
+    <string name="apply">Mohon</string>
+    <string name="select">Pilih</string>
+    <string name="popular">Popular</string>
+    <string name="other">Lain-lain</string>
+    <string name="try_theme">Cuba tema</string>
+    <string name="keyboard_languages">Bahasa papan kekunci</string>
+    <string name="more">Lagi</string>
+    <string name="main">Utama</string>
+    <string name="exit">Keluar</string>
+    <string name="set">Set</string>
 </resources>
