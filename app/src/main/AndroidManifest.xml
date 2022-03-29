@@ -125,6 +125,7 @@
 <!--            android:enabled="true"-->
 <!--            android:exported="true"-->
 <!--            android:targetActivity=".ui.splash.activity.SplashActivity">-->
+        <!--todo implement IronSource SDK-->
 
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
