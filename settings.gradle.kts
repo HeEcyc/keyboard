@@ -8,6 +8,7 @@ pluginManagement {
         google()
         maven{url("https://jitpack.io")}
         maven{url("https://maven.google.com")}
+        maven("https://android-sdk.is.com/")
     }
 
     // allows the plugins syntax to be used with the android gradle plugin

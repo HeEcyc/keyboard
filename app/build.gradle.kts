@@ -125,4 +125,8 @@ dependencies {
 
     androidTestImplementation("androidx.test.ext", "junit", "1.1.2")
     androidTestImplementation("androidx.test.espresso", "espresso-core", "3.3.0")
+
+    // ironSource
+    implementation("com.ironsource.sdk:mediationsdk:7.1.14")
+
 }

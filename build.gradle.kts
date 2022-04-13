@@ -9,6 +9,7 @@ subprojects {
         google()
         maven("https://jitpack.io")
         maven("https://maven.google.com")
+        maven("https://android-sdk.is.com/")
     }
 }
 
@@ -19,6 +20,7 @@ buildscript {
         google()
         maven("https://jitpack.io")
         maven("https://maven.google.com")
+        maven("https://android-sdk.is.com/")
     }
     dependencies {
         classpath("com.android.tools.build:gradle:7.0.2")
@@ -37,5 +39,6 @@ allprojects {
         google()
         maven("https://jitpack.io")
         maven("https://maven.google.com")
+        maven("https://android-sdk.is.com/")
     }
 }
