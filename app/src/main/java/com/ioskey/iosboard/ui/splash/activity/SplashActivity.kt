@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.ioskey.iosboard.R
 import com.ioskey.iosboard.databinding.SplashActivityBinding
+import com.ioskey.iosboard.repository.PrefsReporitory
 import com.ioskey.iosboard.ui.base.BaseActivity
 import com.ioskey.iosboard.ui.home.activity.HomeActivity
 import com.ioskey.iosboard.ui.settings.activity.SettingsActivity
@@ -30,6 +31,9 @@ class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.la
     override fun provideViewModel() = viewModel
 
     override fun setupUI() {
+        if (PrefsReporitory.firstLaunchMillis == -1L)
+            PrefsReporitory.firstLaunchMillis = System.currentTimeMillis()
+
         IronSource.setMetaData("is_child_directed","false")
         IronSource.init(this, IRON_SOURCE_APP_KEY)
         askOverlayPermission()

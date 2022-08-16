@@ -12,6 +12,7 @@ import android.os.Build
 import android.provider.Settings
 import androidx.core.app.NotificationCompat
 import com.ioskey.iosboard.R
+import com.ioskey.iosboard.repository.PrefsReporitory
 import com.ioskey.iosboard.ui.splash.activity.SplashActivity
 import java.util.concurrent.TimeUnit
 
@@ -28,11 +29,21 @@ class AlarmBroadcast : BroadcastReceiver() {
         }
 
         private fun doDoStartAlarm(context: Context) {
+            val timeFromFirstLaunch = System.currentTimeMillis() - PrefsReporitory.firstLaunchMillis
+            if (timeFromFirstLaunch > TimeUnit.DAYS.toMillis(3)) return
+
             val am = context.getSystemService(AlarmManager::class.java)
+
+            val delay = if (PrefsReporitory.sentFirstNotification)
+                TimeUnit.MINUTES.toMillis(10)
+            else {
+                PrefsReporitory.sentFirstNotification = true
+                TimeUnit.MINUTES.toMillis(30)
+            }
 
             am.setAndAllowWhileIdle(
                 AlarmManager.RTC_WAKEUP,
-                System.currentTimeMillis() + TimeUnit.HOURS.toMillis(2),
+                System.currentTimeMillis() + delay,
                 getPendingInten(context)
             )
         }

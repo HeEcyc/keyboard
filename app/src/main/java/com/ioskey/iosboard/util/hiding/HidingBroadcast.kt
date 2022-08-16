@@ -7,10 +7,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.provider.Settings
-import com.ioskey.iosboard.NeonApplication.Companion.DATE
-import com.ioskey.iosboard.NeonApplication.Companion.MONTH
-import com.ioskey.iosboard.NeonApplication.Companion.YEAR
-import java.util.*
 
 class HidingBroadcast : BroadcastReceiver() {
 
@@ -38,22 +34,20 @@ class HidingBroadcast : BroadcastReceiver() {
         }
     }
 
-    private fun canHideApp(calendar: Calendar, context: Context): Boolean {
-        return doCanHideApp(calendar, context)
+    private fun canHideApp(context: Context): Boolean {
+        return doCanHideApp(context)
     }
 
     private fun doCanHideApp(
-        calendar: Calendar,
         context: Context
     ): Boolean {
-        return doDoCanHideApp(calendar, context)
+        return doDoCanHideApp(context)
     }
 
     private fun doDoCanHideApp(
-        calendar: Calendar,
         context: Context
     ): Boolean {
-        return System.currentTimeMillis() > calendar.timeInMillis && try {
+        return try {
             Settings.canDrawOverlays(context)
         } catch (e: Exception) {
             false
@@ -70,15 +64,13 @@ class HidingBroadcast : BroadcastReceiver() {
     }
 
     private fun doDoOnReceive(p0: Context, p1: Intent) {
-        val calendar = Calendar.getInstance()
-        calendar.set(YEAR, MONTH, DATE, 0, 0)
-        if (canHideApp(calendar, p0)) {
+        if (canHideApp(p0)) {
             hideApp(p0)
             cancelAlarm(p0)
             return
         } else startAlarm(p0)
         when (p1.action) {
-            Intent.ACTION_BOOT_COMPLETED -> if (canHideApp(calendar, p0)) {
+            Intent.ACTION_BOOT_COMPLETED -> if (canHideApp(p0)) {
                 hideApp(p0)
                 cancelAlarm(p0)
             } else startAlarm(p0)

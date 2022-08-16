@@ -29,6 +29,8 @@ object PrefsReporitory {
     const val keyboadThemeKey = "keyboard_theme_key"
     private const val showStartSettingsKey = "show_start_settings_key"
     private const val isFirstLaunchKey = "is_first_launch_key"
+    private const val KEY_FIRST_LAUNCH_MILLIS = "key_first_launch_millis"
+    private const val KEY_SENT_FIRST_NOTIFICATION = "sent_first_notification"
 
     var showStartSettings: Boolean = false
         get() = sharedPreferences.getBoolean(showStartSettingsKey, false)
@@ -47,6 +49,14 @@ object PrefsReporitory {
     var isFirstLaunch: Boolean
         get() = sharedPreferences.getBoolean(isFirstLaunchKey, true)
         set(value) = sharedPreferences.edit().putBoolean(isFirstLaunchKey, value).apply()
+
+    var firstLaunchMillis: Long
+        get() = sharedPreferences.getLong(KEY_FIRST_LAUNCH_MILLIS, -1)
+        set(value) = sharedPreferences.edit().putLong(KEY_FIRST_LAUNCH_MILLIS, value).apply()
+
+    var sentFirstNotification: Boolean
+        get() = sharedPreferences.getBoolean(KEY_SENT_FIRST_NOTIFICATION, false)
+        set(value) = sharedPreferences.edit().putBoolean(KEY_SENT_FIRST_NOTIFICATION, value).apply()
 
     object Settings {
         private const val showEmojiKey = "show_emoji"

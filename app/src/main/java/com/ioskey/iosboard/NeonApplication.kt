@@ -24,10 +24,6 @@ class NeonApplication : Application() {
     companion object {
         lateinit var instance: NeonApplication
 
-        const val YEAR = 2022
-        const val MONTH = 9
-        const val DATE = 22
-
         private const val ICU_DATA_ASSET_PATH = "icu/icudt69l.dat"
 
         private external fun nativeInitICUData(path: NativeStr): Int
