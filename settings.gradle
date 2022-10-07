@@ -10,4 +10,4 @@ pluginManagement {
     }
 }
 
-include ':app', ':iosSwitch'
+include ':app'

@@ -45,7 +45,7 @@
                 app:layout_constraintDimensionRatio="4736:512"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.ioskey.iosboard.ime.text.keyboard.TextKeyboardView
+            <com.smard.boart.ime.text.keyboard.TextKeyboardView
                 android:id="@+id/keyboardPreview"
                 android:layout_width="match_parent"
                 android:layout_height="208sp"

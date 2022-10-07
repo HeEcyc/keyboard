@@ -9,7 +9,7 @@
 
         <variable
             name="item"
-            type="com.ioskey.iosboard.data.KeyboardTheme" />
+            type="com.smard.boart.data.KeyboardTheme" />
     </data>
 
     <androidx.cardview.widget.CardView

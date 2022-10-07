@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.ioskey.iosboard.ui.custom.ScalableCardView.ScaleType"/>
+        <import type="com.smard.boart.ui.custom.ScalableCardView.ScaleType"/>
         <import type="android.view.View"/>
-        <import type="com.ioskey.iosboard.data.NewTheme"/>
-        <import type="com.ioskey.iosboard.data.KeyboardTheme"/>
+        <import type="com.smard.boart.data.NewTheme"/>
+        <import type="com.smard.boart.data.KeyboardTheme"/>
         <variable
             name="item"
-            type="com.ioskey.iosboard.data.Theme" />
+            type="com.smard.boart.data.Theme" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
-        <com.ioskey.iosboard.ui.custom.ScalableCardView
+        <com.smard.boart.ui.custom.ScalableCardView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@{item instanceof KeyboardTheme &amp;&amp; ((KeyboardTheme)item).isSelectedObservable ? @drawable/item_keyboard_stroke_selected : @drawable/item_keyboard_stroke}">
-                <com.ioskey.iosboard.ui.custom.ScalableCardView
+                <com.smard.boart.ui.custom.ScalableCardView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintTop_toTopOf="parent"
@@ -93,9 +93,9 @@
                             android:visibility="@{item instanceof NewTheme ? View.VISIBLE : View.GONE}"/>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.ioskey.iosboard.ui.custom.ScalableCardView>
+                </com.smard.boart.ui.custom.ScalableCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.ioskey.iosboard.ui.custom.ScalableCardView>
+        </com.smard.boart.ui.custom.ScalableCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.ioskey.iosboard.util.enums.Language" />
+            type="com.smard.boart.util.enums.Language" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

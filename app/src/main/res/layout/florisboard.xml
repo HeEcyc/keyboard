@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ioskey.iosboard.ime.core.InputWindowView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.smard.boart.ime.core.InputWindowView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/input_window_view"
     android:layout_width="match_parent"
@@ -10,7 +10,7 @@
     android:layoutDirection="ltr"
     android:orientation="vertical">
 
-    <com.ioskey.iosboard.ime.core.InputView
+    <com.smard.boart.ime.core.InputView
         android:id="@+id/input_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:baselineAligned="false"
         android:orientation="horizontal">
 
-        <com.ioskey.iosboard.ime.onehanded.OneHandedPanel
+        <com.smard.boart.ime.onehanded.OneHandedPanel
             android:id="@+id/one_handed_ctrl_panel_start"
             android:layout_width="@dimen/one_handed_width"
             android:layout_height="match_parent"
@@ -43,9 +43,9 @@
                 android:src="@drawable/ic_keyboard_arrow_left"
                 android:tag="one_handed_ctrl_move" />
 
-        </com.ioskey.iosboard.ime.onehanded.OneHandedPanel>
+        </com.smard.boart.ime.onehanded.OneHandedPanel>
 
-        <com.ioskey.iosboard.common.FlorisViewFlipper
+        <com.smard.boart.common.FlorisViewFlipper
             android:id="@+id/main_view_flipper"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -66,9 +66,9 @@
                 android:id="@+id/clipboard"
                 layout="@layout/clipboard_layout" />
 
-        </com.ioskey.iosboard.common.FlorisViewFlipper>
+        </com.smard.boart.common.FlorisViewFlipper>
 
-        <com.ioskey.iosboard.ime.onehanded.OneHandedPanel
+        <com.smard.boart.ime.onehanded.OneHandedPanel
             android:id="@+id/one_handed_ctrl_panel_end"
             android:layout_width="@dimen/one_handed_width"
             android:layout_height="match_parent"
@@ -93,9 +93,9 @@
                 android:src="@drawable/ic_keyboard_arrow_right"
                 android:tag="one_handed_ctrl_move" />
 
-        </com.ioskey.iosboard.ime.onehanded.OneHandedPanel>
+        </com.smard.boart.ime.onehanded.OneHandedPanel>
 
-    </com.ioskey.iosboard.ime.core.InputView>
+    </com.smard.boart.ime.core.InputView>
 
 
-</com.ioskey.iosboard.ime.core.InputWindowView>
+</com.smard.boart.ime.core.InputWindowView>

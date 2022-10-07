@@ -3,12 +3,12 @@ plugins {
     kotlin("android")// version "1.5.20"
     kotlin("kapt")// version "1.5.20"
     kotlin("plugin.serialization")// version "1.5.20"
-    id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
+//    id("com.google.gms.google-services")todo
+//    id("com.google.firebase.crashlytics")
 }
 
 android {
-    compileSdk = 30
+    compileSdk = 31
     buildToolsVersion = "30.0.3"
     ndkVersion = "22.1.7171670"
 
@@ -27,11 +27,11 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.ioskey.iosboard"
+        applicationId = "com.smard.boart"
         minSdk = 23
-        targetSdk = 30
-        versionCode = 2
-        versionName = "1.1"
+        targetSdk = 31
+        versionCode = 1
+        versionName = "1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -104,7 +104,6 @@ dependencies {
     implementation("com.airbnb.android:lottie:3.7.0")
     implementation("com.google.code.gson", "gson", "2.8.8")
     implementation("io.github.florent37:shapeofview:1.4.7")
-    implementation(project(":iosSwitch"))
 
     implementation("com.google.firebase:firebase-bom:29.2.1")
     implementation("com.google.firebase:firebase-analytics-ktx:20.1.1")
@@ -125,8 +124,5 @@ dependencies {
 
     androidTestImplementation("androidx.test.ext", "junit", "1.1.2")
     androidTestImplementation("androidx.test.espresso", "espresso-core", "3.3.0")
-
-    // ironSource
-    implementation("com.ironsource.sdk:mediationsdk:7.1.14")
 
 }
