@@ -57,6 +57,7 @@ import com.smard.boart.ime.text.keyboard.TextKeyData
 import com.smard.boart.ime.theme.Theme
 import com.smard.boart.ime.theme.ThemeManager
 import com.smard.boart.repository.PrefsReporitory
+import com.smard.boart.ui.home.HomeActivity
 import com.smard.boart.util.AppVersionUtils
 import com.smard.boart.util.EXTRA_LAUNCH_SETTINGS
 import com.smard.boart.util.enums.OneHandedMode
@@ -714,11 +715,11 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
 
     fun launchSettings() {
         requestHideSelf(0)
-//        val i = Intent(this, SplashActivity::class.java).putExtra(EXTRA_LAUNCH_SETTINGS, true)
-//        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or
-////            Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED or
-//            Intent.FLAG_ACTIVITY_CLEAR_TOP
-//        applicationContext.startActivity(i)
+        val i = Intent(this, HomeActivity::class.java).putExtra(EXTRA_LAUNCH_SETTINGS, true)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or
+//            Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED or
+            Intent.FLAG_ACTIVITY_CLEAR_TOP
+        applicationContext.startActivity(i)
     }
 
     /**

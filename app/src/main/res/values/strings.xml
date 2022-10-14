@@ -291,7 +291,7 @@
     <string name="backgrounds">Backgrounds</string>
     <string name="opacity">Opacity</string>
     <string name="strokes">Stroke</string>
-    <string name="set_appclication_as_your_default_nphone_app_this_is_necessary_for_ncorrect_work_application">Set appclication as your default phone app. This is necessary for correct work application</string>
+    <string name="set_appclication_as_your_default_nphone_app_this_is_necessary_for_ncorrect_work_application">Set application as your default keyboard app. This is necessary for correct work application</string>
     <string name="give_permissions_for_the_napplication_work_properly">Give permissions for the\napplication work properly</string>
     <string name="allow">Allow</string>
 
@@ -362,5 +362,22 @@
     <string name="main">Main</string>
     <string name="exit">Exit</string>
     <string name="set">Set</string>
+    <string name="collection">Collection</string>
+    <string name="popular_themes">Popular themes</string>
+    <string name="your_themes">Your Themes</string>
+    <string name="edit">Edit</string>
+    <string name="text">Text</string>
+    <string name="keys">Keys</string>
+    <string name="background">Background</string>
+    <string name="text_color">Text color</string>
+    <string name="font">Font</string>
+    <string name="choose_font">Choose font</string>
+    <string name="keys_color">Keys color</string>
+    <string name="stroke_color">Stroke color</string>
+    <string name="keys_corners_radius">Keys corners radius</string>
+    <string name="keys_opacity">Keys opacity</string>
+    <string name="background_color">Background color</string>
+    <string name="background_image">Background image</string>
+    <string name="edit_image">Edit image</string>
 
 </resources>

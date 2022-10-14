@@ -22,7 +22,7 @@ abstract class BaseActivity<TViewModel : BaseViewModel, TBinding : ViewDataBindi
         StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder().build())
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         binding = DataBindingUtil.setContentView(this, layout)
-//        binding.setVariable(BR.viewModel, provideViewModel())todo
+        binding.setVariable(BR.viewModel, provideViewModel())
         binding.lifecycleOwner = this
         initListeners()
         setupUI()

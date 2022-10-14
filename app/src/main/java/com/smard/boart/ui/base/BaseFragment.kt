@@ -20,7 +20,7 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding>(@LayoutRes 
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-//        binding.setVariable(BR.viewModel, provideViewModel())
+        binding.setVariable(BR.viewModel, provideViewModel())
         binding.lifecycleOwner = this
         binding.root.isClickable = true
         binding.root.isFocusableInTouchMode = true

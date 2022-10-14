@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.smard.boart.ui.crop.CropViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2B3864">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bgVector"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="360:777"
+            android:src="@drawable/bg_vector_home"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/bgVector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="#13B1D4"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="360:777">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="360:22"
+                app:layout_constraintVertical_bias="0.02649"
+                android:gravity="center"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMaxTextSize="20sp"
+                app:autoSizeMinTextSize="1sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/cera_pro_bold"
+                android:text="@string/edit_image"/>
+
+            <com.smard.boart.ui.custom.ScalableCardView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="329:482"
+                app:layout_constraintWidth_percent="0.91388888888"
+                app:layout_constraintVertical_bias="0.2779661"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                scaleType="@{com.smard.boart.ui.custom.ScalableCardView.ScaleType.BY_WIDTH}"
+                scalableCornerRadius="@{0.079f}">
+                <com.isseiaoki.simplecropview.CropImageView
+                    android:id="@+id/cropView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    image="@{viewModel.imageUri}"
+                    app:scv_background_color="@android:color/transparent"
+                    app:scv_crop_mode="free"
+                    app:scv_frame_color="@android:color/white"
+                    app:scv_guide_color="@android:color/white"
+                    app:scv_handle_color="#FFFFFF"
+                    app:scv_overlay_color="#80000000"
+                    android:background="#383C42"/>
+            </com.smard.boart.ui.custom.ScalableCardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="183:67"
+                app:layout_constraintWidth_percent="0.508333"
+                app:layout_constraintVertical_bias="0.8507"
+                android:onClick="@{(_) -> viewModel.cropImage(cropView)}">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/button_bg_183x67"
+                    bind:ignore="ImageContrastCheck" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/cera_pro_bold"
+                    android:gravity="center"
+                    android:text="@string/ok"
+                    android:textColor="#13B1D4"
+                    app:autoSizeMaxTextSize="24sp"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="143:26"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.388"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/buttonCancel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="183:67"
+                app:layout_constraintWidth_percent="0.508333"
+                app:layout_constraintVertical_bias="0.9577">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/cera_pro_bold"
+                    android:gravity="center"
+                    android:text="@string/cancel"
+                    android:textColor="#78D9F4"
+                    app:autoSizeMaxTextSize="24sp"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="143:26"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.388"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    bind:ignore="TextContrastCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

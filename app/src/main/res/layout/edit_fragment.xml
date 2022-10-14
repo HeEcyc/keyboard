@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.smard.boart.ui.edit.EditViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A32B3864">
+
+        <include
+            android:id="@+id/layoutPreview"
+            layout="@layout/edit_fragment_preview"
+            bind:viewModel="@{viewModel}"/>
+
+        <include
+            android:id="@+id/layoutEditor"
+            layout="@layout/edit_fragment_editor"
+            bind:viewModel="@{viewModel}"
+            android:visibility="gone"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

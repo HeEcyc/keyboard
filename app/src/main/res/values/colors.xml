@@ -26,5 +26,7 @@
     <color name="grayStroke">#BDC0C6</color>
     <color name="smartbarBackgroundColor">#FF292E32</color>
 
+    <color name="radio_selected">#E1FFFF</color>
+    <color name="radio_unselected">#2B3864</color>
 
 </resources>

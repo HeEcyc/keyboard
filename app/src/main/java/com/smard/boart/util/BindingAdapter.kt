@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.view.View
 import android.widget.TextView
@@ -21,8 +20,9 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.bumptech.glide.signature.ObjectKey
 import com.isseiaoki.simplecropview.CropImageView
-import com.smard.boart.data.KeyboardTheme
 import com.makeramen.roundedimageview.RoundedImageView
+import com.smard.boart.data.KeyboardTheme
+import com.smard.boart.ui.edit.EditViewModel
 import java.io.File
 
 @BindingAdapter("itemDecoration")
@@ -103,6 +103,12 @@ fun AppCompatImageView.setColor(color: String?) {
     setBackgroundColor(Color.parseColor(color))
 }
 
+@BindingAdapter("bg")
+fun View.setBG(color: String?) {
+    color ?: return
+    setBackgroundColor(Color.parseColor(color))
+}
+
 @BindingAdapter("previewTheme")
 fun AppCompatImageView.setColor(keyboardTheme: KeyboardTheme?) {
     keyboardTheme ?: return
@@ -116,8 +122,8 @@ fun AppCompatImageView.setColor(keyboardTheme: KeyboardTheme?) {
 
 object Converter {
 
-//    @JvmStatic
-//    fun previewUri(backgroundView: ThemeEditorViewModel.BackgroundAsset.BackgroundTheme?) = backgroundView?.uri
+    @JvmStatic
+    fun previewUri(backgroundView: EditViewModel.BackgroundAsset.BackgroundTheme?) = backgroundView?.uri
 }
 
 @BindingAdapter("textColorInt")

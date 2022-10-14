@@ -104,6 +104,7 @@ dependencies {
     implementation("com.airbnb.android:lottie:3.7.0")
     implementation("com.google.code.gson", "gson", "2.8.8")
     implementation("io.github.florent37:shapeofview:1.4.7")
+    implementation("com.github.antonpopoff:colorwheel:1.1.13")
 
     implementation("com.google.firebase:firebase-bom:29.2.1")
     implementation("com.google.firebase:firebase-analytics-ktx:20.1.1")
