@@ -70,7 +70,7 @@ class EditViewModel(
 
     private fun getFontsList() = listOf(
         KeyboardFont("Arial", R.font.arial, R.font.arial == currentFont.get()),
-        KeyboardFont("Roboto", R.font.roboto_400, R.font.roboto == currentFont.get()),
+        KeyboardFont("Roboto", R.font.roboto_400, R.font.roboto_400 == currentFont.get()),
         KeyboardFont("Times New Roman", R.font.times, R.font.times == currentFont.get()),
         KeyboardFont("IBM Plex Mono", R.font.ibm_plex, R.font.ibm_plex == currentFont.get()),
         KeyboardFont("Verdana", R.font.verdana, R.font.verdana == currentFont.get()),

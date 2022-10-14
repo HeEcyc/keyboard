@@ -19,7 +19,7 @@ data class KeyboardTheme(
     var backgoundType: String? = null,
     var backgroundImagePath: String? = null,
     var backgroundColor: String? = "#292E32",
-    var keyFont: Int = R.font.roboto,
+    var keyFont: Int = R.font.roboto_400,
     var keyTextColor: String = "#FFFFFF",
     var strokeRadius: Int = 6,
     var strokeColor: String? = null,
