@@ -69,4 +69,21 @@
     <string name="main">Chủ yếu</string>
     <string name="exit">Lối ra</string>
     <string name="set">Đặt</string>
+    <string name="collection">Bộ sưu tập</string>
+    <string name="popular_themes">Chủ đề phổ biến</string>
+    <string name="your_themes">Chủ đề của bạn</string>
+    <string name="edit">Chỉnh sửa</string>
+    <string name="text">Chữ</string>
+    <string name="keys">Chìa khóa</string>
+    <string name="background">Tiểu sử</string>
+    <string name="text_color">Văn bản màu</string>
+    <string name="font">Nét chữ</string>
+    <string name="choose_font">Chọn Phông chữ</string>
+    <string name="keys_color">Màu của phím</string>
+    <string name="stroke_color">Màu sắc nét</string>
+    <string name="keys_corners_radius">Bán kính góc phím</string>
+    <string name="keys_opacity">Độ mờ của phím</string>
+    <string name="background_color">Màu nền</string>
+    <string name="background_image">Hình nền</string>
+    <string name="edit_image">Chỉnh sửa hình ảnh</string>
 </resources>

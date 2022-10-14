@@ -69,4 +69,21 @@
     <string name="main">Главное</string>
     <string name="exit">Выйти</string>
     <string name="set">Применить</string>
+    <string name="collection">Коллекция</string>
+    <string name="popular_themes">Популярные темы</string>
+    <string name="your_themes">Ваши темы</string>
+    <string name="edit">Редактировать</string>
+    <string name="text">Текст</string>
+    <string name="keys">Клавиши</string>
+    <string name="background">Фон</string>
+    <string name="text_color">Цвет текста</string>
+    <string name="font">Шрифт</string>
+    <string name="choose_font">Выберите шрифт</string>
+    <string name="keys_color">Цвет клавиш</string>
+    <string name="stroke_color">Цвет обводки</string>
+    <string name="keys_corners_radius">Радиус углов клавиш</string>
+    <string name="keys_opacity">Прозрачность клавиш</string>
+    <string name="background_color">Фоновый цвет</string>
+    <string name="background_image">Фоновая картинка</string>
+    <string name="edit_image">Изменить изображение</string>
 </resources>

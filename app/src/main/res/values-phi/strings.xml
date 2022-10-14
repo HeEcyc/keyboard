@@ -69,4 +69,21 @@
     <string name="main">Pangunahin</string>
     <string name="exit">Lumabas</string>
     <string name="set">Itakda</string>
+    <string name="collection">Koleksyon</string>
+    <string name="popular_themes">Mga sikat na tema</string>
+    <string name="your_themes">Iyong Mga Tema</string>
+    <string name="edit">I-edit</string>
+    <string name="text">Text</string>
+    <string name="keys">Mga susi</string>
+    <string name="background">Background</string>
+    <string name="text_color">Kulay ng teksto</string>
+    <string name="font">Font</string>
+    <string name="choose_font">Pumili ng font</string>
+    <string name="keys_color">Kulay ng mga susi</string>
+    <string name="stroke_color">Kulay ng stroke</string>
+    <string name="keys_corners_radius">Radius ng mga sulok ng susi</string>
+    <string name="keys_opacity">Opacity ng mga key</string>
+    <string name="background_color">Kulay ng background</string>
+    <string name="background_image">Larawan sa background</string>
+    <string name="edit_image">I-edit ang larawan</string>
 </resources>

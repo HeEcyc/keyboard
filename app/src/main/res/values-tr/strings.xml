@@ -69,4 +69,21 @@
     <string name="main">Ana</string>
     <string name="exit">çıkış</string>
     <string name="set">Ayarlamak</string>
+    <string name="collection">Toplamak</string>
+    <string name="popular_themes">Popüler temalar</string>
+    <string name="your_themes">Temalarınız</string>
+    <string name="edit">Düzenlemek</string>
+    <string name="text">Metin</string>
+    <string name="keys">Anahtarlar</string>
+    <string name="background">Arka fon</string>
+    <string name="text_color">Metin rengi</string>
+    <string name="font">Yazı tipi</string>
+    <string name="choose_font">Yazı tipi seç</string>
+    <string name="keys_color">Tuş rengi</string>
+    <string name="stroke_color">Fırça rengi</string>
+    <string name="keys_corners_radius">Tuşlar köşe yarıçapı</string>
+    <string name="keys_opacity">Anahtar opaklığı</string>
+    <string name="background_color">Arka plan rengi</string>
+    <string name="background_image">Arka plan görüntüsü</string>
+    <string name="edit_image">Resmi Düzenle</string>
 </resources>

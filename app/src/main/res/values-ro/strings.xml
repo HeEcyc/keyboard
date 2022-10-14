@@ -69,4 +69,21 @@
     <string name="main">Principal</string>
     <string name="exit">Ieșire</string>
     <string name="set">A stabilit</string>
+    <string name="collection">Colectie</string>
+    <string name="popular_themes">Teme populare</string>
+    <string name="your_themes">Temele dvs</string>
+    <string name="edit">Editați | ×</string>
+    <string name="text">Text</string>
+    <string name="keys">Chei</string>
+    <string name="background">fundal</string>
+    <string name="text_color">Culoarea textului</string>
+    <string name="font">Font</string>
+    <string name="choose_font">Alege fontul</string>
+    <string name="keys_color">Culoarea tastelor</string>
+    <string name="stroke_color">Culoarea tractului</string>
+    <string name="keys_corners_radius">Raza colțurilor tastelor</string>
+    <string name="keys_opacity">Opacitatea tastelor</string>
+    <string name="background_color">Culoare de fundal</string>
+    <string name="background_image">Imagine de fundal</string>
+    <string name="edit_image">Editați imaginea</string>
 </resources>

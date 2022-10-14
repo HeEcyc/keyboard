@@ -69,4 +69,21 @@
     <string name="main">Principal</string>
     <string name="exit">Saída</string>
     <string name="set">Definir</string>
+    <string name="collection">Coleção</string>
+    <string name="popular_themes">Temas populares</string>
+    <string name="your_themes">Seus temas</string>
+    <string name="edit">Editar</string>
+    <string name="text">Texto</string>
+    <string name="keys">Chaves</string>
+    <string name="background">Fundo</string>
+    <string name="text_color">Cor do texto</string>
+    <string name="font">Fonte</string>
+    <string name="choose_font">Escolha a fonte</string>
+    <string name="keys_color">Cor das teclas</string>
+    <string name="stroke_color">Cor do traço</string>
+    <string name="keys_corners_radius">Raio dos cantos das teclas</string>
+    <string name="keys_opacity">Opacidade das teclas</string>
+    <string name="background_color">Cor de fundo</string>
+    <string name="background_image">Imagem de fundo</string>
+    <string name="edit_image">Editar imagem</string>
 </resources>

@@ -69,4 +69,21 @@
     <string name="main">หลัก</string>
     <string name="exit">ทางออก</string>
     <string name="set">ชุด</string>
+    <string name="collection">ของสะสม</string>
+    <string name="popular_themes">ธีมยอดนิยม</string>
+    <string name="your_themes">ธีมของคุณ</string>
+    <string name="edit">แก้ไข</string>
+    <string name="text">ข้อความ</string>
+    <string name="keys">กุญแจ</string>
+    <string name="background">พื้นหลัง</string>
+    <string name="text_color">สีข้อความ</string>
+    <string name="font">แบบอักษร</string>
+    <string name="choose_font">เลือกแบบอักษร</string>
+    <string name="keys_color">สีของคีย์</string>
+    <string name="stroke_color">สีจังหวะ</string>
+    <string name="keys_corners_radius">รัศมีมุมของกุญแจ</string>
+    <string name="keys_opacity">ความทึบของคีย์</string>
+    <string name="background_color">สีพื้นหลัง</string>
+    <string name="background_image">ภาพพื้นหลัง</string>
+    <string name="edit_image">แก้ไขภาพ</string>
 </resources>

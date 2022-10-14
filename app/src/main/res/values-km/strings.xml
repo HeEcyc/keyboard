@@ -69,4 +69,21 @@
     <string name="main">មេ</string>
     <string name="exit">ចេញ</string>
     <string name="set">កំណត់</string>
+    <string name="collection">ការប្រមូល</string>
+    <string name="popular_themes">ប្រធានបទពេញនិយម</string>
+    <string name="your_themes">ស្បែករបស់អ្នក។</string>
+    <string name="edit">កែសម្រួល</string>
+    <string name="text">អត្ថបទ</string>
+    <string name="keys">សោ</string>
+    <string name="background">ផ្ទៃខាងក្រោយ</string>
+    <string name="text_color">ពណ៌អត្ថបទ</string>
+    <string name="font">ពុម្ពអក្សរ</string>
+    <string name="choose_font">ជ្រើសរើសពុម្ពអក្សរ</string>
+    <string name="keys_color">ពណ៌គ្រាប់ចុច</string>
+    <string name="stroke_color">ពណ៌ដាច់សរសៃឈាមខួរក្បាល</string>
+    <string name="keys_corners_radius">កាំនៃជ្រុងគ្រាប់ចុច</string>
+    <string name="keys_opacity">ភាពស្រអាប់នៃគ្រាប់ចុច</string>
+    <string name="background_color">ពណ៌ផ្ទៃខាងក្រោយ</string>
+    <string name="background_image">រូបភាព​ផ្ទៃ​ខាង​ក្រោយ</string>
+    <string name="edit_image">កែរូបភាព</string>
 </resources>

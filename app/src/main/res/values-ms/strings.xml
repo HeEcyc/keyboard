@@ -69,4 +69,21 @@
     <string name="main">Utama</string>
     <string name="exit">Keluar</string>
     <string name="set">Set</string>
+    <string name="collection">Koleksi</string>
+    <string name="popular_themes">Tema popular</string>
+    <string name="your_themes">Tema Anda</string>
+    <string name="edit">Sunting</string>
+    <string name="text">Teks</string>
+    <string name="keys">kunci</string>
+    <string name="background">Latar belakang</string>
+    <string name="text_color">Warna teks</string>
+    <string name="font">fon</string>
+    <string name="choose_font">Pilih fon</string>
+    <string name="keys_color">Warna kunci</string>
+    <string name="stroke_color">Warna strok</string>
+    <string name="keys_corners_radius">Jejari sudut kekunci</string>
+    <string name="keys_opacity">Kelegapan kunci</string>
+    <string name="background_color">Warna latar belakang</string>
+    <string name="background_image">Imej latar belakang</string>
+    <string name="edit_image">Edit imej</string>
 </resources>
