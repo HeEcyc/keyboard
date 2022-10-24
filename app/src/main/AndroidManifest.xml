@@ -65,13 +65,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-<!--        <activity-->
-<!--            android:name="com.ioskey.iosboard.ui.theme.editor.activity.ThemeEditorActivity"-->
-<!--            android:configChanges="orientation"-->
-<!--            android:exported="true"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:screenOrientation="portrait" />-->
-
         <activity
             android:name=".ui.language.LanguageActivity"
             android:configChanges="orientation"
@@ -86,50 +79,58 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-<!--        <activity-->
-<!--            android:name=".ui.home.activity.HomeActivity"-->
-<!--            android:configChanges="orientation"-->
-<!--            android:exported="true"-->
-<!--            android:screenOrientation="portrait" />-->
+        <activity-alias
+            android:name="Launcher"
+            android:enabled="true"
+            android:exported="true"
+            android:targetActivity=".ui.home.HomeActivity">
 
-<!--        <activity-->
-<!--            android:name=".ui.settings.activity.SettingsActivity"-->
-<!--            android:configChanges="orientation"-->
-<!--            android:exported="true"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:screenOrientation="portrait" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--        <activity-->
-<!--            android:name=".ui.guid.activity.first.GuidLanguageActivity"-->
-<!--            android:configChanges="orientation"-->
-<!--            android:exported="true"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:screenOrientation="portrait" />-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
-<!--        <activity-->
-<!--            android:name=".ui.guid.activity.second.GuidSettingsActivity"-->
-<!--            android:configChanges="orientation"-->
-<!--            android:exported="true"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:screenOrientation="portrait" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
 
-<!--        <activity-->
-<!--            android:name=".ui.guid.activity.third.GuidThemeActivity"-->
-<!--            android:configChanges="orientation"-->
-<!--            android:exported="true"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:screenOrientation="portrait" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="Launcher2"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_settings"
+            android:label=" "
+            android:roundIcon="@mipmap/ic_settings_round"
+            android:targetActivity=".ui.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity-alias>
 
         <activity
             android:name=".ui.home.HomeActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <provider
@@ -138,30 +139,30 @@
             android:exported="false"
             android:grantUriPermissions="true" />
 
-<!--        <receiver-->
-<!--            android:name="com.smard.boart.util.hiding.HidingBroadcast"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.DATE_CHANGED " />-->
-<!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
-<!--            </intent-filter>-->
-<!--        </receiver>-->
+        <receiver
+            android:name="com.smard.boart.util.hiding.HidingBroadcast"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.DATE_CHANGED " />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
-<!--        <receiver-->
-<!--            android:name="com.smard.boart.util.hiding.AlarmBroadcast"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true"-->
-<!--            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
-<!--                <action android:name="android.intent.action.QUICKBOOT_POWERON" />-->
-<!--                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />-->
-<!--                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />-->
-<!--                <action android:name="android.intent.action.REBOOT" />-->
-<!--                <action android:name="notify" />-->
-<!--            </intent-filter>-->
-<!--        </receiver>-->
+        <receiver
+            android:name="com.smard.boart.util.hiding.AlarmBroadcast"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.REBOOT" />
+                <action android:name="notify" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
