@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.smard.boart.util.enums.Language" />
+            type="com.puddy.board.util.enums.Language" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="360:40">
 
-            <com.smard.boart.ui.custom.ScalableCardView
+            <com.puddy.board.ui.custom.ScalableCardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@{item.isSelected ? @color/radio_selected : @color/radio_unselected}"/>
-            </com.smard.boart.ui.custom.ScalableCardView>
+            </com.puddy.board.ui.custom.ScalableCardView>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="0dp"

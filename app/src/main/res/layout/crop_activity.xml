@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.smard.boart.ui.crop.CropViewModel" />
+            type="com.puddy.board.ui.crop.CropViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +53,7 @@
                 android:fontFamily="@font/cera_pro_bold"
                 android:text="@string/edit_image"/>
 
-            <com.smard.boart.ui.custom.ScalableCardView
+            <com.puddy.board.ui.custom.ScalableCardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -65,7 +65,7 @@
                 app:layout_constraintVertical_bias="0.2779661"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp"
-                scaleType="@{com.smard.boart.ui.custom.ScalableCardView.ScaleType.BY_WIDTH}"
+                scaleType="@{com.puddy.board.ui.custom.ScalableCardView.ScaleType.BY_WIDTH}"
                 scalableCornerRadius="@{0.079f}">
                 <com.isseiaoki.simplecropview.CropImageView
                     android:id="@+id/cropView"
@@ -79,7 +79,7 @@
                     app:scv_handle_color="#FFFFFF"
                     app:scv_overlay_color="#80000000"
                     android:background="#383C42"/>
-            </com.smard.boart.ui.custom.ScalableCardView>
+            </com.puddy.board.ui.custom.ScalableCardView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"

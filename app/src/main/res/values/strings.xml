@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" translatable="false">SmartBoard</string>
+    <string name="app_name" translatable="false">PuddyBoard</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout" translatable="false">Pause</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout" translatable="false">Wait</string>
 

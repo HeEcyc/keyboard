@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.smard.boart.ui.edit.EditViewModel.BackgroundAsset"/>
-        <import type="com.smard.boart.util.Converter"/>
+        <import type="com.puddy.board.ui.edit.EditViewModel.BackgroundAsset"/>
+        <import type="com.puddy.board.util.Converter"/>
         <import type="android.view.View"/>
         <variable
             name="item"
@@ -21,12 +21,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="152:154">
 
-            <com.smard.boart.ui.custom.ScalableCardView
+            <com.puddy.board.ui.custom.ScalableCardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:cardElevation="0dp"
                 app:cardBackgroundColor="@android:color/transparent"
-                scaleType="@{com.smard.boart.ui.custom.ScalableCardView.ScaleType.BY_WIDTH}"
+                scaleType="@{com.puddy.board.ui.custom.ScalableCardView.ScaleType.BY_WIDTH}"
                 scalableCornerRadius="@{0.013f}"
                 android:visibility="@{(item instanceof BackgroundAsset.BackgroundTheme) ? View.VISIBLE : View.GONE}">
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,7 +52,7 @@
                         android:src="@drawable/ic_selected"
                         android:visibility="@{(item instanceof BackgroundAsset.BackgroundTheme) &amp;&amp; ((BackgroundAsset.BackgroundTheme)item).isSelected ? View.VISIBLE : View.GONE}"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.smard.boart.ui.custom.ScalableCardView>
+            </com.puddy.board.ui.custom.ScalableCardView>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"

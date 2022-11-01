@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.smard.boart.ui.edit.EditViewModel" />
+            type="com.puddy.board.ui.edit.EditViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

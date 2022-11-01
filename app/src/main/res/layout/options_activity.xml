@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.smard.boart.ui.options.OptionsViewModel" />
+            type="com.puddy.board.ui.options.OptionsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
