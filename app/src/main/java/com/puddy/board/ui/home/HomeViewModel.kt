@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.puddy.board.background.view.keyboard.repository.BottomRightCharacterRepository
 import com.puddy.board.data.KeyboardTheme
 import com.puddy.board.data.NewTheme
 import com.puddy.board.data.Theme
@@ -16,9 +15,6 @@ import com.puddy.board.databinding.ItemThemeBinding
 import com.puddy.board.repository.PrefsReporitory
 import com.puddy.board.ui.base.BaseViewModel
 import com.puddy.board.ui.base.createAdapter
-import com.puddy.board.util.enums.KeyboardHeight
-import com.puddy.board.util.enums.LanguageChange
-import com.puddy.board.util.enums.OneHandedMode
 import com.puddy.board.util.themesPreset
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,16 +24,12 @@ class HomeViewModel : BaseViewModel() {
 
     val onAddClick = MutableLiveData<Unit>()
     val onThemeClick = MutableLiveData<KeyboardTheme>()
+    val onApplied = MutableLiveData<Unit>()
+
+    val theme = ObservableField<KeyboardTheme?>()
 
     val presetSelected = ObservableBoolean(true)
     val customSelected = ObservableBoolean(false)
-
-    val isGlideTypingOn = ObservableBoolean(PrefsReporitory.Settings.GlideTyping.enableGlideTyping)
-    val isShowEmojiOn = ObservableBoolean(PrefsReporitory.Settings.showEmoji)
-    val isTipsOn = ObservableBoolean(PrefsReporitory.Settings.tips)
-    val isKeyboardSwipeOn = ObservableBoolean(PrefsReporitory.Settings.keyboardSwipe)
-    val isShowNumberRowOn = ObservableBoolean(PrefsReporitory.Settings.showNumberRow)
-    val oneHandedMode = ObservableField(PrefsReporitory.Settings.oneHandedMode)
 
     val adapterPreset = createAdapter<Theme, ViewDataBinding> {
         initItems = themesPreset
@@ -48,6 +40,7 @@ class HomeViewModel : BaseViewModel() {
         }
         onItemClick = {
             onThemeClick.postValue(it as KeyboardTheme)
+            theme.set(it)
         }
     }
 
@@ -56,7 +49,10 @@ class HomeViewModel : BaseViewModel() {
         viewBinding = { inflater, viewGroup, _ -> ItemThemeBinding.inflate(inflater, viewGroup, false) }
         onItemClick = {
             if (it is NewTheme) onAddClick.postValue(Unit)
-            else onThemeClick.postValue(it as KeyboardTheme)
+            else {
+                onThemeClick.postValue(it as KeyboardTheme)
+                theme.set(it)
+            }
         }
     }
 
@@ -68,6 +64,15 @@ class HomeViewModel : BaseViewModel() {
         }
     }
 
+    fun apply() {
+        PrefsReporitory.keyboardTheme = theme.get()
+        listOf(
+            *adapterPreset.getData().toTypedArray(),
+            *adapterCustom.getData().toTypedArray()
+        ).mapNotNull { it as? KeyboardTheme }.forEach { it.isSelectedObservable.set(it === theme.get()) }
+        onApplied.postValue(Unit)
+    }
+
     fun onPresetClick() {
         customSelected.set(false)
         presetSelected.set(true)
@@ -76,60 +81,6 @@ class HomeViewModel : BaseViewModel() {
     fun onCustomClick() {
         presetSelected.set(false)
         customSelected.set(true)
-    }
-
-    fun onGlideTypingClick() {
-        PrefsReporitory.Settings.GlideTyping.enableGlideTyping = !isGlideTypingOn.get()
-        updateUI()
-    }
-
-    fun onShowEmojiClick() {
-        PrefsReporitory.Settings.showEmoji = !isShowEmojiOn.get()
-        updateUI()
-    }
-
-    fun onTipsClick() {
-        PrefsReporitory.Settings.tips = !isTipsOn.get()
-        updateUI()
-    }
-
-    fun onKeyboardSwipeClick() {
-        PrefsReporitory.Settings.keyboardSwipe = !isKeyboardSwipeOn.get()
-        updateUI()
-    }
-
-    fun onShowNumberRowClick() {
-        PrefsReporitory.Settings.showNumberRow = !isShowNumberRowOn.get()
-        updateUI()
-    }
-
-    fun onOneHandedModeSelected(ohm: OneHandedMode) {
-        PrefsReporitory.Settings.oneHandedMode = ohm
-        updateUI()
-    }
-
-    fun onKeyboardHeightSelected(kh: KeyboardHeight) {
-        PrefsReporitory.Settings.keyboardHeight = kh
-        updateUI()
-    }
-
-    fun onLanguageChangeSelected(lc: LanguageChange) {
-        PrefsReporitory.Settings.languageChange = lc
-        updateUI()
-    }
-
-    fun onSpecialSymbolSelected(sc: BottomRightCharacterRepository.SelectableCharacter) {
-        BottomRightCharacterRepository.selectedBottomRightCharacterCode = sc.code
-        updateUI()
-    }
-
-    private fun updateUI() {
-        isGlideTypingOn.set(PrefsReporitory.Settings.GlideTyping.enableGlideTyping)
-        isShowEmojiOn.set(PrefsReporitory.Settings.showEmoji)
-        isTipsOn.set(PrefsReporitory.Settings.tips)
-        isKeyboardSwipeOn.set(PrefsReporitory.Settings.keyboardSwipe)
-        isShowNumberRowOn.set(PrefsReporitory.Settings.showNumberRow)
-        oneHandedMode.set(PrefsReporitory.Settings.oneHandedMode)
     }
 
     class Factory : ViewModelProvider.Factory {

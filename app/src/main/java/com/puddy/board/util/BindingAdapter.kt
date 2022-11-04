@@ -1,5 +1,6 @@
 package com.puddy.board.util
 
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Typeface
@@ -144,4 +145,9 @@ fun setRecyclerViewAdapter(rv: RecyclerView, rva: RecyclerView.Adapter<*>) {
 @BindingAdapter("textId")
 fun setTextId(tv: TextView, t: Int) {
     tv.setText(t)
+}
+
+@BindingAdapter("tint")
+fun setTint(iv: AppCompatImageView, c: Int) {
+    iv.imageTintList = ColorStateList.valueOf(c)
 }

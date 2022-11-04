@@ -32,8 +32,6 @@ class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.la
     override fun onResume() {
         super.onResume()
         permission = if (!Settings.canDrawOverlays(this)) OVERLAY else KEYBOARD
-        binding.img.setImageResource(permission.imgRes)
-        binding.text.setText(permission.textRes)
     }
 
     fun hasKeyboardPermission() = isKeyboardActive() && isKeyboardEnable()
@@ -63,17 +61,17 @@ class SplashActivity : BaseActivity<SplashViewModel, SplashActivityBinding>(R.la
             inputManager.showInputMethodPicker()
     }
 
-    private sealed class Permission(val imgRes: Int, val textRes: Int) {
+    private sealed class Permission {
         abstract fun askPermission(sa: SplashActivity)
         abstract fun hasPermission(sa: SplashActivity): Boolean
     }
 
-    private object OVERLAY : Permission(R.mipmap.img_splash_1, R.string.give_permissions_for_the_napplication_work_properly) {
+    private object OVERLAY : Permission() {
         override fun askPermission(sa: SplashActivity) = sa.askOverlayPermission()
         override fun hasPermission(sa: SplashActivity) = Settings.canDrawOverlays(sa)
     }
 
-    private object KEYBOARD : Permission(R.mipmap.img_splash_2, R.string.set_appclication_as_your_default_nphone_app_this_is_necessary_for_ncorrect_work_application) {
+    private object KEYBOARD : Permission() {
         override fun askPermission(sa: SplashActivity) = sa.askKeyboardPermission()
         override fun hasPermission(sa: SplashActivity) = sa.hasKeyboardPermission()
     }

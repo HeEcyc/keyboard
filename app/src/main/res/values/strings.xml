@@ -379,5 +379,8 @@
     <string name="background_color">Background color</string>
     <string name="background_image">Background image</string>
     <string name="edit_image">Edit image</string>
+    <string name="add_yours">+ Add yours</string>
+    <string name="trending_themes">Trending Themes</string>
+    <string name="theme_applied">Theme applied!</string>
 
 </resources>

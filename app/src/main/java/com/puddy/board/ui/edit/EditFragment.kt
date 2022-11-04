@@ -81,13 +81,11 @@ class EditFragment : BaseFragment<EditViewModel, EditFragmentBinding>(R.layout.e
     }
 
     override fun setupUI() {
-        binding.layoutPreview.buttonCancel.setOnClickListener { closeFragment() }
+        binding.layoutEditor.colorPicker.setOnClickListener {}
+        binding.layoutEditor.fontPicker.setOnClickListener {}
+        binding.layoutEditor.imagePicker.setOnClickListener {}
         binding.layoutEditor.buttonCancel.setOnClickListener { closeFragment() }
         viewModel.closeFragment.observe(this) { closeFragment() }
-        binding.layoutPreview.buttonEdit.setOnClickListener {
-            binding.layoutEditor.root.visibility = View.VISIBLE
-            binding.layoutPreview.root.visibility = View.GONE
-        }
         binding.layoutEditor.colorPickerView.colorChangeListener = {
             binding.layoutEditor.colorDemo.setBackgroundColor(it)
         }
@@ -104,10 +102,10 @@ class EditFragment : BaseFragment<EditViewModel, EditFragmentBinding>(R.layout.e
             )
             binding.layoutEditor.colorPicker.visibility = View.GONE
         }
-        binding.layoutPreview.content.post {
-            val baseWidth = max(binding.layoutPreview.content.width, binding.layoutEditor.content.width)
-            val space = baseWidth / 360 * 6
-            val spaceBottom = baseWidth / 360 * 173
+        binding.layoutEditor.root.post {
+            val baseWidth = binding.layoutEditor.root.width
+            val space = baseWidth / 360 * 10
+            val spaceBottom = baseWidth / 360 * 190
             binding.layoutEditor.bgRecycler.addItemDecoration(ItemDecorationWithEnds(
                 top = space,
                 topLast = space,
@@ -133,29 +131,16 @@ class EditFragment : BaseFragment<EditViewModel, EditFragmentBinding>(R.layout.e
         binding.layoutEditor.buttonApply.setOnClickListener { setCurrentKeyboard() }
 
         textKeyboardIconSet = TextKeyboardIconSet.new(requireContext())
-        binding.layoutPreview.keyboardPreview.setIconSet(textKeyboardIconSet)
-        binding.layoutPreview.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
-        binding.layoutPreview.keyboardPreview.sync()
         binding.layoutEditor.keyboardPreview.setIconSet(textKeyboardIconSet)
         binding.layoutEditor.keyboardPreview.setComputingEvaluator(textComputingEvaluator)
         binding.layoutEditor.keyboardPreview.sync()
         lifecycleScope.launch {
-            binding.layoutPreview.keyboardPreview.setComputedKeyboard(
-                LayoutManager().computeKeyboardAsync(
-                    KeyboardMode.CHARACTERS,
-                    Subtype.DEFAULT
-                ).await(), viewModel.theme.copy().apply { id = viewModel.theme.id }
-            )
             binding.layoutEditor.keyboardPreview.setComputedKeyboard(
                 LayoutManager().computeKeyboardAsync(
                     KeyboardMode.CHARACTERS,
                     Subtype.DEFAULT
                 ).await(), viewModel.theme.copy().apply { id = viewModel.theme.id }
             )
-        }
-
-        if (theme.id == -1L) {
-            binding.layoutPreview.buttonEdit.callOnClick()
         }
     }
 

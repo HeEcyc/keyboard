@@ -66,6 +66,13 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.puddy.board.ui.settings.SettingsActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.puddy.board.ui.language.LanguageActivity"
             android:configChanges="orientation"
             android:exported="true"
