@@ -9,7 +9,7 @@
 
         <variable
             name="item"
-            type="com.puddy.board.data.KeyboardTheme" />
+            type="com.gg.osto.data.KeyboardTheme" />
     </data>
 
     <androidx.cardview.widget.CardView

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.puddy.board.util.enums.Language" />
+            type="com.gg.osto.util.enums.Language" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

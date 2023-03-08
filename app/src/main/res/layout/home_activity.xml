@@ -4,13 +4,13 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.puddy.board.R"/>
+        <import type="com.gg.osto.R"/>
         <import type="android.view.View"/>
-        <import type="com.puddy.board.ui.custom.ScalableCardView.ScaleType"/>
-        <import type="com.puddy.board.util.Converter"/>
+        <import type="com.gg.osto.ui.custom.ScalableCardView.ScaleType"/>
+        <import type="com.gg.osto.util.Converter"/>
         <variable
             name="viewModel"
-            type="com.puddy.board.ui.home.HomeViewModel" />
+            type="com.gg.osto.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,7 +89,7 @@
                                     app:layout_constraintDimensionRatio="30:39"/>
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
-                            <com.puddy.board.ui.custom.ScalableCardView
+                            <com.gg.osto.ui.custom.ScalableCardView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 app:cardBackgroundColor="@android:color/transparent"
@@ -120,7 +120,7 @@
                                                 app:layout_constraintEnd_toEndOf="parent"
                                                 app:layout_constraintDimensionRatio="1:39"/>
                                         </androidx.constraintlayout.widget.ConstraintLayout>
-                                        <com.puddy.board.ui.custom.ScalableCardView
+                                        <com.gg.osto.ui.custom.ScalableCardView
                                             android:layout_width="wrap_content"
                                             android:layout_height="match_parent"
                                             app:cardElevation="0dp"
@@ -145,7 +145,7 @@
                                                 <androidx.constraintlayout.widget.ConstraintLayout
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="match_parent">
-                                                    <com.puddy.board.ui.custom.TrueAutoSizeTextView
+                                                    <com.gg.osto.ui.custom.TrueAutoSizeTextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="0dp"
                                                         app:layout_constraintTop_toTopOf="parent"
@@ -170,7 +170,7 @@
                                                         app:layout_constraintDimensionRatio="10:37"/>
                                                 </androidx.constraintlayout.widget.ConstraintLayout>
                                             </androidx.appcompat.widget.LinearLayoutCompat>
-                                        </com.puddy.board.ui.custom.ScalableCardView>
+                                        </com.gg.osto.ui.custom.ScalableCardView>
                                         <androidx.constraintlayout.widget.ConstraintLayout
                                             android:layout_width="wrap_content"
                                             android:layout_height="match_parent">
@@ -183,7 +183,7 @@
                                         </androidx.constraintlayout.widget.ConstraintLayout>
                                     </androidx.appcompat.widget.LinearLayoutCompat>
                                 </androidx.constraintlayout.widget.ConstraintLayout>
-                            </com.puddy.board.ui.custom.ScalableCardView>
+                            </com.gg.osto.ui.custom.ScalableCardView>
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="wrap_content"
@@ -196,7 +196,7 @@
                                     app:layout_constraintDimensionRatio="36:39"/>
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
-                            <com.puddy.board.ui.custom.ScalableCardView
+                            <com.gg.osto.ui.custom.ScalableCardView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 app:cardBackgroundColor="@android:color/transparent"
@@ -227,7 +227,7 @@
                                                 app:layout_constraintEnd_toEndOf="parent"
                                                 app:layout_constraintDimensionRatio="1:39"/>
                                         </androidx.constraintlayout.widget.ConstraintLayout>
-                                        <com.puddy.board.ui.custom.ScalableCardView
+                                        <com.gg.osto.ui.custom.ScalableCardView
                                             android:layout_width="wrap_content"
                                             android:layout_height="match_parent"
                                             app:cardElevation="0dp"
@@ -252,7 +252,7 @@
                                                 <androidx.constraintlayout.widget.ConstraintLayout
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="match_parent">
-                                                    <com.puddy.board.ui.custom.TrueAutoSizeTextView
+                                                    <com.gg.osto.ui.custom.TrueAutoSizeTextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="0dp"
                                                         app:layout_constraintTop_toTopOf="parent"
@@ -277,7 +277,7 @@
                                                         app:layout_constraintDimensionRatio="10:37"/>
                                                 </androidx.constraintlayout.widget.ConstraintLayout>
                                             </androidx.appcompat.widget.LinearLayoutCompat>
-                                        </com.puddy.board.ui.custom.ScalableCardView>
+                                        </com.gg.osto.ui.custom.ScalableCardView>
                                         <androidx.constraintlayout.widget.ConstraintLayout
                                             android:layout_width="wrap_content"
                                             android:layout_height="match_parent">
@@ -290,7 +290,7 @@
                                         </androidx.constraintlayout.widget.ConstraintLayout>
                                     </androidx.appcompat.widget.LinearLayoutCompat>
                                 </androidx.constraintlayout.widget.ConstraintLayout>
-                            </com.puddy.board.ui.custom.ScalableCardView>
+                            </com.gg.osto.ui.custom.ScalableCardView>
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="wrap_content"
@@ -355,7 +355,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintDimensionRatio="360:777">
 
-                <com.puddy.board.ui.custom.ScalableCardView
+                <com.gg.osto.ui.custom.ScalableCardView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintTop_toTopOf="parent"
@@ -367,7 +367,7 @@
                     app:layout_constraintVertical_bias="0.3119"
                     app:cardBackgroundColor="@android:color/transparent"
                     app:cardElevation="0dp"
-                    scaleType="@{com.puddy.board.ui.custom.ScalableCardView.ScaleType.BY_HEIGHT}"
+                    scaleType="@{com.gg.osto.ui.custom.ScalableCardView.ScaleType.BY_HEIGHT}"
                     scalableCornerRadius="@{0.05645f}">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -387,7 +387,7 @@
                             app:layout_constraintTop_toTopOf="@id/keyboardPreview"
                             app:layout_constraintBottom_toBottomOf="@id/keyboardPreview"
                             android:scaleType="centerCrop" />
-                        <com.puddy.board.ime.text.keyboard.TextKeyboardView
+                        <com.gg.osto.ime.text.keyboard.TextKeyboardView
                             android:id="@+id/keyboardPreview"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -401,9 +401,9 @@
                             bind:strokeColor="@{viewModel.theme.strokeColor}"
                             bind:strokeCornerRadius="@{viewModel.theme.strokeRadius}" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.puddy.board.ui.custom.ScalableCardView>
+                </com.gg.osto.ui.custom.ScalableCardView>
 
-                <com.puddy.board.ui.custom.ScalableCardView
+                <com.gg.osto.ui.custom.ScalableCardView
                     android:id="@+id/buttonApply"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -436,9 +436,9 @@
                             android:fontFamily="@font/sf_pro_display_700"
                             android:text="@string/apply"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.puddy.board.ui.custom.ScalableCardView>
+                </com.gg.osto.ui.custom.ScalableCardView>
 
-                <com.puddy.board.ui.custom.ScalableCardView
+                <com.gg.osto.ui.custom.ScalableCardView
                     android:id="@+id/buttonEdit"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -470,7 +470,7 @@
                             android:fontFamily="@font/sf_pro_display_700"
                             android:text="@string/edit"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.puddy.board.ui.custom.ScalableCardView>
+                </com.gg.osto.ui.custom.ScalableCardView>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/buttonCancel"

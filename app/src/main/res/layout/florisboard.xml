@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.puddy.board.ime.core.InputWindowView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.gg.osto.ime.core.InputWindowView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/input_window_view"
     android:layout_width="match_parent"
@@ -10,7 +10,7 @@
     android:layoutDirection="ltr"
     android:orientation="vertical">
 
-    <com.puddy.board.ime.core.InputView
+    <com.gg.osto.ime.core.InputView
         android:id="@+id/input_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:baselineAligned="false"
         android:orientation="horizontal">
 
-        <com.puddy.board.ime.onehanded.OneHandedPanel
+        <com.gg.osto.ime.onehanded.OneHandedPanel
             android:id="@+id/one_handed_ctrl_panel_start"
             android:layout_width="@dimen/one_handed_width"
             android:layout_height="match_parent"
@@ -43,9 +43,9 @@
                 android:src="@drawable/ic_keyboard_arrow_left"
                 android:tag="one_handed_ctrl_move" />
 
-        </com.puddy.board.ime.onehanded.OneHandedPanel>
+        </com.gg.osto.ime.onehanded.OneHandedPanel>
 
-        <com.puddy.board.common.FlorisViewFlipper
+        <com.gg.osto.common.FlorisViewFlipper
             android:id="@+id/main_view_flipper"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -66,9 +66,9 @@
                 android:id="@+id/clipboard"
                 layout="@layout/clipboard_layout" />
 
-        </com.puddy.board.common.FlorisViewFlipper>
+        </com.gg.osto.common.FlorisViewFlipper>
 
-        <com.puddy.board.ime.onehanded.OneHandedPanel
+        <com.gg.osto.ime.onehanded.OneHandedPanel
             android:id="@+id/one_handed_ctrl_panel_end"
             android:layout_width="@dimen/one_handed_width"
             android:layout_height="match_parent"
@@ -93,9 +93,9 @@
                 android:src="@drawable/ic_keyboard_arrow_right"
                 android:tag="one_handed_ctrl_move" />
 
-        </com.puddy.board.ime.onehanded.OneHandedPanel>
+        </com.gg.osto.ime.onehanded.OneHandedPanel>
 
-    </com.puddy.board.ime.core.InputView>
+    </com.gg.osto.ime.core.InputView>
 
 
-</com.puddy.board.ime.core.InputWindowView>
+</com.gg.osto.ime.core.InputWindowView>

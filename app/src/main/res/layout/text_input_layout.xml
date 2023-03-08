@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.puddy.board.ime.text.keyboard.TextKeyboardView
+            <com.gg.osto.ime.text.keyboard.TextKeyboardView
                 android:id="@+id/numberBoard"
                 android:layout_width="match_parent"
                 android:layout_height="40sp"
@@ -47,7 +47,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.puddy.board.ime.text.keyboard.TextKeyboardView
+                <com.gg.osto.ime.text.keyboard.TextKeyboardView
                     android:id="@+id/main_keyboard_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <com.puddy.board.ui.custom.SubtypeChangerView
+                    <com.gg.osto.ui.custom.SubtypeChangerView
                         android:id="@+id/subtypeChangerView"
                         android:layout_width="0sp"
                         android:layout_height="0sp"

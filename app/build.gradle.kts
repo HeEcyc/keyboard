@@ -3,8 +3,8 @@ plugins {
     kotlin("android")// version "1.5.20"
     kotlin("kapt")// version "1.5.20"
     kotlin("plugin.serialization")// version "1.5.20"
-    id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
+//    id("com.google.gms.google-services")
+//    id("com.google.firebase.crashlytics") todo
 }
 
 android {
@@ -27,7 +27,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.puddy.board"
+        applicationId = "com.gg.osto"
         minSdk = 23
         targetSdk = 31
         versionCode = 1

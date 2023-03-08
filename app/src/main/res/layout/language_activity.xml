@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.puddy.board.ui.language.LanguageViewModel" />
+            type="com.gg.osto.ui.language.LanguageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
