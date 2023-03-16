@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="com.gg.osto.ui.custom.ScalableCardView.ScaleType"/>
@@ -13,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF">
+        android:background="#414956">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
@@ -31,13 +30,13 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintDimensionRatio="300:516"
-                app:layout_constraintWidth_percent="0.8333"
-                app:layout_constraintVertical_bias="0.18"
+                app:layout_constraintDimensionRatio="328:506"
+                app:layout_constraintWidth_percent="0.9111"
+                app:layout_constraintVertical_bias="0.17343"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp"
                 scaleType="@{com.gg.osto.ui.custom.ScalableCardView.ScaleType.BY_WIDTH}"
-                scalableCornerRadius="@{0.11666666f}">
+                scalableCornerRadius="@{0.06f}">
                 <com.isseiaoki.simplecropview.CropImageView
                     android:id="@+id/cropView"
                     android:layout_width="match_parent"
@@ -48,8 +47,8 @@
                     app:scv_frame_color="@android:color/white"
                     app:scv_guide_color="@android:color/white"
                     app:scv_handle_color="#FFFFFF"
-                    app:scv_overlay_color="#80000000"
-                    android:background="#383C42"/>
+                    app:scv_overlay_color="#B2072034"
+                    android:background="#072034"/>
             </com.gg.osto.ui.custom.ScalableCardView>
 
             <com.gg.osto.ui.custom.ScalableCardView
@@ -59,31 +58,31 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintDimensionRatio="159:70"
-                app:layout_constraintWidth_percent="0.441666666"
-                app:layout_constraintVertical_bias="0.8387553"
+                app:layout_constraintDimensionRatio="156:52"
+                app:layout_constraintWidth_percent="0.4333"
+                app:layout_constraintVertical_bias="0.817931"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp"
                 scaleType="@{ScaleType.BY_HEIGHT}"
-                scalableCornerRadius="@{0.42857f}"
+                scalableCornerRadius="@{0.5f}"
                 android:onClick="@{(_) -> viewModel.cropImage(cropView)}">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#010101">
+                    setAppGradientBackground="@{true}">
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:fontFamily="@font/sf_pro_display_700"
-                        android:gravity="center"
-                        android:text="@string/ok"
-                        android:textColor="#FFFFFF"
-                        app:autoSizeMaxTextSize="22sp"
-                        app:autoSizeMinTextSize="1sp"
-                        app:autoSizeTextType="uniform"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="159:24"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintDimensionRatio="156:22"
+                        android:gravity="center"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMaxTextSize="20sp"
+                        app:autoSizeMinTextSize="1sp"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/roboto_100"
+                        android:text="@string/ok"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.gg.osto.ui.custom.ScalableCardView>
 
@@ -91,21 +90,20 @@
                 android:id="@+id/buttonCancel"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:fontFamily="@font/sf_pro_display_700"
+                android:fontFamily="@font/roboto_100"
                 android:gravity="center"
                 android:text="@string/cancel"
-                android:textColor="#000000"
-                app:autoSizeMaxTextSize="22sp"
+                setAppGradientText="@{true}"
+                app:autoSizeMaxTextSize="20sp"
                 app:autoSizeMinTextSize="1sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="159:24"
+                app:layout_constraintDimensionRatio="156:22"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintWidth_percent="0.441666666"
+                app:layout_constraintWidth_percent="0.4333"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.92"
-                bind:ignore="TooManyViews" />
+                app:layout_constraintVertical_bias="0.9128" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

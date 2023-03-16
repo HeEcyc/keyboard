@@ -21,9 +21,11 @@ import com.gg.osto.ime.text.keyboard.KeyboardMode
 import com.gg.osto.ime.text.keyboard.TextKeyData
 import com.gg.osto.ime.text.keyboard.TextKeyboardIconSet
 import com.gg.osto.ime.text.layout.LayoutManager
+import com.gg.osto.repository.PrefsReporitory
 import com.gg.osto.ui.base.BaseActivity
 import com.gg.osto.ui.custom.ItemDecorationWithEnds
 import com.gg.osto.ui.edit.EditFragment
+import com.gg.osto.ui.permission.PermissionDialog
 import com.gg.osto.ui.settings.SettingsActivity
 import com.gg.osto.ui.splash.SplashActivity
 import com.gg.osto.util.EXTRA_LAUNCH_SETTINGS
@@ -51,12 +53,14 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
     }
 
     override fun setupUI() {
-        if (!Settings.canDrawOverlays(this) || !hasKeyboardPermission())
+        if (PrefsReporitory.isFirstLaunch)
             startActivity(Intent(this, SplashActivity::class.java))
+        if (!Settings.canDrawOverlays(this) || !hasKeyboardPermission())
+            PermissionDialog().show(supportFragmentManager)
 
         binding.rvPreset.post {
-            val spaceVertical = (binding.root.width / 360).times(2.5f).toInt()
-            val spaceHorizontal = binding.root.width / 360 * 30
+            val spaceVertical = binding.root.width / 360 * 15
+            val spaceHorizontal = binding.root.width / 360 * 16
             val itemDecoration = ItemDecorationWithEnds(
                 topFirst = spaceVertical,
                 bottomFirst = spaceVertical,

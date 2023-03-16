@@ -17,7 +17,7 @@ import com.gg.osto.ime.theme.ThemeManager
 import com.gg.osto.common.ViewUtils
 
 class PopupView : View, ThemeManager.OnThemeUpdatedListener {
-    private val themeManager: ThemeManager = ThemeManager.default()
+    private val themeManager: ThemeManager? = if (isInEditMode) null else ThemeManager.default()
 
     private var backgroundDrawable: PaintDrawable = PaintDrawable().apply {
         setCornerRadius(ViewUtils.dp2px(6.0f))
@@ -63,12 +63,12 @@ class PopupView : View, ThemeManager.OnThemeUpdatedListener {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        themeManager.registerOnThemeUpdatedListener(this)
+        themeManager?.registerOnThemeUpdatedListener(this)
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        themeManager.unregisterOnThemeUpdatedListener(this)
+        themeManager?.unregisterOnThemeUpdatedListener(this)
     }
 
     override fun onThemeUpdated(theme: Theme) {

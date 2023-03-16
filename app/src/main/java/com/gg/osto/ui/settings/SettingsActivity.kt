@@ -32,6 +32,7 @@ class SettingsActivity : BaseActivity<SettingsViewModel, SettingsActivityBinding
     }
 
     override fun setupUI() {
+        binding.buttonBack.setOnClickListener { finish() }
         binding.buttonLanguage.setOnClickListener {
             startActivity(Intent(this, LanguageActivity::class.java))
         }

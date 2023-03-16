@@ -26,7 +26,13 @@
                     android:layout_height="0dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="360:101">
+                    app:layout_constraintDimensionRatio="360:78">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="360:101"
+                        setAppGradientBackground="@{true}"/>
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/buttonBack"
                         android:layout_width="0dp"
@@ -35,10 +41,10 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="21:16"
-                        app:layout_constraintHeight_percent="0.1584"
-                        app:layout_constraintHorizontal_bias="0.088"
-                        app:layout_constraintVertical_bias="0.48"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintHeight_percent="0.3076923"
+                        app:layout_constraintVertical_bias="0.8333"
+                        app:layout_constraintHorizontal_bias="0.0476"
                         android:src="@drawable/ic_back"/>
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="0dp"
@@ -47,15 +53,15 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="198:24"
-                        app:layout_constraintHeight_percent="0.2376"
-                        app:layout_constraintVertical_bias="0.48"
+                        app:layout_constraintDimensionRatio="248:24"
+                        app:layout_constraintHeight_percent="0.3076923"
+                        app:layout_constraintVertical_bias="0.8333"
                         android:gravity="center"
                         app:autoSizeTextType="uniform"
-                        app:autoSizeMaxTextSize="22sp"
+                        app:autoSizeMaxTextSize="20sp"
                         app:autoSizeMinTextSize="1sp"
-                        android:textColor="#010101"
-                        android:fontFamily="@font/sf_pro_display_700"
+                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/roboto_100"
                         android:text="@string/languages"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

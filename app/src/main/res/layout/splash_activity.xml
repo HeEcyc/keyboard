@@ -2,6 +2,7 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.gg.osto.ui.custom.ScalableCardView.ScaleType"/>
         <variable
             name="viewModel"
             type="com.gg.osto.ui.splash.SplashViewModel" />
@@ -10,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
+        android:background="@drawable/bg_gradient_dark"
         android:clipChildren="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,17 +26,16 @@
             android:clipChildren="false">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintDimensionRatio="288:563"
-                app:layout_constraintWidth_percent="0.8"
-                app:layout_constraintVertical_bias="0.24299"
-                android:src="@mipmap/img_splash"/>
+                app:layout_constraintDimensionRatio="24473:25002"
+                app:layout_constraintWidth_percent="0.6798055555"
+                app:layout_constraintVertical_bias="0.35"
+                android:src="@drawable/img_splash"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="0dp"
@@ -44,124 +44,53 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintDimensionRatio="300:48"
-                app:layout_constraintWidth_percent="0.8333"
-                app:layout_constraintVertical_bias="0.646"
-                android:gravity="center_vertical"
+                app:layout_constraintDimensionRatio="328:44"
+                app:layout_constraintWidth_percent="0.9111"
+                app:layout_constraintVertical_bias="0.63577"
+                android:gravity="center"
                 app:autoSizeTextType="uniform"
-                app:autoSizeMaxTextSize="22sp"
+                app:autoSizeMaxTextSize="20sp"
                 app:autoSizeMinTextSize="1sp"
-                android:textColor="#000000"
-                android:fontFamily="@font/sf_pro_display_700"
-                android:text="@string/give_permissions_for_the_napplication_work_properly"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintDimensionRatio="300:32"
-                app:layout_constraintWidth_percent="0.8333"
-                app:layout_constraintVertical_bias="0.7234899"
-                android:gravity="center_vertical"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMaxTextSize="14sp"
-                app:autoSizeMinTextSize="1sp"
-                android:textColor="#000000"
-                android:fontFamily="@font/sf_pro_display_400"
-                android:text="@string/set_appclication_as_your_default_nphone_app_this_is_necessary_for_ncorrect_work_application"/>
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/roboto_100"
+                android:text="@string/get_new_look_of_your_phone_keyboard"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:clipChildren="false">
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="244"/>
-
+        <com.gg.osto.ui.custom.ScalableCardView
+            android:id="@+id/buttonStart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="244:52"
+            app:layout_constraintWidth_percent="0.67777777"
+            app:layout_constraintVertical_bias="0.875862"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp"
+            scaleType="@{ScaleType.BY_HEIGHT}"
+            scalableCornerRadius="@{0.3846f}">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <Space
+                android:layout_height="match_parent"
+                setAppGradientBackground="@{true}">
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="360:223"/>
+                    app:layout_constraintDimensionRatio="244:22"
+                    android:gravity="center"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMaxTextSize="20sp"
+                    app:autoSizeMinTextSize="1sp"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/roboto_400"
+                    android:text="@string/start"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="310"
-                android:clipChildren="false">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintDimensionRatio="360:310"
-                    app:layout_constraintVertical_bias="1"
-                    app:layout_constraintHorizontal_bias="0">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/buttonCancel"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintDimensionRatio="140:70"
-                        app:layout_constraintHeight_percent="0.2258">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="140:24"
-                            android:gravity="center"
-                            app:autoSizeTextType="uniform"
-                            app:autoSizeMaxTextSize="22sp"
-                            app:autoSizeMinTextSize="1sp"
-                            android:textColor="#000000"
-                            android:fontFamily="@font/sf_pro_display_700"
-                            android:text="@string/cancel"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintDimensionRatio="360:310"
-                    app:layout_constraintVertical_bias="1"
-                    app:layout_constraintHorizontal_bias="1">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/buttonOk"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="140:70"
-                        app:layout_constraintHeight_percent="0.2258"
-                        android:background="@drawable/button_ok"
-                        android:src="@drawable/button_start"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.gg.osto.ui.custom.ScalableCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

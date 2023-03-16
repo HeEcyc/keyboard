@@ -103,8 +103,8 @@ class EditFragment : BaseFragment<EditViewModel, EditFragmentBinding>(R.layout.e
         }
         binding.layoutEditor.root.post {
             val baseWidth = binding.layoutEditor.root.width
-            val space = baseWidth / 360 * 10
-            val spaceBottom = baseWidth / 360 * 190
+            val space = baseWidth / 360 * 16
+            val spaceBottom = baseWidth / 360 * 194
             binding.layoutEditor.bgRecycler.addItemDecoration(ItemDecorationWithEnds(
                 top = space,
                 topLast = space,

@@ -18,7 +18,7 @@ import com.gg.osto.common.ViewUtils
 import kotlin.math.min
 
 class PopupExtendedView : View, ThemeManager.OnThemeUpdatedListener {
-    private val themeManager: ThemeManager = ThemeManager.default()
+    private val themeManager: ThemeManager? = if (isInEditMode) null else ThemeManager.default()
 
     private val activeBackgroundDrawable: PaintDrawable = PaintDrawable().apply {
         setCornerRadius(ViewUtils.dp2px(6.0f))
@@ -75,11 +75,11 @@ class PopupExtendedView : View, ThemeManager.OnThemeUpdatedListener {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        themeManager.registerOnThemeUpdatedListener(this)
+        themeManager?.registerOnThemeUpdatedListener(this)
     }
 
     override fun onDetachedFromWindow() {
-        themeManager.unregisterOnThemeUpdatedListener(this)
+        themeManager?.unregisterOnThemeUpdatedListener(this)
         super.onDetachedFromWindow()
     }
 

@@ -380,7 +380,10 @@
     <string name="background_image">Background image</string>
     <string name="edit_image">Edit image</string>
     <string name="add_yours">+ Add yours</string>
-    <string name="trending_themes">Trending Themes</string>
+    <string name="trending_themes">Top Themes</string>
     <string name="theme_applied">Theme applied!</string>
+    <string name="want_to_install_a_keyboard_and_make_it_your_default">Want to install a keyboard and make it your default?</string>
+    <string name="get_new_look_of_your_phone_keyboard">Get New Look Of Your Phone Keyboard</string>
+    <string name="start">Start</string>
 
 </resources>

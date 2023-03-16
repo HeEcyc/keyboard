@@ -7,6 +7,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
+import android.view.View.MeasureSpec
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -20,10 +21,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.bumptech.glide.signature.ObjectKey
+import com.gg.osto.data.KeyboardTheme
+import com.gg.osto.ui.custom.AppGradientDrawable
+import com.gg.osto.ui.custom.AppGradientShader
+import com.gg.osto.ui.edit.EditViewModel
 import com.isseiaoki.simplecropview.CropImageView
 import com.makeramen.roundedimageview.RoundedImageView
-import com.gg.osto.data.KeyboardTheme
-import com.gg.osto.ui.edit.EditViewModel
 import java.io.File
 
 @BindingAdapter("itemDecoration")
@@ -150,4 +153,23 @@ fun setTextId(tv: TextView, t: Int) {
 @BindingAdapter("tint")
 fun setTint(iv: AppCompatImageView, c: Int) {
     iv.imageTintList = ColorStateList.valueOf(c)
+}
+
+@BindingAdapter("setAppGradientBackground")
+fun setAppGradientBackground(v: View, b: Boolean) {
+    v.post { v.background = if (b) AppGradientDrawable() else null }
+}
+
+@BindingAdapter("setAppGradientText")
+fun setAppGradientText(tv: TextView, b: Boolean) {
+    tv.post {
+        tv.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED)
+        tv.paint.shader = if (b) AppGradientShader(tv.measuredWidth.toFloat(), tv.measuredHeight.toFloat()) else null
+        tv.invalidate()
+    }
+}
+
+@BindingAdapter("fontRes")
+fun setFontRes(tv: TextView, f: Int) {
+    tv.typeface = ResourcesCompat.getFont(tv.context, f)
 }

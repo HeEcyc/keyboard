@@ -15,7 +15,7 @@ import kotlinx.coroutines.channels.sendBlocking
 @Suppress("MemberVisibilityCanBePrivate")
 abstract class KeyboardView : ViewGroup, KeyboardState.OnUpdateStateListener, ThemeManager.OnThemeUpdatedListener {
     protected val florisboard get() = FlorisBoard.getInstanceOrNull()
-    protected val prefs get() = Preferences.default()
+    protected val prefs get() = if (isInEditMode) null else Preferences.default()
     protected val themeManager get() = ThemeManager.defaultOrNull()
 
     var isMeasured: Boolean = false
