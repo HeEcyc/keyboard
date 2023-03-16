@@ -86,4 +86,10 @@
     <string name="background_color">Warna latar belakang</string>
     <string name="background_image">Imej latar belakang</string>
     <string name="edit_image">Edit imej</string>
+    <string name="add_yours">+ Tambahkan milik anda</string>
+    <string name="trending_themes">Tema Teratas</string>
+    <string name="theme_applied">Tema digunakan!</string>
+    <string name="want_to_install_a_keyboard_and_make_it_your_default">Ingin memasang papan kekunci dan menjadikannya lalai anda?</string>
+    <string name="get_new_look_of_your_phone_keyboard">Dapatkan Wajah Baharu Papan Kekunci Telefon Anda</string>
+    <string name="start">Mulakan</string>
 </resources>

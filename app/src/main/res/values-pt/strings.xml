@@ -86,4 +86,10 @@
     <string name="background_color">Cor de fundo</string>
     <string name="background_image">Imagem de fundo</string>
     <string name="edit_image">Editar imagem</string>
+    <string name="add_yours">+ Adicione o seu</string>
+    <string name="trending_themes">Principais temas</string>
+    <string name="theme_applied">Tema aplicado!</string>
+    <string name="want_to_install_a_keyboard_and_make_it_your_default">Quer instalar um teclado e torná-lo seu padrão?</string>
+    <string name="get_new_look_of_your_phone_keyboard">Obtenha uma nova aparência do teclado do seu telefone</string>
+    <string name="start">Começar</string>
 </resources>

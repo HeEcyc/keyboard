@@ -86,4 +86,10 @@
     <string name="background_color">สีพื้นหลัง</string>
     <string name="background_image">ภาพพื้นหลัง</string>
     <string name="edit_image">แก้ไขภาพ</string>
+    <string name="add_yours">+ เพิ่มของคุณ</string>
+    <string name="trending_themes">ธีมยอดนิยม</string>
+    <string name="theme_applied">ใช้ธีมแล้ว!</string>
+    <string name="want_to_install_a_keyboard_and_make_it_your_default">ต้องการติดตั้งคีย์บอร์ดและทำให้เป็นค่าเริ่มต้นหรือไม่?</string>
+    <string name="get_new_look_of_your_phone_keyboard">รับรูปลักษณ์ใหม่ของแป้นพิมพ์โทรศัพท์ของคุณ</string>
+    <string name="start">เริ่ม</string>
 </resources>

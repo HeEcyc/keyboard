@@ -86,4 +86,10 @@
     <string name="background_color">Màu nền</string>
     <string name="background_image">Hình nền</string>
     <string name="edit_image">Chỉnh sửa hình ảnh</string>
+    <string name="add_yours">+ Thêm của bạn</string>
+    <string name="trending_themes">Chủ đề hàng đầu</string>
+    <string name="theme_applied">Đã áp dụng chủ đề!</string>
+    <string name="want_to_install_a_keyboard_and_make_it_your_default">Bạn muốn cài đặt bàn phím và đặt nó làm bàn phím mặc định?</string>
+    <string name="get_new_look_of_your_phone_keyboard">Có giao diện mới cho bàn phím điện thoại của bạn</string>
+    <string name="start">Bắt đầu</string>
 </resources>

@@ -86,4 +86,10 @@
     <string name="background_color">Culoare de fundal</string>
     <string name="background_image">Imagine de fundal</string>
     <string name="edit_image">Editați imaginea</string>
+    <string name="add_yours">+ Adaugă-l pe al tău</string>
+    <string name="trending_themes">Top Teme</string>
+    <string name="theme_applied">Tema aplicată!</string>
+    <string name="want_to_install_a_keyboard_and_make_it_your_default">Doriți să instalați o tastatură și să o setați implicit?</string>
+    <string name="get_new_look_of_your_phone_keyboard">Obțineți un aspect nou al tastaturii telefonului dvs</string>
+    <string name="start">start</string>
 </resources>

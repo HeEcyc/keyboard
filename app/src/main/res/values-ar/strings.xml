@@ -86,4 +86,10 @@
     <string name="background_color">لون الخلفية</string>
     <string name="background_image">الصورة الخلفية</string>
     <string name="edit_image">تعديل الصورة</string>
+    <string name="add_yours">+ أضف لك</string>
+    <string name="trending_themes">أهم الموضوعات</string>
+    <string name="theme_applied">تم تطبيق الموضوع!</string>
+    <string name="want_to_install_a_keyboard_and_make_it_your_default">هل تريد تثبيت لوحة مفاتيح وجعلها افتراضية؟</string>
+    <string name="get_new_look_of_your_phone_keyboard">احصل على مظهر جديد للوحة مفاتيح هاتفك</string>
+    <string name="start">يبدأ</string>
 </resources>

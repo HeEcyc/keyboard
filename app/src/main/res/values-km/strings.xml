@@ -86,4 +86,10 @@
     <string name="background_color">ពណ៌ផ្ទៃខាងក្រោយ</string>
     <string name="background_image">រូបភាព​ផ្ទៃ​ខាង​ក្រោយ</string>
     <string name="edit_image">កែរូបភាព</string>
+    <string name="add_yours">+ أضف لك</string>
+    <string name="trending_themes">ស្បែកកំពូល</string>
+    <string name="theme_applied">បានអនុវត្តប្រធានបទ!</string>
+    <string name="want_to_install_a_keyboard_and_make_it_your_default">ចង់ដំឡើងក្តារចុច និងធ្វើឱ្យវាក្លាយជាលំនាំដើមរបស់អ្នកទេ?</string>
+    <string name="get_new_look_of_your_phone_keyboard">ទទួលបានរូបរាងថ្មីនៃក្តារចុចទូរស័ព្ទរបស់អ្នក។</string>
+    <string name="start">ចាប់ផ្តើម</string>
 </resources>

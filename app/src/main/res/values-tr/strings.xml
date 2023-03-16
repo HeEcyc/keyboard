@@ -86,4 +86,10 @@
     <string name="background_color">Arka plan rengi</string>
     <string name="background_image">Arka plan görüntüsü</string>
     <string name="edit_image">Resmi Düzenle</string>
+    <string name="add_yours">+ Sizinkini ekleyin</string>
+    <string name="trending_themes">En İyi Temalar</string>
+    <string name="theme_applied">Tema uygulandı!</string>
+    <string name="want_to_install_a_keyboard_and_make_it_your_default">Bir klavye yüklemek ve onu varsayılanınız yapmak ister misiniz?</string>
+    <string name="get_new_look_of_your_phone_keyboard">Telefon Klavyenizin Yeni Görünümünü Alın</string>
+    <string name="start">Başlangıç</string>
 </resources>
