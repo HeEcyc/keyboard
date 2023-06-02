@@ -92,4 +92,8 @@
     <string name="want_to_install_a_keyboard_and_make_it_your_default">Bạn muốn cài đặt bàn phím và đặt nó làm bàn phím mặc định?</string>
     <string name="get_new_look_of_your_phone_keyboard">Có giao diện mới cho bàn phím điện thoại của bạn</string>
     <string name="start">Bắt đầu</string>
+    <string name="hello">Xin chào!</string>
+    <string name="which_theme_do_you_like_more">Bạn thích chủ đề nào hơn?</string>
+    <string name="you_can_create_your_own_theme">Bạn có thể tạo chủ đề của riêng mình</string>
+    <string name="view_the_theme_you_have_chosen">Xem chủ đề bạn đã chọn</string>
 </resources>

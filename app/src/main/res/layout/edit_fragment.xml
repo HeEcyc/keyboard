@@ -5,13 +5,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.gg.osto.ui.edit.EditViewModel" />
+            type="com.cccomba.board.ui.edit.EditViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF">
+        android:background="#1B1B23">
 
         <include
             android:id="@+id/layoutEditor"

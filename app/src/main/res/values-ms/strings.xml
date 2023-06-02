@@ -92,4 +92,8 @@
     <string name="want_to_install_a_keyboard_and_make_it_your_default">Ingin memasang papan kekunci dan menjadikannya lalai anda?</string>
     <string name="get_new_look_of_your_phone_keyboard">Dapatkan Wajah Baharu Papan Kekunci Telefon Anda</string>
     <string name="start">Mulakan</string>
+    <string name="hello">helo!</string>
+    <string name="which_theme_do_you_like_more">Tema Mana Yang Anda Suka?</string>
+    <string name="you_can_create_your_own_theme">Anda Boleh Buat Tema Anda Sendiri</string>
+    <string name="view_the_theme_you_have_chosen">Lihat Tema Yang Anda Pilih</string>
 </resources>

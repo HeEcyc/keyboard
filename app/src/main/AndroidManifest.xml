@@ -2,7 +2,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.gg.osto">
+    package="com.cccomba.board">
 
     <!-- Permission needed to vibrate if the user has key press vibration enabled -->
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
-        android:name="com.gg.osto.App"
+        android:name="com.cccomba.board.App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,7 +23,7 @@
 
         <!-- IME service -->
         <service
-            android:name="com.gg.osto.background.view.keyboard.BackgroundViewKeyboardService"
+            android:name="com.cccomba.board.background.view.keyboard.BackgroundViewKeyboardService"
             android:directBootAware="true"
             android:exported="true"
             android:label="@string/app_name"
@@ -38,7 +38,7 @@
 
         <!-- Spellchecker service -->
         <service
-            android:name="com.gg.osto.MySpellCheckerService"
+            android:name="com.cccomba.board.MySpellCheckerService"
             android:exported="true"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_TEXT_SERVICE">
@@ -51,7 +51,7 @@
         </service>
 
         <activity
-            android:name="com.gg.osto.ui.splash.SplashActivity"
+            android:name="com.cccomba.board.ui.splash.SplashActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
@@ -59,35 +59,28 @@
             android:windowSoftInputMode="stateVisible|adjustResize" />
 
         <activity
-            android:name="com.gg.osto.ui.crop.CropActivity"
+            android:name="com.cccomba.board.ui.crop.CropActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.gg.osto.ui.settings.SettingsActivity"
+            android:name="com.cccomba.board.ui.language.LanguageActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.gg.osto.ui.language.LanguageActivity"
+            android:name="com.cccomba.board.ui.options.OptionsActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.gg.osto.ui.options.OptionsActivity"
-            android:configChanges="orientation"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.gg.osto.ui.home.HomeActivity"
+            android:name="com.cccomba.board.ui.home.HomeActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -99,7 +92,7 @@
         </activity>
 
         <provider
-            android:name="com.gg.osto.ime.clip.provider.FlorisContentProvider"
+            android:name="com.cccomba.board.ime.clip.provider.FlorisContentProvider"
             android:authorities="${applicationId}.provider.clip"
             android:exported="false"
             android:grantUriPermissions="true" />

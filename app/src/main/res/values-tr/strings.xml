@@ -92,4 +92,8 @@
     <string name="want_to_install_a_keyboard_and_make_it_your_default">Bir klavye yüklemek ve onu varsayılanınız yapmak ister misiniz?</string>
     <string name="get_new_look_of_your_phone_keyboard">Telefon Klavyenizin Yeni Görünümünü Alın</string>
     <string name="start">Başlangıç</string>
+    <string name="hello">Merhaba!</string>
+    <string name="which_theme_do_you_like_more">Hangi Temayı Daha Çok Seviyorsunuz?</string>
+    <string name="you_can_create_your_own_theme">Kendi Temanızı Oluşturabilirsiniz</string>
+    <string name="view_the_theme_you_have_chosen">Seçtiğiniz Temayı Görüntüleyin</string>
 </resources>

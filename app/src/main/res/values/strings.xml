@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" translatable="false">GostoBoard</string>
+    <string name="app_name" translatable="false">CombaBoard</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout" translatable="false">Pause</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout" translatable="false">Wait</string>
 
@@ -369,21 +369,25 @@
     <string name="text">Text</string>
     <string name="keys">Keys</string>
     <string name="background">Background</string>
-    <string name="text_color">Text color</string>
+    <string name="text_color">Text Color</string>
     <string name="font">Font</string>
-    <string name="choose_font">Choose font</string>
+    <string name="choose_font">Choose Font</string>
     <string name="keys_color">Keys color</string>
     <string name="stroke_color">Stroke color</string>
-    <string name="keys_corners_radius">Keys corners radius</string>
+    <string name="keys_corners_radius">Keys Corners Radius</string>
     <string name="keys_opacity">Keys opacity</string>
     <string name="background_color">Background color</string>
     <string name="background_image">Background image</string>
     <string name="edit_image">Edit image</string>
     <string name="add_yours">+ Add yours</string>
     <string name="trending_themes">Top Themes</string>
-    <string name="theme_applied">Theme applied!</string>
+    <string name="theme_applied">Theme applied</string>
     <string name="want_to_install_a_keyboard_and_make_it_your_default">Want to install a keyboard and make it your default?</string>
     <string name="get_new_look_of_your_phone_keyboard">Get New Look Of Your Phone Keyboard</string>
     <string name="start">Start</string>
+    <string name="hello">Hello!</string>
+    <string name="which_theme_do_you_like_more">Which Theme Do You Like More?</string>
+    <string name="you_can_create_your_own_theme">You Can Create Your Own Theme</string>
+    <string name="view_the_theme_you_have_chosen">View The Theme You Have Chosen</string>
 
 </resources>

@@ -92,4 +92,8 @@
     <string name="want_to_install_a_keyboard_and_make_it_your_default">Doriți să instalați o tastatură și să o setați implicit?</string>
     <string name="get_new_look_of_your_phone_keyboard">Obțineți un aspect nou al tastaturii telefonului dvs</string>
     <string name="start">start</string>
+    <string name="hello">Buna ziua!</string>
+    <string name="which_theme_do_you_like_more">Ce temă îți place mai mult?</string>
+    <string name="you_can_create_your_own_theme">Vă puteți crea propria temă</string>
+    <string name="view_the_theme_you_have_chosen">Vizualizați Tema pe care ați ales-o</string>
 </resources>

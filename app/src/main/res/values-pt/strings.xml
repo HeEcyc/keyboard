@@ -92,4 +92,8 @@
     <string name="want_to_install_a_keyboard_and_make_it_your_default">Quer instalar um teclado e torná-lo seu padrão?</string>
     <string name="get_new_look_of_your_phone_keyboard">Obtenha uma nova aparência do teclado do seu telefone</string>
     <string name="start">Começar</string>
+    <string name="hello">Olá!</string>
+    <string name="which_theme_do_you_like_more">Qual tema você gosta mais?</string>
+    <string name="you_can_create_your_own_theme">Você pode criar seu próprio tema</string>
+    <string name="view_the_theme_you_have_chosen">Veja o tema que você escolheu</string>
 </resources>

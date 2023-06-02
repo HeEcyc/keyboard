@@ -5,20 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.gg.osto.R"/>
+        <import type="com.cccomba.board.R"/>
         <import type="android.view.View"/>
-        <import type="com.gg.osto.util.Converter"/>
-        <import type="com.gg.osto.ui.custom.ScalableCardView.ScaleType"/>
+        <import type="com.cccomba.board.util.Converter"/>
+        <import type="com.cccomba.board.ui.custom.ScalableCardView.ScaleType"/>
         <variable
             name="viewModel"
-            type="com.gg.osto.ui.edit.EditViewModel" />
+            type="com.cccomba.board.ui.edit.EditViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"
-        android:background="#FFFFFF">
+        android:background="#1B1B23">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main"
@@ -32,20 +32,20 @@
             android:orientation="vertical"
             android:clipChildren="false">
 
-            <com.gg.osto.ui.custom.ScalableCardView
+            <com.cccomba.board.ui.custom.ScalableCardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintDimensionRatio="328:190"
+                app:layout_constraintDimensionRatio="328:229"
                 app:layout_constraintWidth_percent="0.9111"
-                app:layout_constraintVertical_bias="0.08"
+                app:layout_constraintVertical_bias="0.04927"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp"
-                scaleType="@{com.gg.osto.ui.custom.ScalableCardView.ScaleType.BY_HEIGHT}"
-                scalableCornerRadius="@{0.05263f}">
+                scaleType="@{com.cccomba.board.ui.custom.ScalableCardView.ScaleType.BY_HEIGHT}"
+                scalableCornerRadius="@{0.0349f}">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -64,7 +64,7 @@
                         app:layout_constraintTop_toTopOf="@id/keyboardPreview"
                         app:layout_constraintBottom_toBottomOf="@id/keyboardPreview"
                         android:scaleType="centerCrop" />
-                    <com.gg.osto.ime.text.keyboard.TextKeyboardView
+                    <com.cccomba.board.ime.text.keyboard.TextKeyboardView
                         android:id="@+id/keyboardPreview"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -78,59 +78,168 @@
                         bind:strokeColor="@{viewModel.currentStrokeColor}"
                         bind:strokeCornerRadius="@{viewModel.currentStrokeCornersRadius}" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.gg.osto.ui.custom.ScalableCardView>
+            </com.cccomba.board.ui.custom.ScalableCardView>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.48"
-                app:layout_constraintDimensionRatio="360:76"
+                app:layout_constraintDimensionRatio="360:70"
+                app:layout_constraintVertical_bias="0.39"
+                android:clipChildren="false"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(_) -> viewModel.onTextTabClick()}"
+                    android:alpha="@{viewModel.tabText ? 1f : 0.5f}">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/bg_tab_selected"
+                        android:alpha="@{viewModel.tabText ? 1f : 0f}"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_text"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintDimensionRatio="105:20"
+                        app:layout_constraintWidth_percent="0.875"
+                        app:layout_constraintVertical_bias="0.756"
+                        android:gravity="center"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMaxTextSize="18sp"
+                        app:autoSizeMinTextSize="1sp"
+                        android:textColor="#A6F0FF"
+                        android:fontFamily="@font/roboto_700"
+                        android:text="@string/text"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(_) -> viewModel.onKeysTabClick()}"
+                    android:alpha="@{viewModel.tabKeys ? 1f : 0.5f}">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/bg_tab_selected"
+                        android:alpha="@{viewModel.tabKeys ? 1f : 0f}"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_keys"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintDimensionRatio="105:20"
+                        app:layout_constraintWidth_percent="0.875"
+                        app:layout_constraintVertical_bias="0.756"
+                        android:gravity="center"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMaxTextSize="18sp"
+                        app:autoSizeMinTextSize="1sp"
+                        android:textColor="#A6F0FF"
+                        android:fontFamily="@font/roboto_700"
+                        android:text="@string/keys"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(_) -> viewModel.onBGTabClick()}"
+                    android:alpha="@{viewModel.tabBG ? 1f : 0.5f}">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/bg_tab_selected"
+                        android:alpha="@{viewModel.tabBG ? 1f : 0f}"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_bg"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintDimensionRatio="105:20"
+                        app:layout_constraintWidth_percent="0.875"
+                        app:layout_constraintVertical_bias="0.756"
+                        android:gravity="center"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMaxTextSize="18sp"
+                        app:autoSizeMinTextSize="1sp"
+                        android:textColor="#A6F0FF"
+                        android:fontFamily="@font/roboto_700"
+                        android:text="@string/background"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.5537"
+                app:layout_constraintDimensionRatio="360:112"
                 android:visibility="@{viewModel.tabText ? View.VISIBLE : View.GONE}"
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="22"
+                    android:layout_weight="48"
                     android:onClick="@{(_) -> viewModel.pickFontColor()}">
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.cccomba.board.ui.custom.ScalableCardView
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_height="match_parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="288:22"
-                        app:layout_constraintHeight_percent="1"
-                        app:layout_constraintHorizontal_bias="0.225"
-                        android:gravity="center_vertical"
-                        app:autoSizeTextType="uniform"
-                        app:autoSizeMaxTextSize="20sp"
-                        app:autoSizeMinTextSize="1sp"
-                        android:textColor="#022660"
-                        android:fontFamily="@font/gilroy_400"
-                        android:textAllCaps="true"
-                        android:text="@string/text_color"/>
-                    <com.gg.osto.ui.custom.ScalableCardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintHeight_percent="0.90909"
-                        app:layout_constraintHorizontal_bias="0.94"
-                        app:cardBackgroundColor="@android:color/transparent"
+                        app:layout_constraintDimensionRatio="328:48"
                         app:cardElevation="0dp"
-                        scalableCornerRadius="@{0.25f}">
+                        app:cardBackgroundColor="#393E52"
+                        scaleType="@{ScaleType.BY_HEIGHT}"
+                        scalableCornerRadius="@{0.208333f}">
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            setAppGradientBackground="@{true}">
-                            <com.gg.osto.ui.custom.ScalableCardView
+                            android:layout_height="match_parent">
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="148:20"
+                                app:layout_constraintHeight_percent="0.41666666"
+                                app:layout_constraintHorizontal_bias="0.088888888"
+                                android:gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="1sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/roboto_700"
+                                android:text="@string/text_color"/>
+                            <com.cccomba.board.ui.custom.ScalableCardView
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -138,91 +247,112 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintDimensionRatio="1:1"
-                                app:layout_constraintWidth_percent="0.9"
-                                app:cardElevation="0dp"
+                                app:layout_constraintHeight_percent="0.5625"
+                                app:layout_constraintHorizontal_bias="0.95"
                                 app:cardBackgroundColor="@android:color/transparent"
-                                scalableCornerRadius="@{0.222f}">
-                                <View
+                                app:cardElevation="0dp"
+                                scalableCornerRadius="@{0.185f}">
+                                <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    bg="@{viewModel.currentKeyColor}"
-                                    tools:ignore="TooDeepLayout" />
-                            </com.gg.osto.ui.custom.ScalableCardView>
+                                    android:background="@drawable/app_gradient">
+                                    <com.cccomba.board.ui.custom.ScalableCardView
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
+                                        app:layout_constraintWidth_percent="0.85"
+                                        app:cardElevation="0dp"
+                                        app:cardBackgroundColor="@android:color/transparent"
+                                        scalableCornerRadius="@{0.13f}"
+                                        tools:ignore="TooDeepLayout">
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            bg="@{viewModel.currentKeyColor}"
+                                            tools:ignore="TooDeepLayout" />
+                                    </com.cccomba.board.ui.custom.ScalableCardView>
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </com.cccomba.board.ui.custom.ScalableCardView>
                         </androidx.constraintlayout.widget.ConstraintLayout>
-                    </com.gg.osto.ui.custom.ScalableCardView>
+                    </com.cccomba.board.ui.custom.ScalableCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="29"/>
+                    android:layout_weight="20"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="25"
+                    android:layout_weight="48"
                     android:onClick="@{(_) -> viewModel.pickFont()}">
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="288:22"
-                        app:layout_constraintHeight_percent="0.88"
-                        app:layout_constraintHorizontal_bias="0.225"
-                        android:gravity="center_vertical"
-                        app:autoSizeTextType="uniform"
-                        app:autoSizeMaxTextSize="20sp"
-                        app:autoSizeMinTextSize="1sp"
-                        android:textColor="#022660"
-                        android:fontFamily="@font/gilroy_400"
-                        android:textAllCaps="true"
-                        android:text="@string/font"/>
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <com.cccomba.board.ui.custom.ScalableCardView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="328:25">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/font"
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHeight_percent="0.88"
-                            android:gravity="center"
-                            app:autoSizeTextType="uniform"
-                            app:autoSizeMaxTextSize="2016sp"
-                            app:autoSizeMinTextSize="1sp"
-                            android:textColor="#022660"
-                            fontRes="@{viewModel.currentFont}"
-                            android:text="@{viewModel.getFontName(viewModel.currentFont)}"/>
-                        <com.gg.osto.ui.custom.ScalableCardView
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            app:layout_constraintTop_toBottomOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/font"
-                            app:layout_constraintEnd_toEndOf="@id/font"
-                            app:layout_constraintHeight_percent="0.16"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="@android:color/transparent"
-                            scaleType="@{ScaleType.BY_HEIGHT}"
-                            scalableCornerRadius="@{0.5f}">
+                        app:layout_constraintDimensionRatio="328:48"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#393E52"
+                        scaleType="@{ScaleType.BY_HEIGHT}"
+                        scalableCornerRadius="@{0.208333f}">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="148:20"
+                                app:layout_constraintHeight_percent="0.41666666"
+                                app:layout_constraintHorizontal_bias="0.088888888"
+                                android:gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="1sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/roboto_700"
+                                android:text="@string/font"/>
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                                <View
-                                    android:layout_width="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="296:48">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/font"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="0dp"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintHeight_percent="0.5"
-                                    setAppGradientBackground="@{true}"/>
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHeight_percent="0.25"
+                                    android:gravity="center"
+                                    app:autoSizeTextType="uniform"
+                                    app:autoSizeMaxTextSize="10sp"
+                                    app:autoSizeMinTextSize="1sp"
+                                    android:textColor="#FFFFFF"
+                                    fontRes="@{viewModel.currentFont}"
+                                    android:text="@{viewModel.getFontName(viewModel.currentFont)}"/>
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    app:layout_constraintTop_toBottomOf="@id/font"
+                                    app:layout_constraintStart_toStartOf="@id/font"
+                                    app:layout_constraintEnd_toEndOf="@id/font"
+                                    app:layout_constraintHeight_percent="0.0208333"
+                                    android:background="#FFFFFF"/>
                             </androidx.constraintlayout.widget.ConstraintLayout>
-                        </com.gg.osto.ui.custom.ScalableCardView>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.cccomba.board.ui.custom.ScalableCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -232,52 +362,47 @@
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.62246777"
-                app:layout_constraintDimensionRatio="360:234"
+                app:layout_constraintVertical_bias="0.7689"
+                app:layout_constraintDimensionRatio="360:301"
                 android:visibility="@{viewModel.tabKeys ? View.VISIBLE : View.GONE}"
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="22"
+                    android:layout_weight="48"
                     android:onClick="@{(_) -> viewModel.pickButtonColor()}">
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.cccomba.board.ui.custom.ScalableCardView
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_height="match_parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="288:22"
-                        app:layout_constraintHeight_percent="1"
-                        app:layout_constraintHorizontal_bias="0.225"
-                        android:gravity="center_vertical"
-                        app:autoSizeTextType="uniform"
-                        app:autoSizeMaxTextSize="20sp"
-                        app:autoSizeMinTextSize="1sp"
-                        android:textColor="#022660"
-                        android:fontFamily="@font/gilroy_400"
-                        android:textAllCaps="true"
-                        android:text="@string/keys_color"/>
-                    <com.gg.osto.ui.custom.ScalableCardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintHeight_percent="0.90909"
-                        app:layout_constraintHorizontal_bias="0.94"
-                        app:cardBackgroundColor="@android:color/transparent"
+                        app:layout_constraintDimensionRatio="328:48"
                         app:cardElevation="0dp"
-                        scalableCornerRadius="@{0.25f}">
+                        app:cardBackgroundColor="#393E52"
+                        scaleType="@{ScaleType.BY_HEIGHT}"
+                        scalableCornerRadius="@{0.208333f}">
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            setAppGradientBackground="@{true}">
-                            <com.gg.osto.ui.custom.ScalableCardView
+                            android:layout_height="match_parent">
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="148:20"
+                                app:layout_constraintHeight_percent="0.41666666"
+                                app:layout_constraintHorizontal_bias="0.088888888"
+                                android:gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="1sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/roboto_700"
+                                android:text="@string/keys_color"/>
+                            <com.cccomba.board.ui.custom.ScalableCardView
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -285,202 +410,260 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintDimensionRatio="1:1"
-                                app:layout_constraintWidth_percent="0.9"
-                                app:cardElevation="0dp"
-                                app:cardBackgroundColor="@android:color/white"
-                                scalableCornerRadius="@{0.222f}">
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    bg="@{viewModel.currentButtonsColor}"
-                                    tools:ignore="TooDeepLayout" />
-                            </com.gg.osto.ui.custom.ScalableCardView>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </com.gg.osto.ui.custom.ScalableCardView>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="28"/>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="22"
-                    android:onClick="@{(_) -> viewModel.pickStrokeColor()}">
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="288:22"
-                        app:layout_constraintHeight_percent="1"
-                        app:layout_constraintHorizontal_bias="0.225"
-                        android:gravity="center_vertical"
-                        app:autoSizeTextType="uniform"
-                        app:autoSizeMaxTextSize="20sp"
-                        app:autoSizeMinTextSize="1sp"
-                        android:textColor="#022660"
-                        android:fontFamily="@font/gilroy_400"
-                        android:textAllCaps="true"
-                        android:text="@string/stroke_color"/>
-                    <com.gg.osto.ui.custom.ScalableCardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintHeight_percent="0.90909"
-                        app:layout_constraintHorizontal_bias="0.94"
-                        app:cardBackgroundColor="@android:color/transparent"
-                        app:cardElevation="0dp"
-                        scalableCornerRadius="@{0.25f}">
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            bg="@{viewModel.currentStrokeColor}">
-                            <com.gg.osto.ui.custom.ScalableCardView
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintDimensionRatio="1:1"
-                                app:layout_constraintWidth_percent="0.9"
-                                app:cardElevation="0dp"
+                                app:layout_constraintHeight_percent="0.5625"
+                                app:layout_constraintHorizontal_bias="0.95"
                                 app:cardBackgroundColor="@android:color/transparent"
-                                scalableCornerRadius="@{0.222f}">
-                                <View
+                                app:cardElevation="0dp"
+                                scalableCornerRadius="@{0.185f}">
+                                <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@android:color/white"
-                                    tools:ignore="TooDeepLayout" />
-                            </com.gg.osto.ui.custom.ScalableCardView>
-                            <View
+                                    android:background="@drawable/app_gradient">
+                                    <com.cccomba.board.ui.custom.ScalableCardView
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
+                                        app:layout_constraintWidth_percent="0.85"
+                                        app:cardElevation="0dp"
+                                        app:cardBackgroundColor="@android:color/transparent"
+                                        scalableCornerRadius="@{0.13f}"
+                                        tools:ignore="TooDeepLayout">
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            bg="@{viewModel.currentButtonsColor}"
+                                            tools:ignore="TooDeepLayout" />
+                                    </com.cccomba.board.ui.custom.ScalableCardView>
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </com.cccomba.board.ui.custom.ScalableCardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.cccomba.board.ui.custom.ScalableCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="19"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="48"
+                    android:onClick="@{(_) -> viewModel.pickStrokeColor()}">
+                    <com.cccomba.board.ui.custom.ScalableCardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintDimensionRatio="328:48"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#393E52"
+                        scaleType="@{ScaleType.BY_HEIGHT}"
+                        scalableCornerRadius="@{0.208333f}">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintWidth_percent="1.42"
-                                app:layout_constraintHeight_percent="0.05"
-                                bg="@{viewModel.currentStrokeColor}"
-                                android:rotation="45"/>
+                                app:layout_constraintDimensionRatio="148:20"
+                                app:layout_constraintHeight_percent="0.41666666"
+                                app:layout_constraintHorizontal_bias="0.088888888"
+                                android:gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="1sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/roboto_700"
+                                android:text="@string/stroke_color"/>
+                            <com.cccomba.board.ui.custom.ScalableCardView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintHeight_percent="0.58333"
+                                app:layout_constraintHorizontal_bias="0.95"
+                                app:cardBackgroundColor="@android:color/transparent"
+                                app:cardElevation="0dp"
+                                scalableCornerRadius="@{0.17857f}">
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/app_gradient">
+                                    <com.cccomba.board.ui.custom.ScalableCardView
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
+                                        app:layout_constraintWidth_percent="0.857"
+                                        app:cardElevation="0dp"
+                                        app:cardBackgroundColor="@android:color/transparent"
+                                        scalableCornerRadius="@{0.125f}">
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+                                            <View
+                                                android:layout_width="0dp"
+                                                android:layout_height="0dp"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                app:layout_constraintBottom_toTopOf="parent"
+                                                app:layout_constraintStart_toEndOf="parent"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintDimensionRatio="1:1"
+                                                app:layout_constraintWidth_percent="1.33088"
+                                                android:rotation="45"
+                                                bg="@{viewModel.currentStrokeColor}"/>
+                                            <View
+                                                android:layout_width="0dp"
+                                                android:layout_height="0dp"
+                                                app:layout_constraintTop_toBottomOf="parent"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintEnd_toStartOf="parent"
+                                                app:layout_constraintDimensionRatio="1:1"
+                                                app:layout_constraintWidth_percent="1.33088"
+                                                android:rotation="45"
+                                                bg="@{viewModel.currentStrokeColor}"/>
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+                                    </com.cccomba.board.ui.custom.ScalableCardView>
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </com.cccomba.board.ui.custom.ScalableCardView>
                         </androidx.constraintlayout.widget.ConstraintLayout>
-                    </com.gg.osto.ui.custom.ScalableCardView>
+                    </com.cccomba.board.ui.custom.ScalableCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="28"/>
+                    android:layout_weight="20"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="22">
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="288:22"
-                        app:layout_constraintHeight_percent="1"
-                        app:layout_constraintHorizontal_bias="0.225"
-                        android:gravity="center_vertical"
-                        app:autoSizeTextType="uniform"
-                        app:autoSizeMaxTextSize="20sp"
-                        app:autoSizeMinTextSize="1sp"
-                        android:textColor="#022660"
-                        android:fontFamily="@font/gilroy_400"
-                        android:textAllCaps="true"
-                        android:text="@string/keys_corners_radius"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="14"/>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="18">
-                    <androidx.appcompat.widget.AppCompatSeekBar
+                    android:layout_weight="73">
+                    <com.cccomba.board.ui.custom.ScalableCardView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="328:18"
-                        android:max="20"
-                        app:min="0"
-                        android:progress="@={viewModel.currentStrokeCornersRadius}"
-                        android:thumbTint="#4754DE"
-                        android:progressTint="#4754DE"
-                        android:progressBackgroundTint="#022660"
-                        android:progressBackgroundTintMode="src_over"/>
+                        app:layout_constraintDimensionRatio="328:73"
+                        app:cardBackgroundColor="#393E52"
+                        app:cardElevation="0dp"
+                        scaleType="@{ScaleType.BY_HEIGHT}"
+                        scalableCornerRadius="@{0.1369863f}">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="296:20"
+                                app:layout_constraintHeight_percent="0.27"
+                                app:layout_constraintVertical_bias="0.26419"
+                                android:gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="1sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/roboto_700"
+                                android:text="@string/keys_corners_radius"/>
+                            <androidx.appcompat.widget.AppCompatSeekBar
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="296:18"
+                                app:layout_constraintHeight_percent="0.246575"
+                                app:layout_constraintVertical_bias="0.7971"
+                                android:max="20"
+                                app:min="0"
+                                android:progress="@={viewModel.currentStrokeCornersRadius}"
+                                android:thumbTint="#80A6F0FF"
+                                android:progressTint="#A6F0FF"
+                                android:progressBackgroundTint="#80FFFFFF"
+                                android:progressBackgroundTintMode="src_over"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.cccomba.board.ui.custom.ScalableCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="26"/>
+                    android:layout_weight="20"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="22">
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="288:22"
-                        app:layout_constraintHeight_percent="1"
-                        app:layout_constraintHorizontal_bias="0.225"
-                        android:gravity="center_vertical"
-                        app:autoSizeTextType="uniform"
-                        app:autoSizeMaxTextSize="20sp"
-                        app:autoSizeMinTextSize="1sp"
-                        android:textColor="#022660"
-                        android:fontFamily="@font/gilroy_400"
-                        android:textAllCaps="true"
-                        android:text="@string/keys_opacity"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="14"/>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="18">
-                    <androidx.appcompat.widget.AppCompatSeekBar
+                    android:layout_weight="73">
+                    <com.cccomba.board.ui.custom.ScalableCardView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="328:18"
-                        android:max="100"
-                        app:min="0"
-                        android:progress="@={viewModel.keyBGOpacity}"
-                        android:thumbTint="#4754DE"
-                        android:progressTint="#4754DE"
-                        android:progressBackgroundTint="#022660"
-                        android:progressBackgroundTintMode="src_over" />
+                        app:layout_constraintDimensionRatio="328:73"
+                        app:cardBackgroundColor="#393E52"
+                        app:cardElevation="0dp"
+                        scaleType="@{ScaleType.BY_HEIGHT}"
+                        scalableCornerRadius="@{0.1369863f}">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="296:20"
+                                app:layout_constraintHeight_percent="0.27"
+                                app:layout_constraintVertical_bias="0.26419"
+                                android:gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="1sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/roboto_700"
+                                android:text="@string/keys_opacity"/>
+                            <androidx.appcompat.widget.AppCompatSeekBar
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="296:18"
+                                app:layout_constraintHeight_percent="0.246575"
+                                app:layout_constraintVertical_bias="0.7971"
+                                android:max="100"
+                                app:min="0"
+                                android:progress="@={viewModel.keyBGOpacity}"
+                                android:thumbTint="#80A6F0FF"
+                                android:progressTint="#A6F0FF"
+                                android:progressBackgroundTint="#80FFFFFF"
+                                android:progressBackgroundTintMode="src_over"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.cccomba.board.ui.custom.ScalableCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -490,52 +673,48 @@
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.479"
-                app:layout_constraintDimensionRatio="360:72"
+                app:layout_constraintVertical_bias="0.5537"
+                app:layout_constraintDimensionRatio="360:111"
                 android:visibility="@{viewModel.tabBG ? View.VISIBLE : View.GONE}"
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="22"
+                    android:layout_weight="48"
                     android:onClick="@{(_) -> viewModel.pickBGColor()}">
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.cccomba.board.ui.custom.ScalableCardView
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_height="match_parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="288:22"
-                        app:layout_constraintHeight_percent="1"
-                        app:layout_constraintHorizontal_bias="0.225"
-                        android:gravity="center_vertical"
-                        app:autoSizeTextType="uniform"
-                        app:autoSizeMaxTextSize="20sp"
-                        app:autoSizeMinTextSize="1sp"
-                        android:textColor="#022660"
-                        android:fontFamily="@font/gilroy_400"
-                        android:textAllCaps="true"
-                        android:text="@string/background_color"/>
-                    <com.gg.osto.ui.custom.ScalableCardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintHeight_percent="0.90909"
-                        app:layout_constraintHorizontal_bias="0.94"
-                        app:cardBackgroundColor="@android:color/transparent"
+                        app:layout_constraintDimensionRatio="328:48"
                         app:cardElevation="0dp"
-                        scalableCornerRadius="@{0.25f}">
+                        app:cardBackgroundColor="#393E52"
+                        scaleType="@{ScaleType.BY_HEIGHT}"
+                        scalableCornerRadius="@{0.208333f}">
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            setAppGradientBackground="@{true}">
-                            <com.gg.osto.ui.custom.ScalableCardView
+                            tools:ignore="TooManyViews">
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="148:20"
+                                app:layout_constraintHeight_percent="0.41666666"
+                                app:layout_constraintHorizontal_bias="0.088888888"
+                                android:gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="1sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/roboto_700"
+                                android:text="@string/background_color"/>
+                            <com.cccomba.board.ui.custom.ScalableCardView
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -543,66 +722,81 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintDimensionRatio="1:1"
-                                app:layout_constraintWidth_percent="0.9"
-                                app:cardElevation="0dp"
+                                app:layout_constraintHeight_percent="0.5625"
+                                app:layout_constraintHorizontal_bias="0.95"
                                 app:cardBackgroundColor="@android:color/transparent"
-                                scalableCornerRadius="@{0.222f}">
-                                <View
+                                app:cardElevation="0dp"
+                                scalableCornerRadius="@{0.185f}">
+                                <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    bg="@{viewModel.currentBackgroundColor}"
-                                    tools:ignore="TooDeepLayout" />
-                            </com.gg.osto.ui.custom.ScalableCardView>
+                                    android:background="@drawable/app_gradient">
+                                    <com.cccomba.board.ui.custom.ScalableCardView
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
+                                        app:layout_constraintWidth_percent="0.85"
+                                        app:cardElevation="0dp"
+                                        app:cardBackgroundColor="@android:color/transparent"
+                                        scalableCornerRadius="@{0.13f}"
+                                        tools:ignore="TooDeepLayout">
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            bg="@{viewModel.currentBackgroundColor}"
+                                            tools:ignore="TooDeepLayout" />
+                                    </com.cccomba.board.ui.custom.ScalableCardView>
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </com.cccomba.board.ui.custom.ScalableCardView>
                         </androidx.constraintlayout.widget.ConstraintLayout>
-                    </com.gg.osto.ui.custom.ScalableCardView>
+                    </com.cccomba.board.ui.custom.ScalableCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="28"/>
+                    android:layout_weight="19"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="22"
+                    android:layout_weight="48"
                     android:onClick="@{(_) -> viewModel.pickImage()}">
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.cccomba.board.ui.custom.ScalableCardView
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_height="match_parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="288:22"
-                        app:layout_constraintHeight_percent="1"
-                        app:layout_constraintHorizontal_bias="0.225"
-                        android:gravity="center_vertical"
-                        app:autoSizeTextType="uniform"
-                        app:autoSizeMaxTextSize="20sp"
-                        app:autoSizeMinTextSize="1sp"
-                        android:textColor="#022660"
-                        android:fontFamily="@font/gilroy_400"
-                        android:textAllCaps="true"
-                        android:text="@string/background_image"/>
-                    <com.gg.osto.ui.custom.ScalableCardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintHeight_percent="0.90909"
-                        app:layout_constraintHorizontal_bias="0.94"
-                        app:cardBackgroundColor="@android:color/transparent"
+                        app:layout_constraintDimensionRatio="328:48"
                         app:cardElevation="0dp"
-                        scalableCornerRadius="@{0.25f}">
+                        app:cardBackgroundColor="#393E52"
+                        scaleType="@{ScaleType.BY_HEIGHT}"
+                        scalableCornerRadius="@{0.208333f}">
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            setAppGradientBackground="@{true}">
-                            <com.gg.osto.ui.custom.ScalableCardView
+                            android:layout_height="match_parent">
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="148:20"
+                                app:layout_constraintHeight_percent="0.41666666"
+                                app:layout_constraintHorizontal_bias="0.088888888"
+                                android:gravity="center_vertical"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="1sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/roboto_700"
+                                android:text="@string/background_image"/>
+                            <com.cccomba.board.ui.custom.ScalableCardView
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -610,399 +804,125 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintDimensionRatio="1:1"
-                                app:layout_constraintWidth_percent="0.9"
-                                app:cardElevation="0dp"
+                                app:layout_constraintHeight_percent="0.58333"
+                                app:layout_constraintHorizontal_bias="0.95"
                                 app:cardBackgroundColor="@android:color/transparent"
-                                scalableCornerRadius="@{0.222f}">
+                                app:cardElevation="0dp"
+                                scalableCornerRadius="@{0.17857f}">
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <View
-                                        android:layout_width="0dp"
-                                        android:layout_height="0dp"
-                                        app:layout_constraintTop_toBottomOf="parent"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintEnd_toStartOf="parent"
-                                        app:layout_constraintWidth_percent="1.335646"
-                                        app:layout_constraintDimensionRatio="1:1"
-                                        android:background="@android:color/white"
-                                        android:rotation="45"
-                                        tools:ignore="TooDeepLayout" />
-                                    <View
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/app_gradient">
+                                    <com.cccomba.board.ui.custom.ScalableCardView
                                         android:layout_width="0dp"
                                         android:layout_height="0dp"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:layout_constraintBottom_toTopOf="parent"
-                                        app:layout_constraintStart_toEndOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintWidth_percent="1.335646"
                                         app:layout_constraintDimensionRatio="1:1"
-                                        android:background="@android:color/white"
-                                        android:rotation="45"/>
+                                        app:layout_constraintWidth_percent="0.857"
+                                        app:cardElevation="0dp"
+                                        app:cardBackgroundColor="@android:color/transparent"
+                                        scalableCornerRadius="@{0.125f}">
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+                                            <View
+                                                android:layout_width="0dp"
+                                                android:layout_height="0dp"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                app:layout_constraintBottom_toTopOf="parent"
+                                                app:layout_constraintStart_toEndOf="parent"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintDimensionRatio="1:1"
+                                                app:layout_constraintWidth_percent="1.33088"
+                                                android:rotation="45"
+                                                android:background="#393E52"/>
+                                            <View
+                                                android:layout_width="0dp"
+                                                android:layout_height="0dp"
+                                                app:layout_constraintTop_toBottomOf="parent"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintEnd_toStartOf="parent"
+                                                app:layout_constraintDimensionRatio="1:1"
+                                                app:layout_constraintWidth_percent="1.33088"
+                                                android:rotation="45"
+                                                android:background="#393E52"/>
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+                                    </com.cccomba.board.ui.custom.ScalableCardView>
                                 </androidx.constraintlayout.widget.ConstraintLayout>
-                            </com.gg.osto.ui.custom.ScalableCardView>
+                            </com.cccomba.board.ui.custom.ScalableCardView>
                         </androidx.constraintlayout.widget.ConstraintLayout>
-                    </com.gg.osto.ui.custom.ScalableCardView>
+                    </com.cccomba.board.ui.custom.ScalableCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <com.gg.osto.ui.custom.ScalableCardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/buttonApply"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintDimensionRatio="156:52"
-                app:layout_constraintWidth_percent="0.4333"
-                app:layout_constraintVertical_bias="0.817931"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardElevation="0dp"
-                scaleType="@{ScaleType.BY_HEIGHT}"
-                scalableCornerRadius="@{0.5f}">
-                <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintDimensionRatio="140:49"
+                app:layout_constraintWidth_percent="0.388888888"
+                app:layout_constraintVertical_bias="0.945"
+                app:layout_constraintHorizontal_bias="0.86"
+                android:background="@drawable/button_140x49">
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    setAppGradientBackground="@{true}">
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:fontFamily="@font/gilroy_400"
-                        android:gravity="center"
-                        android:text="@string/apply"
-                        android:textColor="#FFFFFF"
-                        app:autoSizeMaxTextSize="20sp"
-                        app:autoSizeMinTextSize="1sp"
-                        app:autoSizeTextType="uniform"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="156:22"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textAllCaps="true"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.gg.osto.ui.custom.ScalableCardView>
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/roboto_400"
+                    android:gravity="center"
+                    android:text="@string/apply"
+                    android:textColor="#FFFFFF"
+                    app:autoSizeMaxTextSize="18sp"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="140:20"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/buttonCancel"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:fontFamily="@font/roboto_100"
-                android:gravity="center"
-                android:text="@string/cancel"
-                setAppGradientText="@{true}"
-                app:autoSizeMaxTextSize="20sp"
-                app:autoSizeMinTextSize="1sp"
-                app:autoSizeTextType="uniform"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="156:22"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintWidth_percent="0.4333"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.9128"
-                tools:ignore="TooManyViews" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="@id/main"
-            app:layout_constraintBottom_toBottomOf="@id/main">
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHeight_percent="0.054"
-                app:layout_constraintVertical_bias="0.363"
-                android:scrollbars="none"
-                android:overScrollMode="never"
-                setAppGradientBackground="@{true}">
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="118:49"
+                app:layout_constraintWidth_percent="0.327777777"
+                app:layout_constraintVertical_bias="0.945"
+                app:layout_constraintHorizontal_bias="0.1239"
+                android:background="@drawable/button_118x49">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/roboto_400"
+                    android:gravity="center"
+                    android:text="@string/cancel"
+                    android:textColor="#FFFFFF"
+                    app:autoSizeMaxTextSize="18sp"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="118:20"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        tools:ignore="TooManyViews">
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintDimensionRatio="16:42"
-                            tools:ignore="TooManyViews" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:onClick="@{(_) -> viewModel.onTextTabClick()}">
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHeight_percent="0.5238"
-                            app:layout_constraintVertical_bias="0.45"
-                            android:orientation="horizontal"
-                            android:alpha="@{viewModel.tabText ? 1f : 0.5f}">
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent">
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintDimensionRatio="18:22"
-                                    android:scaleType="centerInside"
-                                    android:src="@drawable/ic_text"/>
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent">
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintDimensionRatio="15:22"/>
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                            <com.gg.osto.ui.custom.TrueAutoSizeTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                fontToHeightRatio="@{0.9f}"
-                                android:textColor="@android:color/white"
-                                android:fontFamily="@font/gilroy_400"
-                                android:textAllCaps="true"
-                                android:text="@string/text"/>
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-                        <com.gg.osto.ui.custom.ScalableCardView
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHeight_percent="0.095"
-                            app:layout_constraintVertical_bias="0.97"
-                            app:cardBackgroundColor="@android:color/transparent"
-                            app:cardElevation="0dp"
-                            scaleType="@{ScaleType.BY_HEIGHT}"
-                            scalableCornerRadius="@{0.5f}"
-                            android:alpha="@{viewModel.tabText ? 1f : 0f}">
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintHeight_percent="0.5"
-                                    android:background="@android:color/white"/>
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </com.gg.osto.ui.custom.ScalableCardView>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintDimensionRatio="20:42"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:onClick="@{(_) -> viewModel.onKeysTabClick()}">
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHeight_percent="0.5238"
-                            app:layout_constraintVertical_bias="0.45"
-                            android:orientation="horizontal"
-                            android:alpha="@{viewModel.tabKeys ? 1f : 0.5f}">
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent">
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintDimensionRatio="18:22"
-                                    android:scaleType="centerInside"
-                                    android:src="@drawable/ic_keys" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent">
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintDimensionRatio="15:22"/>
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                            <com.gg.osto.ui.custom.TrueAutoSizeTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                fontToHeightRatio="@{0.9f}"
-                                android:textColor="@android:color/white"
-                                android:fontFamily="@font/gilroy_400"
-                                android:textAllCaps="true"
-                                android:text="@string/keys"/>
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-                        <com.gg.osto.ui.custom.ScalableCardView
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHeight_percent="0.095"
-                            app:layout_constraintVertical_bias="0.97"
-                            app:cardBackgroundColor="@android:color/transparent"
-                            app:cardElevation="0dp"
-                            scaleType="@{ScaleType.BY_HEIGHT}"
-                            scalableCornerRadius="@{0.5f}"
-                            android:alpha="@{viewModel.tabKeys ? 1f : 0f}">
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintHeight_percent="0.5"
-                                    android:background="@android:color/white"/>
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </com.gg.osto.ui.custom.ScalableCardView>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintDimensionRatio="20:42"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:onClick="@{(_) -> viewModel.onBGTabClick()}">
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHeight_percent="0.5238"
-                            app:layout_constraintVertical_bias="0.45"
-                            android:orientation="horizontal"
-                            android:alpha="@{viewModel.tabBG ? 1f : 0.5f}">
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent">
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintDimensionRatio="18:22"
-                                    android:scaleType="centerInside"
-                                    android:src="@drawable/ic_bg" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent">
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintDimensionRatio="15:22"/>
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                            <com.gg.osto.ui.custom.TrueAutoSizeTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                fontToHeightRatio="@{0.9f}"
-                                android:textColor="@android:color/white"
-                                android:fontFamily="@font/gilroy_400"
-                                android:textAllCaps="true"
-                                android:text="@string/background"/>
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-                        <com.gg.osto.ui.custom.ScalableCardView
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHeight_percent="0.095"
-                            app:layout_constraintVertical_bias="0.97"
-                            app:cardBackgroundColor="@android:color/transparent"
-                            app:cardElevation="0dp"
-                            scaleType="@{ScaleType.BY_HEIGHT}"
-                            scalableCornerRadius="@{0.5f}"
-                            android:alpha="@{viewModel.tabBG ? 1f : 0f}">
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintHeight_percent="0.5"
-                                    android:background="@android:color/white"/>
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </com.gg.osto.ui.custom.ScalableCardView>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintDimensionRatio="16:42"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </HorizontalScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/colorPicker"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#BF010C1D"
+            android:background="#C2181818"
             android:visibility="gone"
             tools:visibility="visible">
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1014,91 +934,77 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintDimensionRatio="360:777">
 
-                <com.github.antonpopoff.colorwheel.ColorWheel
-                    android:id="@+id/colorPickerView"
+                <com.cccomba.board.ui.custom.ScalableCardView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintWidth_percent="0.76111"
-                    app:layout_constraintVertical_bias="0.26779" />
-
-                <com.gg.osto.ui.custom.ScalableCardView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintDimensionRatio="167:64"
-                    app:layout_constraintWidth_percent="0.46388888888"
-                    app:layout_constraintVertical_bias="0.6858"
+                    app:layout_constraintDimensionRatio="328:412"
                     app:cardElevation="0dp"
-                    app:cardBackgroundColor="@android:color/transparent"
-                    scaleType="@{ScaleType.BY_HEIGHT}"
-                    scalableCornerRadius="@{0.5f}">
-                    <View
-                        android:id="@+id/colorDemo"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </com.gg.osto.ui.custom.ScalableCardView>
-
-                <com.gg.osto.ui.custom.ScalableCardView
-                    android:id="@+id/buttonOkColor"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintDimensionRatio="156:52"
-                    app:layout_constraintWidth_percent="0.4333"
-                    app:layout_constraintVertical_bias="0.817931"
-                    app:cardBackgroundColor="@android:color/transparent"
-                    app:cardElevation="0dp"
-                    scaleType="@{ScaleType.BY_HEIGHT}"
-                    scalableCornerRadius="@{0.5f}">
+                    app:cardBackgroundColor="#393E52"
+                    scaleType="@{ScaleType.BY_WIDTH}"
+                    scalableCornerRadius="@{0.02439f}">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        setAppGradientBackground="@{true}">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.github.antonpopoff.colorwheel.ColorWheel
+                            android:id="@+id/colorPickerView"
+                            android:layout_width="0dp"
                             android:layout_height="0dp"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="156:22"
-                            android:gravity="center"
-                            app:autoSizeTextType="uniform"
-                            app:autoSizeMaxTextSize="20sp"
-                            app:autoSizeMinTextSize="1sp"
-                            android:textColor="#FFFFFF"
-                            android:fontFamily="@font/roboto_100"
-                            android:text="@string/ok"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.gg.osto.ui.custom.ScalableCardView>
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintWidth_percent="0.5884"
+                            app:layout_constraintVertical_bias="0.456621" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/buttonCancelColor"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:fontFamily="@font/roboto_100"
-                    android:gravity="center"
-                    android:text="@string/cancel"
-                    setAppGradientText="@{true}"
-                    app:autoSizeMaxTextSize="20sp"
-                    app:autoSizeMinTextSize="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="156:22"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintWidth_percent="0.4333"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.9128"/>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/buttonOkColor"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintDimensionRatio="140:49"
+                            app:layout_constraintWidth_percent="0.4268"
+                            app:layout_constraintVertical_bias="0.8898"
+                            android:background="@drawable/button_140x49">
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="140:20"
+                                android:gravity="center"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="1sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/roboto_400"
+                                android:text="@string/apply"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/buttonCancelColor"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintWidth_percent="0.07"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0514"
+                            app:layout_constraintHorizontal_bias="0.94754"
+                            android:src="@drawable/button_close"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.cccomba.board.ui.custom.ScalableCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1107,7 +1013,7 @@
             android:id="@+id/fontPicker"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#BF010C1D"
+            android:background="#C2181818"
             android:visibility="@{viewModel.showFontPicker ? View.VISIBLE : View.GONE}">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
@@ -1118,48 +1024,68 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintDimensionRatio="360:777">
 
-                <com.gg.osto.ui.custom.ScalableCardView
+                <com.cccomba.board.ui.custom.ScalableCardView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintDimensionRatio="328:279"
-                    app:layout_constraintWidth_percent="0.9111"
-                    app:layout_constraintVertical_bias="0.46"
+                    app:layout_constraintDimensionRatio="328:378"
                     app:cardElevation="0dp"
-                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardBackgroundColor="#393E52"
                     scaleType="@{ScaleType.BY_WIDTH}"
-                    scalableCornerRadius="@{0.09f}">
+                    scalableCornerRadius="@{0.02439f}">
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="@android:color/white">
+                        android:orientation="vertical">
 
                         <Space
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="39"/>
+                            android:layout_weight="20"/>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="23">
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintWidth_percent="0.07"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0514"
+                                app:layout_constraintHorizontal_bias="0.94754"
+                                android:src="@drawable/button_close"
+                                android:onClick="@{(_) -> viewModel.closeFontPicker()}"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="7"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="22"
+                            android:layout_weight="20"
                             android:gravity="center"
                             app:autoSizeTextType="uniform"
-                            app:autoSizeMaxTextSize="20sp"
+                            app:autoSizeMaxTextSize="18sp"
                             app:autoSizeMinTextSize="1sp"
-                            android:textColor="#022660"
-                            android:fontFamily="@font/gilroy_400"
-                            android:textAllCaps="true"
+                            android:textColor="#FFFFFF"
+                            android:fontFamily="@font/roboto_700"
                             android:text="@string/choose_font"/>
 
                         <Space
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="18"/>
+                            android:layout_weight="30"/>
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:layout_width="match_parent"
@@ -1172,64 +1098,43 @@
                         <Space
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="30"/>
+                            android:layout_weight="19"/>
 
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                </com.gg.osto.ui.custom.ScalableCardView>
-
-                <com.gg.osto.ui.custom.ScalableCardView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintDimensionRatio="156:52"
-                    app:layout_constraintWidth_percent="0.4333"
-                    app:layout_constraintVertical_bias="0.817931"
-                    app:cardBackgroundColor="@android:color/transparent"
-                    app:cardElevation="0dp"
-                    scaleType="@{ScaleType.BY_HEIGHT}"
-                    scalableCornerRadius="@{0.5f}"
-                    android:onClick="@{(_) -> viewModel.onFontPicked()}">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        setAppGradientBackground="@{true}">
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="156:22"
-                            android:gravity="center"
-                            app:autoSizeTextType="uniform"
-                            app:autoSizeMaxTextSize="20sp"
-                            app:autoSizeMinTextSize="1sp"
-                            android:textColor="#FFFFFF"
-                            android:fontFamily="@font/roboto_100"
-                            android:text="@string/ok"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.gg.osto.ui.custom.ScalableCardView>
+                            android:layout_weight="49">
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintDimensionRatio="140:49"
+                                android:background="@drawable/button_140x49"
+                                android:onClick="@{(_) -> viewModel.onFontPicked()}">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintDimensionRatio="140:20"
+                                    android:gravity="center"
+                                    app:autoSizeTextType="uniform"
+                                    app:autoSizeMaxTextSize="18sp"
+                                    app:autoSizeMinTextSize="1sp"
+                                    android:textColor="#FFFFFF"
+                                    android:fontFamily="@font/roboto_400"
+                                    android:text="@string/apply"/>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:fontFamily="@font/roboto_100"
-                    android:gravity="center"
-                    android:text="@string/cancel"
-                    setAppGradientText="@{true}"
-                    app:autoSizeMaxTextSize="20sp"
-                    app:autoSizeMinTextSize="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="156:22"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintWidth_percent="0.4333"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.9128"
-                    android:onClick="@{(_) -> viewModel.closeFontPicker()}"/>
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="40"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </com.cccomba.board.ui.custom.ScalableCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1238,7 +1143,7 @@
             android:id="@+id/imagePicker"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#BF010C1D"
+            android:background="#C2181818"
             android:visibility="@{viewModel.showImagePicker ? View.VISIBLE : View.GONE}">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
@@ -1261,59 +1166,32 @@
                     android:overScrollMode="never"
                     adapter="@{viewModel.backgroundAdapter}"/>
 
-                <com.gg.osto.ui.custom.ScalableCardView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintDimensionRatio="156:52"
-                    app:layout_constraintWidth_percent="0.4333"
-                    app:layout_constraintVertical_bias="0.817931"
-                    app:cardBackgroundColor="@android:color/transparent"
-                    app:cardElevation="0dp"
-                    scaleType="@{ScaleType.BY_HEIGHT}"
-                    scalableCornerRadius="@{0.5f}"
-                    android:onClick="@{(_) -> viewModel.onImagePicked()}">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    app:layout_constraintDimensionRatio="118:49"
+                    app:layout_constraintWidth_percent="0.327777777"
+                    app:layout_constraintVertical_bias="0.945"
+                    android:background="@drawable/button_118x49"
+                    android:onClick="@{(_) -> viewModel.closeImagePicker()}">
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        setAppGradientBackground="@{true}">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="156:22"
-                            android:gravity="center"
-                            app:autoSizeTextType="uniform"
-                            app:autoSizeMaxTextSize="20sp"
-                            app:autoSizeMinTextSize="1sp"
-                            android:textColor="#FFFFFF"
-                            android:fontFamily="@font/roboto_100"
-                            android:text="@string/ok"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.gg.osto.ui.custom.ScalableCardView>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:fontFamily="@font/roboto_100"
-                    android:gravity="center"
-                    android:text="@string/cancel"
-                    setAppGradientText="@{true}"
-                    app:autoSizeMaxTextSize="20sp"
-                    app:autoSizeMinTextSize="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="156:22"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintWidth_percent="0.4333"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.9128"
-                    android:onClick="@{(_) -> viewModel.closeImagePicker()}"/>
+                        android:layout_height="0dp"
+                        android:fontFamily="@font/roboto_400"
+                        android:gravity="center"
+                        android:text="@string/cancel"
+                        android:textColor="#FFFFFF"
+                        app:autoSizeMaxTextSize="18sp"
+                        app:autoSizeMinTextSize="1sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="118:20"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

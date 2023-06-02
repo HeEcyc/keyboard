@@ -1,9 +1,9 @@
 {
   "index": 5,
   "backgroundImagePath": "file:///android_asset/images/image_5.png",
-  "buttonColor": "#943A3A3A",
-  "imeButtonColor": "#943A3A3A",
-  "buttonSecondaryColor": "#943A3A3A",
+  "buttonColor": "#6150FF8F",
+  "imeButtonColor": "#50FF8F",
+  "buttonSecondaryColor": "#50FF8F",
   "previewImage": "asset_5.png",
-  "keyTextColor": "#FFFFFF"
+  "keyTextColor": "#113936"
 }

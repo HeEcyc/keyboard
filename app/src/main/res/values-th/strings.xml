@@ -92,4 +92,8 @@
     <string name="want_to_install_a_keyboard_and_make_it_your_default">ต้องการติดตั้งคีย์บอร์ดและทำให้เป็นค่าเริ่มต้นหรือไม่?</string>
     <string name="get_new_look_of_your_phone_keyboard">รับรูปลักษณ์ใหม่ของแป้นพิมพ์โทรศัพท์ของคุณ</string>
     <string name="start">เริ่ม</string>
+    <string name="hello">สวัสดี!</string>
+    <string name="which_theme_do_you_like_more">ชอบธีมไหนมากกว่ากัน?</string>
+    <string name="you_can_create_your_own_theme">คุณสามารถสร้างธีมของคุณเองได้</string>
+    <string name="view_the_theme_you_have_chosen">ดูธีมที่คุณเลือก</string>
 </resources>

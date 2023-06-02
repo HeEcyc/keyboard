@@ -92,4 +92,8 @@
     <string name="want_to_install_a_keyboard_and_make_it_your_default">Gustong mag-install ng keyboard at gawin itong iyong default?</string>
     <string name="get_new_look_of_your_phone_keyboard">Kumuha ng Bagong Hitsura ng Iyong Keyboard ng Telepono</string>
     <string name="start">Magsimula</string>
+    <string name="hello">Kamusta!</string>
+    <string name="which_theme_do_you_like_more">Aling Tema ang Mas Gusto Mo?</string>
+    <string name="you_can_create_your_own_theme">Maaari kang Gumawa ng Iyong Sariling Tema</string>
+    <string name="view_the_theme_you_have_chosen">Tingnan Ang Temang Pinili Mo</string>
 </resources>

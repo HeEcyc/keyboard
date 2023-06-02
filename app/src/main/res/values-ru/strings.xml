@@ -92,4 +92,8 @@
     <string name="want_to_install_a_keyboard_and_make_it_your_default">Хотите установить клавиатуру и сделать ее клавиатурой по умолчанию?</string>
     <string name="get_new_look_of_your_phone_keyboard">Получите новый вид клавиатуры вашего телефона</string>
     <string name="start">Начать</string>
+    <string name="hello">Привет!</string>
+    <string name="which_theme_do_you_like_more">Какая тема вам нравится больше?</string>
+    <string name="you_can_create_your_own_theme">Вы можете создать свою собственную тему</string>
+    <string name="view_the_theme_you_have_chosen">Просмотр темы, которую вы выбрали</string>
 </resources>

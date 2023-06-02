@@ -4,13 +4,13 @@
 
     <data>
         <import type="android.view.View" />
-        <import type="com.gg.osto.ui.custom.ScalableCardView.ScaleType"/>
+        <import type="com.cccomba.board.ui.custom.ScalableCardView.ScaleType"/>
         <variable
             name="item"
-            type="com.gg.osto.data.KeyboardTheme" />
+            type="com.cccomba.board.data.KeyboardTheme" />
     </data>
 
-    <com.gg.osto.ui.custom.ScalableCardView
+    <com.cccomba.board.ui.custom.ScalableCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@android:color/white"
@@ -81,5 +81,5 @@
 <!--            android:layout_height="match_parent"-->
 <!--            android:background="@{item.isSelected ? @drawable/keyboard_border_selected : @drawable/keyboard_border_pure}" />-->
 
-    </com.gg.osto.ui.custom.ScalableCardView>
+    </com.cccomba.board.ui.custom.ScalableCardView>
 </layout>

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.gg.osto.ui.edit.EditViewModel.KeyboardFont" />
+            type="com.cccomba.board.ui.edit.EditViewModel.KeyboardFont" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,14 +20,11 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintHorizontal_bias="0.048"
-                app:layout_constraintHeight_percent="0.47"
+                app:layout_constraintHorizontal_bias="0.0646"
                 android:src="@{item.isSelected ? @drawable/radio_selected : @drawable/radio_unselected}"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -37,13 +34,13 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintDimensionRatio="238:16"
-                app:layout_constraintHeight_percent="0.47"
+                app:layout_constraintDimensionRatio="204:14"
+                app:layout_constraintHeight_percent="0.4117647"
                 android:gravity="center_vertical"
                 app:autoSizeTextType="uniform"
-                app:autoSizeMaxTextSize="14sp"
+                app:autoSizeMaxTextSize="12sp"
                 app:autoSizeMinTextSize="1sp"
-                android:textColor="#022660"
+                android:textColor="#FFFFFF"
                 fontRes="@{item.fontRes}"
                 android:text="@{item.name}"/>
 

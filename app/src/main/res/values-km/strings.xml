@@ -92,4 +92,8 @@
     <string name="want_to_install_a_keyboard_and_make_it_your_default">ចង់ដំឡើងក្តារចុច និងធ្វើឱ្យវាក្លាយជាលំនាំដើមរបស់អ្នកទេ?</string>
     <string name="get_new_look_of_your_phone_keyboard">ទទួលបានរូបរាងថ្មីនៃក្តារចុចទូរស័ព្ទរបស់អ្នក។</string>
     <string name="start">ចាប់ផ្តើម</string>
+    <string name="hello">សួស្តី!</string>
+    <string name="which_theme_do_you_like_more">តើអ្នកចូលចិត្តប្រធានបទមួយណាជាង?</string>
+    <string name="you_can_create_your_own_theme">អ្នកអាចបង្កើត Theme ផ្ទាល់ខ្លួនរបស់អ្នក។</string>
+    <string name="view_the_theme_you_have_chosen">មើលប្រធានបទដែលអ្នកបានជ្រើសរើស</string>
 </resources>

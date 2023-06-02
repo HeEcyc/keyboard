@@ -92,4 +92,8 @@
     <string name="want_to_install_a_keyboard_and_make_it_your_default">هل تريد تثبيت لوحة مفاتيح وجعلها افتراضية؟</string>
     <string name="get_new_look_of_your_phone_keyboard">احصل على مظهر جديد للوحة مفاتيح هاتفك</string>
     <string name="start">يبدأ</string>
+    <string name="hello">مرحبًا!</string>
+    <string name="which_theme_do_you_like_more">ما الموضوع الذي تفضله أكثر؟</string>
+    <string name="you_can_create_your_own_theme">يمكنك إنشاء المظهر الخاص بك</string>
+    <string name="view_the_theme_you_have_chosen">عرض الموضوع الذي اخترته</string>
 </resources>
