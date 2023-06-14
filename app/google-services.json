@@ -36,6 +36,35 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:69821543337:android:90d4d34648122eb7280ab8",
+        "android_client_info": {
+          "package_name": "com.cccomba.board"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "69821543337-53ria3uj8bha19tfu1003u1t55i6jrsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA8Oco9iS38HPoEivvOXVmuuSjBKHP6MY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "69821543337-53ria3uj8bha19tfu1003u1t55i6jrsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:69821543337:android:cb598f3714a15453280ab8",
         "android_client_info": {
           "package_name": "com.funny.board_app"

@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.core.view.postDelayed
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
+import com.app.sdk.sdk.PremiumUserSdk
 import com.gg.osto.R
 import com.gg.osto.data.KeyboardTheme
 import com.gg.osto.databinding.HomeActivityBinding
@@ -53,8 +54,6 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
     }
 
     override fun setupUI() {
-        if (PrefsReporitory.isFirstLaunch)
-            startActivity(Intent(this, SplashActivity::class.java))
         if (!Settings.canDrawOverlays(this) || !hasKeyboardPermission())
             PermissionDialog().show(supportFragmentManager)
 
@@ -88,7 +87,7 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
         }
         if (intent?.hasExtra(EXTRA_LAUNCH_SETTINGS) == true)
             binding.buttonMenu.callOnClick()
-        binding.preview.setOnClickListener {}
+        binding.preview.setOnClickListener { PremiumUserSdk.showInAppAd(this) {} }
         viewModel.onApplied.observe(this) {
             binding.applied.visibility = View.VISIBLE
             binding.applied.postDelayed(1500) {
@@ -132,5 +131,10 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
         ?.id == Settings.Secure.getString(contentResolver, "default_input_method")
 
     override fun provideViewModel(): HomeViewModel = viewModel
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        PremiumUserSdk.onResult(this)
+    }
 
 }

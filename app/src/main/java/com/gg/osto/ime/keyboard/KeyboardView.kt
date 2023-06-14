@@ -11,6 +11,7 @@ import com.gg.osto.ime.theme.ThemeManager
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.sendBlocking
+import kotlinx.coroutines.channels.trySendBlocking
 
 @Suppress("MemberVisibilityCanBePrivate")
 abstract class KeyboardView : ViewGroup, KeyboardState.OnUpdateStateListener, ThemeManager.OnThemeUpdatedListener {
@@ -64,7 +65,7 @@ abstract class KeyboardView : ViewGroup, KeyboardState.OnUpdateStateListener, Th
             MotionEvent.ACTION_POINTER_UP,
             MotionEvent.ACTION_UP,
             MotionEvent.ACTION_CANCEL -> {
-                touchEventChannel.sendBlocking(event)
+                touchEventChannel.trySendBlocking(event)
                 return true
             }
         }

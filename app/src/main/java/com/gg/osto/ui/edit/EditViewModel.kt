@@ -48,7 +48,8 @@ class EditViewModel(
     val currentBackgroundColor = ObservableField<String?>(theme.backgroundColor)
     val currentButtonsColor = ObservableField(theme.buttonColor)
     val currentStrokeCornersRadius = ObservableField(theme.strokeRadius)
-    val currentKeyboardBackground = ObservableField(theme.backgroundImagePath?.let { BackgroundAsset.BackgroundTheme(it) })
+    val currentKeyboardBackground =
+        ObservableField(theme.backgroundImagePath?.let { BackgroundAsset.BackgroundTheme(it) })
     val keyBGOpacity = ObservableField(theme.opacity)
 
     val adapterFonts = createAdapter<KeyboardFont, com.gg.osto.databinding.ItemFontBinding>(R.layout.item_font) {
@@ -100,7 +101,9 @@ class EditViewModel(
         App.instance.assets
             .list(bgFolderNamePath)
             ?.filter { it.startsWith("image") }
-            ?.mapIndexed { i, it -> BackgroundAsset.BackgroundTheme(uriPathFromAsset(it)).apply { isSelected.set(i == 0) } }
+            ?.mapIndexed { i, it ->
+                BackgroundAsset.BackgroundTheme(uriPathFromAsset(it)).apply { isSelected.set(i == 0) }
+            }
             ?: listOf()
 
     private fun uriPathFromAsset(it: String) =
@@ -226,7 +229,7 @@ class EditViewModel(
         private val theme: KeyboardTheme,
         private val homeViewModel: HomeViewModel
     ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>) = EditViewModel(theme, homeViewModel) as T
+        override fun <T : ViewModel> create(modelClass: Class<T>) = EditViewModel(theme, homeViewModel) as T
     }
 
     sealed class BackgroundAsset {

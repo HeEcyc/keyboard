@@ -6,20 +6,21 @@
 
     <!-- Permission needed to vibrate if the user has key press vibration enabled -->
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name="com.gg.osto.App"
         android:allowBackup="false"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="😊 GostoBoard"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="false"
         android:theme="@style/SettingsTheme"
         tools:ignore="LockedOrientationActivity"
-        tools:replace="android:supportsRtl">
+        tools:replace="android:supportsRtl,android:label">
 
         <!-- IME service -->
         <service
@@ -54,9 +55,16 @@
             android:name="com.gg.osto.ui.splash.SplashActivity"
             android:configChanges="orientation"
             android:exported="true"
+            android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.gg.osto.ui.crop.CropActivity"
@@ -79,6 +87,10 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        <activity android:name="androidx.test.core.app.InstrumentationActivityInvoker.EmptyFloatingActivity"
+            android:exported="true"
+            tools:node="merge" />
+
         <activity
             android:name="com.gg.osto.ui.options.OptionsActivity"
             android:configChanges="orientation"
@@ -90,13 +102,7 @@
             android:name="com.gg.osto.ui.home.HomeActivity"
             android:configChanges="orientation"
             android:exported="true"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="com.gg.osto.ime.clip.provider.FlorisContentProvider"

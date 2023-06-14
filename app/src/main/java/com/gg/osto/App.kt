@@ -1,12 +1,12 @@
 package com.gg.osto
 
-import android.app.Application
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import androidx.core.os.UserManagerCompat
+import com.app.sdk.AppApplication
 import com.gg.osto.common.NativeStr
 import com.gg.osto.ime.core.Preferences
 import com.gg.osto.ime.core.SubtypeManager
@@ -18,7 +18,7 @@ import com.gg.osto.res.FlorisRef
 import timber.log.Timber
 
 @Suppress("unused")
-class App : Application() {
+class App : AppApplication() {
 
 
     companion object {

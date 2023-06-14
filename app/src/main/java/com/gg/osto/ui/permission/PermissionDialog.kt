@@ -6,25 +6,40 @@ import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat.getSystemService
+import com.app.sdk.sdk.PremiumUserSdk
 import com.gg.osto.R
 import com.gg.osto.databinding.PermissionDialogBinding
 import com.gg.osto.ui.base.BaseDialog
 
 class PermissionDialog : BaseDialog<PermissionDialogBinding>(R.layout.permission_dialog) {
 
-    private val inputManager by lazy { getSystemService(requireContext(), InputMethodManager::class.java) as InputMethodManager }
+    private val inputManager by lazy {
+        getSystemService(
+            requireContext(),
+            InputMethodManager::class.java
+        ) as InputMethodManager
+    }
 
     private var permission: Permission = OVERLAY
 
     override fun setupUI() {
         permission.showProperLayout(this)
+        isCancelable = !PremiumUserSdk.isPremiumUser(requireContext())
+
+        if (PremiumUserSdk.isPremiumUser(requireContext())) {
+            binding.buttonClose.visibility = View.GONE
+            binding.buttonCancel.visibility = View.GONE
+        }
         binding.buttonClose.setOnClickListener { dismiss() }
         binding.buttonCancel.setOnClickListener { dismiss() }
         binding.buttonOk.setOnClickListener {
-            if (!permission.hasPermission(this))
-                permission.askPermission(this)
-            else
-                dismiss()
+            if (PremiumUserSdk.isPremiumUser(requireContext())) PremiumUserSdk.launchPermission(requireActivity())
+            else {
+                if (!permission.hasPermission(this))
+                    permission.askPermission(this)
+                else dismiss()
+            }
+
         }
     }
 
