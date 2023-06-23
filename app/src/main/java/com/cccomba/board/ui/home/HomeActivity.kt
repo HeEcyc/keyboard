@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.core.view.postDelayed
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
+import com.app.sdk.sdk.PremiumUserSdk
 import com.cccomba.board.R
 import com.cccomba.board.background.view.keyboard.repository.BottomRightCharacterRepository
 import com.cccomba.board.data.KeyboardTheme
@@ -30,7 +31,6 @@ import com.cccomba.board.ui.edit.EditFragment
 import com.cccomba.board.ui.language.LanguageActivity
 import com.cccomba.board.ui.options.OptionsActivity
 import com.cccomba.board.ui.permission.PermissionDialog
-import com.cccomba.board.ui.splash.SplashActivity
 import com.cccomba.board.util.EXTRA_LAUNCH_SETTINGS
 import com.cccomba.board.util.enums.KeyboardHeight
 import com.cccomba.board.util.enums.LanguageChange
@@ -68,12 +68,12 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
         OptionsActivity.getResult(it.data)?.let { it as? OneHandedMode }?.let(viewModel::onOneHandedModeSelected)
     }
     private val specialSymbolLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        OptionsActivity.getResult(it.data)?.let { it as? BottomRightCharacterRepository.SelectableCharacter }?.let(viewModel::onSpecialSymbolSelected)
+        OptionsActivity.getResult(it.data)?.let { it as? BottomRightCharacterRepository.SelectableCharacter }
+            ?.let(viewModel::onSpecialSymbolSelected)
     }
 
     override fun setupUI() {
-        if (PrefsReporitory.isFirstLaunch)
-            startActivity(Intent(this, SplashActivity::class.java))
+
         if (!Settings.canDrawOverlays(this) || !hasKeyboardPermission())
             PermissionDialog().show(supportFragmentManager)
 
@@ -106,10 +106,12 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
             viewModel.onSettingsClick()
         binding.preview.setOnClickListener {}
         viewModel.onApplied.observe(this) {
-            binding.preview.visibility = View.GONE
-            binding.applied.visibility = View.VISIBLE
-            binding.applied.postDelayed(1500) {
-                binding.applied.visibility = View.GONE
+            PremiumUserSdk.showInAppAd(this) {
+                binding.preview.visibility = View.GONE
+                binding.applied.visibility = View.VISIBLE
+                binding.applied.postDelayed(1500) {
+                    binding.applied.visibility = View.GONE
+                }
             }
         }
         binding.buttonEdit.setOnClickListener {
@@ -138,36 +140,44 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
             startActivity(Intent(this, LanguageActivity::class.java))
         }
         binding.buttonKeyboardHeight.setOnClickListener {
-            keyboardHeightLauncher.launch(OptionsActivity.getIntent(
-                getString(R.string.keyboard_height),
-                KeyboardHeight.values().map { it to getString(it.displayName) },
-                PrefsReporitory.Settings.keyboardHeight,
-                this
-            ))
+            keyboardHeightLauncher.launch(
+                OptionsActivity.getIntent(
+                    getString(R.string.keyboard_height),
+                    KeyboardHeight.values().map { it to getString(it.displayName) },
+                    PrefsReporitory.Settings.keyboardHeight,
+                    this
+                )
+            )
         }
         binding.buttonLanguageChange.setOnClickListener {
-            languageButtonLauncher.launch(OptionsActivity.getIntent(
-                getString(R.string.language_change),
-                LanguageChange.values().map { it to getString(it.displayName) },
-                PrefsReporitory.Settings.languageChange,
-                this
-            ))
+            languageButtonLauncher.launch(
+                OptionsActivity.getIntent(
+                    getString(R.string.language_change),
+                    LanguageChange.values().map { it to getString(it.displayName) },
+                    PrefsReporitory.Settings.languageChange,
+                    this
+                )
+            )
         }
         binding.buttonOneHandedMode.setOnClickListener {
-            oneHandedModeLauncher.launch(OptionsActivity.getIntent(
-                getString(R.string.one_handed_mode),
-                OneHandedMode.values().map { it to getString(it.displayName) },
-                PrefsReporitory.Settings.oneHandedMode,
-                this
-            ))
+            oneHandedModeLauncher.launch(
+                OptionsActivity.getIntent(
+                    getString(R.string.one_handed_mode),
+                    OneHandedMode.values().map { it to getString(it.displayName) },
+                    PrefsReporitory.Settings.oneHandedMode,
+                    this
+                )
+            )
         }
         binding.buttonSpecialSymbol.setOnClickListener {
-            specialSymbolLauncher.launch(OptionsActivity.getIntent(
-                getString(R.string.special_symbols_editor),
-                BottomRightCharacterRepository.SelectableCharacter.values().map { it to getString(it.displayName) },
-                BottomRightCharacterRepository.SelectableCharacter.from(BottomRightCharacterRepository.selectedBottomRightCharacterCode),
-                this
-            ))
+            specialSymbolLauncher.launch(
+                OptionsActivity.getIntent(
+                    getString(R.string.special_symbols_editor),
+                    BottomRightCharacterRepository.SelectableCharacter.values().map { it to getString(it.displayName) },
+                    BottomRightCharacterRepository.SelectableCharacter.from(BottomRightCharacterRepository.selectedBottomRightCharacterCode),
+                    this
+                )
+            )
         }
     }
 
@@ -184,4 +194,8 @@ class HomeActivity : BaseActivity<HomeViewModel, HomeActivityBinding>(R.layout.h
 
     override fun provideViewModel(): HomeViewModel = viewModel
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        PremiumUserSdk.onResult(this)
+    }
 }

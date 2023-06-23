@@ -6,7 +6,7 @@
 
     <!-- Permission needed to vibrate if the user has key press vibration enabled -->
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
@@ -14,12 +14,12 @@
         android:name="com.cccomba.board.App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="😊CombaBoard"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="false"
         android:theme="@style/SettingsTheme"
         tools:ignore="LockedOrientationActivity"
-        tools:replace="android:supportsRtl">
+        tools:replace="android:supportsRtl,android:label">
 
         <!-- IME service -->
         <service
@@ -51,12 +51,20 @@
         </service>
 
         <activity
-            android:name="com.cccomba.board.ui.splash.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:configChanges="orientation"
             android:exported="true"
+            android:label="CombaBoard"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
         <activity
             android:name="com.cccomba.board.ui.crop.CropActivity"
@@ -84,11 +92,7 @@
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <provider

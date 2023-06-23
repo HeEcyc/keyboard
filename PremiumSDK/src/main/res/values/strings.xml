@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SDK</string>
+    <string name="give_permission_text">Give overlay permission and unlock all functionality</string>
+</resources>

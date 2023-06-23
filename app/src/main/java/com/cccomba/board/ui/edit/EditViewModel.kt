@@ -227,7 +227,7 @@ class EditViewModel(
         private val theme: KeyboardTheme,
         private val homeViewModel: HomeViewModel
     ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>) = EditViewModel(theme, homeViewModel) as T
+        override fun <T : ViewModel> create(modelClass: Class<T>) = EditViewModel(theme, homeViewModel) as T
     }
 
     sealed class BackgroundAsset {

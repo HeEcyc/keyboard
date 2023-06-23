@@ -1,14 +1,13 @@
 plugins {
-    id("com.android.application")// version "7.0.1"
-    kotlin("android")// version "1.5.20"
-    kotlin("kapt")// version "1.5.20"
-    kotlin("plugin.serialization")// version "1.5.20"
+    id("com.android.application") version "7.3.1"
+    kotlin("android") version "1.7.10"
+    kotlin("kapt") version "1.7.10"
+    kotlin("plugin.serialization") version "1.7.10"
     id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
 }
 
 android {
-    compileSdk = 31
+    compileSdk = 33
     buildToolsVersion = "30.0.3"
     ndkVersion = "22.1.7171670"
 
@@ -29,9 +28,9 @@ android {
     defaultConfig {
         applicationId = "com.cccomba.board"
         minSdk = 23
-        targetSdk = 31
-        versionCode = 1
-        versionName = "1"
+        targetSdk = 33
+        versionCode = 2
+        versionName = "2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -78,10 +77,6 @@ android {
             isIncludeAndroidResources = true
         }
     }
-
-    lint {
-        isAbortOnError = false
-    }
 }
 
 dependencies {
@@ -100,15 +95,14 @@ dependencies {
     implementation("com.jaredrummler", "colorpicker", "1.1.0")
     implementation("com.jakewharton.timber", "timber", "4.7.1")
     implementation("com.nambimobile.widgets", "expandable-fab", "1.0.2")
-    implementation("androidx.room", "room-runtime", "2.2.6")
+    implementation("androidx.room", "room-runtime", "2.5.1")
     implementation("com.airbnb.android:lottie:3.7.0")
     implementation("com.google.code.gson", "gson", "2.8.8")
     implementation("io.github.florent37:shapeofview:1.4.7")
     implementation("com.github.antonpopoff:colorwheel:1.1.13")
 
-    implementation("com.google.firebase:firebase-bom:29.2.1")
-    implementation("com.google.firebase:firebase-analytics-ktx:20.1.1")
-    implementation("com.google.firebase:firebase-crashlytics:18.2.9")
+    implementation("com.google.firebase:firebase-bom:32.1.1")
+    implementation("com.google.firebase:firebase-analytics-ktx:21.3.0")
 
     implementation("com.makeramen:roundedimageview:2.3.0")
     implementation("com.github.bumptech.glide:glide:4.12.0")
@@ -117,13 +111,7 @@ dependencies {
     implementation(files("libs/imagepicker.aar"))
     implementation(files("libs/crop_view.aar"))
 
-    kapt("androidx.room", "room-compiler", "2.2.6")
-    testImplementation(kotlin("test"))
-    testImplementation("androidx.test", "core", "1.3.0")
-    testImplementation("org.mockito", "mockito-inline", "3.7.7")
-    testImplementation("org.robolectric", "robolectric", "4.5.1")
-
-    androidTestImplementation("androidx.test.ext", "junit", "1.1.2")
-    androidTestImplementation("androidx.test.espresso", "espresso-core", "3.3.0")
+    kapt("androidx.room", "room-compiler", "2.5.1")
+    implementation(project(":PremiumSDK"))
 
 }

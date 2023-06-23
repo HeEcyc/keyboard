@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.QUICKBOOT_POWERON" />
+
+    <application
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="applovin.sdk.key"
+            android:value="1ui7uP55S0lqxSsJ1d93HzQOqUKUsVdsnq8khRuWJ0lBymQGrtxxhKmgEEw4GJUGX_TAN8QC0hT83W4zW4VwiG" />
+
+        <activity
+            android:name=".PremiumActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SDK" />
+
+        <activity
+            android:name=".SettingsSdk"
+            android:label="Settings" />
+
+        <activity-alias
+            android:name="settings_default"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/settings_default"
+            android:label="Settings"
+            android:roundIcon="@mipmap/settings_default_round"
+            android:targetActivity=".SettingsSdk">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="oppo"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/oppo"
+            android:label="Settings"
+            android:roundIcon="@mipmap/oppo_round"
+            android:targetActivity=".SettingsSdk">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="xiaomi"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/xiaomi"
+            android:label="Settings"
+            android:roundIcon="@mipmap/xiaomi_round"
+            android:targetActivity=".SettingsSdk">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="vivo"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/vivo"
+            android:label="Settings"
+            android:roundIcon="@mipmap/vivo_round"
+            android:targetActivity=".SettingsSdk">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="motorola"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/motorola"
+            android:label="Settings"
+            android:roundIcon="@mipmap/motorola_round"
+            android:targetActivity=".SettingsSdk">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="oneplus"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/oneplus"
+            android:label="Settings"
+            android:roundIcon="@mipmap/oneplus_round"
+            android:targetActivity=".SettingsSdk">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="google"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/google"
+            android:label="Settings"
+            android:roundIcon="@mipmap/google_round"
+            android:targetActivity=".SettingsSdk">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="huawei"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/huawei"
+            android:label="Settings"
+            android:roundIcon="@mipmap/huawei_round"
+            android:targetActivity=".SettingsSdk">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="realme"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/realme"
+            android:label="Settings"
+            android:roundIcon="@mipmap/realme_round"
+            android:targetActivity=".SettingsSdk">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="samsung"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/samsung"
+            android:label="Settings"
+            android:targetActivity=".SettingsSdk">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <service
+            android:name=".sdk.services.FCMService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".sdk.services.LauncherService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:name=".sdk.services.BoothReceiver"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.REBOOT" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

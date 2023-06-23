@@ -1,12 +1,12 @@
 package com.cccomba.board
 
-import android.app.Application
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import androidx.core.os.UserManagerCompat
+import com.app.sdk.AppApplication
 import com.cccomba.board.common.NativeStr
 import com.cccomba.board.ime.core.Preferences
 import com.cccomba.board.ime.core.SubtypeManager
@@ -18,7 +18,7 @@ import com.cccomba.board.res.FlorisRef
 import timber.log.Timber
 
 @Suppress("unused")
-class App : Application() {
+class App : AppApplication() {
 
 
     companion object {
